@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="38 52 598 352" width="598" height="352">
+  <defs>
+    <font-face font-family="Andale Mono" font-size="16" panose-1="2 11 5 9 0 0 0 0 0 4" units-per-em="1000" underline-position="-100.09766" underline-thickness="49.80469" slope="0" x-height="521.4844" cap-height="702.1484" ascent="907.2266" descent="-217.77344" font-weight="400">
+      <font-face-src>
+        <font-face-name name="AndaleMono"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="Andale Mono" font-size="10" panose-1="2 11 5 9 0 0 0 0 0 4" units-per-em="1000" underline-position="-100.09766" underline-thickness="49.80469" slope="0" x-height="521.4844" cap-height="702.1484" ascent="907.2266" descent="-217.77344" font-weight="400">
+      <font-face-src>
+        <font-face-name name="AndaleMono"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker_2" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="white">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.7.1 
+    <dc:date>2018-05-08 10:25:38 +0000</dc:date>
+  </metadata>
+  <g id="maincanvas" fill-opacity="1" stroke-dasharray="none" stroke="none" stroke-opacity="1" fill="none">
+    <title>Canvas 1</title>
+    <g class='svgstep' show-steps='1+'>
+      <title>Layer 1</title>
+      <g id="Graphic_3">
+        <rect x="38.5" y="60.5" width="201.5" height="96" fill="#811e46"/>
+        <text transform="translate(43.5 90.5)" fill="white">
+          <tspan font-family="Andale Mono" font-size="16" font-weight="400" fill="white" x="76.546875" y="15">View </tspan>
+          <tspan font-family="Andale Mono" font-size="16" font-weight="400" fill="white" x="52.54297" y="33">Component</tspan>
+        </text>
+      </g>
+      <g id="Group_16">
+        <g id="Graphic_15">
+          <rect x="38.5" y="243.5" width="201.5" height="96" fill="#f25b2a"/>
+          <text transform="translate(43.5 248.5)" fill="white">
+            <tspan font-family="Andale Mono" font-size="16" font-weight="400" fill="white" x="62.14453" y="15">Actions</tspan>
+          </text>
+        </g>
+        <g id="Graphic_14">
+          <rect x="61.5" y="288.5" width="38.5" height="37" fill="#faad96"/>
+        </g>
+        <g id="Graphic_13">
+          <rect x="120" y="288.5" width="38.5" height="37" fill="#faad96"/>
+        </g>
+        <g id="Graphic_12">
+          <rect x="178.5" y="288.5" width="38.5" height="37" fill="#faad96"/>
+        </g>
+      </g>
+      <g id="Group_28">
+        <g id="Graphic_27">
+          <rect x="469" y="52" width="167" height="351.5" fill="#0b7e9b"/>
+          <text transform="translate(474 57)" fill="white">
+            <tspan font-family="Andale Mono" font-size="16" font-weight="400" fill="white" x="54.496094" y="15">Store</tspan>
+          </text>
+        </g>
+        <g id="Graphic_26">
+          <rect x="486.5" y="97" width="132" height="68" fill="#4d4d4e"/>
+          <text transform="translate(491.5 122)" fill="white">
+            <tspan font-family="Andale Mono" font-size="16" font-weight="400" fill="white" x="36.996094" y="15">State</tspan>
+          </text>
+        </g>
+        <g id="Graphic_25">
+          <rect x="486.5" y="272.25" width="132" height="65.5" fill="#b4d77b"/>
+          <text transform="translate(491.5 296)" fill="white">
+            <tspan font-family="Andale Mono" font-size="16" font-weight="400" fill="white" x="27.39453" y="15">Reducer</tspan>
+          </text>
+        </g>
+      </g>
+    </g>
+    <g class='svgstep' show-steps='2+'>
+      <title>Layer 2</title>
+      <g id="Line_17">
+        <line x1="139.5" y1="186.5" x2="139.38786" y2="233.60003" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_19">
+        <text transform="translate(51.95482 162.47554)" fill="black">
+          <tspan font-family="Andale Mono" font-size="10" font-weight="400" fill="black" x=".48583984" y="9">user interacts with component</tspan>
+          <tspan font-family="Andale Mono" font-size="10" font-weight="400" fill="black" x="33.49121" y="20">triggers an action</tspan>
+        </text>
+      </g>
+    </g>
+    <g class='svgstep' show-steps='3+'>
+      <title>Layer 3</title>
+      <g id="Line_23">
+        <line x1="240" y1="289.5" x2="459.10095" y2="286.47022" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_24">
+        <title>Label: action gets dispatched 
+to the store</title>
+        <text transform="translate(274.35034 261.06393)" fill="black">
+          <tspan font-family="Andale Mono" font-size="10" font-weight="400" fill="black" x="3.489258" y="9">action gets dispatched </tspan>
+          <tspan font-family="Andale Mono" font-size="10" font-weight="400" fill="black" x="33.49414" y="20">to the store</tspan>
+        </text>
+      </g>
+    </g>
+    <g class='svgstep' show-steps='4+'>
+      <title>Layer 4</title>
+      <g id="Line_29">
+        <line x1="552.5" y1="272.25" x2="552.5" y2="174.9" marker-end="url(#FilledArrow_Marker_2)" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_30">
+        <rect x="487" y="203.39307" width="131" height="32" fill="#0b7e9b"/>
+        <text transform="translate(492 208.39307)" fill="white">
+          <tspan font-family="Andale Mono" font-size="10" font-weight="400" fill="white" x="6.491211" y="9">reducer calculates </tspan>
+          <tspan font-family="Andale Mono" font-size="10" font-weight="400" fill="white" x=".4902344" y="20">and stores new state</tspan>
+        </text>
+      </g>
+    </g>
+    <g class='svgstep' show-steps='5+'>
+      <title>Layer 5</title>
+      <g id="Line_31">
+        <line x1="469" y1="110.58333" x2="249.8998" y2="109.19908" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_32">
+        <text transform="translate(287.5216 82.91377)" fill="black">
+          <tspan font-family="Andale Mono" font-size="10" font-weight="400" fill="black" x="3.4882812" y="9">view subscribes to state </tspan>
+          <tspan font-family="Andale Mono" font-size="10" font-weight="400" fill="black" x="27.492188" y="20">and gets updated</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>

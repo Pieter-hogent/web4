@@ -1,0 +1,47 @@
+Easier editing of these presentations using keybindings and snippets for visual studio code
+
+keybindings.json
+[
+    {
+        "key": "cmd+k s",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus",
+        "args": {
+            "snippet": "<span sstep='${0:1}'>$TM_SELECTED_TEXT</span>"
+        }
+    },
+    {
+        "key": "cmd+k h",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus",
+        "args": {
+            "snippet": "<span hstep='${0:1}'>$TM_SELECTED_TEXT</span>"
+        }
+    }
+]
+
+User snippets, HTML
+{
+   "codestepper plugin": {
+		"prefix": "codesteps",
+		"body": [
+			"<div codesteps>",
+			"  <pre class='typescript'>$1<code class='codesteps' data-noescape data-trim>",
+			"  $2",
+			"  </code></pre>",
+			"  <div explanation>",
+			"    <span step='1'></span>",
+			"  </div>",
+			"</div>"
+		],
+		"description": "add a codestepper div"
+	},
+	"console" : {
+		"prefix": "console",
+		"body": [
+			"<pre data-trim class='console'>",
+			"  <span class='prompt'>~$</span>${0}",
+			"</pre>"
+		]
+	}
+}

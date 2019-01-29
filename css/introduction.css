@@ -1,0 +1,44 @@
+.leerlijnen {
+  color: #ffffff;
+  font-family: "Monaco", "Hack", monospace !important;
+  font-size: 32px !important;
+}
+table {
+  width: 100%;
+  border-spacing: 10px !important;
+  border-collapse: separate;
+  /* padding: 40px !important; */
+}
+td {
+  width: 33%;
+  text-align: center !important;
+  vertical-align: middle !important;
+  /* padding: 0px !important; */
+}
+
+th {
+  text-align: center !important;
+  vertical-align: middle !important;
+  color: black;
+}
+.applicatie {
+  background-color: rgb(251, 160, 37);
+}
+.netwerken {
+  background-color: rgb(234, 100, 78);
+}
+.gegevens {
+  background-color: rgb(147, 101, 184);
+}
+.probleemanalyse {
+  background-color: rgb(40, 105, 176);
+}
+.communicatie {
+  background-color: rgb(59, 191, 237);
+}
+.pod {
+  background-color: rgb(13, 184, 140);
+}
+.individuele {
+  background-color: rgb(58, 152, 20);
+}

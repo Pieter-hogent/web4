@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xl="http://www.w3.org/1999/xlink" width="1655.4553pt" height="1447pt" version="1.1" viewBox="18.54465 86 1655.4553 1447">
+    <metadata>
+        Produced by OmniGraffle 7.5
+        <dc:date>
+            2018-02-08 11:55:24 +0000
+        </dc:date>
+    </metadata>
+    <defs>
+        <font-face x-height="546.875" ascent="928.2227" cap-height="729.0039" descent="-235.83984" font-family="Menlo" font-size="70" font-weight="500" panose-1="2 11 6 9 3 8 4 2 2 4" slope="0" underline-position="-63.47656" underline-thickness="43.94531" units-per-em="1000">
+            <font-face-src>
+                <font-face-name name="Menlo-Regular"/>
+            </font-face-src>
+        </font-face>
+        <font-face x-height="517" ascent="975.0061" cap-height="714" descent="-216.99524" font-family="Helvetica Neue" font-size="42" font-weight="bold" panose-1="2 0 8 3 0 0 0 9 0 4" slope="0" underline-position="-100" underline-thickness="50" units-per-em="1000">
+            <font-face-src>
+                <font-face-name name="HelveticaNeue-Bold"/>
+            </font-face-src>
+        </font-face>
+        <font-face x-height="517" ascent="975.0061" cap-height="714" descent="-216.99524" font-family="Helvetica Neue" font-size="41" font-weight="bold" panose-1="2 0 8 3 0 0 0 9 0 4" slope="0" underline-position="-100" underline-thickness="50" units-per-em="1000">
+            <font-face-src>
+                <font-face-name name="HelveticaNeue-Bold"/>
+            </font-face-src>
+        </font-face>
+        <font-face x-height="546.875" ascent="928.2227" cap-height="729.0039" descent="-235.83984" font-family="Menlo" font-size="40" font-weight="500" panose-1="2 11 6 9 3 8 4 2 2 4" slope="0" underline-position="-63.47656" underline-thickness="43.94531" units-per-em="1000">
+            <font-face-src>
+                <font-face-name name="Menlo-Regular"/>
+            </font-face-src>
+        </font-face>
+    </defs>
+    <g id="maincanvas" fill="none" fill-opacity="1" stroke="none" stroke-dasharray="none" stroke-opacity="1">
+        <title>
+            Canvas 1
+        </title>
+        <g class="svgstep" show-steps="1+">
+            <title>
+                angularjs
+            </title>
+            <text fill="black" transform="translate(712 91)">
+                <tspan x=".3540039" y="65" font-family="Menlo" font-size="70" font-weight="500" textLength="379.292">AngularJS</tspan>
+            </text>
+        </g>
+        <g class="svgstep" show-steps="1-5">
+            <title>
+                0.9
+            </title>
+            <path fill="#efab2a" d="M 518.97135 605.315 L 494.91477 631.1758 L 144.29001 631.1758 L 168.3466 605.315 L 144.29001 579.45415 L 494.91477 579.45415 Z"/>
+            <text fill="#fefcfc" transform="translate(175.29 579.70584)">
+                <tspan x="215.27334" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">2</tspan> <tspan x="239.62534" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">0</tspan> <tspan x="263.97734" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">0</tspan> <tspan x="288.32934" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">9</tspan>
+            </text>
+            <circle cx="252.54465" cy="605.315" r="51.12033" fill="white"/>
+            <circle cx="252.54465" cy="605.315" r="51.12033" stroke="#f1ad2b" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="#f1ad2b" transform="translate(212.64845 580.22034)">
+                <tspan x="11.401198" y="40" fill="#f1ad2b" font-family="Helvetica Neue" font-size="41" font-weight="bold" textLength="56.99">0.9</tspan>
+            </text>
+            <text fill="black" transform="translate(23.54465 322)">
+                <tspan x="12.261719" y="37" font-family="Menlo" font-size="40" font-weight="500" textLength="457.5586">hobby project from </tspan> <tspan x="24.302734" y="83" font-family="Menlo" font-size="40" font-weight="500" textLength="409.39453">someone at google</tspan>
+            </text>
+            <path fill="#f1ad2b" d="M 251.02082 475.9267 C 251.02082 448.3857 251.92294 443.79554 252.82507 443.79554 C 253.7272 443.79554 254.6293 448.3857 254.6293 475.9267 L 254.6293 519.2054 C 254.6293 546.74636 263.95124 548.05784 282.2944 557.56604 C 274.1753 553.9595 265.15407 551.99226 255.53143 551.3365 C 254.6293 551.3365 253.7272 551.3365 252.82507 551.3365 C 251.92294 551.3365 251.02082 551.3365 250.1187 551.3365 C 240.49607 551.6644 231.47485 553.9595 223.35575 557.56604 C 241.6989 548.05784 251.02082 546.74636 251.02082 519.2054 Z"/>
+            <circle cx="252.82507" cy="439.09554" r="4.7000104" fill="white"/>
+            <circle cx="252.82507" cy="439.09554" r="4.7000104" stroke="#f1ad2b" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+        </g>
+        <g class="svgstep" show-steps="2-5">
+            <title>
+                0.10
+            </title>
+            <path fill="#e1656b" d="M 893.1813 605.315 L 869.1248 631.1758 L 518.5 631.1758 L 542.5566 605.315 L 518.5 579.45415 L 869.1248 579.45415 Z"/>
+            <text fill="white" transform="translate(549.5 579.70584)">
+                <tspan x="215.27334" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">2</tspan> <tspan x="239.62534" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">0</tspan> <tspan x="263.97734" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">1</tspan> <tspan x="288.32934" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">0</tspan>
+            </text>
+            <circle cx="626.75464" cy="605.315" r="51.12033" fill="white"/>
+            <circle cx="626.75464" cy="605.315" r="51.12033" stroke="#e3666c" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="#e3666c" transform="translate(586.85844 580.22034)">
+                <tspan x=".003198055" y="40" fill="#e3666c" font-family="Helvetica Neue" font-size="41" font-weight="bold" textLength="79.786">0.10</tspan>
+            </text>
+            <path fill="#e3666c" d="M 628.5589 732.4278 C 628.5589 759.9687 627.6568 764.5589 626.75464 764.5589 C 625.8525 764.5589 624.9504 759.9687 624.9504 732.4278 L 624.9504 689.1491 C 624.9504 661.6081 615.6285 660.2966 597.2853 650.7884 C 605.4044 654.395 614.42564 656.3622 624.0483 657.0179 C 624.9504 657.0179 625.8525 657.0179 626.75464 657.0179 C 627.6568 657.0179 628.5589 657.0179 629.461 657.0179 C 639.08364 656.69005 648.1049 654.395 656.224 650.7884 C 637.8808 660.2966 628.5589 661.6081 628.5589 689.1491 Z"/>
+            <circle cx="626.75464" cy="769.2589" r="4.7000104" fill="#e3666c"/>
+            <circle cx="626.75464" cy="769.2589" r="4.7000104" stroke="#e1666b" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="black" transform="translate(421.75464 788)">
+                <tspan x=".30273438" y="37" font-family="Menlo" font-size="40" font-weight="500" textLength="409.39453">developed by team</tspan> <tspan x="96.63086" y="83" font-family="Menlo" font-size="40" font-weight="500" textLength="216.73828">at google</tspan>
+            </text>
+        </g>
+        <g class="svgstep" show-steps="3-5">
+            <title>
+                1.0
+            </title>
+            <path fill="#5ba3ca" d="M 1268.334 605.315 L 1244.2775 631.1758 L 893.6527 631.1758 L 917.7093 605.315 L 893.6527 579.45415 L 1244.2775 579.45415 Z"/>
+            <text fill="white" transform="translate(924.6527 579.70584)">
+                <tspan x="215.27334" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">2</tspan> <tspan x="239.62534" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">0</tspan> <tspan x="263.97734" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">1</tspan> <tspan x="288.32934" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">1</tspan>
+            </text>
+            <circle cx="1001.9073" cy="605.315" r="51.12033" fill="#fffffe"/>
+            <circle cx="1001.9073" cy="605.315" r="51.12033" stroke="#5ba3ca" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="#5ba3ca" transform="translate(962.0111 580.22034)">
+                <tspan x="11.401198" y="40" fill="#5ba3ca" font-family="Helvetica Neue" font-size="41" font-weight="bold" textLength="56.99">1.0</tspan>
+            </text>
+            <path fill="#5aa3ca" d="M 1000.1031 475.9267 C 1000.1031 448.3857 1001.0052 443.79554 1001.9073 443.79554 C 1002.8095 443.79554 1003.7116 448.3857 1003.7116 475.9267 L 1003.7116 519.2054 C 1003.7116 546.74636 1013.0335 548.05784 1031.3767 557.56604 C 1023.2576 553.9595 1014.2363 551.99226 1004.6137 551.3365 C 1003.7116 551.3365 1002.8095 551.3365 1001.9073 551.3365 C 1001.0052 551.3365 1000.1031 551.3365 999.201 551.3365 C 989.5783 551.6644 980.5571 553.9595 972.438 557.56604 C 990.7812 548.05784 1000.1031 546.74636 1000.1031 519.2054 Z"/>
+            <circle cx="1001.9073" cy="439.09554" r="4.7000104" fill="#5aa3ca"/>
+            <circle cx="1001.9073" cy="439.09554" r="4.7000104" stroke="#5aa3ca" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="black" transform="translate(869.4073 345)">
+                <tspan x=".048828125" y="37" font-family="Menlo" font-size="40" font-weight="500" textLength="264.90234">1.0 release</tspan>
+            </text>
+        </g>
+        <g class="svgstep" show-steps="4-5">
+            <title>
+                1.3
+            </title>
+            <path fill="white" d="M 1260 579.90414 L 1274.2 579.90414 L 1299.2957 604.9998 L 1274.4 630.9998 L 1260 631.1758 L 1283.6 604.7998 Z"/>
+            <path stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M 1260 579.90414 L 1274.2 579.90414 L 1299.2957 604.9998 L 1274.4 630.9998 L 1260 631.1758 L 1283.6 604.7998 Z"/>
+            <path fill="white" d="M 1285 579.90414 L 1299.2 579.90414 L 1324.2957 604.9998 L 1299.4 630.9998 L 1285 631.1758 L 1308.6 604.7998 Z"/>
+            <path stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M 1285 579.90414 L 1299.2 579.90414 L 1324.2957 604.9998 L 1299.4 630.9998 L 1285 631.1758 L 1308.6 604.7998 Z"/>
+            <path fill="white" d="M 1308.295 579.45415 L 1322.495 579.45415 L 1347.5907 604.5498 L 1322.695 630.5498 L 1308.295 630.7258 L 1331.895 604.3498 Z"/>
+            <path stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M 1308.295 579.45415 L 1322.495 579.45415 L 1347.5907 604.5498 L 1322.695 630.5498 L 1308.295 630.7258 L 1331.895 604.3498 Z"/>
+            <path fill="#163445" d="M 1711.6813 605.54 L 1687.6248 631.4008 L 1337 631.4008 L 1361.0566 605.54 L 1337 579.67914 L 1687.6248 579.67914 Z"/>
+            <text fill="white" transform="translate(1368 579.9308)">
+                <tspan x="215.27334" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">2</tspan> <tspan x="239.62534" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">0</tspan> <tspan x="263.97734" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">1</tspan> <tspan x="288.32934" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">4</tspan>
+            </text>
+            <circle cx="1445.2546" cy="605.54" r="51.12033" fill="#fffffe"/>
+            <circle cx="1445.2546" cy="605.54" r="51.12033" stroke="#163445" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="#163445" transform="translate(1405.3584 580.4453)">
+                <tspan x="11.401198" y="40" fill="#163445" font-family="Helvetica Neue" font-size="41" font-weight="bold" textLength="56.99">1.3</tspan>
+            </text>
+        </g>
+        <g class="svgstep" show-steps="5+">
+            <title>
+                angular
+            </title>
+            <text fill="black" transform="translate(754 1446)">
+                <tspan x=".4975586" y="65" font-family="Menlo" font-size="70" font-weight="500" textLength="295.0049">Angular</tspan>
+            </text>
+        </g>
+        <g class="svgstep" show-steps="5">
+            <title>
+                2.0alpha
+            </title>
+            <path fill="#a261b1" d="M 1711.6813 1023.7287 L 1687.6248 1049.5895 L 1337 1049.5895 L 1361.0566 1023.7287 L 1337 997.8679 L 1687.6248 997.8679 Z"/>
+            <text fill="white" transform="translate(1368 998.1196)">
+                <tspan x="215.27334" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">2</tspan> <tspan x="239.62534" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">0</tspan> <tspan x="263.97734" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">1</tspan> <tspan x="288.32934" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">4</tspan>
+            </text>
+            <circle cx="1445.2546" cy="1023.7287" r="51.12033" fill="white"/>
+            <circle cx="1445.2546" cy="1023.7287" r="51.12033" stroke="#a261b1" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="#a261b1" transform="translate(1405.3584 998.634)">
+                <tspan x="11.401198" y="40" fill="#a261b1" font-family="Helvetica Neue" font-size="41" font-weight="bold" textLength="56.99">2.0</tspan>
+            </text>
+            <path fill="#a261b1" d="M 1447.0589 1150.8415 C 1447.0589 1178.3825 1446.1568 1182.9726 1445.2546 1182.9726 C 1444.3525 1182.9726 1443.4504 1178.3825 1443.4504 1150.8415 L 1443.4504 1107.5628 C 1443.4504 1080.0218 1434.1285 1078.7103 1415.7853 1069.2021 C 1423.9044 1072.8087 1432.9256 1074.7759 1442.5483 1075.4316 C 1443.4504 1075.4316 1444.3525 1075.4316 1445.2546 1075.4316 C 1446.1568 1075.4316 1447.0589 1075.4316 1447.961 1075.4316 C 1457.5836 1075.1038 1466.6049 1072.8087 1474.724 1069.2021 C 1456.3808 1078.7103 1447.0589 1080.0218 1447.0589 1107.5628 Z"/>
+            <circle cx="1445.2546" cy="1187.6726" r="4.7000104" fill="#a261b1"/>
+            <circle cx="1445.2546" cy="1187.6726" r="4.7000104" stroke="#a261b1" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="black" transform="translate(1216.2546 1216.9852)">
+                <tspan x=".22070312" y="37" font-family="Menlo" font-size="40" font-weight="500" textLength="457.5586">successor announced</tspan> <tspan x="96.54883" y="83" font-family="Menlo" font-size="40" font-weight="500" textLength="264.90234">at ngEurope</tspan>
+            </text>
+        </g>
+        <g class="svgstep" show-steps="6+">
+            <title>
+                1.3 and 2.0alpha, left
+            </title>
+            <path fill="#a261b1" d="M 518.97135 1023.7287 L 494.91477 1049.5895 L 144.29001 1049.5895 L 168.3466 1023.7287 L 144.29001 997.8679 L 494.91477 997.8679 Z"/>
+            <text fill="white" transform="translate(175.29 998.1196)">
+                <tspan x="215.27334" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">2</tspan> <tspan x="239.62534" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">0</tspan> <tspan x="263.97734" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">1</tspan> <tspan x="288.32934" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">4</tspan>
+            </text>
+            <circle cx="252.54465" cy="1023.7287" r="51.12033" fill="white"/>
+            <circle cx="252.54465" cy="1023.7287" r="51.12033" stroke="#a261b1" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="#a261b1" transform="translate(212.64845 998.634)">
+                <tspan x="11.401198" y="40" fill="#a261b1" font-family="Helvetica Neue" font-size="41" font-weight="bold" textLength="56.99">2.0</tspan>
+            </text>
+            <path fill="#a261b1" d="M 254.3489 1150.8415 C 254.3489 1178.3825 253.44677 1182.9726 252.54465 1182.9726 C 251.64253 1182.9726 250.7404 1178.3825 250.7404 1150.8415 L 250.7404 1107.5628 C 250.7404 1080.0218 241.41848 1078.7103 223.07533 1069.2021 C 231.19443 1072.8087 240.21565 1074.7759 249.83828 1075.4316 C 250.7404 1075.4316 251.64253 1075.4316 252.54465 1075.4316 C 253.44677 1075.4316 254.3489 1075.4316 255.25102 1075.4316 C 264.87365 1075.1038 273.89487 1072.8087 282.01397 1069.2021 C 263.67082 1078.7103 254.3489 1080.0218 254.3489 1107.5628 Z"/>
+            <circle cx="252.54465" cy="1187.6726" r="4.7000104" fill="#a261b1"/>
+            <circle cx="252.54465" cy="1187.6726" r="4.7000104" stroke="#a261b1" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="black" transform="translate(23.54465 1216.9852)">
+                <tspan x=".22070312" y="37" font-family="Menlo" font-size="40" font-weight="500" textLength="457.5586">successor announced</tspan> <tspan x="96.54883" y="83" font-family="Menlo" font-size="40" font-weight="500" textLength="264.90234">at ngEurope</tspan>
+            </text>
+            <path fill="#163445" d="M 518.97135 605.54 L 494.91477 631.4008 L 144.29001 631.4008 L 168.3466 605.54 L 144.29001 579.67914 L 494.91477 579.67914 Z"/>
+            <text fill="white" transform="translate(175.29 579.9308)">
+                <tspan x="215.27334" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">2</tspan> <tspan x="239.62534" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">0</tspan> <tspan x="263.97734" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">1</tspan> <tspan x="288.32934" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">4</tspan>
+            </text>
+            <circle cx="252.54465" cy="605.54" r="51.12033" fill="#fffffe"/>
+            <circle cx="252.54465" cy="605.54" r="51.12033" stroke="#163445" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="#163445" transform="translate(212.64845 580.4453)">
+                <tspan x="11.401198" y="40" fill="#163445" font-family="Helvetica Neue" font-size="41" font-weight="bold" textLength="56.99">1.3</tspan>
+            </text>
+            <path fill="#163445" d="M 518.97135 605.54 L 494.91477 631.4008 L 144.29001 631.4008 L 168.3466 605.54 L 144.29001 579.67914 L 494.91477 579.67914 Z"/>
+            <text fill="white" transform="translate(175.29 579.9308)">
+                <tspan x="215.27334" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">2</tspan> <tspan x="239.62534" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">0</tspan> <tspan x="263.97734" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">1</tspan> <tspan x="288.32934" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">4</tspan>
+            </text>
+            <circle cx="252.54465" cy="605.54" r="51.12033" fill="#fffffe"/>
+            <circle cx="252.54465" cy="605.54" r="51.12033" stroke="#163445" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="#163445" transform="translate(212.64845 580.4453)">
+                <tspan x="11.401198" y="40" fill="#163445" font-family="Helvetica Neue" font-size="41" font-weight="bold" textLength="56.99">1.3</tspan>
+            </text>
+        </g>
+        <g class="svgstep" show-steps="7+">
+            <title>
+                2.0
+            </title>
+            <path fill="#25c09f" d="M 893.1813 1023.7287 L 869.1248 1049.5895 L 518.5 1049.5895 L 542.5566 1023.7287 L 518.5 997.8679 L 869.1248 997.8679 Z"/>
+            <text fill="#fefcfc" transform="translate(549.5 998.1196)">
+                <tspan x="215.27334" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">2</tspan> <tspan x="239.62534" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">0</tspan> <tspan x="263.97734" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">1</tspan> <tspan x="288.32934" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">6</tspan>
+            </text>
+            <circle cx="626.75464" cy="1023.7287" r="51.12033" fill="white"/>
+            <circle cx="626.75464" cy="1023.7287" r="51.12033" stroke="#25c09f" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="#25c09f" transform="translate(586.85844 998.634)">
+                <tspan x="11.401198" y="40" fill="#25c09f" font-family="Helvetica Neue" font-size="41" font-weight="bold" textLength="56.99">2.0</tspan>
+            </text>
+            <text fill="black" transform="translate(469.75464 740.4137)">
+                <tspan x=".4667969" y="37" font-family="Menlo" font-size="40" font-weight="500" textLength="313.0664">first release</tspan> <tspan x="60.671875" y="83" font-family="Menlo" font-size="40" font-weight="500" textLength="192.65625">may 2016</tspan>
+            </text>
+            <path fill="#25c09f" d="M 625.2308 894.3404 C 625.2308 866.7994 626.1329 862.2093 627.03506 862.2093 C 627.9372 862.2093 628.8393 866.7994 628.8393 894.3404 L 628.8393 937.6191 C 628.8393 965.1601 638.1612 966.4716 656.5044 975.9798 C 648.3853 972.3732 639.36406 970.406 629.7414 969.7502 C 628.8393 969.7502 627.9372 969.7502 627.03506 969.7502 C 626.1329 969.7502 625.2308 969.7502 624.3287 969.7502 C 614.70606 970.0781 605.68484 972.3732 597.56574 975.9798 C 615.9089 966.4716 625.2308 965.1601 625.2308 937.6191 Z"/>
+            <circle cx="627.03506" cy="857.5093" r="4.7000104" fill="#25c09f"/>
+            <circle cx="627.03506" cy="857.5093" r="4.7000104" stroke="#25c09f" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+        </g>
+        <g class="svgstep" show-steps="9+">
+            <title>
+                4.0
+            </title>
+            <path fill="#e8701f" d="M 1268.334 1023.7287 L 1244.2775 1049.5895 L 893.6527 1049.5895 L 917.7093 1023.7287 L 893.6527 997.8679 L 1244.2775 997.8679 Z"/>
+            <text fill="white" transform="translate(924.6527 998.1196)">
+                <tspan x="215.27334" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">2</tspan> <tspan x="239.62534" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">0</tspan> <tspan x="263.97734" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">1</tspan> <tspan x="288.32934" y="41" fill="white" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">6</tspan>
+            </text>
+            <circle cx="1001.9073" cy="1023.7287" r="51.12033" fill="white"/>
+            <circle cx="1001.9073" cy="1023.7287" r="51.12033" stroke="#e8701f" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="#e8701f" transform="translate(962.0111 998.634)">
+                <tspan x="11.401198" y="40" fill="#e8701f" font-family="Helvetica Neue" font-size="41" font-weight="bold" textLength="56.99">4.0</tspan>
+            </text>
+            <path fill="#e8701f" d="M 1003.7116 1150.8415 C 1003.7116 1178.3825 1002.8095 1182.9726 1001.9073 1182.9726 C 1001.0052 1182.9726 1000.1031 1178.3825 1000.1031 1150.8415 L 1000.1031 1107.5628 C 1000.1031 1080.0218 990.7812 1078.7103 972.438 1069.2021 C 980.5571 1072.8087 989.5783 1074.7759 999.201 1075.4316 C 1000.1031 1075.4316 1001.0052 1075.4316 1001.9073 1075.4316 C 1002.8095 1075.4316 1003.7116 1075.4316 1004.6137 1075.4316 C 1014.2363 1075.1038 1023.2576 1072.8087 1031.3767 1069.2021 C 1013.0335 1078.7103 1003.7116 1080.0218 1003.7116 1107.5628 Z"/>
+            <circle cx="1001.9073" cy="1187.6726" r="4.7000104" fill="#e8701f"/>
+            <circle cx="1001.9073" cy="1187.6726" r="4.7000104" stroke="#e8701f" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="black" transform="translate(724.9073 1216.9852)">
+                <tspan x="24.138672" y="37" font-family="Menlo" font-size="40" font-weight="500" textLength="505.72266">4.0 half a year later</tspan> <tspan x=".056640625" y="83" font-family="Menlo" font-size="40" font-weight="500" textLength="553.8867">(there never was a 3.0)</tspan>
+            </text>
+        </g>
+        <g class="svgstep" show-steps="10+">
+            <title>
+                5.0
+            </title>
+            <path fill="#3f9fcc" d="M 1646.4267 1023.7287 L 1622.3701 1049.5895 L 1271.7454 1049.5895 L 1295.802 1023.7287 L 1271.7454 997.8679 L 1622.3701 997.8679 Z"/>
+            <text fill="#fefcfc" transform="translate(1302.7454 998.1196)">
+                <tspan x="215.27334" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">2</tspan> <tspan x="239.62534" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">0</tspan> <tspan x="263.97734" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">1</tspan> <tspan x="288.32934" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">7</tspan>
+            </text>
+            <circle cx="1380" cy="1023.7287" r="51.12033" fill="white"/>
+            <circle cx="1380" cy="1023.7287" r="51.12033" stroke="#3f9fcc" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="#3f9fcc" transform="translate(1340.1038 998.634)">
+                <tspan x="11.401198" y="40" fill="#3f9fcc" font-family="Helvetica Neue" font-size="41" font-weight="bold" textLength="56.99">5.0</tspan>
+            </text>
+            <text fill="black" transform="translate(1127 740.4137)">
+                <tspan x=".13867188" y="37" font-family="Menlo" font-size="40" font-weight="500" textLength="505.72266">5.0 released a couple</tspan> <tspan x="96.4668" y="83" font-family="Menlo" font-size="40" font-weight="500" textLength="313.0664">of months ago</tspan>
+            </text>
+            <path fill="#3f9fcc" d="M 1378.4762 894.3404 C 1378.4762 866.7994 1379.3783 862.2093 1380.2804 862.2093 C 1381.1825 862.2093 1382.0847 866.7994 1382.0847 894.3404 L 1382.0847 937.6191 C 1382.0847 965.1601 1391.4066 966.4716 1409.7497 975.9798 C 1401.6306 972.3732 1392.6094 970.406 1382.9868 969.7502 C 1382.0847 969.7502 1381.1825 969.7502 1380.2804 969.7502 C 1379.3783 969.7502 1378.4762 969.7502 1377.574 969.7502 C 1367.9514 970.0781 1358.9302 972.3732 1350.8111 975.9798 C 1369.1542 966.4716 1378.4762 965.1601 1378.4762 937.6191 Z"/>
+            <circle cx="1380.2804" cy="857.5093" r="4.7000104" fill="#3f9fcc"/>
+            <circle cx="1380.2804" cy="857.5093" r="4.7000104" stroke="#3f9fcc" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+        </g>
+        <g class="svgstep" show-steps="8+">
+            <title>
+                1.5
+            </title>
+            <path fill="#efab2a" d="M 893.1813 605.54 L 869.1248 631.4008 L 518.5 631.4008 L 542.5566 605.54 L 518.5 579.67914 L 869.1248 579.67914 Z"/>
+            <text fill="#fefcfc" transform="translate(549.5 579.9308)">
+                <tspan x="215.27334" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">2</tspan> <tspan x="239.62534" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">0</tspan> <tspan x="263.97734" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">1</tspan> <tspan x="288.32934" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">6</tspan>
+            </text>
+            <circle cx="626.75464" cy="605.54" r="51.12033" fill="white"/>
+            <circle cx="626.75464" cy="605.54" r="51.12033" stroke="#f1ad2b" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="#f1ad2b" transform="translate(586.85844 580.4453)">
+                <tspan x="11.401198" y="40" fill="#f1ad2b" font-family="Helvetica Neue" font-size="41" font-weight="bold" textLength="56.99">1.5</tspan>
+            </text>
+            <text fill="black" transform="translate(325.25464 322.225)">
+                <tspan x=".4746094" y="37" font-family="Menlo" font-size="40" font-weight="500" textLength="602.0508">1.x keeps getting updates</tspan> <tspan x="60.67969" y="83" font-family="Menlo" font-size="40" font-weight="500" textLength="481.6406">reaching 1.5 in 2016</tspan>
+            </text>
+            <path fill="#f1ad2b" d="M 625.2308 476.1517 C 625.2308 448.6107 626.1329 444.02053 627.03506 444.02053 C 627.9372 444.02053 628.8393 448.6107 628.8393 476.1517 L 628.8393 519.4304 C 628.8393 546.97135 638.1612 548.2828 656.5044 557.791 C 648.3853 554.1845 639.36406 552.21726 629.7414 551.5615 C 628.8393 551.5615 627.9372 551.5615 627.03506 551.5615 C 626.1329 551.5615 625.2308 551.5615 624.3287 551.5615 C 614.70606 551.8894 605.68484 554.1845 597.56574 557.791 C 615.9089 548.2828 625.2308 546.97135 625.2308 519.4304 Z"/>
+            <circle cx="627.03506" cy="439.32053" r="4.7000104" fill="white"/>
+            <circle cx="627.03506" cy="439.32053" r="4.7000104" stroke="#f1ad2b" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+        </g>
+        <g class="svgstep" show-steps="11+">
+            <title>
+                1.6
+            </title>
+            <path fill="#e1666b" d="M 1646.4267 605.54 L 1622.3701 631.4008 L 1271.7454 631.4008 L 1295.802 605.54 L 1271.7454 579.67914 L 1622.3701 579.67914 Z"/>
+            <text fill="#fefcfc" transform="translate(1302.7454 579.9308)">
+                <tspan x="215.27334" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">2</tspan> <tspan x="239.62534" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">0</tspan> <tspan x="263.97734" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">1</tspan> <tspan x="288.32934" y="41" fill="#fefcfc" font-family="Helvetica Neue" font-size="42" font-weight="bold" textLength="24.352">8</tspan>
+            </text>
+            <circle cx="1380" cy="605.54" r="51.12033" fill="white"/>
+            <circle cx="1380" cy="605.54" r="51.12033" stroke="#e1666b" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <text fill="#e1666b" transform="translate(1340.1038 580.4453)">
+                <tspan x="11.401198" y="40" fill="#e1666b" font-family="Helvetica Neue" font-size="41" font-weight="bold" textLength="56.99">1.6</tspan>
+            </text>
+            <text fill="black" transform="translate(1091 322.225)">
+                <tspan x="96.34375" y="37" font-family="Menlo" font-size="40" font-weight="500" textLength="385.3125">updated to 1.6.9</tspan> <tspan x=".015625" y="83" font-family="Menlo" font-size="40" font-weight="500" textLength="577.96875">last week, still not EOL</tspan>
+            </text>
+            <circle cx="1380" cy="439.09554" r="4.7000104" fill="#e1666b"/>
+            <circle cx="1380" cy="439.09554" r="4.7000104" stroke="#e1666b" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+            <path fill="#e1666b" d="M 1378.1958 475.9267 C 1378.1958 448.3857 1379.0979 443.79554 1380 443.79554 C 1380.9021 443.79554 1381.8042 448.3857 1381.8042 475.9267 L 1381.8042 519.2054 C 1381.8042 546.74636 1391.1262 548.05784 1409.4693 557.56604 C 1401.3502 553.9595 1392.329 551.99226 1382.7064 551.3365 C 1381.8042 551.3365 1380.9021 551.3365 1380 551.3365 C 1379.0979 551.3365 1378.1958 551.3365 1377.2936 551.3365 C 1367.671 551.6644 1358.6498 553.9595 1350.5307 557.56604 C 1368.8738 548.05784 1378.1958 546.74636 1378.1958 519.2054 Z"/>
+        </g>
+    </g>
+</svg>
