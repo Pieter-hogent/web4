@@ -6,7 +6,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
 
-    <title>NIEUWE SLIDE</title>
+    <title>1. angular basics</title>
 
     <!-- Theme used for syntax highlighting of code -->
     <link
@@ -36,7 +36,13 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section><h2>angular basics</h2></section>
+        <section>
+          <h2>angular basics</h2>
+          <footer class="footer">
+            "The strength of JavaScript is that you can do anything.<br />
+            The weakness is that you will." - Reg Braithwaite
+          </footer>
+        </section>
         <section>
           <h3>what is an SPA?</h3>
           <ul>
@@ -53,8 +59,9 @@
               page
             </li>
             <li>
-              think Web2, but every single letter on your page is created this
-              way, nothing is inside html pages <br />
+              think what you did in Web2 with insertHTML and such, but every
+              single letter on your page is created this way, nothing is inside
+              html pages <br />
               <small>
                 and don't worry, this is nothing like web2, the framework takes
                 care of the nasty parts
@@ -70,7 +77,7 @@
               class="svg-section"
               width="100%"
               height="100%"
-              preserveAspectRatio="xMidyMid"
+              preserveAspectRatio="xMidYMid"
               snapfile="img/staticsite.svg"
             >
               <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
@@ -85,7 +92,7 @@
               class="svg-section"
               width="100%"
               height="100%"
-              preserveAspectRatio="xMidyMid"
+              preserveAspectRatio="xMidYMid"
               snapfile="img/spasite.svg"
             >
               <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
@@ -93,7 +100,7 @@
           </div>
         </section>
         <section>
-          <h3>our first app</h3>
+          <h3>our example app</h3>
           <ul>
             <li>a recipe webapp</li>
             <li>user / recipes</li>
@@ -193,7 +200,7 @@
               class="svg-section"
               width="100%"
               height="100%"
-              preserveAspectRatio="xMidyMid"
+              preserveAspectRatio="xMidYMid"
               snapfile="img/component_structure.svg"
             >
               <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
@@ -220,6 +227,7 @@ installing component
             </li>
           </ul>
         </section>
+
         <section>
           <h3>creating our first component</h3>
 
@@ -279,7 +287,7 @@ installing component
             <pre
               class="html"
             > src/app/app.component.html <code class='codesteps' data-noescape data-trim>
-                &lt;div style=&quot;text-align:center&quot;&gt;
+              &lt;div style=&quot;text-align:center&quot;&gt;
                 &lt;h1&gt;
                   Welcome to {{title}}!!
                 &lt;/h1&gt;
@@ -301,6 +309,23 @@ installing component
               </span>
             </div>
           </div>
+        </section>
+        <section>
+          <h3>ng doc</h3>
+          <ul>
+            <li>
+              we've done <span class="ilcode">ng new</span>,
+              <span class="ilcode">ng serve</span>,
+              <span class="ilcode">ng generate</span>, but there are more
+              <span class="ilcode">ng</span> commands available
+            </li>
+            <li>one of the more useful one's is probably ng doc</li>
+            <li>
+              typing <span class="ilcode">ng doc &lt;something&gt;</span> will
+              open the official documentation about &lt;something&gt; in your
+              browser (must be used inside an angular project)
+            </li>
+          </ul>
         </section>
         <section>
           <h3>adding data to the component</h3>
@@ -357,6 +382,175 @@ installing component
           </div>
         </section>
         <section>
+          <h3>typescript? I thought this was javascript</h3>
+          <ul>
+            <li>
+              typescript is an extension of javascript (every valid javascript
+              program is a valid typescript program)
+            </li>
+            <li>
+              created in 2012 at Microsoft by Anders Hejlsberg (who also created
+              Turbo Pascal and C#)
+            </li>
+            <li>
+              as tools mature to take advantage of typescript (and since
+              everyone's transpiling their javascript anyway because of
+              angular/react/...) it's becoming more and more popular
+            </li>
+            <li>
+              it was #4 on stackoverflow's
+              <a
+                href="https://insights.stackoverflow.com/survey/2018#most-loved-dreaded-and-wanted"
+                >"most loved languages" in 2018</a
+              >
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>typescript</h3>
+          <div codesteps no-highlight-first>
+            <pre
+              class="typescript"
+            ><code class='codesteps' data-noescape data-trim>
+            let name<span hstep='1'>: string</span>;
+            const age<span sstep='2'><span hstep='2'>: number</span></span> = 15;
+<span sstep='3+'>
+            let cities: string<span hstep='3'>[]</span>;
+            let postalcodes: <span hstep='3'>Array</span>&lt;number&gt;;</span><span sstep='4+'>
+            let recipe<span hstep='4'>: Recipe</span>;</span><span sstep='5+'>
+            let notThatUseful<span hstep='5'>: any</span>;</span>
+          </code></pre>
+            <div explanation>
+              <span step="1">
+                the most important difference is that everything has a type
+              </span>
+              <span step="2"> types can be implicit</span>
+              <span step="2"
+                >if you assign a value (which always has a type) to a variable,
+                the variable gets that type as well</span
+              >
+              <span step="3">
+                you can define array's both with
+                <span class="ilcode">[]</span> as with the
+                <span class="ilcode">Array</span> keyword</span
+              >
+              <span step="4">
+                you can have both basic types as types you define yourself with
+                class
+              </span>
+              <span step="5">
+                when the type is not specified, it's considered of type
+                <span class="ilcode">any</span>, you should avoid using any
+                whenever you can</span
+              >
+              <span step="5">
+                sometimes you have to though, for javascript compatibility, or
+                when processing generic json data</span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>typescript</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >  <code class='codesteps' data-noescape data-trim>
+       <span sstep='7+'>  interface LabelledValue {
+           label: string;
+         }
+         </span>class Recipe<span sstep='7+'> : RecipeInterface </span>{
+           <span sstep='4+'>private _</span><span sstep='3+'>name: string;<span sstep='5+'>
+           readonly maximumSteps = 12;</span>
+           
+           </span>constructor() {
+             this.<span sstep='4+'></span>_name = 'spaghetti';
+             this.ingredients = ['tomato', 'minced meat'];
+           }<span sstep='6+'>
+
+           get name(): string {
+             return this._name;
+           }
+
+           set name(name: string) {
+             this._name = name;
+           }
+            </span>
+           <span sstep='4+'>public </span>printDirections(<span sstep='7+'>labeled<span sstep='8+'>?</span>: LabelledValue</span>) {<span sstep='7+'>
+            console.log(labeled.label);</span>
+           }
+         } <span sstep='6+'>
+
+         let rec = new Recipe();
+         rec.name = 'risotto';</span>
+          </code></pre>
+            <div explanation>
+              <span step="1">
+                another set of differences (or extras) are available when
+                dealing with classes
+              </span>
+              <span step="2">
+                Javascript 6 introduced the class keyword, making it easier to
+                work with javascript class definitions for people who come from
+                other OO backgrounds (prototype mechanism could be confusing)
+              </span>
+              <span step="3">
+                typescript takes this further, you can now define properties
+                inside your class definition
+              </span>
+              <span step="3">
+                and not just using this.propertyname in the constructor
+              </span>
+              <span step="4"> you can also specify access modifiers </span>
+              <span step="4">
+                if nothing is specified, everything in a class is public, and
+                everything in a module is private except what's exported
+              </span>
+              <span step="4">
+                by convention, the names of private properties usually start
+                with an underscore
+              </span>
+              <span step="5">
+                there's also the <span class="ilcode">readonly</span> modifier
+                for properties
+              </span>
+              <span step="5"
+                >readonly properties must be initialized when declared or in the
+                constructor, and can't change afterwards
+              </span>
+              <span step="6"> you can declare computed properties using <span class='ilcode'>get</span> and <span class='ilcode'>set</span> </span>
+              <span step='6'> which can be used just like public properties outside your class </span>
+              <span step="7">
+                the interface keyword is also available, behaves (and is used)
+                just as you know it from java
+              </span>
+              <span step="8"
+                >you can explictly specify that arguments are optional by using
+                a ?</span
+              >
+            </div>
+          </div>
+        </section>
+        <section><h3>typescript</h3><div codesteps>
+          <pre class='typescript'>  <code class='codesteps' data-noescape data-trim>
+          class Recipe {<span sstep='1-2'>
+            private _name: string;
+            </span>
+            constructor(<span sstep='3+'>private </span>name: string) {<span sstep='1-2'>
+              this._name = name;</span>
+            }
+          }
+          </code></pre>
+          <div explanation>
+            <span step='1'> one last thing I want to explicitly point out is the initialize-and-declare-simultaneously typescript idiom </span>
+            <span step='2'> when creating classes you often want to specify a private member variable, pass an initial value in the constructor parameter list, and initialize it in the constructor </span>
+            <span step='3'> since this is a very common pattern, typescript has a shorthand for it</span>
+            <span step='3'> simply add an access modifier before the parameter of the constructor, no separate property, nothing in the body of the constructor </span>
+            <span step='3'> this is the exact same thing as before, with a more convenient syntax </span>
+            <span step='4'> there's more to typescript, but this covers what you need to get started, we'll explain as we bump into other differences </span>
+          </div>
+        </div></section>
+        <section>
           <h3>using a collection of data</h3>
           <div codesteps>
             <pre
@@ -377,8 +571,9 @@ installing component
                 }		            
             </code></pre>
             <div explanation>
+              <span step='1'> back to angular, what if we want to use a collection of data </span>
               <span step="1">
-                we now declare the variable as an array of strings
+                we declare the variable as an array of strings
               </span>
               <span step="2">
                 and obviously initialize it with an array too
@@ -556,8 +751,8 @@ Ingredients:
               of other smaller components
             </li>
             <li>
-              (often called <i>dumb</i>(or presentational) components, only used
-              to show info to the user), as opposed to <i>smart</i> components,
+              often called <i>dumb</i> (or presentational) components, only used
+              to show info to the user; as opposed to <i>smart</i> components,
               which contain functionality as well
             </li>
             <li>
@@ -573,7 +768,7 @@ Ingredients:
         <section>
           <h3>ingredient component</h3>
           <div>
-            as an example, take our recipe's ingredients. ingredients need more
+            as an example, take our recipe's ingredients.<br/> ingredients need more
             than a name, so lets create a separate component
           </div>
           <pre data-trim class="console">
@@ -669,7 +864,7 @@ Ingredients:
               class="svg-section"
               width="100%"
               height="100%"
-              preserveAspectRatio="xMidyMid"
+              preserveAspectRatio="xMidYMid"
               snapfile="img/ingredient_input.svg"
             >
               <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
@@ -699,8 +894,7 @@ Ingredients:
                       "request": "launch",
                       "name": "Launch Chrome against localhost",<span sstep='1'>
                       "url": "http://localhost:8080",</span><span sstep='2+'>
-                      "url": "http://localhost:4200",</span><span sstep='3+'>
-                      "sourceMaps": true,</span>
+                      "url": "http://localhost:4200",</span>
                       "webRoot": "${workspaceFolder}"
                     }
                   ]
@@ -714,12 +908,6 @@ Ingredients:
               </span>
               <span step="2">
                 change the url to localhost:4200, where angular serves the app
-              </span>
-              <span step="3">
-                add the line 'sourceMaps': true, typescript is transpiled to
-                javascript, these map files know which line of typescript in
-                your sources corresponds to the javascript executed by the
-                browser
               </span>
             </div>
           </div>
@@ -752,20 +940,11 @@ Ingredients:
           <ul>
             <li>use angular-cli to create everything (ng XXX)</li>
             <li>pages are built using components</li>
+            <li>everything is typescript, which is sort of an enhanced javascript</li>
             <li>pass properties from the code to the html using {{}}</li>
             <li>format data in your html using pipes</li>
             <li>pass data from the html to to code using [ ]</li>
             <li>*ngFor to loop over a list inside your html</li>
-          </ul>
-        </section>
-        <section>
-          <h3>exercise</h3>
-          <ul>
-            <li>install all necessary software</li>
-            <li>try to recreate the recipe app based on these slides</li>
-            <li>
-              think about your own project, create github and submit already
-            </li>
           </ul>
         </section>
       </div>
@@ -794,7 +973,7 @@ Ingredients:
                 document.getElementById('sectionID')
               );
               // comment line underneath to start at slide 1
-              Reveal.slide(55); //Reveal.getTotalSlides());
+              // Reveal.slide(62); //Reveal.getTotalSlides());
             }
           },
           { src: 'plugin/codestepper/svgstepper.js' }

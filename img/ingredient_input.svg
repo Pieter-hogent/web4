@@ -34,11 +34,11 @@
             </g>
         </marker>
     </defs>
-    <g id="maincanvas" fill="none" fill-opacity="1" stroke="none" stroke-dasharray="none" stroke-opacity="1">
+    <g id="svgstep" fill="none" fill-opacity="1" stroke="none" stroke-dasharray="none" stroke-opacity="1">
         <title>
             Canvas 1
         </title>
-        <g class="svgstep" show-steps="2+">
+        <g id="svgstep: 2+">
             <title>
                 Layer 1
             </title>
@@ -106,7 +106,7 @@
                 <path stroke="#0096e6" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" marker-end="url(#FilledArrow_Marker)" d="M 469.49995 251.05412 C 493.76177 250.72717 524.7253 221.6048 542.2927 250.07317 C 559.86004 278.54155 546.7162 392.81884 574.9146 421.8815 C 599.37896 447.0956 649.9351 429.85646 692.6236 425.41125"/>
             </g>
         </g>
-        <g class="svgstep" show-steps="1+">
+        <g id="svgstep: 1+">
             <title>
                 Layer 2
             </title>

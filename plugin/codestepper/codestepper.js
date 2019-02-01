@@ -81,11 +81,11 @@ const CodeStepper =
         let footer = [];
         sectionEl.childNodes.forEach(child => {
           if (child.nodeType === 1 && child.hasAttribute('codesteps')) {
-            // we should have a <pre> part with the code, and a <div explanation> with all the explanations
-            // (and nothing else)
             if (child.hasAttribute('no-highlight-first')) {
               this.highlightFirstShown = false;
             }
+            // we should have a <pre> part with the code, and a <div explanation> with all the explanations
+            // (and nothing else)
             code = child.querySelector('pre');
             const explanationDiv = child.querySelector('div[explanation]');
             let explanationNodes = explanationDiv.querySelectorAll(
@@ -155,11 +155,11 @@ const CodeStepper =
           const showRange = new Range(sstepDiv.getAttribute('sstep'));
           if (showRange.firstIndex() == idx) {
             sstepDiv.removeAttribute('hidden');
-            if (idx != 1 || this.highlightFirstShown) {
+            if (idx != 1 && this.highlightFirstShown) {
               sstepDiv.classList.add('code-firstshown');
             }
           } else if (showRange.includes(idx)) {
-            if (idx != 1 || this.highlightFirstShown) {
+            if (idx != 1 && this.highlightFirstShown) {
               sstepDiv.classList.remove('code-firstshown');
             }
           } else {

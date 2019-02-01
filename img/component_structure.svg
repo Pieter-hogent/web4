@@ -44,11 +44,11 @@
             </g>
         </marker>
     </defs>
-    <g id="maincanvas" fill="none" fill-opacity="1" stroke="none" stroke-dasharray="none" stroke-opacity="1">
+    <g id="svgstep" fill="none" fill-opacity="1" stroke="none" stroke-dasharray="none" stroke-opacity="1">
         <title>
             Canvas 1
         </title>
-        <g class="svgstep" show-steps="1+">
+        <g id="svgstep: 1+">
             <title>
                 RecipeComponent
             </title>
@@ -99,7 +99,7 @@
             <path fill="#eeaf4b" d="M 856.5 752 C 855.397 752 854.5 751.103 854.5 750 L 854.5 746 C 854.5 744.346 853.154 743 851.5 743 C 850.947 743 850.5 743.448 850.5 744 C 850.5 744.552 850.947 745 851.5 745 C 852.052 745 852.5 745.449 852.5 746 L 852.5 750 C 852.5 751.2 853.042 752.266 853.882 753 C 853.042 753.734 852.5 754.8 852.5 756 L 852.5 760 C 852.5 760.551 852.052 761 851.5 761 C 850.947 761 850.5 761.448 850.5 762 C 850.5 762.552 850.947 763 851.5 763 C 853.154 763 854.5 761.654 854.5 760 L 854.5 756 C 854.5 754.897 855.397 754 856.5 754 C 857.053 754 857.5 753.552 857.5 753 C 857.5 752.448 857.053 752 856.5 752 Z"/>
             <path fill="#eeaf4b" d="M 844.5 755 C 843.947 755 843.5 755.448 843.5 756 L 843.5 759 C 843.5 759.552 843.947 760 844.5 760 C 845.053 760 845.5 759.552 845.5 759 L 845.5 756 C 845.5 755.448 845.053 755 844.5 755 Z"/>
         </g>
-        <g class="svgstep" show-steps="2+">
+        <g id="svgstep: 2+">
             <title>
                 RecipeListComponent
             </title>
@@ -158,7 +158,7 @@
             <line x1="782" x2="804.5" y1="449.6628" y2="449.6628" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
             <path stroke="#ff9300" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" marker-end="url(#FilledArrow_Marker)" d="M 1042.5294 407.7031 C 1041.353 437.79906 1028.9226 454.12157 1039 498 C 1049.0774 541.8784 1134.8801 638.7178 1103 671 C 1073.3832 700.9903 951.8965 687.1762 866.5714 690.5986"/>
         </g>
-        <g class="svgstep" show-steps="3+">
+        <g id="svgstep: 3+">
             <title>
                 AppComponent
             </title>
