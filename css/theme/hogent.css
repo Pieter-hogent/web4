@@ -361,8 +361,8 @@ body {
 body:after {
   content: url(../../img/logo.png);
   position: fixed;
-  bottom: 1.5em;
-  left: 1.5em;
+  bottom: 1em;
+  left: 1em;
 }
 
 /*********************************************
@@ -478,3 +478,20 @@ pre {
   color: white;
 }
  */
+
+.reveal .fullscreen-chart {
+  width: 80% !important;
+  height: 80% !important;
+  margin-left: 10% !important;
+  /* margin-bottom: 250px; */
+}
+
+.reveal .title-slide .footer {
+  position: fixed;
+  bottom: 25px;
+  right: 15px;
+  margin-right: 5px;
+  margin-left: 250px;
+  font-size: 75%;
+  text-align: right;
+}

@@ -31,13 +31,13 @@ var SvgStepper =
         this.range = [];
         // if the last char is a +, the range includes all indexes greater than the last one parsed
         this.forever = false;
-        if (stringRange.slice(-1) === "+") {
+        if (stringRange.slice(-1) === '+') {
           this.forever = true;
           stringRange = stringRange.slice(0, -1);
         }
         if (stringRange.length) {
-          stringRange.split(",").forEach(el => {
-            let dashRange = el.split("-");
+          stringRange.split(',').forEach(el => {
+            let dashRange = el.split('-');
             if (dashRange.length === 1) {
               this.range.push(parseInt(el));
             } else {
@@ -81,7 +81,7 @@ var SvgStepper =
     // elements this scrollHeight changes, but the top is not reapplied,
     // so I look for it here and set it correctly
     function readjustTopOfCurrentSection() {
-      while (currentSection && currentSection.tagName != "SECTION") {
+      while (currentSection && currentSection.tagName != 'SECTION') {
         if (currentSection.parentNode) {
           currentSection = currentSection.parentNode;
         } else {
@@ -112,7 +112,7 @@ var SvgStepper =
       //    range: [1,2,4,5,9,12],
       //    forever: true  // (meaning everything after 12 too)
       // }
-      constructor(el, showRange, highlightRange = new Range("")) {
+      constructor(el, showRange, highlightRange = new Range('')) {
         this.htmlElement = el;
         this.showRange = showRange;
         this.highlightRange = highlightRange;
@@ -120,8 +120,8 @@ var SvgStepper =
         // only do 'highlight first in green' inside code blocks (not text underneath)
         this.insideCodeTag = false;
         let pnode = el.parentNode;
-        while (pnode && pnode.nodeName != "HTML") {
-          if (pnode.nodeName === "CODE") {
+        while (pnode && pnode.nodeName != 'HTML') {
+          if (pnode.nodeName === 'CODE') {
             this.insideCodeTag = true;
             break;
           }
@@ -131,28 +131,28 @@ var SvgStepper =
       update(index) {
         if (this.showRange.max()) {
           if (this.showRange.includes(index)) {
-            this.htmlElement.removeAttribute("hidden");
+            this.htmlElement.removeAttribute('hidden');
             // first time something is shown, it's highlighted in green (unless options say otherwhise)
             if (
               index != 1 && // don't do this when something is show from the start (so don't do it when slide appears)
               highlightFirstAppearanceInCodeBlocks &&
-              !this.htmlElement.hasAttribute("no-highlight-first") &&
+              !this.htmlElement.hasAttribute('no-highlight-first') &&
               this.insideCodeTag &&
               this.showRange.firstIndex() === index
             ) {
-              this.htmlElement.classList.add("highlight-green");
+              this.htmlElement.classList.add('highlight-green');
             } else {
-              this.htmlElement.classList.remove("highlight-green");
+              this.htmlElement.classList.remove('highlight-green');
             }
           } else {
-            this.htmlElement.setAttribute("hidden", true);
-            this.htmlElement.classList.remove("highlight-green");
+            this.htmlElement.setAttribute('hidden', true);
+            this.htmlElement.classList.remove('highlight-green');
           }
         }
         if (this.highlightRange.includes(index)) {
-          this.htmlElement.classList.add("highlight-red");
+          this.htmlElement.classList.add('highlight-red');
         } else {
-          this.htmlElement.classList.remove("highlight-red");
+          this.htmlElement.classList.remove('highlight-red');
         }
       }
     }
@@ -170,9 +170,9 @@ var SvgStepper =
 
           if (this.highlightRange) {
             if (this.highlightRange.includes(index)) {
-              this.svgElement.node.setAttribute("fill", this.highlightColor);
+              this.svgElement.node.setAttribute('fill', this.highlightColor);
             } else {
-              this.svgElement.node.removeAttribute("fill");
+              this.svgElement.node.removeAttribute('fill');
             }
           }
         } else {
@@ -217,32 +217,32 @@ var SvgStepper =
 
     // constructs the lists and sets up inner navigation
     // when a fragment with the correct attribute is encountered
-    Reveal.addEventListener("fragmentshown", function(event) {
+    Reveal.addEventListener('fragmentshown', function(event) {
       console.log(event);
       currentSection = event.fragment; // not correct, but using it the first time will adjust this
       let needsInnerNavigation = false;
       currentIndex = 1;
       maxIndex = -1;
 
-      if (event.fragment.hasAttribute("svg-step")) {
-        console.log("found svg-step");
+      if (event.fragment.hasAttribute('svg-step')) {
+        console.log('found svg-step');
         needsInnerNavigation = true;
         svgElements = new Set();
         maxIndex = 2; // set it to something > 1, will be overriden by either codestep, or the ASYNC loading of svg
         // (if there's nothing but a svg, we try to show index 1, while max is still -1 (loading is async),
         // and we move to the next slide)
-        toArray(event.fragment.getElementsByTagName("svg"))
-          .filter(el => el.classList.contains("svg-section"))
+        toArray(event.fragment.getElementsByTagName('svg'))
+          .filter(el => el.classList.contains('svg-section'))
           .forEach(el => {
             if (false && snap) {
               console.error(
                 `I can only cope with one svg element inside a svg-step div (for now)`
               );
             }
-            snap = new Snap(`#${el.getAttribute("id")}`);
+            snap = new Snap(`#${el.getAttribute('id')}`);
 
             // setTimeout(() => {
-            Snap.load(`${el.getAttribute("snapfile")}`, data => {
+            Snap.load(`${el.getAttribute('snapfile')}`, data => {
               // the read file gets appended, so if we go back / fwd we would end up
               // with multiple svg's drawn on top of each other, so remove previous one (if any)
               if (snap.children()) {
@@ -251,56 +251,56 @@ var SvgStepper =
                 });
               }
               // console.log(data);
-              let defs = data.select("defs");
+              let defs = data.select('defs');
               snap.append(defs);
-              let g = data.select("#maincanvas");
+              let g = data.select('#svgstep');
               if (!g) {
                 console.error(
-                  "Codestepper needs a 'g' canvas with the id maincanvas"
+                  "Codestepper needs a 'g' canvas with the id svgstep"
                 );
               }
               snap.append(g);
               // set viewBox to the same one it was in the file
-              el.setAttribute("viewBox", snap.getBBox().vb);
+              el.setAttribute('viewBox', snap.getBBox().vb);
               console.log(`viewBox set to ${snap.getBBox().vb}`);
 
-              let x = g.selectAll(".svgstep");
+              let x = g.selectAll("[id*='svgstep:']");
+
+              // let x = g.selectAll('.svgstep');
               x.forEach(item => {
-                item.node.setAttribute("opacity", 0.0); // start hidden, or the screen 'flashes'
-                let showStepRange = new Range("");
-                if (item.node.hasAttribute("show-steps")) {
-                  showStepRange = new Range(
-                    item.node.getAttribute("show-steps")
-                  );
+                let elId = item.attr('id');
+                item.node.setAttribute('opacity', 0.0); // start hidden, or the screen 'flashes'
+                let showStepRange = new Range('');
+                if (elId.includes('svgstep:')) {
+                  // console.log(elId.substring(9));
+                  showStepRange = new Range(elId.substring(9));
                 }
 
                 svgElements.add(new SvgElement(item, showStepRange));
                 maxIndex = Math.max(maxIndex, showStepRange.max());
               });
 
-              let h = g.selectAll(".svghighlight");
+              let h = g.selectAll('.svghighlight');
               h.forEach(item => {
-                let highlightRange = new Range("");
-                if (item.node.hasAttribute("highlight-steps")) {
-                  highlightRange = new Range(
-                    item.node.getAttribute("highlight-steps")
-                  );
+                let highlightRange = new Range('');
+                if (item.node.hasAttribute('hstep')) {
+                  highlightRange = new Range(item.node.getAttribute('hstep'));
                 }
-                let highlightColor = "#ff7e79"; // orange
-                if (item.node.hasAttribute("highlight-color")) {
-                  let theColor = item.node.getAttribute("highlight-color");
+                let highlightColor = '#ff7e79'; // orange
+                if (item.node.hasAttribute('highlight-color')) {
+                  let theColor = item.node.getAttribute('highlight-color');
                   switch (theColor) {
-                    case "orange":
-                      highlightColor = "#ff7e79";
+                    case 'orange':
+                      highlightColor = '#ff7e79';
                       break;
-                    case "green":
-                      highlightColor = "#929000";
+                    case 'green':
+                      highlightColor = '#929000';
                       break;
-                    case "blue":
-                      highlightColor = "#0096ff";
+                    case 'blue':
+                      highlightColor = '#0096ff';
                       break;
-                    case "purple":
-                      highlightColor = "#9437ff";
+                    case 'purple':
+                      highlightColor = '#9437ff';
                       break;
                     default:
                       highlightColor = theColor;
@@ -317,14 +317,14 @@ var SvgStepper =
           });
       }
 
-      if (event.fragment.hasAttribute("code-step")) {
+      if (event.fragment.hasAttribute('code-step')) {
         needsInnerNavigation = true;
         codeElements = new Set();
 
         // first adapt the 'samespot' childNodes, remove extra added newlines (it's inside a code block)
         // and add css to the inner span's
-        toArray(event.fragment.getElementsByTagName("*")).forEach(el => {
-          if (el.classList.contains("samespot")) {
+        toArray(event.fragment.getElementsByTagName('*')).forEach(el => {
+          if (el.classList.contains('samespot')) {
             for (let i = 0; i < el.childNodes.length; ) {
               if (el.childNodes[i].nodeType == 3) {
                 // TEXT
@@ -333,10 +333,10 @@ var SvgStepper =
                 el.removeChild(el.childNodes[i]);
               } else {
                 if (
-                  el.childNodes[i].nodeName === "SPAN" ||
-                  el.childNodes[i].nodeName === "P"
+                  el.childNodes[i].nodeName === 'SPAN' ||
+                  el.childNodes[i].nodeName === 'P'
                 ) {
-                  el.childNodes[i].classList.add("samespot-content");
+                  el.childNodes[i].classList.add('samespot-content');
                 }
                 ++i;
               }
@@ -345,14 +345,14 @@ var SvgStepper =
         });
         // loop again over the children (above loop changed the DOM), now simply remember all the
         // show-steps, highlight-steps spans
-        toArray(event.fragment.getElementsByTagName("*")).forEach(el => {
-          let showStepRange = new Range("");
-          if (el.hasAttribute("show-steps")) {
-            showStepRange = new Range(el.getAttribute("show-steps"));
+        toArray(event.fragment.getElementsByTagName('*')).forEach(el => {
+          let showStepRange = new Range('');
+          if (el.hasAttribute('show-steps')) {
+            showStepRange = new Range(el.getAttribute('show-steps'));
           }
-          let highlightRange = new Range("");
-          if (el.hasAttribute("highlight-steps")) {
-            highlightRange = new Range(el.getAttribute("highlight-steps"));
+          let highlightRange = new Range('');
+          if (el.hasAttribute('highlight-steps')) {
+            highlightRange = new Range(el.getAttribute('highlight-steps'));
           }
           if (showStepRange.max() || highlightRange.max()) {
             maxIndex = Math.max(
