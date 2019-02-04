@@ -468,13 +468,8 @@ let notThatUseful<span hstep='5'>: any</span>;</span>
              this.ingredients = ['tomato', 'minced meat'];
            }<span sstep='6+'>
 
-           get name(): string {
-             return this._name;
-           }
-
-           set name(name: string) {
-             this._name = name;
-           }
+           get name(): string { return this._name; }
+           set name(name: string) { this._name = name; }
             </span>
            <span sstep='4+'>public </span>printDirections(<span sstep='7+'>labeled<span sstep='8+'>?</span>: LabelledValue</span>) {<span sstep='7+'>
             console.log(labeled.label);</span>
