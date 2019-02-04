@@ -287,8 +287,8 @@ var SvgStepper =
                   highlightRange = new Range(item.node.getAttribute('hstep'));
                 }
                 let highlightColor = '#ff7e79'; // orange
-                if (item.node.hasAttribute('highlight-color')) {
-                  let theColor = item.node.getAttribute('highlight-color');
+                if (item.node.hasAttribute('hcolor')) {
+                  let theColor = item.node.getAttribute('hcolor');
                   switch (theColor) {
                     case 'orange':
                       highlightColor = '#ff7e79';

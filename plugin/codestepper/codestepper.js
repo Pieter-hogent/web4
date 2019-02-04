@@ -130,6 +130,11 @@ const CodeStepper =
             }
           }
         });
+        if (this.maxIndex <= 0) {
+          console.log(
+            "ERROR in codestepper, maxIndex <= 0. Did you use span's with step='1' inside the <div explanation> ? (and not e.g. <p> or <div>)"
+          );
+        }
         return [header, code, footer];
       }
 
