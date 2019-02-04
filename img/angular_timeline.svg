@@ -33,7 +33,7 @@
         <title>
             Canvas 1
         </title>
-        <g class="svgstep" show-steps="1+">
+        <g id='svgstep-1' class="svgstep" show-steps="1+">
             <title>
                 angularjs
             </title>
@@ -41,7 +41,7 @@
                 <tspan x=".3540039" y="65" font-family="Menlo" font-size="70" font-weight="500" textLength="379.292">AngularJS</tspan>
             </text>
         </g>
-        <g class="svgstep" show-steps="1-5">
+        <g  id='svgstep-2' class="svgstep" show-steps="1-5">
             <title>
                 0.9
             </title>

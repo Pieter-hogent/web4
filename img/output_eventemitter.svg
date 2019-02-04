@@ -46,25 +46,25 @@
       </g>
     </marker>
   </defs>
-  <g id="maincanvas" stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+  <g id="svgstep" stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
     <title>Canvas 1</title>
-    <g class="svgstep" show-steps="1+">
+    <g id="svgstep: 1+">
       <title>Layer 1</title>
       <rect x="119.2" y="205.8" width="484.3" height="131.5" fill="white"/>
       <path d="M 542.9625 205.8 L 603.5 205.8 L 603.5 337.3 L 542.9625 337.3 M 179.7375 337.3 L 119.2 337.3 L 119.2 205.8 L 179.7375 205.8" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
       <text transform="translate(156.7929 230.7031)" fill="black">
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="0" y="11" >&lt;app-add-recipe </tspan>
-        <tspan font-family="Menlo" font-size="12" font-weight="500"  class='svghighlight' highlight-steps='4+' highlight-color='blue' x="115.59375" y="11" >(newRecipe)</tspan>
+        <tspan font-family="Menlo" font-size="12" font-weight="500"  class='svghighlight' hstep='4+' hcolor='blue' x="115.59375" y="11" >(newRecipe)</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="195.06445" y="11" >=&quot;</tspan>
-        <tspan font-family="Menlo" font-size="12" font-weight="500"  class='svghighlight' highlight-steps='5+' highlight-color='purple' x="209.51367" y="11" >newRecipeAdded($event)</tspan>
+        <tspan font-family="Menlo" font-size="12" font-weight="500"  class='svghighlight' hstep='5+' hcolor='purple' x="209.51367" y="11" >newRecipeAdded($event)</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="368.4551" y="11" >&quot;&gt;</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="0" y="25" >&lt;/app-add-recipe&gt;</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="0" y="39" >&lt;div class=&quot;ui cards&quot;&gt;</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="0" y="53" >  &lt;app-recipe *ngFor=&apos;let localRecipe of </tspan>
-        <tspan font-family="Menlo" font-size="12" font-weight="500"  class='svghighlight' highlight-steps='2-3' highlight-color='orange' x="286.209" y="53" >recipes</tspan>
+        <tspan font-family="Menlo" font-size="12" font-weight="500"  class='svghighlight' hstep='2-3' hcolor='orange' x="286.209" y="53" >recipes</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="346.78125" y="53" >&apos; </tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="0" y="67" >     </tspan>
-        <tspan font-family="Menlo" font-size="12" font-weight="500"  class='svghighlight' highlight-steps='3' highlight-color='green' x="36.123047" y="67" >[recipe]</tspan>
+        <tspan font-family="Menlo" font-size="12" font-weight="500"  class='svghighlight' hstep='3' hcolor='green' x="36.123047" y="67" >[recipe]</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="93.91992" y="67" >=&apos;</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" fill="black" x="108.36914" y="67" >localRecipe</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="187.83984" y="67" >&apos;&gt;&lt;/app-recipe&gt;</tspan>
@@ -114,12 +114,12 @@
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="10" y="39" >  constructor(private _recipeDataService: RecipeDataService) </tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="10" y="53" >  { }</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="10" y="81" >  get </tspan>
-        <tspan font-family="Menlo" font-size="12" font-weight="500" class='svghighlight' highlight-steps='2-3' highlight-color='orange' x="43.347656" y="81" >recipes()</tspan>
+        <tspan font-family="Menlo" font-size="12" font-weight="500" class='svghighlight' hstep='2-3' hcolor='orange' x="43.347656" y="81" >recipes()</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="118.36914" y="81" > {</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="30" y="95" >    return this._recipeDataService.recipes;</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="10" y="109" >  }</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="0" y="137" >  </tspan>
-        <tspan font-family="Menlo" font-size="12" font-weight="500"  class='svghighlight' highlight-steps='5+' highlight-color='purple'  x="10" y="137" >newRecipeAdded</tspan>
+        <tspan font-family="Menlo" font-size="12" font-weight="500"  class='svghighlight' hstep='5+' hcolor='purple'  x="10" y="137" >newRecipeAdded</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="120.59375" y="137" >(recipe) {</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="30" y="151" >    this._recipeDataService.addNewRecipe(recipe);</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="10" y="165" >  }</tspan>
@@ -139,18 +139,18 @@
       <line x1="76.20001" y1="489.2031" x2="98.70001" y2="489.2031" fill="white"/>
       <line x1="76.20001" y1="489.2031" x2="98.70001" y2="489.2031" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
     </g>
-    <g class="svgstep" show-steps="2-3">
+    <g id="svgstep: 2-3">
       <title>Layer 2</title>
       <path d="M 335.90627 509.7969 C 326.6051 487.2002 287.76418 462.5752 308 442 C 328.23582 421.4248 439.00155 404.381 457.33333 386.33333 C 470.54153 373.32984 451.10364 360.849 434.30304 348.32693" marker-end="url(#FilledArrow_Marker)" stroke="#ff7e79" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
     </g>
-    <g class="svgstep" show-steps="3+">
+    <g id="svgstep: 3+">
       <title>Layer 3</title>
       <rect x="787" y="683.5" width="346" height="131.5" fill="white"/>
       <path d="M 1089.75 683.5 L 1133 683.5 L 1133 815 L 1089.75 815 M 830.25 815 L 787 815 L 787 683.5 L 830.25 683.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
       <text transform="translate(823 707)" fill="black">
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="0" y="11" >export class RecipeComponent {</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="0" y="25" >  </tspan>
-        <tspan font-family="Menlo" font-size="12" font-weight="500"  class='svghighlight' highlight-steps='3' highlight-color='green'  x="14.449219" y="25" >@Input() public recipe</tspan>
+        <tspan font-family="Menlo" font-size="12" font-weight="500"  class='svghighlight' hstep='3' hcolor='green'  x="14.449219" y="25" >@Input() public recipe</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="173.39062" y="25" >: Recipe;</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="20" y="53" >  constructor() {}</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="0" y="67" >}</tspan>
@@ -204,18 +204,18 @@
       <line x1="744" y1="681.4062" x2="766.5" y2="681.4062" fill="white"/>
       <line x1="744" y1="681.4062" x2="766.5" y2="681.4062" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
     </g>
-    <g class="svgstep" show-steps="3">
+    <g id="svgstep: 3">
       <title>Layer 6</title>
       <path d="M 465.0174 333.7031 C 532.2271 375.24236 631.5064 394.6574 666.6667 458.33333 C 701.8269 522.00926 650.7803 670.18585 676 715.7969 C 697.5451 754.7623 751.3718 735.0488 796.1085 731.8497" marker-end="url(#FilledArrow_Marker_2)" stroke="#929000" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
     </g>
-    <g class="svgstep" show-steps="4+">
+    <g id="svgstep: 4+">
       <title>Layer 4</title>
       <rect x="787" y="234.5" width="346" height="131.5" fill="white"/>
       <path d="M 1089.75 234.5 L 1133 234.5 L 1133 366 L 1089.75 366 M 830.25 366 L 787 366 L 787 234.5 L 830.25 234.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
       <text transform="translate(823 258)" fill="black">
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="0" y="11" >export class AddRecipeComponent {</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="0" y="39" >  </tspan>
-        <tspan font-family="Menlo" font-size="12" font-weight="500"  class='svghighlight' highlight-steps='4+' highlight-color='blue' x="14.449219" y="39" >@Output() public newRecipe</tspan>
+        <tspan font-family="Menlo" font-size="12" font-weight="500"  class='svghighlight' hstep='4+' hcolor='blue' x="14.449219" y="39" >@Output() public newRecipe</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="202.28906" y="39" > = </tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="50" y="53" >     new EventEmitter&lt;Recipe&gt;();</tspan>
         <tspan font-family="Menlo" font-size="12" font-weight="500" x="20" y="81" >  constructor() {}</tspan>
@@ -270,11 +270,11 @@
       <line x1="744" y1="232.4062" x2="766.5" y2="232.4062" fill="white"/>
       <line x1="744" y1="232.4062" x2="766.5" y2="232.4062" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
     </g>
-    <g class="svgstep" show-steps="5+">
+    <g id="svgstep: 5+">
       <title>Layer 5</title>
       <path d="M 436.1367 333.7031 C 519.63835 410.79436 669.35785 486.014 686.6667 565 C 703.9755 643.986 577.1459 782.5364 540 807.6667 C 508.8758 828.7231 494.22803 771.4926 475.35076 734.3718" marker-end="url(#FilledArrow_Marker_3)" stroke="#9437ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
     </g>
-    <g class="svgstep" show-steps="4+">
+    <g id="svgstep: 4+">
       <title>Layer 7</title>
       <path d="M 786.5009 289.842 C 744.78255 287.33935 698.8575 312.02625 661.3333 282.33333 C 623.80916 252.64042 597.5551 124.47298 561.3333 111.66667 C 530.0355 100.60121 494.4109 155.35873 460.07123 190.62344" marker-end="url(#FilledArrow_Marker_4)" stroke="#0096ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
     </g>
