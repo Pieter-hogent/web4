@@ -44,12 +44,12 @@
             </title>
             <rect width="362" height="93" x="107" y="207" fill="white"/>
             <path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M 423.75 207 L 469 207 L 469 300 L 423.75 300 M 152.25 300 L 107 300 L 107 207 L 152.25 207"/>
-            <g class="svgstep" show-steps="2">
+            <g id="svgstep: 2">
                 <text fill="black" transform="translate(142 227.5)">
                     <tspan x="0" y="11" font-family="Menlo" font-size="12" font-weight="500">&lt;li *ngFor=‘let ingredient of ingredients’&gt;</tspan> <tspan x="20" y="25" fill="#ec6630" font-family="Menlo" font-size="12" font-weight="500"> &lt;app-ingredient&gt; </tspan> <tspan x="20" y="39" fill="#ec6630" font-family="Menlo" font-size="12" font-weight="500"> &lt;/app-ingredient&gt;</tspan> <tspan x="0" y="53" font-family="Menlo" font-size="12" font-weight="500">&lt;/li&gt;</tspan>
                 </text>
             </g>
-            <g class="svgstep" show-steps="3+">
+            <g id="svgstep: 3+">
                 <text fill="black" transform="translate(142 227.5)">
                     <tspan x="0" y="11" font-family="Menlo" font-size="12" font-weight="500">&lt;li *ngFor=‘let ingredient of ingredients’&gt;</tspan> <tspan x="20" y="25" font-family="Menlo" font-size="12" font-weight="500"> &lt;app-ingredient </tspan> <tspan x="144.49219" y="25" fill="#0096e6" font-family="Menlo" font-size="12" font-weight="500">[name]=‘ingredient’</tspan> <tspan x="284.75977" y="25" font-family="Menlo" font-size="12" font-weight="500">&gt;</tspan> <tspan x="20" y="39" font-family="Menlo" font-size="12" font-weight="500"> &lt;/app-ingredient&gt;</tspan> <tspan x="0" y="53" font-family="Menlo" font-size="12" font-weight="500">&lt;/li&gt;</tspan>
                 </text>
@@ -102,7 +102,7 @@
             <line x1="64.25001" x2="64.25001" y1="208.2031" y2="350" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
             <path fill="#0096e6" d="M 120.50001 343 C 119.39701 343 118.50001 342.103 118.50001 341 L 118.50001 337 C 118.50001 335.346 117.15401 334 115.50001 334 C 114.94701 334 114.50001 334.448 114.50001 335 C 114.50001 335.552 114.94701 336 115.50001 336 C 116.05201 336 116.50001 336.449 116.50001 337 L 116.50001 341 C 116.50001 342.2 117.04201 343.266 117.88201 344 C 117.04201 344.734 116.50001 345.8 116.50001 347 L 116.50001 351 C 116.50001 351.551 116.05201 352 115.50001 352 C 114.94701 352 114.50001 352.448 114.50001 353 C 114.50001 353.552 114.94701 354 115.50001 354 C 117.15401 354 118.50001 352.654 118.50001 351 L 118.50001 347 C 118.50001 345.897 119.39701 345 120.50001 345 C 121.05301 345 121.50001 344.552 121.50001 344 C 121.50001 343.448 121.05301 343 120.50001 343 Z"/>
             <path fill="#0096e6" d="M 100.50001 341 L 100.50001 337 C 100.50001 336.449 100.94801 336 101.50001 336 C 102.05301 336 102.50001 335.552 102.50001 335 C 102.50001 334.448 102.05301 334 101.50001 334 C 99.84601 334 98.50001 335.346 98.50001 337 L 98.50001 341 C 98.50001 342.103 97.60301 343 96.50001 343 C 95.94701 343 95.50001 343.448 95.50001 344 C 95.50001 344.552 95.94701 345 96.50001 345 C 97.60301 345 98.50001 345.897 98.50001 347 L 98.50001 351 C 98.50001 352.654 99.84601 354 101.50001 354 C 102.05301 354 102.50001 353.552 102.50001 353 C 102.50001 352.448 102.05301 352 101.50001 352 C 100.94801 352 100.50001 351.551 100.50001 351 L 100.50001 347 C 100.50001 345.8 99.95801 344.734 99.11801 344 C 99.95801 343.266 100.50001 342.2 100.50001 341 Z"/>
-            <g class="svgstep" show-steps="3+">
+            <g id="svgstep: 3+">
                 <path stroke="#0096e6" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" marker-end="url(#FilledArrow_Marker)" d="M 469.49995 251.05412 C 493.76177 250.72717 524.7253 221.6048 542.2927 250.07317 C 559.86004 278.54155 546.7162 392.81884 574.9146 421.8815 C 599.37896 447.0956 649.9351 429.85646 692.6236 425.41125"/>
             </g>
         </g>
@@ -117,7 +117,7 @@
                     <tspan x="0" y="11" font-family="Menlo" font-size="12" font-weight="500">class IngredientComponent {</tspan> <tspan x="0" y="39" font-family="Menlo" font-size="12" font-weight="500">}</tspan>
                 </text>
             </g>
-            <g class="svgstep" show-steps="3+">
+            <g id="svgstep: 3+">
                 <text fill="black" transform="translate(747 397.1369)">
                     <tspan x="0" y="11" font-family="Menlo" font-size="12" font-weight="500">class IngredientComponent {</tspan> <tspan x="0" y="25" font-family="Menlo" font-size="12" font-weight="500"> </tspan> <tspan x="28.898438" y="25" fill="#0096e6" font-family="Menlo" font-size="12" font-weight="500">@Input() name: string;</tspan> <tspan x="0" y="39" font-family="Menlo" font-size="12" font-weight="500">}</tspan>
                 </text>
@@ -131,12 +131,12 @@
             </g>
             <line x1="669" x2="669" y1="313" y2="219.5" fill="white"/>
             <line x1="669" x2="669" y1="313" y2="219.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-            <g class="svgstep" show-steps="1,3+">
+            <g id="svgstep: 1,3+">
                 <text fill="black" transform="translate(696.7 245)">
                     <tspan x="0" y="11" font-family="Menlo" font-size="12" font-weight="500" textLength="173.39062">selector: app-ingredient</tspan>
                 </text>
             </g>
-            <g class="svgstep" show-steps="2">
+            <g id="svgstep: 2">
                 <text fill="#ec6630" transform="translate(696.7 245)">
                     <tspan x="0" y="11" font-family="Menlo" font-size="12" font-weight="500" textLength="173.39062">selector: app-ingredient</tspan>
                 </text>
