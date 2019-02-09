@@ -265,9 +265,10 @@
             >src/app/add-recipe/add-recipe.component.html <code class='codesteps' data-noescape data-trim>
               &lt;mat-card&gt;
                 &lt;mat-form-field&gt;
-                  &lt;<span hstep='1'>input</span> matInput placeholder=&quot;name&quot; type=&quot;text&quot; /&gt;
+                  &lt;<span hstep='1'>input</span> matInput placeholder=&quot;name&quot; type=&quot;text&quot; <span sstep='4+'>
+                      #newrecipename</span> /&gt;
                 &lt;/mat-form-field&gt;
-                &lt;<span hstep='1'>button</span> mat-raised-button&gt;
+                &lt;<span hstep='1'>button</span><span sstep='3+'> (click)=&quot;</span><span sstep='5+'>addRecipe(newrecipename)</span><span sstep='3+'>&quot;</span> mat-raised-button&gt;
                   add recipe
                 &lt;/button&gt;
               &lt;/mat-card&gt;          
@@ -282,52 +283,32 @@
               </span>
               <span step="2">
                 from now on, the slides will no longer show everything
-                excrutiangly detailed if it covers something we already saw,
+                excrutiatingly detailed if it covers something we already saw,
                 like in this case, creating a new component
               </span>
               <span step="2"
                 ><a href="http://localhost:4200">let's do this</a></span
               >
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>make it do something</h3>
-          <div codesteps>
-            <pre
-              class="html"
-            >src/app/add-recipe/add-recipe.component.html<code class='codesteps' data-noescape data-trim>
-                &lt;mat-card&gt;
-                &lt;mat-form-field&gt;
-                  &lt;input matInput placeholder=&quot;name&quot; type=&quot;text&quot;<span sstep='2+'>
-                     #newrecipename</span> /&gt;
-                &lt;/mat-form-field&gt;
-                &lt;button <span hstep='1'>(click)=&quot;</span><span sstep='3+'>addRecipe(newrecipename)</span><span hstep='1'>&quot;</span> mat-raised-button&gt;
-                  add recipe
-                &lt;/button&gt;
-              &lt;/mat-card&gt;
-            </code></pre>
-            <div explanation>
-              <span step="1"
-                >we want to respond to the button being clicked</span
-              >
-              <span step="1"
-                >this is done using an eventhandler, between
-                <span class="ilcode">( )</span></span
-              >
-              <span step="2">
-                when the button is clicked, we want to process what is inside
-                the input field</span
-              >
-              <span step="2">
-                we do this by populating a template variable for the input
-                field, using this 'hashtag' syntax</span
-              >
-              <span step="3">
-                now we add the function being called on our typescript class
-                when the event fires, with this variable as a parameter</span
-              >
-              <span step="4">the newrecipename is a <i>local</i> variable</span>
+              <span step="3"
+              >we want to respond to the button being clicked</span
+            >
+            <span step="3"
+              >this is done using an eventhandler, between
+              <span class="ilcode">( )</span></span
+            >
+            <span step="4">
+              when the button is clicked, we want to process what is inside
+              the input field</span
+            >
+            <span step="4">
+              we do this by populating a template variable for the input
+              field, using this 'hashtag' syntax</span
+            >
+            <span step="5">
+              now we add the function being called on our typescript class
+              when the event fires, with this variable as a parameter</span
+            >
+            <span step="6">the newrecipename is a <i>local</i> variable</span>
             </div>
           </div>
         </section>
@@ -399,8 +380,10 @@
                   private _dateAdded: Date = new Date();
                   private _ingredients = new Array&lt;string&gt;();
                 
-                  constructor(name: string) {
+                  constructor(name: string, ingredients: string[], dateAdded?: Date) {
                     this._name = name;
+                    this._ingredients = ingredients;
+                    this._dateAdded = dateAdded || new Date();
                   }
                 <span sstep='2+'>
                   static fromJSON(json: any): Recipe {
@@ -1098,7 +1081,7 @@ import { RECIPES } from './mock-recipes';
                         way to go</li>
                       <li >it makes for code that is a lot easier to test and understand; in a way, if you can avoid tracking state you should,
                         but we'll have a LOT more to say about state later</li>
-                      <li >a filter like this should really be a live-filter though, but we'll fix that next week using observables</li>
+                      <li >a filter like this should really be a live-filter though, but we'll fix that in a later chapter using observables</li>
                       <li >anyway,
                         <a href="http://localhost:4200">let's try this out</a>
                       </li>
