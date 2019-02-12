@@ -36,7 +36,7 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section class='title-slide'>
+        <section class="title-slide">
           <h2>angular basics</h2>
           <footer class="footer">
             "The strength of JavaScript is that you can do anything.<br />
@@ -407,6 +407,31 @@ installing component
           </ul>
         </section>
         <section>
+          <h3>why do we need types?</h3>
+          <img
+            src="img/38percentbugs_airbnb_typescript.jpg"
+            alt="airbnb bugs"
+          />
+        </section>
+        <section>
+          <h3>why do we need types?</h3>
+          <ul>
+            <li>
+              I'd love to argue static vs dynamic types in programming
+              languages, because I love arguing when I know I'm right
+            </li>
+            <li>
+              but we don't really have the time; very simply put: if you're not
+              perfect, you're better of with static typing</li><li>(for the same reasons
+              unit testing is good: you catch bugs early)
+            </li>
+            <li style="font-size: small">
+              while we're at it: tabs! spaces are for suckers, and vim forever,
+              losers use emacs!
+            </li>
+          </ul>
+        </section>
+        <section>
           <h3>typescript</h3>
           <div codesteps no-highlight-first>
             <pre
@@ -494,7 +519,7 @@ let notThatUseful<span hstep='5'>: any</span>;</span>
                 inside your class definition
               </span>
               <span step="3">
-                and not just using this.propertyname in the constructor
+                and not just using <span class='ilcode'>this.propertyname</span> in the constructor
               </span>
               <span step="4"> you can also specify access modifiers </span>
               <span step="4">
@@ -513,8 +538,14 @@ let notThatUseful<span hstep='5'>: any</span>;</span>
                 >readonly properties must be initialized when declared or in the
                 constructor, and can't change afterwards
               </span>
-              <span step="6"> you can declare computed properties using <span class='ilcode'>get</span> and <span class='ilcode'>set</span> </span>
-              <span step='6'> which can be used just like public properties outside your class </span>
+              <span step="6">
+                you can declare computed properties using
+                <span class="ilcode">get</span> and
+                <span class="ilcode">set</span>
+              </span>
+              <span step="6">
+                which can be used just like public properties outside your class
+              </span>
               <span step="7">
                 the interface keyword is also available, behaves (and is used)
                 just as you know it from java
@@ -526,8 +557,12 @@ let notThatUseful<span hstep='5'>: any</span>;</span>
             </div>
           </div>
         </section>
-        <section><h3>typescript</h3><div codesteps>
-          <pre class='typescript'>  <code class='codesteps' data-noescape data-trim>
+        <section>
+          <h3>typescript</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >  <code class='codesteps' data-noescape data-trim>
           class Recipe {<span sstep='1-2'>
             private _name: string;
             </span>
@@ -536,15 +571,36 @@ let notThatUseful<span hstep='5'>: any</span>;</span>
             }
           }
           </code></pre>
-          <div explanation>
-            <span step='1'> one last thing I want to explicitly point out is the initialize-and-declare-simultaneously typescript idiom </span>
-            <span step='2'> when creating classes you often want to specify a private member variable, pass an initial value in the constructor parameter list, and initialize it in the constructor </span>
-            <span step='3'> since this is a very common pattern, typescript has a shorthand for it</span>
-            <span step='3'> simply add an access modifier before the parameter of the constructor, no separate property, nothing in the body of the constructor </span>
-            <span step='3'> this is the exact same thing as before, with a more convenient syntax </span>
-            <span step='4'> there's more to typescript, but this covers what you need to get started, we'll explain as we bump into other differences </span>
+            <div explanation>
+              <span step="1">
+                one last thing I want to explicitly point out is the
+                initialize-and-declare-simultaneously typescript idiom
+              </span>
+              <span step="2">
+                when creating classes you often want to specify a private member
+                variable, pass an initial value in the constructor parameter
+                list, and initialize it in the constructor
+              </span>
+              <span step="3">
+                since this is a very common pattern, typescript has a shorthand
+                for it</span
+              >
+              <span step="3">
+                simply add an access modifier before the parameter of the
+                constructor, no separate property, nothing in the body of the
+                constructor
+              </span>
+              <span step="3">
+                this is the exact same thing as before, with a more convenient
+                syntax
+              </span>
+              <span step="4">
+                there's more to typescript, but this covers what you need to get
+                started, we'll explain as we bump into other differences
+              </span>
+            </div>
           </div>
-        </div></section>
+        </section>
         <section>
           <h3>using a collection of data</h3>
           <div codesteps>
@@ -566,7 +622,9 @@ let notThatUseful<span hstep='5'>: any</span>;</span>
                 }		            
             </code></pre>
             <div explanation>
-              <span step='1'> back to angular, what if we want to use a collection of data </span>
+              <span step="1">
+                back to angular, what if we want to use a collection of data
+              </span>
               <span step="1">
                 we declare the variable as an array of strings
               </span>
@@ -763,16 +821,16 @@ Ingredients:
         <section>
           <h3>ingredient component</h3>
           <div>
-            as an example, take our recipe's ingredients.<br/> ingredients need more
-            than a name, so lets create a separate component
+            as an example, take our recipe's ingredients.<br />
+            ingredients need more than a name, so lets create a separate
+            component
           </div>
           <pre data-trim class="console">
-            <span class='prompt'>~/recipeapp$</span> ng generate component ingredient
-            
-            // which can be written shorter as well
-            
-            <span class='prompt'>~/recipeapp$</span> ng g c ingredient
-          </pre>
+<span class='prompt'>~/recipeapp$</span> ng generate component ingredient
+
+// which can be written shorter as well
+
+<span class='prompt'>~/recipeapp$</span> ng g c ingredient</pre>
         </section>
         <section>
           when rendering the name of the ingredient, we want to pass it from the
@@ -868,8 +926,10 @@ Ingredients:
         </section>
         <section>
           <h3>debugging</h3>
-          <p>visual studio code has a lot of (third party) extensions, we'll use
-          the Debugger for Chrome to help us debug our Angular application</p>
+          <p>
+            visual studio code has a lot of (third party) extensions, we'll use
+            the Debugger for Chrome to help us debug our Angular application
+          </p>
           <img
             src="img/debugger_chrome_extension.png"
             alt="debugger extension"
@@ -877,7 +937,7 @@ Ingredients:
         </section>
         <section>
           <h3>debugging</h3>
-          <div codesteps no-highlight-first>
+          <div codesteps>
             <pre
               class="javascript"
             > .vscode/launch.json <code class='codesteps'  data-noescape data-trim>
@@ -909,8 +969,11 @@ Ingredients:
         </section>
         <section>
           <h3>debugging</h3>
-          <p>make sure the app is running, add a breakpoint and start your debug
-          proces</p>  <img src="img/debugger_running.png" alt="running debugger" />
+          <p>
+            make sure the app is running, add a breakpoint and start your debug
+            proces
+          </p>
+          <img src="img/debugger_running.png" alt="running debugger" />
         </section>
         <section>
           <h3>other plugins</h3>
@@ -935,7 +998,9 @@ Ingredients:
           <ul>
             <li>use angular-cli to create everything (ng XXX)</li>
             <li>pages are built using components</li>
-            <li>everything is typescript, which is sort of an enhanced javascript</li>
+            <li>
+              everything is typescript, which is sort of an enhanced javascript
+            </li>
             <li>pass properties from the code to the html using {{}}</li>
             <li>format data in your html using pipes</li>
             <li>pass data from the html to to code using [ ]</li>
