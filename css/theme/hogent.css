@@ -63,7 +63,7 @@ body {
 
 .reveal {
   font-family: 'Montserrat', 'Open Sans', sans-serif;
-  font-size: 36px;
+  font-size: 32px;
   font-weight: normal;
   color: #333;
 }
@@ -98,9 +98,9 @@ body {
   margin: 0 0 20px 0;
   color: #333;
   font-family: 'Montserrat', 'Open Sans', sans-serif;
-  font-weight: 500;
+  font-weight: 800;
   line-height: 1.2;
-  letter-spacing: -0.08em;
+  /* letter-spacing: -0.08em; */
   text-transform: uppercase;
   text-shadow: none;
   word-wrap: break-word;
@@ -448,7 +448,7 @@ body:after {
   color: #fff;
   position: absolute !important;
   bottom: 40px !important;
-  left: 0 !important;
+  left: 150px !important;
 }
 
 pre {
@@ -493,4 +493,5 @@ pre {
   margin-left: 250px;
   font-size: 75%;
   text-align: right;
+  width: 50%;
 }
