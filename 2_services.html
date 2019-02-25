@@ -679,10 +679,10 @@ import { RECIPES } from './mock-recipes';
                 &lt;app-add-recipe<span sstep='2+'> (newRecipe)=&quot;addNewRecipe($event)&quot;</span>&gt;&lt;/app-add-recipe&gt;
                 &lt;div
                   fxLayout=&quot;row&quot;
-                  fxLayout.xs</span>=&quot;column</span>&quot;
+                  fxLayout.xs=&quot;column&quot;
                   fxLayoutWrap
                   fxLayoutGap=&quot;0.5%&quot;
-                  fxLayoutAlign=&quot;left&quot;
+                  fxLayoutAlign=&quot;start&quot;
                 &gt;
                   &lt;div *ngFor=&quot;let localRecipe of recipes&quot;&gt;
                     &lt;app-recipe [recipe]=&quot;localRecipe&quot;&gt;&lt;/app-recipe&gt;
