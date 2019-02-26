@@ -121,7 +121,8 @@
   width: 25%;
 }
 .reveal .code-explanation {
-  font-size: 30px;
+  font-size: 1em;
+  width: 115%;
   background-color: var(--explanation-bgcolor);
   border-color: var(--explanation-bordercolor);
   border-width: 2px;
