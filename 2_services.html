@@ -211,7 +211,9 @@
                 &lt;mat-card-content&gt;</span>
                   <span sstep='3+'>&lt;h3 mat-subheader&gt;</span>ingredients<span sstep='3+'>&lt;/h3&gt;</span>
                   &lt;<span sstep='3+'>mat-list</span><span sstep='1-2'>ul</span>&gt;
-                    &lt;<span sstep='3+'>mat-list-item</span><span sstep='1-2'>li</span> *ngFor=&quot;let ingredient of ingredients&quot;&gt;{{ingredient}}&lt;/<span sstep='3+'>mat-list-item</span><span sstep='1-2'>li</span>&gt;
+                    &lt;<span sstep='3+'>mat-list-item</span><span sstep='1-2'>li</span> *ngFor=&quot;let ingredient of ingredients&quot;&gt;
+                      &lt;app-ingredient [name]=&quot;ingredient&quot;&gt;&lt;/app-ingredient&gt;
+                    &lt;/<span sstep='3+'>mat-list-item</span><span sstep='1-2'>li</span>&gt;
                   &lt;/<span sstep='3+'>mat-list</span><span sstep='1-2'>ul</span>&gt;
               <span sstep='2+'>  &lt;/mat-card-content&gt;
               &lt;/mat-card&gt; </span>
