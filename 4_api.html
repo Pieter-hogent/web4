@@ -901,16 +901,30 @@
         <section>
           <h3>environment</h3>
           <ul>
-            <li>we'd rather not have our backend url hardcoded in the source code</li>
-            <li>it's also not unlikely we'd use a different backend server during production and when developing, Angular uses the environment mechanism for this </li>
-            <li>by default you have an <span class='ilcode'>environments</span> folder in the root folder with two files, one regular and one for production </li>
-            <li>we'll add a new variable <span class='ilcode'>apiUrl</span> to both, pointing to '/api', which is where our frontend can find our backend</li>
+            <li>
+              we'd rather not have our backend url hardcoded in the source code
+            </li>
+            <li>
+              it's also not unlikely we'd use a different backend server during
+              production and when developing, Angular uses the environment
+              mechanism for this
+            </li>
+            <li>
+              by default you have an
+              <span class="ilcode">environments</span> folder in the root folder
+              with two files, one regular and one for production
+            </li>
+            <li>
+              we'll add a new variable <span class="ilcode">apiUrl</span> to
+              both, pointing to '/api', which is where our frontend can find our
+              backend
+            </li>
             <pre>package.json<code data-noescape data-trim>
                 export const environment = {
                   production: false,
                   apiUrl: '/api'
                 };
-                          </code></pre> 
+                          </code></pre>
           </ul>
         </section>
         <section>
@@ -965,7 +979,9 @@
                 <span class="ilcode">http.get</span> request, this is an async
                 operation, and it returns an Observable</span
               >
-              <span step='4'>notice how we use the environment variable here</span>
+              <span step="4"
+                >notice how we use the environment variable here</span
+              >
               <span step="4"
                 >when the request is completed it will 'push' a json array to
                 the stream</span
@@ -1114,25 +1130,47 @@
                 results and show those
               </span>
               <span step="2">so add a variable to cache the results</span>
-              <span step="3">subscribe to our services, and as the results come in, store them in our cache</span>
-              <span step="4">and change the <span class='ilcode'>get recipes</span> to return our cache list</span>
-              <span step="5">this works, and it's not necessarily <i>bad</i></span>
+              <span step="3"
+                >subscribe to our services, and as the results come in, store
+                them in our cache</span
+              >
+              <span step="4"
+                >and change the <span class="ilcode">get recipes</span> to
+                return our cache list</span
+              >
+              <span step="5"
+                >this works, and it's not necessarily <i>bad</i></span
+              >
               <span step="5">but we are needlessly caching, keeping state</span>
               <span step="5">always avoid keeping state if you can</span>
-              <span step="6">this can be solved better using the <span class='ilcode'>AsyncPipe</span></span>
-              <span step="6">by adding <span class='ilcode'>| async</span> in the html, we tell the system to subscribe asynchronously, and return the result as soon as it comes in, and move on as normal afterwards </span>
+              <span step="6"
+                >this can be solved better using the
+                <span class="ilcode">AsyncPipe</span></span
+              >
+              <span step="6"
+                >by adding <span class="ilcode">| async</span> in the html, we
+                tell the system to subscribe asynchronously, and return the
+                result as soon as it comes in, and move on as normal afterwards
+              </span>
               <span step="6">so, exactly what we want</span>
-              <span step="7">we add a new variable with a reference to the recipes stream of our data service</span>
+              <span step="7"
+                >we add a new variable with a reference to the recipes stream of
+                our data service</span
+              >
               <span step="8">we no longer subscribe</span>
               <span step="9">and we simply return this new stream</span>
-              <span step="9">now all that's left is adding the async pipe in our html</span>
+              <span step="9"
+                >now all that's left is adding the async pipe in our html</span
+              >
             </div>
           </div>
         </section>
         <section>
           <h3>http - observable</h3>
           <div codesteps>
-            <pre class='html'> src/app/app.component.html <code class='codesteps' data-noescape data-trim>
+            <pre
+              class="html"
+            > src/app/app.component.html <code class='codesteps' data-noescape data-trim>
             &lt;div&gt;
               &lt;!-- ... --&gt;
               &lt;div
@@ -1150,37 +1188,87 @@
             
             </code></pre>
             <div explanation>
-              <span step='1'> in our html code we simply add the <span class='ilcode'>| async</span> to the the recipes list </span>
-              <span step='1'> this will subscribe to the observable, and process the results as they arrive</span>
-              <span step='2'> you might wonder why we copied the observable in our class, and didn't just pass the result of the recipe dataservice to our async pipe?</span>
+              <span step="1">
+                in our html code we simply add the
+                <span class="ilcode">| async</span> to the the recipes list
+              </span>
+              <span step="1">
+                this will subscribe to the observable, and process the results
+                as they arrive</span
+              >
+              <span step="2">
+                you might wonder why we copied the observable in our class, and
+                didn't just pass the result of the recipe dataservice to our
+                async pipe?</span
+              >
             </div>
           </div>
         </section>
         <section>
           <h3>async pipe</h3>
           <ul>
-            <li>change detection! An async pipe whose input resolves triggers a change detection cycle</li>
-            <li>so the <span class='ilcode'>(recipes$ | async)</span> would trigger <span class='ilcode'>get recipes()</span> in <span class='ilcode'>RecipeDataService</span>, which triggers a http get call</li>
-            <li>when the http get call resolves, async pipe signals to the change detection system that something changed, on this new cycle <span class='ilcode'>(recipes$ | async)</span> are requested again, triggering <span class='ilcode'>get recipes()</span> on <span class='ilcode'>RecipedataService</span> once more, and hence a <i>new</i> http get call is triggered</li>
-            <li>which returns a <i>new</i> Observable as well, which returns new results, so the async pipe has changed again, and triggers a new cycle!</li>
-            <li>and so on and so on, you end up in an endless loop, because a http get always creates a new observable, so we have to avoid this</li>
+            <li>
+              change detection! An async pipe whose input resolves triggers a
+              change detection cycle
+            </li>
+            <li>
+              so the <span class="ilcode">(recipes$ | async)</span> would
+              trigger <span class="ilcode">get recipes()</span> in
+              <span class="ilcode">RecipeDataService</span>, which triggers a
+              http get call
+            </li>
+            <li>
+              when the http get call resolves, async pipe signals to the change
+              detection system that something changed, on this new cycle
+              <span class="ilcode">(recipes$ | async)</span> are requested
+              again, triggering <span class="ilcode">get recipes()</span> on
+              <span class="ilcode">RecipedataService</span> once more, and hence
+              a <i>new</i> http get call is triggered
+            </li>
+            <li>
+              which returns a <i>new</i> Observable as well, which returns new
+              results, so the async pipe has changed again, and triggers a new
+              cycle!
+            </li>
+            <li>
+              and so on and so on, you end up in an endless loop, because a http
+              get always creates a new observable, so we have to avoid this
+            </li>
             <li><a href="http://localhost:4200">let's try it</a></li>
           </ul>
         </section>
         <section>
           <h3>ingredient model</h3>
           <ul>
-            <li>so that <i>mostly</i> works, but we get all these <span class='ilcode'>[Object object]</span>'s for our ingredients</li>
-            <li>this is because our frontend still stores ingredients as strings, while the API returns proper Ingredient objects</li>
-            <li>this can be solved by adding an Ingredient model class, adapting the ingredient component, and using the model when converting the recipe</li>
-            <li>this is <i>extremely</i> similar to what we've done for Recipe, I consider this an exercise</li>
-            <li>(if you have trouble with this, it's probably advised to start studying for this course)</li>
+            <li>
+              so that <i>mostly</i> works, but we get all these
+              <span class="ilcode">[Object object]</span>'s for our ingredients
+            </li>
+            <li>
+              this is because our frontend still stores ingredients as strings,
+              while the API returns proper Ingredient objects
+            </li>
+            <li>
+              this can be solved by adding an Ingredient model class, adapting
+              the ingredient component, and using the model when converting the
+              recipe
+            </li>
+            <li>
+              this is <i>extremely</i> similar to what we've done for Recipe, I
+              consider this an exercise
+            </li>
+            <li>
+              (if you have trouble with this, it's probably advised to start
+              studying for this course)
+            </li>
           </ul>
         </section>
         <section>
           <h3>loading...</h3>
           <div codesteps>
-            <pre class='html'>src/app/app.component.html  <code class='codesteps' data-noescape data-trim>
+            <pre
+              class="html"
+            >src/app/app.component.html  <code class='codesteps' data-noescape data-trim>
               <span sstep='3+'>&lt;div *ngIf=&quot;(recipes$ | async) as recipes; else <span hstep='5'>loading</span>&quot;&gt;
                </span><span hstep='4'> &lt;div
                   fxLayout=&quot;row&quot;
@@ -1199,24 +1287,64 @@
               &lt;ng-template #loading&gt;<span hstep='5'>Loading recipes...</span>&lt;/ng-template&gt;</span>
             </code></pre>
             <div explanation>
-              <span step='1'>our recipes load asynchronously, depending on the speed of the network (and server) this could take a while </span>
-              <span step='1'>it would be better if we could show a 'loading' message (or animation)</span>
-              <span step='2'>to achieve this, first we add an <span class='ilcode'>ng-template</span> with our 'loading' message</span>
-              <span step='2'><span class='ilcode'>ng-template</span>'s define html building blocks, which are not shown until you explicitly include them</span>
-              <span step='3'>to show either the list of recipes, or our loading message, we use an <span class='ilcode'>*ngIf</span></span>
-              <span step='3'>just like <span class='ilcode'>*ngFor</span> loops, <span class='ilcode'>*ngIf</span> gives us a conditional expression </span>
-              <span step='4'>all children of the tag containing the <span class='ilcode'>*ngIf</span> are shown if the condition is met</span>
-              <span step='4'>(in this case, if your <span class='ilcode'>AsyncPipe</span> resolves, and the results are put in <span class='ilcode'>recipes</span>)</span>
-              <span step='5'>and if not (<span class='ilcode'>else</span> case) we show an <span class='ilcode'>ng-template</span> defined elsewhere</span>
-              <span step='6'>in a real application we'd like something nicer than simply an unformatted text message, but it'll suffice for our demo</span>
-              <span step='6'>testing this is bit hard, you're probably not fast enough to see if this works (unless if your computer is really old)</span>
+              <span step="1"
+                >our recipes load asynchronously, depending on the speed of the
+                network (and server) this could take a while
+              </span>
+              <span step="1"
+                >it would be better if we could show a 'loading' message (or
+                animation)</span
+              >
+              <span step="2"
+                >to achieve this, first we add an
+                <span class="ilcode">ng-template</span> with our 'loading'
+                message</span
+              >
+              <span step="2"
+                ><span class="ilcode">ng-template</span>'s define html building
+                blocks, which are not shown until you explicitly include
+                them</span
+              >
+              <span step="3"
+                >to show either the list of recipes, or our loading message, we
+                use an <span class="ilcode">*ngIf</span></span
+              >
+              <span step="3"
+                >just like <span class="ilcode">*ngFor</span> loops,
+                <span class="ilcode">*ngIf</span> gives us a conditional
+                expression
+              </span>
+              <span step="4"
+                >all children of the tag containing the
+                <span class="ilcode">*ngIf</span> are shown if the condition is
+                met</span
+              >
+              <span step="4"
+                >(in this case, if your
+                <span class="ilcode">AsyncPipe</span> resolves, and the results
+                are put in <span class="ilcode">recipes</span>)</span
+              >
+              <span step="5"
+                >and if not (<span class="ilcode">else</span> case) we show an
+                <span class="ilcode">ng-template</span> defined elsewhere</span
+              >
+              <span step="6"
+                >in a real application we'd like something nicer than simply an
+                unformatted text message, but it'll suffice for our demo</span
+              >
+              <span step="6"
+                >testing this is bit hard, you're probably not fast enough to
+                see if this works (unless if your computer is really old)</span
+              >
             </div>
           </div>
         </section>
         <section>
           <h3>loading...</h3>
           <div codesteps>
-            <pre class='typescript'>src/app/recipe.data.service.ts  <code class='codesteps' data-noescape data-trim>
+            <pre
+              class="typescript"
+            >src/app/recipe.data.service.ts  <code class='codesteps' data-noescape data-trim>
                 export class RecipeDataService {
                   constructor(private http: HttpClient) {}
                 
@@ -1230,28 +1358,52 @@
                 }
             </code></pre>
             <div explanation>
-              <span step='1'>RxJS to the rescue</span>
-              <span step='1'>you can pipe through the delay operator first</span>
-              <span step='1'>2 seconds in this example, should be enough to alt-tab and see the loading message</span>
-              <span step='2'>don't forget to remove this delay again after you've finished testing...</span>
-              <span step='2'><a href="http://localhost:4200">let's try this out</a></span>
-              
+              <span step="1">RxJS to the rescue</span>
+              <span step="1"
+                >you can pipe through the delay operator first</span
+              >
+              <span step="1"
+                >2 seconds in this example, should be enough to alt-tab and see
+                the loading message</span
+              >
+              <span step="2"
+                >don't forget to remove this delay again after you've finished
+                testing...</span
+              >
+              <span step="2"
+                ><a href="http://localhost:4200">let's try this out</a></span
+              >
             </div>
           </div>
         </section>
         <section>
           <h3>error handling</h3>
           <ul>
-            <li>just as Promises have a catch function, you can specify a second function when subscribing to Observables to process any errors that happened</li>
-            <li>but we only subscribe implicitly by using our AsyncPipe, adding error handling at the point of our AsyncPipe would be messy</li>
-            <li>once more, we'll rely on an RxJS operator to help us out: <span class='ilcode'>catchError</span></li>
-            <li>inside our data service we'll add a second stream, on which we'll report errors, neatly separating normal and error behavior</li>
+            <li>
+              just as Promises have a catch function, you can specify a second
+              function when subscribing to Observables to process any errors
+              that happened
+            </li>
+            <li>
+              but we only subscribe implicitly by using our AsyncPipe, adding
+              error handling at the point of our AsyncPipe would be messy
+            </li>
+            <li>
+              once more, we'll rely on an RxJS operator to help us out:
+              <span class="ilcode">catchError</span>
+            </li>
+            <li>
+              inside our data service we'll add a second stream, on which we'll
+              report errors, neatly separating normal and error behavior
+            </li>
           </ul>
         </section>
         <section>
           <h3>error handling - service</h3>
           <div codesteps>
-            <pre class='typescript'> src/app/recipe-data.service.ts <code class='codesteps' data-noescape data-trim>
+            <pre
+              class="typescript"
+            > src/app/recipe-data.service.ts <code class='codesteps' data-noescape data-trim>
               export class RecipeDataService {<span hstep='1'>
                 public loadingError$ = new Subject&lt;string&gt;();
               </span>
@@ -1270,20 +1422,47 @@
               }
             </code></pre>
             <div explanation>
-              <span step='1'>we start with adding a new observable, a Subject, which we'll use to signal errors</span>
-              <span step='1'>this doesn't just make our code cleaner, it also becomes easy for completely different components to do error reporting without them needing to know because of which components errors can originate</span>
-              <span step='2'>we add a <span class='ilcode'>catchError</span> operator to the pipe</span>
-              <span step='3'>which expects a function which gets passed the error</span>
-              <span step='3'>here we put the statusText property of the error on our stream</span>
-              <span step='4'>pipeable operators should return an observable, <span class='ilcode'>Observable.of()</span> is used to convert plain objects to Observables, here we simply pass 'nothing' (undefined) to get an empty observable, effectively 'eating' the chain</span>
-              <span step='5'>that's it for the data service, now let's adapt our component to show this error</span>
+              <span step="1"
+                >we start with adding a new observable, a Subject, which we'll
+                use to signal errors</span
+              >
+              <span step="1"
+                >this doesn't just make our code cleaner, it also becomes easy
+                for completely different components to do error reporting
+                without them needing to know because of which components errors
+                can originate</span
+              >
+              <span step="2"
+                >we add a <span class="ilcode">catchError</span> operator to the
+                pipe</span
+              >
+              <span step="3"
+                >which expects a function which gets passed the error</span
+              >
+              <span step="3"
+                >here we put the statusText property of the error on our
+                stream</span
+              >
+              <span step="4"
+                >pipeable operators should return an observable,
+                <span class="ilcode">Observable.of()</span> is used to convert
+                plain objects to Observables, here we simply pass 'nothing'
+                (undefined) to get an empty observable, effectively 'eating' the
+                chain</span
+              >
+              <span step="5"
+                >that's it for the data service, now let's adapt our component
+                to show this error</span
+              >
             </div>
           </div>
         </section>
         <section>
           <h3>error handling - component</h3>
           <div codesteps>
-            <pre class='typescript'> src/app/app.component.ts <code class='codesteps' data-noescape data-trim>
+            <pre
+              class="typescript"
+            > src/app/app.component.ts <code class='codesteps' data-noescape data-trim>
                 export class AppComponent {
                   public filterRecipeName: string;
                   public filterRecipe$ = new Subject&lt;string&gt;();
@@ -1296,15 +1475,19 @@
                 }
             </code></pre>
             <div explanation>
-              <span step='1'> not much here, we only add a second stream which captures the loadingError stream we created in the previous step</span>
+              <span step="1">
+                not much here, we only add a second stream which captures the
+                loadingError stream we created in the previous step</span
+              >
             </div>
           </div>
-         
         </section>
         <section>
           <h3>error handling - component</h3>
           <div codesteps>
-            <pre class='html'> src/app/app.component.html <code class='codesteps' data-noescape data-trim>
+            <pre
+              class="html"
+            > src/app/app.component.html <code class='codesteps' data-noescape data-trim>
               &lt;div *ngIf=&quot;(recipes$ | async) as recipes; else <span sstep='1'>loading</span><span sstep='2+'>loadingOrError</span>&quot;&gt;
                 &lt;div
                   fxLayout=&quot;row&quot;
@@ -1325,19 +1508,41 @@
               &lt;/ng-template&gt; </span>
             </code></pre>
             <div explanation>
-              <span step='1'>here we do pretty much the same thing we did for loading earlier </span>
-              <span step='2'>we change the template shown if the recipes are not loaded (it's because they're either still loading, or because an error occurred)</span>
-              <span step='3'>the template is very similar to before, if there is no error reported on the stream, we're still loading</span>
-              <span step='4'>and as soon as an error occurred, we show the <span class='ilcode'>errorMessage</span> that was signaled on the stream</span>
-              <span step='5'>the easiest way to test this, is to adapt the REST API to return a <span class='ilcode'>StatusCode(500)</span> when we request our recipes</span>
-              <span step='5'><a href="http://localhost:4200">let's try this out</a></span>
+              <span step="1"
+                >here we do pretty much the same thing we did for loading
+                earlier
+              </span>
+              <span step="2"
+                >we change the template shown if the recipes are not loaded
+                (it's because they're either still loading, or because an error
+                occurred)</span
+              >
+              <span step="3"
+                >the template is very similar to before, if there is no error
+                reported on the stream, we're still loading</span
+              >
+              <span step="4"
+                >and as soon as an error occurred, we show the
+                <span class="ilcode">errorMessage</span> that was signaled on
+                the stream</span
+              >
+              <span step="5"
+                >the easiest way to test this, is to adapt the REST API to
+                return a <span class="ilcode">StatusCode(500)</span> when we
+                request our recipes</span
+              >
+              <span step="5"
+                ><a href="http://localhost:4200">let's try this out</a></span
+              >
             </div>
           </div>
         </section>
         <section>
           <h3>http post</h3>
-        <div codesteps>
-          <pre class='typescript'> src/app/recipe-data.service.ts <code class='codesteps' data-noescape data-trim>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/recipe-data.service.ts <code class='codesteps' data-noescape data-trim>
               export class RecipeDataService {
               
                 constructor(private http: HttpClient) {}
@@ -1348,22 +1553,40 @@
                 }
               }
           </code></pre>
-          <div explanation>
-            <span step='1'>next we'll tackle http POST requests </span>
-            <span step='1'>luckily this is all very similar to GET</span>
-            <span step='2'>i.s.o. <span class='ilcode'>get</span> we do <span class='ilcode'>post</span> now, to the same url we used to retrieve recipes</span>
-            <span step='2'>but now we also need to pass a body with the HttpRequest, with a json representation of our recipe</span>
-            <span step='3'>so we'll simply add a <span class='ilcode'>toJSON</span> method to recipe and pass that</span>
-            <span step='3'>(not shown, you can do this by now)</span>
-            <span step='4'>that's it for the data service, but if we'd try now, nothing would happen when we click the add recipe button</span>
-            <span step='4'>as said before, Observables are <i>cold</i>, as long as nobody subscribes, they do not start</span>
+            <div explanation>
+              <span step="1">next we'll tackle http POST requests </span>
+              <span step="1">luckily this is all very similar to GET</span>
+              <span step="2"
+                >i.s.o. <span class="ilcode">get</span> we do
+                <span class="ilcode">post</span> now, to the same url we used to
+                retrieve recipes</span
+              >
+              <span step="2"
+                >but now we also need to pass a body with the HttpRequest, with
+                a json representation of our recipe</span
+              >
+              <span step="3"
+                >so we'll simply add a <span class="ilcode">toJSON</span> method
+                to recipe and pass that</span
+              >
+              <span step="3">(not shown, you can do this by now)</span>
+              <span step="4"
+                >that's it for the data service, but if we'd try now, nothing
+                would happen when we click the add recipe button</span
+              >
+              <span step="4"
+                >as said before, Observables are <i>cold</i>, as long as nobody
+                subscribes, they do not start</span
+              >
+            </div>
           </div>
-        </div>
         </section>
         <section>
           <h3>http post</h3>
           <div codesteps>
-            <pre class='typescript'> src/app/app.component.ts <code class='codesteps' data-noescape data-trim>
+            <pre
+              class="typescript"
+            > src/app/app.component.ts <code class='codesteps' data-noescape data-trim>
                 export class AppComponent {
                   // [ ... ]
                 
@@ -1373,30 +1596,63 @@
                 } 
             </code></pre>
             <div explanation>
-              <span step='1'>so we add a <span class='ilcode'>.subscribe</span> call inside our app component</span>
-              <span step='1'>(we respond to the click here, it's here we want to start the observable)</span>
-              <span step='1'>we don't do anything with the result, feedback will happen by showing the new recipe in our list</span>
-              <span step='1'><a href="http://localhost:4200">let's try it</a></span>
+              <span step="1"
+                >so we add a <span class="ilcode">.subscribe</span> call inside
+                our app component</span
+              >
+              <span step="1"
+                >(we respond to the click here, it's here we want to start the
+                observable)</span
+              >
+              <span step="1"
+                >we don't do anything with the result, feedback will happen by
+                showing the new recipe in our list</span
+              >
+              <span step="1"
+                ><a href="http://localhost:4200">let's try it</a></span
+              >
             </div>
           </div>
         </section>
         <section>
           <h3>http post</h3>
           <ul>
-            <li>the recipe gets added, but it doesn't get added to the list of recipes automatically, we need to manually refresh</li>
-            <li>while this makes sense (the methods retrieving the recipes can't automatically know something was added) this is not what we want</li>
+            <li>
+              the recipe gets added, but it doesn't get added to the list of
+              recipes automatically, we need to manually refresh
+            </li>
+            <li>
+              while this makes sense (the methods retrieving the recipes can't
+              automatically know something was added) this is not what we want
+            </li>
             <li>there are a few ways around this</li>
-            <ul><li>holding a local cache and adding it there too (but then we need to keep state in sync, that's HARD)</li>
-            <li>reload a route to redraw a component, but we'll only learn about routes in a future chapter (and not the cleanest solution)</li>
-            <li>wrap the data service in a function and call it when needed, but then we need to manually keep track of subscriptions and unsubscribe</li>
-            <li>use some RxJS operators! since we've all fallen in love with this approach by now, that's what we'll do</li>
-          </ul>
+            <ul>
+              <li>
+                holding a local cache and adding it there too (but then we need
+                to keep state in sync, that's HARD)
+              </li>
+              <li>
+                reload a route to redraw a component, but we'll only learn about
+                routes in a future chapter (and not the cleanest solution)
+              </li>
+              <li>
+                wrap the data service in a function and call it when needed, but
+                then we need to manually keep track of subscriptions and
+                unsubscribe
+              </li>
+              <li>
+                use some RxJS operators! since we've all fallen in love with
+                this approach by now, that's what we'll do
+              </li>
+            </ul>
           </ul>
         </section>
         <section>
           <h3>http post</h3>
           <div codesteps>
-            <pre class='typescript'>src/app/app.component.ts  <code class='codesteps' data-noescape data-trim>
+            <pre
+              class="typescript"
+            >src/app/app.component.ts  <code class='codesteps' data-noescape data-trim>
                 export class AppComponent {
                   <span sstep='2+'>private _refreshRecipes$ = new <span sstep='8+'>Behavior</span>Subject&lt;boolean&gt;(<span sstep='8+'>true</span>);
                   </span>private _fetchRecipes$: <span sstep='5'>Observable&lt;</span>Observable&lt;Recipe[]&gt;<span sstep='5'>&gt;</span> = 
@@ -1414,32 +1670,107 @@
                 }
             </code></pre>
             <div explanation>
-              <span step='1'>we want to 'rerun' the <span class='ilcode'>fetchRecipes$</span> when a trigger happens </span>
-              <span step='1'>this will trigger change detection, async pipe, and redraw the needed parts</span>
-              <span step='2'>so we'll add a (Subject) Observable of type boolean, every time we put a new value on this stream, we want the fetch to happen again</span>
-              <span step='3'>we'll call his <span class='ilcode'>next</span> when the subscribe signals us that the backend call is done, that's when we're sure the new data is in the backend</span>
-              <span step='4'>then we essentially want a function to create <span class='ilcode'>Observable&lt;Recipe[]&gt;</span> from the fetch when such <span class='ilcode'>boolean</span> values are put on the stream: a simple map!</span>
-              <span step='4'>every time a new value is 'next()'-ed, the map function is called, and a new fetch happens</span>
-              <span step='5'>this is not entirely correct, the function inside the map is of type <span class='ilcode'>(boolean): Observable&lt;Recipe[]&gt;</span></span>
-              <span step='5'>this means the Observable.map will map an <span class='ilcode'>Observable&lt;boolean&gt;</span> on an <span class='ilcode'>Observable&lt;Observable&lt;Recipe[]&gt;&gt;</span></span>
-              <span step='5'>(I can <i>not</i> fit that type in these bubbles, look at the code)</span>
-              <span step='6'>what we need is a flatten operator, there are a few of them in RxJS (flatMap, mergeMap, switchMap, ...)</span>
-              <span step='6'>maybe we'll go into more detail later, but for now remember that you probably want a switchMap in these situations</span>
-              <span step='7'><span class='ilcode'>switchMaps</span> cancel any previous ongoing requests, and 'switch' to the new request</span>
-              <span step='7'>that's a neat feature when accessing a backend; imagine multiple requests for a refresh coming in quick succession</span>
-              <span step='8'>one last thing is to change to trigger <span class='ilcode'>Subject</span> to a <span class='ilcode'>BehaviorSubject</span> </span>
-              <span step='8'>BehaviorSubjects are just like Subjects, but they remember the last value, and if you subscribe you always get the last value emitted first</span>
-              <span step='9'>so you don't have to wait till a new value is emitted after you subscribe</span>
-              <span step='9'>in our case this guarantees the fetch is done once when we start, as there will be a value on the BehaviorSubject stream, and hence the switchMap will happen</span>
+              <span step="1"
+                >we want to 'rerun' the
+                <span class="ilcode">fetchRecipes$</span> when a trigger happens
+              </span>
+              <span step="1"
+                >this will trigger change detection, async pipe, and redraw the
+                needed parts</span
+              >
+              <span step="2"
+                >so we'll add a (Subject) Observable of type boolean, every time
+                we put a new value on this stream, we want the fetch to happen
+                again</span
+              >
+              <span step="3"
+                >we'll call his <span class="ilcode">next</span> when the
+                subscribe signals us that the backend call is done, that's when
+                we're sure the new data is in the backend</span
+              >
+              <span step="4"
+                >then we essentially want a function to create
+                <span class="ilcode">Observable&lt;Recipe[]&gt;</span> from the
+                fetch when such <span class="ilcode">boolean</span> values are
+                put on the stream: a simple map!</span
+              >
+              <span step="4"
+                >every time a new value is 'next()'-ed, the map function is
+                called, and a new fetch happens</span
+              >
+              <span step="5"
+                >this is not entirely correct, the function inside the map is of
+                type
+                <span class="ilcode"
+                  >(boolean): Observable&lt;Recipe[]&gt;</span
+                ></span
+              >
+              <span step="5"
+                >this means the Observable.map will map an
+                <span class="ilcode">Observable&lt;boolean&gt;</span> on an
+                <span class="ilcode"
+                  >Observable&lt;Observable&lt;Recipe[]&gt;&gt;</span
+                ></span
+              >
+              <span step="5"
+                >(I can <i>not</i> fit that type in these bubbles, look at the
+                code)</span
+              >
+              <span step="6"
+                >what we need is a flatten operator, there are a few of them in
+                RxJS (flatMap, mergeMap, switchMap, ...)</span
+              >
+              <span step="6"
+                >maybe we'll go into more detail later, but for now remember
+                that you probably want a switchMap in these situations</span
+              >
+              <span step="7"
+                ><span class="ilcode">switchMaps</span> cancel any previous
+                ongoing requests, and 'switch' to the new request</span
+              >
+              <span step="7"
+                >that's a neat feature when accessing a backend; imagine
+                multiple requests for a refresh coming in quick succession</span
+              >
+              <span step="8"
+                >one last thing is to change to trigger
+                <span class="ilcode">Subject</span> to a
+                <span class="ilcode">BehaviorSubject</span>
+              </span>
+              <span step="8"
+                >BehaviorSubjects are just like Subjects, but they remember the
+                last value, and if you subscribe you always get the last value
+                emitted first</span
+              >
+              <span step="9"
+                >so you don't have to wait till a new value is emitted after you
+                subscribe</span
+              >
+              <span step="9"
+                >in our case this guarantees the fetch is done once when we
+                start, as there will be a value on the BehaviorSubject stream,
+                and hence the switchMap will happen</span
+              >
             </div>
           </div>
         </section>
         <section>
           <h3>that's all folks</h3>
           <ul>
-            <li>that's it for today, we covered a bit of reactive programming and how to perform http requests</li>
-            <li>as an exercise try to add a trashcan button to each recipe and call a http delete when clicked</li>
-            <li>note that you know most things you need for your task now, we still need to cover forms and routing, but if you ignore forms for now, and show everything in one big html (so you don't need routing yet), you can do pretty much everything needed</li>
+            <li>
+              that's it for today, we covered a bit of reactive programming and
+              how to perform http requests
+            </li>
+            <li>
+              as an exercise try to add a trashcan button to each recipe and
+              call a http delete when clicked
+            </li>
+            <li>
+              note that you know most things you need for your task now, we
+              still need to cover forms and routing, but if you ignore forms for
+              now, and show everything in one big html (so you don't need
+              routing yet), you can do pretty much everything needed
+            </li>
             <li>so no excuses! start working</li>
           </ul>
         </section>
@@ -1457,6 +1788,8 @@
         slideNumber: true,
         width: '100%',
         height: '100%',
+        minScale: 1,
+        maxScale: 1,
         dependencies: [
           {
             src: 'plugin/highlight/highlight.js',
