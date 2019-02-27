@@ -58,6 +58,12 @@ const CodeStepper =
           this.range.includes(index) || (this.forever && index > this.max())
         );
       }
+
+      // returns true if the 'range' contains more than one number
+      // (to clone less nodes if only used once)
+      isUsedMoreThanOnce() {
+        return this.range.length > 1;
+      }
     }
 
     // if a <section> contains a <div> with the attribute 'codesteps'
@@ -164,6 +170,7 @@ const CodeStepper =
               sstepDiv.classList.add('code-firstshown');
             }
           } else if (showRange.includes(idx)) {
+            sstepDiv.removeAttribute('hidden');
             if (idx != 1 && this.highlightFirstShown) {
               sstepDiv.classList.remove('code-firstshown');
             }
@@ -180,10 +187,11 @@ const CodeStepper =
         explDiv.classList.add('explanations');
         this.codeExplanations.forEach((explanations, range) => {
           if (range.includes(idx)) {
-            // const newDiv = document.createElement("div");
-            // newDiv.classList.add("code-explanation");
-            // newDiv.appendChild(explanations.cloneNode(true));
-            explDiv.appendChild(explanations);
+            if (range.isUsedMoreThanOnce()) {
+              explDiv.appendChild(explanations.cloneNode(true));
+            } else {
+              explDiv.appendChild(explanations);
+            }
             gotExplanation = true;
           }
         });
@@ -229,6 +237,29 @@ const CodeStepper =
         }
         return this._convertedSections;
       }
+
+      // put all converted sections into one big section
+      // (using the vertical layout of revealjs)
+      get verticalLayoutSection() {
+        let [firstNewSection, ...otherNewSections] = this.convertedSections;
+        if (otherNewSections.length === 0) {
+          // if there's only one slide with explanation, don't add it as a 'vertical' section in section
+          // (it will show as e.g. 8.1 in pagenumber, while there is no 8.2)
+          return firstNewSection;
+        } else {
+          let newSection = document.createElement('section');
+          newSection.appendChild(firstNewSection);
+          let lastAdded = firstNewSection;
+          otherNewSections.forEach(otherNew => {
+            firstNewSection.parentNode.insertBefore(
+              otherNew,
+              lastAdded.nextSibling
+            );
+            lastAdded = otherNew;
+          });
+          return newSection;
+        }
+      }
     }
 
     function sectionMustExpand(section) {
@@ -244,6 +275,7 @@ const CodeStepper =
         sections.forEach(sec => {
           if (sectionMustExpand(sec)) {
             let newSection = new CodeSection(sec);
+            // sec.parentNode.replaceChild(newSection.verticalLayoutSection, sec);
             [
               firstNewSection,
               ...otherNewSections

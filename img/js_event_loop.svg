@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="21.5 17.5 693 463" width="693" height="463">
+  <defs>
+    <font-face font-family="Menlo" font-size="16" panose-1="2 11 6 9 3 8 4 2 2 4" units-per-em="1000" underline-position="-63.47656" underline-thickness="43.94531" slope="0" x-height="546.875" cap-height="729.0039" ascent="928.2227" descent="-235.83984" font-weight="400">
+      <font-face-src>
+        <font-face-name name="Menlo-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica Neue" font-size="16" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.9.4 
+    <dc:date>2019-02-24 12:33:32 +0000</dc:date>
+  </metadata>
+  <g id="svgstep" stroke-dasharray="none" fill="none" stroke="none" fill-opacity="1" stroke-opacity="1">
+    <title>svgstep</title>
+    <g id="svgstep: 1+">
+      <title>1+</title>
+      <g id="Graphic_19">
+        <title>Rectangle</title>
+        <rect x="22" y="75" width="341" height="251" fill="white"/>
+        <rect x="22" y="75" width="341" height="251" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_18">
+        <text transform="translate(56 106.3125)" fill="#0096ff">
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="#0096ff" x="0" y="15">console.log</tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" y="15">(</tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="#009051" y="15">‘start’</tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" y="15">);</tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="#0096ff" x="0" y="73">setTimeout</tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" y="73">(</tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="#9437ff" y="73">function</tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" y="73"> cb() {</tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" x="0" y="102">    </tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="#0096ff" x="24" y="102">console.log</tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" y="102">(</tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="#009051" y="102">‘inside’</tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" y="102">);</tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" x="0" y="131">}, </tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="#ff9300" y="131">2000</tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" y="131">);</tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="#0096ff" x="0" y="189">console.log</tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" y="189">(</tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="#009051" y="189">‘end’</tspan>
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" y="189">);</tspan>
+        </text>
+      </g>
+      <g id="Graphic_17">
+        <rect x="373" y="18" width="162" height="307" fill="white"/>
+        <rect x="373" y="18" width="162" height="307" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(378 23)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="39.704" y="15">Call Stack</tspan>
+        </text>
+      </g>
+      <g id="Graphic_16">
+        <rect x="373" y="339" width="341" height="141" fill="white"/>
+        <rect x="373" y="339" width="341" height="141" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(378 457.052)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="214.52" y="15">Message Queue </tspan>
+        </text>
+      </g>
+      <g id="Graphic_15">
+        <rect x="552" y="18" width="162" height="307" fill="white"/>
+        <rect x="552" y="18" width="162" height="307" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(557 23)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="45.344" y="15">Web API</tspan>
+        </text>
+      </g>
+      <g id="Graphic_21">
+        <path d="M 37 371.5 L 348 371.5 C 356.28427 371.5 363 378.21573 363 386.5 L 363 465 C 363 473.28427 356.28427 480 348 480 L 37 480 C 28.71573 480 22 473.28427 22 465 L 22 386.5 C 22 378.21573 28.71573 371.5 37 371.5 Z" fill="white"/>
+        <path d="M 37 371.5 L 348 371.5 C 356.28427 371.5 363 378.21573 363 386.5 L 363 465 C 363 473.28427 356.28427 480 348 480 L 37 480 C 28.71573 480 22 473.28427 22 465 L 22 386.5 C 22 378.21573 28.71573 371.5 37 371.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+    <g id="svgstep: 2-8">
+      <title>2-8</title>
+      <g id="Graphic_14">
+        <rect x="383" y="273" width="142" height="41" fill="#ff9300" fill-opacity=".14565497"/>
+        <rect x="383" y="273" width="142" height="41" stroke="#ff9300" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+        <text transform="translate(388 284)" fill="black">
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" x="37.101562" y="15">main()</tspan>
+        </text>
+      </g>
+    </g>
+    <g id="svgstep: 3-4">
+      <title>3-4</title>
+      <g id="Graphic_13">
+        <rect x="43" y="89" width="307" height="50" fill="#0096ff" fill-opacity=".09888699"/>
+        <rect x="43" y="89" width="307" height="50" stroke="#0096ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+      <g id="Graphic_12">
+        <rect x="383" y="222" width="142" height="41" fill="#ff9300" fill-opacity=".145655"/>
+        <rect x="383" y="222" width="142" height="41" stroke="#ff9300" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+        <text transform="translate(388 233)" fill="black">
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" x="8.203125" y="15">log(‘start’)</tspan>
+        </text>
+      </g>
+    </g>
+    <g id="svgstep: 4+">
+      <title>4+</title>
+      <g id="Graphic_25">
+        <rect x="33" y="377.5" width="95" height="31" fill="white"/>
+        <text transform="translate(38 383.5)" fill="black">
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" x="0" y="15">start</tspan>
+        </text>
+      </g>
+    </g>
+    <g id="svgstep: 5-6">
+      <title>5-6</title>
+      <g id="Graphic_11">
+        <rect x="43" y="156" width="307" height="94" fill="#0096ff" fill-opacity=".098887"/>
+        <rect x="43" y="156" width="307" height="94" stroke="#0096ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+      <g id="Graphic_10">
+        <rect x="383" y="222" width="142" height="41" fill="#ff9300" fill-opacity=".145655"/>
+        <rect x="383" y="222" width="142" height="41" stroke="#ff9300" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+        <text transform="translate(388 233)" fill="black">
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" x="3.3867188" y="15">setTimeout cb</tspan>
+        </text>
+      </g>
+    </g>
+    <g id="svgstep: 6-8">
+      <title>6-9</title>
+      <g id="Graphic_9">
+        <rect x="562" y="53" width="142" height="41" fill="#ff9300" fill-opacity=".145655"/>
+        <rect x="562" y="53" width="142" height="41" stroke="#ff9300" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+        <text transform="translate(567 64)" fill="black">
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" x="27.46875" y="15">timer cb</tspan>
+        </text>
+      </g>
+    </g>
+    <g id="svgstep: 7-8">
+      <title>7-8</title>
+      <g id="Graphic_8">
+        <rect x="43" y="264" width="307" height="50" fill="#0096ff" fill-opacity=".098887"/>
+        <rect x="43" y="264" width="307" height="50" stroke="#0096ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+      <g id="Graphic_7">
+        <rect x="383" y="222" width="142" height="41" fill="#ff9300" fill-opacity=".145655"/>
+        <rect x="383" y="222" width="142" height="41" stroke="#ff9300" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+        <text transform="translate(388 233)" fill="black">
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" x="17.835938" y="15">log(‘end’)</tspan>
+        </text>
+      </g>
+    </g>
+    <g id="svgstep: 8+">
+      <title>8+</title>
+      <g id="Graphic_26">
+        <title>Rectangle</title>
+        <rect x="33" y="400" width="95" height="31" fill="white"/>
+        <text transform="translate(38 406)" fill="black">
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" x="0" y="15">end</tspan>
+        </text>
+      </g>
+    </g>
+    <g id="svgstep: 9">
+      <title>9</title>
+      <g id="Graphic_6">
+        <rect x="402" y="371.5" width="77" height="76" fill="#ff9300" fill-opacity=".145655"/>
+        <rect x="402" y="371.5" width="77" height="76" stroke="#ff9300" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+        <text transform="translate(407 400)" fill="black">
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" x="14.234375" y="15">cb()</tspan>
+        </text>
+      </g>
+    </g>
+    <g id="svgstep: 10-12">
+      <title>10-12</title>
+      <g id="Graphic_5">
+        <rect x="383" y="273" width="142" height="41" fill="#ff9300" fill-opacity=".145655"/>
+        <rect x="383" y="273" width="142" height="41" stroke="#ff9300" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+        <text transform="translate(388 284)" fill="black">
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" x="46.734375" y="15">cb()</tspan>
+        </text>
+      </g>
+    </g>
+    <g id="svgstep: 11">
+      <title>11</title>
+      <g id="Graphic_4">
+        <rect x="383" y="222" width="142" height="41" fill="#ff9300" fill-opacity=".145655"/>
+        <rect x="383" y="222" width="142" height="41" stroke="#ff9300" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+        <text transform="translate(388 233)" fill="black">
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" x="3.3867188" y="15">log(‘inside’)</tspan>
+        </text>
+      </g>
+      <g id="Graphic_3">
+        <rect x="43" y="185" width="307" height="31" fill="#0096ff" fill-opacity=".098887"/>
+        <rect x="43" y="185" width="307" height="31" stroke="#0096ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+    </g>
+    <g id="svgstep: 12+">
+      <title>12+</title>
+      <g id="Graphic_27">
+        <rect x="33" y="422.5" width="95" height="31" fill="white"/>
+        <text transform="translate(38 428.5)" fill="black">
+          <tspan font-family="Menlo" font-size="16" font-weight="400" fill="black" x="0" y="15">inside</tspan>
+        </text>
+      </g>
+    </g>
+      <g id="svgstep: 13"></g>
+  </g>
+</svg>

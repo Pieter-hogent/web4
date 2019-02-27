@@ -144,8 +144,8 @@
   min-height: 350px;
   overflow: auto scroll;
 }
-
+/* 
 .reveal section {
-  /* background-color: yellow; */
-  /* margin-left: 100px; */
-}
+   background-color: yellow; 
+   margin-left: 100px; 
+} */
