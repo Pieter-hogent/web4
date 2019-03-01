@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="8 26 307 72" width="307" height="72">
+  <defs>
+    <linearGradient x1="0" x2="1" id="Gradient" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#76bdff"/>
+      <stop offset="1" stop-color="#5070ff"/>
+    </linearGradient>
+    <linearGradient id="Obj_Gradient" xl:href="#Gradient" gradientTransform="translate(46.743207 42.00951) rotate(90) scale(40)"/>
+    <linearGradient x1="0" x2="1" id="Gradient_2" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffb97d"/>
+      <stop offset="1" stop-color="#ff6200"/>
+    </linearGradient>
+    <linearGradient id="Obj_Gradient_2" xl:href="#Gradient_2" gradientTransform="translate(104.1216 42.00951) rotate(90) scale(40)"/>
+    <linearGradient x1="0" x2="1" id="Gradient_3" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#88bc71"/>
+      <stop offset="1" stop-color="#53bc19"/>
+    </linearGradient>
+    <linearGradient id="Obj_Gradient_3" xl:href="#Gradient_3" gradientTransform="translate(161.5 42.00951) rotate(90) scale(40)"/>
+    <linearGradient x1="0" x2="1" id="Gradient_4" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f291a5"/>
+      <stop offset="1" stop-color="#f26077"/>
+    </linearGradient>
+    <linearGradient id="Obj_Gradient_4" xl:href="#Gradient_4" gradientTransform="translate(218.8784 42.00951) rotate(90) scale(40)"/>
+    <linearGradient x1="0" x2="1" id="Gradient_5" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b29fd0"/>
+      <stop offset="1" stop-color="#823ed0"/>
+    </linearGradient>
+    <linearGradient id="Obj_Gradient_5" xl:href="#Gradient_5" gradientTransform="translate(276.2568 42.00951) rotate(90) scale(40)"/>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.9.4 
+    <dc:date>2019-03-01 12:00:26 +0000</dc:date>
+  </metadata>
+  <g id="Canvas_1" stroke="none" fill="none" stroke-opacity="1" fill-opacity="1" stroke-dasharray="none">
+    <title>Canvas 1</title>
+    <g id="Canvas_1: Layer 1">
+      <title>Layer 1</title>
+      <g id="Graphic_3">
+        <circle cx="46.743207" cy="62.00951" r="20.0000319580379" fill="url(#Obj_Gradient)"/>
+        <circle cx="46.743207" cy="62.00951" r="20.0000319580379" stroke="#3b7cd0" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_4">
+        <circle cx="104.1216" cy="62.00951" r="20.0000319580379" fill="url(#Obj_Gradient_2)"/>
+        <circle cx="104.1216" cy="62.00951" r="20.0000319580379" stroke="#b34400" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_5">
+        <circle cx="161.5" cy="62.00951" r="20.0000319580379" fill="url(#Obj_Gradient_3)"/>
+        <circle cx="161.5" cy="62.00951" r="20.0000319580379" stroke="#235e00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_6">
+        <circle cx="218.8784" cy="62.00951" r="20.0000319580379" fill="url(#Obj_Gradient_4)"/>
+        <circle cx="218.8784" cy="62.00951" r="20.0000319580379" stroke="#b1001c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_7">
+        <circle cx="276.2568" cy="62.00951" r="20.0000319580379" fill="url(#Obj_Gradient_5)"/>
+        <circle cx="276.2568" cy="62.00951" r="20.0000319580379" stroke="#310067" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_12">
+        <path d="M 25.804348 28.5 L 10.5 28.5 L 10.5 95.51902 L 26.743207 95.51902" stroke="#797979" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      </g>
+      <g id="Line_13">
+        <path d="M 297.19565 95.51902 L 312.5 95.51902 L 312.5 28.5 L 296.2568 28.5" stroke="#797979" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      </g>
+    </g>
+  </g>
+</svg>

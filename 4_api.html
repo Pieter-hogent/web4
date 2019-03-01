@@ -459,7 +459,7 @@
                 ><i>des goûts et des couleurs on ne discute pas</i></span
               >
               <span step="7"
-                >but I think we can all agree this became a lot easier to
+                >but I think we can all agree the flow became a lot easier to
                 grasp</span
               >
             </div>
@@ -555,6 +555,37 @@
           <h3>observables</h3>
           <ul>
             <li>
+              you could say an array is a collection of data you get handed (and
+              which you'll loop over yourselves)
+            </li>
+            <img
+              src="img/rxjs-marble-array.svg"
+              style="background:none; border:none; box-shadow:none;"
+              alt=""
+            />
+            <li>
+              and an observable gives you a collection of data, one by one, with
+              certain time intervals in between. This is often visualized using
+              'marble diagrams', a timeline with some values (shown as circles)
+            </li>
+            <img
+              src="img/rxjs-marble-stream.svg"
+              style="background:none; border:none; box-shadow:none;"
+              alt=""
+            />
+            <li>
+              <a
+                href="https://github.com/ReactiveX/rxjs/blob/master/doc/marble-testing.md"
+                >RxJS' test framework</a
+              >
+              is designed around ASCII drawings of such marble diagrams
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>observables</h3>
+          <ul>
+            <li>
               this is a lot like responding to user events, e.g. click events
               can be seen as an async event stream, which you observe and
               respond to, a 'stream of clicks'
@@ -578,6 +609,96 @@
             </li>
           </ul>
         </section>
+        <section>
+          <h3>observables - operators</h3>
+          <ul>
+            <li>
+              the real power of RxJS comes from the available operators to
+              combine and manipulate streams.
+            </li>
+            <li>
+              Just like can apply <span class="ilcode">map</span>,
+              <span class="ilcode">filter</span>,
+              <span class="ilcode">reduce</span> to arrays to use 'converted'
+              arrays, there are operators available to do the same with
+              observable streams
+            </li>
+            <li>
+              but there are many (many) more, let's introduce a few to show what
+              I mean
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>observables - map</h3>
+          <ul>
+            <li>
+              just like with an array, there's also a
+              <span class="ilcode">map</span> operator, similar to an array, you
+              define a function to convert <span class="ilcode">T</span> to
+              <span class="ilcode">U</span> and your
+              <span class="ilcode">Observable&lt;T&gt;</span> becomes an
+              <span class="ilcode">Observable&lt;U&gt;</span>
+            </li>
+          </ul>
+          <img
+            src="img/rxjs-marble-map.svg"
+            style="background:none; border:none; box-shadow:none;"
+            alt=""
+          />
+        </section>
+        <section>
+          <h3>observables - delay</h3>
+          <ul>
+            <li>
+              there are operators who work on the timing of your stream, rather
+              than the values, e.g. <span class="ilcode">delay</span> will,
+              well, delay the values being fired
+            </li>
+          </ul>
+          <img
+            src="img/rxjs-marble-delay.svg"
+            style="background:none; border:none; box-shadow:none;"
+            alt=""
+          />
+        </section>
+        <section>
+          <h3>observables - merge</h3>
+          <ul>
+            <li>
+              then there are operators which allow you to combine multiple
+              streams together, the simplest one is
+              <span class="ilcode">merge</span>, which simply creates a new
+              stream firing everything all the other streams do
+            </li>
+          </ul>
+          <img
+          src="img/rxjs-marble-merge.svg"
+          style="background:none; border:none; box-shadow:none;"
+          alt=""
+        />
+        </section>
+        <section>
+            <h3>pipeable operators</h3>
+            <ul>
+              <li>this is just the tip of the iceberg, there are many (many) more, allowing you to sometimes do really cool stuff with little code</li>
+              <li>
+                they are called
+                <a
+                  href="https://github.com/ReactiveX/rxjs/blob/master/doc/pipeable-operators.md"
+                  >pipeable operators</a
+                >
+              </li>
+              <li>
+                (until 12 januari 2018 they were called 'lettable operators', if
+                you google)
+              </li>
+              <li><a href="https://rxmarbles.com/">RxMarbles.com</a> has a great visual overview of many of these</li>
+              <li>but there are many more resources to learn these, and more pop up every day, reactive programming is on the rise, and not just in the web world</li>
+            
+            </ul>
+          </section>
+       
         <section>
           <h3>recipe filter</h3>
           <div codesteps>
@@ -683,8 +804,7 @@
             </code></pre>
             <div explanation>
               <span step="1">
-                this works, but the real power comes from applying the immense
-                toolbox Rx offers
+                this works, but the real power comes from applying the pipeable operators
               </span>
               <span step="2">
                 you do this by passing one or more function to the pipe function
@@ -712,54 +832,30 @@
           </div>
         </section>
         <section>
-          <h3>pipeable operators</h3>
-          <ul>
-            <li>
-              these are called
-              <a
-                href="https://github.com/ReactiveX/rxjs/blob/master/doc/pipeable-operators.md"
-                >pipeable operators</a
-              >
-            </li>
-            <li>
-              (until 12 januari 2018 they were called 'lettable operators', if
-              you google)
-            </li>
-            <li>
-              while the idea and functionality existed in observables since the
-              very beginning, passing free functions to the pipe() function is
-              new with RxJS 5.5 (oct 17)
-            </li>
-            <li>
-              these function used to be defined on the Observable prototype, and
-              simply called in succession
-            </li>
-          </ul>
-        </section>
+            <h3>pipeable operators</h3>
+            <ul>
+              <li>one last remark before we get to http, the <span class='ilcode'>pipe()</span> syntax where you pass other functions is rather new</li>
+              <li>
+                so on google, stackoverflow... you'll often find code with the
+                following syntax
+                <pre class="typescript"><code data-noescape data-trim>
+      import 'rxjs/add/operator/map'
+      import 'rxjs/add/operator/distinctUntilChanged'
+      
+      this.filterRecipe$
+        .distinctUntilChanged()
+        .debounceTime(400)
+        .map(val => val.toLowerCase());
+                  </code></pre>
+              </li>
+              <li>
+                DON'T DO THAT ANYMORE, it's always easily converted to the new
+                syntax
+              </li>
+            </ul>
+          </section> 
         <section>
-          <h3>pipeable operators</h3>
-          <ul>
-            <li>
-              so on google, stackoverflow... you'll often find code with the
-              following syntax
-              <pre class="typescript"><code data-noescape data-trim>
-    import 'rxjs/add/operator/map'
-    import 'rxjs/add/operator/distinctUntilChanged'
-    
-    this.filterRecipe$
-      .distinctUntilChanged()
-      .debounceTime(400)
-      .map(val => val.toLowerCase());
-                </code></pre>
-            </li>
-            <li>
-              DON'T DO THAT ANYMORE, it's always easily converted to the new
-              syntax
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>observables</h3>
+          <h3>http - observables</h3>
           <ul>
             <li>
               in Angular, http request will always return an observable
@@ -919,7 +1015,7 @@
               both, pointing to '/api', which is where our frontend can find our
               backend
             </li>
-            <pre>package.json<code data-noescape data-trim>
+            <pre>environments/environment.json<code data-noescape data-trim>
                 export const environment = {
                   production: false,
                   apiUrl: '/api'
@@ -1351,8 +1447,7 @@
                   get recipes$(): Observable&lt;Recipe[]&gt; {
                     return this.http.get(`${environment.apiUrl}/recipes/`).pipe(<span sstep='1'>
                       <span hstep='1'>delay(2000),</span></span>
-                      map((list: any[]): Recipe[] => list.map(Recipe.fromJSON)),
-                      share()
+                      map((list: any[]): Recipe[] => list.map(Recipe.fromJSON))
                     );
                   } 
                 }
@@ -1415,8 +1510,7 @@
                       this.loadingError$.next(error.statusText);<span sstep='4+'>
                       return of();</span>
                     }</span>),</span>
-                    map((list: any[]): Recipe[] => list.map(Recipe.fromJSON)),
-                    share()
+                    map((list: any[]): Recipe[] => list.map(Recipe.fromJSON))
                   );
                 } 
               }
@@ -1558,18 +1652,18 @@
               <span step="1">luckily this is all very similar to GET</span>
               <span step="2"
                 >i.s.o. <span class="ilcode">get</span> we do
-                <span class="ilcode">post</span> now, to the same url we used to
+                <span class="ilcode">post</span> to the same url we used to
                 retrieve recipes</span
               >
               <span step="2"
-                >but now we also need to pass a body with the HttpRequest, with
-                a json representation of our recipe</span
+                >but now we also need to pass a body when performing the
+                HttpRequest, with a json representation of our recipe</span
               >
               <span step="3"
                 >so we'll simply add a <span class="ilcode">toJSON</span> method
                 to recipe and pass that</span
               >
-              <span step="3">(not shown, you can do this by now)</span>
+              <span step="3">(not shown, i'm sure you can manage)</span>
               <span step="4"
                 >that's it for the data service, but if we'd try now, nothing
                 would happen when we click the add recipe button</span
@@ -1623,7 +1717,8 @@
             </li>
             <li>
               while this makes sense (the methods retrieving the recipes can't
-              automatically know something was added) this is not what we want
+              automatically know something was added in the backend) this is not
+              what we want
             </li>
             <li>there are a few ways around this</li>
             <ul>
@@ -1740,7 +1835,8 @@
               <span step="8"
                 >BehaviorSubjects are just like Subjects, but they remember the
                 last value, and if you subscribe you always get the last value
-                emitted first</span
+                that was emitted as a first trigger as soon as you
+                subscribe</span
               >
               <span step="9"
                 >so you don't have to wait till a new value is emitted after you
@@ -1790,7 +1886,7 @@
         height: '100%',
         minScale: 1,
         maxScale: 1,
-        dependencies: [
+        dependencies:[
           {
             src: 'plugin/highlight/highlight.js',
             async: true,

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="15 41 439 192" width="439" height="192">
+  <defs>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -3 6 6" markerWidth="6" markerHeight="6" color="#636363">
+      <g>
+        <path d="M 3.2 0 L 0 -1.2 L 0 1.2 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <linearGradient x1="0" x2="1" id="Gradient" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#eaeaea"/>
+      <stop offset="1" stop-color="#5070ff"/>
+    </linearGradient>
+    <linearGradient id="Obj_Gradient" xl:href="#Gradient" gradientTransform="translate(46.743207 42.00951) rotate(90) scale(40)"/>
+    <font-face font-family="Helvetica Neue" font-size="16" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+    <linearGradient x1="0" x2="1" id="Gradient_2" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffb97d"/>
+      <stop offset="1" stop-color="#ff6200"/>
+    </linearGradient>
+    <linearGradient id="Obj_Gradient_2" xl:href="#Gradient_2" gradientTransform="translate(112.5 42.00951) rotate(90) scale(40)"/>
+    <linearGradient x1="0" x2="1" id="Gradient_3" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#88bc71"/>
+      <stop offset="1" stop-color="#53bc19"/>
+    </linearGradient>
+    <linearGradient id="Obj_Gradient_3" xl:href="#Gradient_3" gradientTransform="translate(199 42.00951) rotate(90) scale(40)"/>
+    <linearGradient x1="0" x2="1" id="Gradient_4" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f291a5"/>
+      <stop offset="1" stop-color="#f26077"/>
+    </linearGradient>
+    <linearGradient id="Obj_Gradient_4" xl:href="#Gradient_4" gradientTransform="translate(247.25 42.00951) rotate(90) scale(40)"/>
+    <linearGradient x1="0" x2="1" id="Gradient_5" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b29fd0"/>
+      <stop offset="1" stop-color="#823ed0"/>
+    </linearGradient>
+    <linearGradient id="Obj_Gradient_5" xl:href="#Gradient_5" gradientTransform="translate(367 41.5) rotate(90) scale(40)"/>
+    <font-face font-family="Helvetica Neue" font-size="22" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker_2" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -3 6 6" markerWidth="6" markerHeight="6" color="#636363">
+      <g>
+        <path d="M 3.2 0 L 0 -1.2 L 0 1.2 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <linearGradient id="Obj_Gradient_6" xl:href="#Gradient" gradientTransform="translate(46.743207 191.5095) rotate(90) scale(40)"/>
+    <linearGradient id="Obj_Gradient_7" xl:href="#Gradient_2" gradientTransform="translate(112.5 191.5095) rotate(90) scale(40)"/>
+    <linearGradient id="Obj_Gradient_8" xl:href="#Gradient_3" gradientTransform="translate(199 191.5095) rotate(90) scale(40)"/>
+    <linearGradient id="Obj_Gradient_9" xl:href="#Gradient_4" gradientTransform="translate(247.25 191.5095) rotate(90) scale(40)"/>
+    <linearGradient id="Obj_Gradient_10" xl:href="#Gradient_5" gradientTransform="translate(367 191) rotate(90) scale(40)"/>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.9.4 
+    <dc:date>2019-03-01 16:16:37 +0000</dc:date>
+  </metadata>
+  <g id="Canvas_1" stroke="none" fill="none" stroke-opacity="1" fill-opacity="1" stroke-dasharray="none">
+    <title>Canvas 1</title>
+    <g id="Canvas_1: Layer 1">
+      <title>Layer 1</title>
+      <g id="Line_15">
+        <path d="M 17.5 61 L 341.35993 61 L 432.17143 61" marker-end="url(#FilledArrow_Marker)" stroke="#636363" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      </g>
+      <g id="Graphic_3">
+        <circle cx="46.743207" cy="62.00951" r="20.0000319580379" fill="url(#Obj_Gradient)"/>
+        <circle cx="46.743207" cy="62.00951" r="20.0000319580379" stroke="#3b7cd0" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(35.743207 52.78551)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="6.552" y="15">3</tspan>
+        </text>
+      </g>
+      <g id="Graphic_4">
+        <circle cx="112.5" cy="62.00951" r="20.0000319580379" fill="url(#Obj_Gradient_2)"/>
+        <circle cx="112.5" cy="62.00951" r="20.0000319580379" stroke="#b34400" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(101.5 52.78551)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="6.552" y="15">2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_5">
+        <circle cx="199" cy="62.00951" r="20.0000319580379" fill="url(#Obj_Gradient_3)"/>
+        <circle cx="199" cy="62.00951" r="20.0000319580379" stroke="#235e00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(188 52.78551)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="6.552" y="15">7</tspan>
+        </text>
+      </g>
+      <g id="Graphic_6">
+        <circle cx="247.25" cy="62.00951" r="20.0000319580379" fill="url(#Obj_Gradient_4)"/>
+        <circle cx="247.25" cy="62.00951" r="20.0000319580379" stroke="#b1001c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(236.25 52.78551)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="6.552" y="15">3</tspan>
+        </text>
+      </g>
+      <g id="Graphic_7">
+        <circle cx="367" cy="61.5" r="20.0000319580379" fill="url(#Obj_Gradient_5)"/>
+        <circle cx="367" cy="61.5" r="20.0000319580379" stroke="#310067" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(356 52.276)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="6.552" y="15">9</tspan>
+        </text>
+      </g>
+      <g id="Graphic_16">
+        <rect x="79.78571" y="109" width="309" height="54.5" fill="white"/>
+        <rect x="79.78571" y="109" width="309" height="54.5" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(84.78571 122.942)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="22" font-weight="400" fill="black" x="69.057" y="21">map( x =&gt; x * 2 )</tspan>
+        </text>
+      </g>
+      <g id="Line_22">
+        <path d="M 17.5 210.5 L 341.35993 210.5 L 432.17143 210.5" marker-end="url(#FilledArrow_Marker_2)" stroke="#636363" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      </g>
+      <g id="Graphic_21">
+        <circle cx="46.743207" cy="211.5095" r="20.0000319580379" fill="url(#Obj_Gradient_6)"/>
+        <circle cx="46.743207" cy="211.5095" r="20.0000319580379" stroke="#3b7cd0" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(35.743207 202.2855)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="6.552" y="15">6</tspan>
+        </text>
+      </g>
+      <g id="Graphic_20">
+        <circle cx="112.5" cy="211.5095" r="20.0000319580379" fill="url(#Obj_Gradient_7)"/>
+        <circle cx="112.5" cy="211.5095" r="20.0000319580379" stroke="#b34400" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(101.5 202.2855)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="6.552" y="15">4</tspan>
+        </text>
+      </g>
+      <g id="Graphic_19">
+        <circle cx="199" cy="211.5095" r="20.0000319580379" fill="url(#Obj_Gradient_8)"/>
+        <circle cx="199" cy="211.5095" r="20.0000319580379" stroke="#235e00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(188 202.2855)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="2.104" y="15">14</tspan>
+        </text>
+      </g>
+      <g id="Graphic_18">
+        <circle cx="247.25" cy="211.5095" r="20.0000319580379" fill="url(#Obj_Gradient_9)"/>
+        <circle cx="247.25" cy="211.5095" r="20.0000319580379" stroke="#b1001c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(236.25 202.2855)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="6.552" y="15">6</tspan>
+        </text>
+      </g>
+      <g id="Graphic_17">
+        <circle cx="367" cy="211" r="20.0000319580379" fill="url(#Obj_Gradient_10)"/>
+        <circle cx="367" cy="211" r="20.0000319580379" stroke="#310067" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(356 201.776)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="2.104" y="15">18</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>
