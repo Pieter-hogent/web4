@@ -1592,10 +1592,10 @@
                 &lt;/div&gt;
               &lt;/div&gt;
               <span sstep='3+'>&lt;ng-template #loadingOrError&gt;
-                &lt;div *ngIf=&quot;(loadingError$ | async) as errorMessage; else loading&quot;&gt;
+                &lt;mat-error *ngIf=&quot;(loadingError$ | async) as errorMessage; else loading&quot;&gt;
                  <span hstep='4'> Error loading the recipe list: {{ errorMessage }}. &lt;br/&gt;
                    Please try again later.</span>
-                &lt;/div&gt;</span>
+                &lt;/mat-error&gt;</span>
                 &lt;ng-template #loading&gt;
                   Loading recipes...
                 &lt;/ng-template&gt;<span sstep='3+'>
