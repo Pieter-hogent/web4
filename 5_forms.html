@@ -1,0 +1,837 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>forms</title>
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="lib/css/atom-one-light.css" />
+
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/hogent.css" />
+
+    <!-- pieter overrides -->
+    <link rel="stylesheet" href="plugin/codestepper/codestepper.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? 'css/print/pdf.css'
+        : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="title-slide">
+          <h2>forms</h2>
+          <footer class="footer">
+            "Any fool can write code that a computer can understand. Good
+            programmers write code that humans can understand." - Martin Fowler
+          </footer>
+        </section>
+        <section>
+          <h3>forms</h3>
+          <ul>
+            <li>forms have always been a big part of the web</li>
+            <li>
+              good form support provides client side validation, ways to display
+              errors to the user and keeps track of the global form state
+            </li>
+            <li>
+              Angular has two ways of creating forms: template driven and
+              reactive
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>template driven</h3>
+          <ul>
+            <li>faster (easier) for simple scenario's</li>
+            <li>very similar to how it was done in Angular 1</li>
+            <li>uses two way data binding</li>
+            <li>mainly created in the 'html', very little in the 'ts'</li>
+            <li>
+              a lot is done automatically, but this comes at the price of less
+              flexibility
+            </li>
+            <li>asynchronous</li>
+            <li>hard to unit test</li>
+          </ul>
+        </section>
+        <section>
+          <h3>reactive</h3>
+          <ul>
+            <li>bit harder, but more flexible</li>
+            <li>no data binding (immutable data model)</li>
+            <li>mainly created in the 'ts', less in the 'html'</li>
+            <li>
+              reactive transformations are used easily (debounce,
+              distinctUntilChanged, dynamically adding elements)
+            </li>
+            <li>synchronous</li>
+            <li>unit testing is easier</li>
+          </ul>
+        </section>
+        <section>
+          <h3>reactive forms module</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >app.module.ts  <code class='codesteps' data-noescape data-trim>
+                  import { <span hstep='1+'>ReactiveFormsModule</span> } from '@angular/forms';
+    
+                  import { AppComponent } from './app.component';
+                  
+                  @NgModule({
+                  imports: [
+                    BrowserModule,
+                    <span hstep='1+'>ReactiveFormsModule</span>
+                  ], ...  
+              </code></pre>
+            <div explanation>
+              <span step="1"
+                >just like with Http, we first need to include the proper module
+                to our app.module
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>reactive forms</h3>
+          <ul>
+            <li>
+              reactive forms allow for a reactive programming style, favoring
+              the explicit management of the data flow between a non-UI
+              <i>data model</i> and a UI-oriented
+              <i>form model</i>
+            </li>
+            <li>
+              you create a tree of Angular FormControl objects in the component
+              class, and bind them to native form elements in the template
+            </li>
+            <li>
+              a FormControl is a class that tracks the value and the validation
+              status of an individual control of a form
+            </li>
+            <li>let's look at an example</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>add recipe</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >src/app/add-recipe/add-recipe.component.ts  <code class='codesteps' data-noescape data-trim>
+                  export class AddRecipeComponent implements OnInit {
+                    <span sstep='2+'>private recipe: FormGroup;
+                  
+                    ngOnInit() {
+                      this.recipe = new <span hstep='4'>FormGroup</span>({
+                        name: new <span hstep='3'>FormControl</span>('risotto')
+                      })
+                    }</span>
+                  }; 
+              </code></pre>
+            <div explanation>
+              <span step="1"
+                >lets create an add recipe component, using a reactive
+                form</span
+              >
+              <span step="2"
+                >we build our own FormGroup, with a FormControl for each control
+                we wish to map</span
+              >
+              <span step="3"
+                >we start with only an input field for the name of our recipe,
+                so just one FormControl</span
+              >
+              <span step="4"
+                >a form is always associated with a FormGroup, which contains
+                FormControl's, FormGroup's and/or FormArray's</span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>add recipe</h3>
+          <div codesteps>
+            <pre
+              class="html"
+            >src/app/add-recipe/add-recipe.component.html<code class='codesteps' data-noescape data-trim>
+              &lt;mat-card&gt;
+                &lt;mat-card-title&gt;add recipe&lt;/mat-card-title&gt;
+                &lt;mat-card-content&gt;
+                  &lt;form<span sstep='2+'> [formGroup]=&quot;recipe&quot;</span><span sstep='7+'> (ngSubmit)='onSubmit()'</span>&gt;
+                    &lt;mat-form-field&gt;
+                      &lt;input
+                        matInput<span sstep='4+'>
+                        aria-label=&quot;name&quot;</span>
+                        placeholder=&quot;name&quot;
+                        type=&quot;text&quot;<span sstep='3+'>
+                        formControlName=&quot;name&quot;</span>
+                      /&gt;
+                    &lt;/mat-form-field&gt;
+                    &lt;button<span sstep='7+'> type='submit'</span> mat-raised-button&gt;
+                      add
+                    &lt;/button&gt;
+                  &lt;/form&gt;
+                &lt;/mat-card-content&gt;
+              &lt;/mat-card&gt;
+              <span sstep='5+'>REMOVE {{ recipe.value | json }}</span>
+              </code></pre>
+            <div explanation>
+              <span step="1">now we need to link this to the html form</span>
+              <span step="2"
+                >the <span class="ilcode">formGroup</span> is a binding on the
+                form</span
+              >
+              <span step="3"
+                >and formControls are linked using the
+                <span class="ilcode">formControlName</span> attribute
+                directive</span
+              >
+              <span step="4"
+                >in material design we generally do not have a
+                <span class="ilcode">label</span> associated with
+                <span class="ilcode">input</span> elements (the placeholder is
+                shown as the label)</span
+              >
+              <span step="4"
+                >screenreaders expect this though, so add an
+                <span class="ilcode">aria-label</span> attribute instead</span
+              >
+              <span step="5"
+                >for debugging purposes it's convenient to dump the value in the
+                form itself</span
+              >
+              <span step="6">
+                <a href="http://localhost:4200">let's try this out</a>
+              </span>
+              <span step="7"
+                >if we want the add button to work, we need to respond to the
+                <span class="ilcode">(ngSubmit)</span> event</span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>reactive forms</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/add-recipe/add-recipe.component.ts <code class='codesteps' data-noescape data-trim>
+                export class AddRecipeComponent implements OnInit {
+                  @Output() public newRecipe = new EventEmitter&lt;Recipe&gt;();
+                  private recipe: FormGroup;
+
+                  // [ ... ]
+
+                  <span sstep='2-3'>onSubmit() {
+                    this.newRecipe.emit(new Recipe(this.recipe.value.name));
+                  }</span>
+                };
+            </code></pre>
+            <div explanation>
+              <span step="1">and then we need to add this onSubmit method</span>
+              <span step="2">
+                we'll have to convert the formGroup.value to a recipe object
+                before we can emit it
+              </span>
+              <span step="3">
+                <a href="http://localhost:4200">let's try this out</a>
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>directives</h3>
+          <ul>
+            <li>
+              when I said Angular is all about components that was actually a
+              lie, Angular is all about directives, and components are one kind
+              of directive
+            </li>
+            <li>
+              there are also structural directives, which start with a *
+              (*ngFor, *ngIf, ...)
+            </li>
+            <li>
+              and then there are attribute directives, which work on an
+              attribute of a tag (and not the tag itself, like components)
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>directives</h3>
+          <ul>
+            <li>
+              so Angular builds a page by applying functions to tags /
+              attributes and by expanding the structural directives
+            </li>
+            <li>
+              that's how this [formGroup] is applied, a standard html form
+              obviously has no @Input attributes or something similar
+            </li>
+            <li>
+              but by including the ReactiveFormsModule, standard forms got this
+              functionality added
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>reactive form validators</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/add-recipe/add-recipe.component.ts <code class='codesteps' data-noescape data-trim>
+                export class AddRecipeComponent implements OnInit {
+                  ngOnInit() {
+                    this.recipe = new FormGroup({
+                      name: new FormControl('risotto'<span sstep='2'>, Validators.required</span><span sstep='3-4'>, 
+                        [Validators.required, Validators.minLength(2)]</span><span sstep='4'>, [ ... ]</span>)
+                    })
+                  }
+                }
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                if you want to add validation, you have to explicitly include
+                and add
+                <a href="https://angular.io/api/forms/Validators">Validators</a>
+                functions
+              </span>
+              <span step="2">
+                <span class="ilcode">Validators</span> has many static functions
+                defined which perform the validation, they correspond to the
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation"
+                  >standard HTML5 validators</a
+                >
+              </span>
+              <span step="3">
+                if you need multiple, simply pass an array of them
+              </span>
+              <span step="4">
+                you can also add async Validators (server side validation), I'll
+                show an example when we add user authentication
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>validators</h3>
+          <div codesteps>
+            <pre
+              class="html"
+            > src/app/add-recipe/add-recipe.component.html <code class='codesteps' data-noescape data-trim>
+                &lt;mat-card&gt;
+                &lt;mat-card-title&gt;add recipe&lt;/mat-card-title&gt;
+                &lt;mat-card-content&gt;
+                  &lt;form [formGroup]=&quot;recipe&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+                    &lt;mat-form-field&gt;
+                      &lt;input
+                        matInput
+                        aria-label=&quot;name&quot;
+                        placeholder=&quot;name&quot;
+                        type=&quot;text&quot;
+                        formControlName=&quot;name&quot;<span sstep='2+'>
+                        required</span><span sstep='4+'>
+                        #spy</span>
+                      /&gt;
+                    &lt;/mat-form-field&gt;
+                    &lt;button type=&quot;submit&quot; mat-raised-button&gt;
+                      add
+                    &lt;/button&gt;
+                  &lt;/form&gt;
+                &lt;/mat-card-content&gt;
+              &lt;/mat-card&gt;
+              REMOVE {{ recipe.value | json }}<span sstep='3+'> {{ recipe.valid }}
+              {{ spy.className }}</span>
+              
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                if there are validators the FormControl will automatically check
+                if it's valid on every change, and add css classes to the
+                control to signal this, which you can use to give feedback
+              </span>
+              <span step="2">
+                for required checks it's often better to add the html5 required
+                attribute, this way the UI will show a * next to required
+                attributes (just as users expect)</span
+              >
+              <span step="3">
+                there are many variables to check whether a control has changed,
+                is valid, ...
+              </span>
+              <span step="4">
+                let's add a variable and
+                <a href="http://localhost:4200/">see what this does</a>
+              </span>
+              <span step="5">
+                you could add custom css based on these classes, but angular
+                material already has some basic css
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>ngControlStatus</h3>
+          <table class="reveal">
+            <tr>
+              <td>ng-valid</td>
+              <td>ng-invalid</td>
+              <td>does the content conform to the validators?</td>
+            </tr>
+            <tr>
+              <td>ng-pristine</td>
+              <td>ng-dirty</td>
+              <td>have the contents changed?</td>
+            </tr>
+            <tr>
+              <td>ng-untouched</td>
+              <td>ng-touched</td>
+              <td>has the user touched this?</td>
+            </tr>
+          </table>
+        </section>
+        <section>
+          <h3>validators</h3>
+          <div codesteps>
+            <pre
+              class="html"
+            >src/app/add-recipe/add-recipe.component.html  <code class='codesteps' data-noescape data-trim>
+              &lt;mat-card&gt;
+                &lt;mat-card-title&gt;add recipe&lt;/mat-card-title&gt;
+                &lt;mat-card-content&gt;
+                  &lt;form [formGroup]=&quot;recipe&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+                    &lt;mat-form-field&gt;
+                      &lt;input matInput
+                        aria-label=&quot;name&quot; placeholder=&quot;name&quot;
+                        type=&quot;text&quot; formControlName=&quot;name&quot;
+                      /&gt;<span sstep='3+'>
+                      &lt;mat-error
+                        *ngIf=&quot;<span hstep='9'>recipe.get('name').errors</span><span sstep='3-5,7-8'>?.required</span> <span sstep='4+'>&amp;&amp; 
+                          recipe.get('name').touched&quot;</span>
+                      &gt;<span sstep='1-8'>
+                        is required<span sstep='6'> and needs at least 2 characters</span></span><span sstep='9+'>
+                        {{ getErrorMessage(recipe.get('name').errors) }}</span>
+                      &lt;/mat-error&gt;</span><span sstep='7-8'>
+                      &lt;mat-error
+                        *ngIf=&quot;recipe.get('name').errors?.minlength &amp;&amp; recipe.get('name').touched&quot;
+                      &gt;
+                        needs at least {{ recipe.get('name').errors.minlength.requiredLength }} characters
+                      &lt;/mat-error&gt;</span>
+                    &lt;/mat-form-field&gt;
+                    &lt;button type=&quot;submit&quot; mat-raised-button&gt;add&lt;/button&gt;
+                  &lt;/form&gt;
+                &lt;/mat-card-content&gt;
+              &lt;/mat-card&gt;<span sstep='2+'>
+              REMOVE {{ recipe.get('name').errors | json }}</span>
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                often you also need to show a proper error message
+              </span>
+              <span step="2">
+                whenever a validation error occurs, the FormControl.errors
+                object contains those errors
+                <a href="http://localhost:4200">let's check this out</a>
+              </span>
+              <span step="3">
+                so you can add <span class="ilcode">mat-error</span>'s which are
+                shown based on these properties, using a
+                <span class="ilcode">*ngIf</span> construct
+              </span>
+              <span step="4">
+                it's better to take touched state into account, you don't want
+                to bombard your user with errors when she opens a page
+              </span>
+              <span step="5">
+                <a href="http://localhost:4200">let's try this out</a>
+              </span>
+              <span step="6"
+                >this works, but if you want to cover multiple errors, you
+                either end up with generic error messages</span
+              >
+              <span step="7">or multiple mat-error tags</span>
+              <span step="7"
+                >you can imagine this quickly starts to 'overtake' your forms
+                for more complicated forms</span
+              >
+              <span step="8"
+                >it's often cleaner to construct the error message in the class
+                and provide more generic html to show this message</span
+              >
+              <span step="9"
+                >so whenever any error occurs (and control is touched), pass the
+                errors object to a function of our class</span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>validators</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/add-recipe/add-recipe.component.ts <code class='codesteps' data-noescape data-trim>
+                export class AddRecipeComponent implements OnInit {
+                  // [ ... ]
+                
+                  getErrorMessage(errors: any) {
+                    if (<span hstep='1'>errors.required</span>) {
+                      return 'is required';
+                    } else if (<span hstep='1'>errors.minlength</span>) {
+                      return `needs at least ${errors.<span hstep='3'>minlength.requiredLength</span>} 
+                        characters (got ${errors.<span hstep='3'>minlength.actualLength</span>})`;
+                    }
+                  }
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                then inside the class contruct different error messages based on
+                which error occurred
+              </span>
+              <span step="2">
+                <a href="http://localhost:4200">let's try this out</a></span
+              >
+              <span step="3">
+                P.S. whoever decided <span class="ilcode">minlength</span> (with
+                lowercase 'l') should have properties
+                <span class="ilcode">requiredLength</span> and
+                <span class="ilcode">actualLength</span> with uppercase
+                'L'</span
+              >
+              <span step="3"> 🙄🙄🙄</span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>formbuilder</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >src/app/add-recipe/add-recipe.component.ts  <code class='codesteps' data-noescape data-trim>
+                import { FormGroup, <span sstep='1'>FormControl</span><span sstep='2-4'>FormBuilder</span> } from '@angular/forms'; 
+    
+                export class AddRecipeComponent implements OnInit {<span sstep='2-4'>
+                  constructor(private fb: FormBuilder) { }
+                  </span>
+                  ngOnInit() {
+                    this.recipe = <span sstep='1-2'>new FormGroup</span><span sstep='3-4'>this.fb.group</span>({
+                      name: <span sstep='1-2'>new FormControl(</span><span sstep='3'>this.fb.control(</span><span sstep='4'>[</span>'risotto'<span sstep='1-3'>)</span><span sstep='4'>]</span>
+                    })
+                  }
+                }
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                there's an easier way to construct these FormGroups and
+                controls, using a FormBuilder
+              </span>
+              <span step="2">inject the FormBuilder in the constructor</span>
+              <span step="3">
+                and replace 'new FormGroup' with fb.group and 'new FormControl'
+                with fb.control
+              </span>
+              <span step="4">
+                you can even remove the fb.control completely, and replace it
+                with an array which holds all the arguments (default value,
+                validators, ...)
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>formarray</h3>
+          <ul>
+            <li>
+              until now reactive forms don't offer much template driven forms
+              can't easily do too
+            </li>
+            <li>
+              they really start to shine when you do more dynamic (complicated)
+              stuff
+            </li>
+            <li>
+              to illustrate this, lets expand our form so we can also fill in
+              one or more ingredients
+            </li>
+            <li>
+              as ingredients are filled, we'll dynamically create additional
+              input fields using a FormArray
+            </li>
+            <li>
+              when you want to dynamically create a set of input elements you
+              typically create a function which creates a formgroup with those
+              inputs
+            </li>
+            <li>
+              and then push such a formgroup into the formarray whenever you
+              want new input controls
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>add ingredient form</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/add-recipe/add-recipe.component.ts <code class='codesteps' data-noescape data-trim>
+                <span sstep='3'>public readonly unitTypes = ['Liter', 'Gram', 'Tbsp'. 'Pcs'];
+                </span>
+                ngOnInit() {
+                  this.recipe = this.fb.group({
+                    name: ['', [Validators.required, Validators.minLength(2)]],
+                    ingredients: <span hstep='2'>this.fb.array([ this.createIngredients() ])</span>
+                  });
+                }
+                
+                <span hstep='1'>createIngredients(): FormGroup</span> {
+                  return this.fb.group({
+                    amount: [''],
+                    unit: [''],
+                    name: ['', [Validators.required, 
+                      Validators.minLength(3)]]
+                  });
+                }  
+            </code></pre>
+            <div explanation>
+              <span step="1"
+                >so we have a function that can create a formgroup</span
+              >
+              <span step="2">
+                and we call this function to initialize our array with one
+                element
+              </span>
+              <span step="3">
+                we'll also add a member variable for our option list
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>add ingredient form</h3>
+          <div codesteps>
+            <pre
+              class="html"
+            > src/app/add-recipe/add-recipe.component.html <code class='codesteps' data-noescape data-trim>
+              &lt;div<span sstep='3+'> formArrayName=&quot;ingredients&quot;</span><span sstep='6+'>
+                *ngFor=&quot;let item of recipe.get('ingredients').controls; let i = index&quot;</span>&gt;
+                &lt;div<span sstep='5+'> [formGroupName]=&quot;<span sstep='5'>...</span><span sstep='6+'>i</span>&quot;</span>&gt;
+                  &lt;mat-form-field&gt;
+                    <span hstep='2'>&lt;input matInput type=&quot;text&quot; aria-label=&quot;ingredient amount&quot;
+                      placeholder=&quot;amount&quot;<span sstep='4+'> formControlName=&quot;amount&quot;</span>/&gt;</span>
+                  &lt;/mat-form-field&gt;
+                  &lt;mat-form-field&gt;
+                    <span hstep='2'>&lt;mat-select placeholder=&quot;unit&quot; aria-label=&quot;ingredient unit&quot;<span sstep='4+'>
+                      formControlName=&quot;unit&quot;</span>&gt;
+                      &lt;mat-option<span hstep='7'> *ngFor=&quot;let type of unitTypes&quot;</span> [value]=&quot;type&quot;&gt;
+                        {{ type }}
+                      &lt;/mat-option&gt;
+                    &lt;/mat-select&gt;</span>
+                  &lt;/mat-form-field&gt;
+                  &lt;mat-form-field&gt;
+                    <span hstep='2'>&lt;input matInput placeholder=&quot;name&quot; aria-label=&quot;ingredient name&quot;
+                      type=&quot;text&quot;<span sstep='4+'> formControlName=&quot;name&quot;</span>/&gt;</span>
+                  &lt;/mat-form-field&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                the first part of the form stays the same, then we create a new
+                div where we will display the form array
+              </span>
+              <span step="2">
+                per ingredient we have three controls, and input for the amount,
+                a dropdown for the unit, and an input for the name of the
+                ingredient
+              </span>
+              <span step="3">
+                just like we referred to a control using the
+                <span class="ilcode">formControlName</span> attribute, we refer
+                to the array using the
+                <span class="ilcode">formArrayName</span> attribute
+              </span>
+              <span step="4">
+                inside the array we'll display all the groups that were added,
+                the groups themselves are nothing special, simply hook up the
+                <span class="ilcode">formControlName</span>'s of the three
+                controls in each group
+              </span>
+              <span step="5">
+                each group is in its own div, which needs a
+                <span class="ilcode">formGroupName</span>, but now we can't just
+                set a fixed name, we're an index in an array
+              </span>
+              <span step="6">
+                so we'll add a loop over all 'ingredients' controls in the
+                recipe formgroup, and use the loop index as the group name
+              </span>
+              <span step="7">
+                note how we also simply loop over a property variable to create
+                an option input field
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>add ingredient form</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >src/app/add-recipe/add-recipe.component.ts  <code class='codesteps' data-noescape data-trim>
+                onSubmit() {
+                  let ingredients = this.recipe.value.ingredients.map(Ingredient.fromJSON);
+                  ingredients = i<span hstep='2'>ngredients.filter(ing => ing.name.length > 2);</span>
+                  this.newRecipe.emit(new Recipe(this.recipe.value.name, ingredients));
+                }
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                back in our typescript file we need to adapt our onSubmit method
+                too
+              </span>
+              <span step="2">
+                I explicitly check for a valid ingredientname, I don't want to
+                include empty input fields
+              </span>
+              <span step="3">
+                we can't add more than one ingredient yet, but
+                <a href="http://localhost:4200">let's try this out</a>
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>add ingredient form</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/add-recipe/add-recipe.component.ts <code class='codesteps' data-noescape data-trim>
+                export class AddRecipeComponent implements OnInit {
+                  <span hstep='3'>get ingredients(): FormArray {
+                    return &lt;FormArray&gt;this.recipe.get('ingredients');
+                  }</span>
+                
+                  ngOnInit() {
+                    this.ingredients.<span hstep='4'>valueChanges
+                      .pipe(debounceTime(400), distinctUntilChanged())
+                      .subscribe</span>(ingList => {
+                        const lastElement = ingList[ingList.length - 1];
+                        <span hstep='5'>if ( lastElement.name && lastElement.name.length > 2 ) { 
+                          this.ingredients.push(this.createIngredients()); 
+                        }</span>
+                      });
+                  }
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                we could just add a button in the form, and call
+                createIngredients and add a FormGroup to the array as it's
+                clicked
+              </span>
+              <span step="2">
+                but let's try something else, there is also change tracking
+                available, we'll add a new line of input fields as the previous
+                one is filled
+              </span>
+              <span step="3">
+                first, add a convenience method to access the ingredients array
+                inside the formgroup
+              </span>
+              <span step="4">
+                then subscribe to the valueChanges, with a debounceTime of 400ms
+              </span>
+              <span step="5">
+                and add a new set of input fields if the last ingredient is
+                entered (has >2 chars)
+              </span>
+              <span step="6">
+                you probably want to add an 'else' and remove them again as they
+                are cleared, see the recipe app github for an example
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>custom validators</h3>
+          <ul>
+            <li></li>
+          </ul>
+        </section>
+        <section>
+          <h3>summary</h3>
+          <ul>
+            <li>
+              we've seen how to build reactive forms, template driven forms are
+              still used and a good way to build forms too
+            </li>
+            <li>
+              we've done validation and display error messages based on the
+              state of our forms
+            </li>
+            <li>
+              we've seen how to dynamically create forms, and respond to changes
+              in the form
+            </li>
+            <li>
+              there's still more, you can do server side validation too (we'll
+              do that when we create users), and you can construct custom
+              validators, we'll see an example later as well
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="plugin/codestepper/codestepper.js"></script>
+    <script>
+      // More info about config & dependencies:
+      CodeStepper.initialize();
+      Reveal.initialize({
+        controls: false,
+        slideNumber: true,
+        width: '100%',
+        height: '100%',
+        dependencies: [
+          {
+            src: 'plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+              hljs.initHighlightingOnLoad();
+
+              // during slide creation, always start at last slide
+              var indices = Reveal.getIndices(
+                document.getElementById('sectionID')
+              );
+              // comment line underneath to start at slide 1
+              // Reveal.slide(51); //Reveal.getTotalSlides());
+            }
+          },
+          { src: 'plugin/codestepper/svgstepper.js' }
+        ]
+      });
+    </script>
+    <script src="js/snap.svg.js"></script>
+  </body>
+</html>
