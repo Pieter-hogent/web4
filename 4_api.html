@@ -1269,10 +1269,8 @@
             > src/app/app.component.html <code class='codesteps' data-noescape data-trim>
             &lt;div&gt;
               &lt;!-- ... --&gt;
-              &lt;div
-                fxLayout=&quot;row&quot;
-              &gt;
-                &lt;div
+              &lt;div fxLayout=&quot;row&quot; [...] &gt;
+                &lt;div fxFlex="0 0 calc(25%-0.5%)"
                   *ngFor=&quot;
                     let localRecipe of (recipes<span hstep='1'>$ | async</span> | recipeFilter: filterRecipeName)
                   &quot;
@@ -1592,13 +1590,15 @@
                 &lt;/div&gt;
               &lt;/div&gt;
               <span sstep='3+'>&lt;ng-template #loadingOrError&gt;
-                &lt;mat-error *ngIf=&quot;(loadingError$ | async) as errorMessage; else loading&quot;&gt;
-                 <span hstep='4'> Error loading the recipe list: {{ errorMessage }}. &lt;br/&gt;
-                   Please try again later.</span>
-                &lt;/mat-error&gt;</span>
-                &lt;ng-template #loading&gt;
-                  Loading recipes...
-                &lt;/ng-template&gt;<span sstep='3+'>
+                &lt;mat-card&gt;
+                  &lt;mat-error *ngIf=&quot;(loadingError$ | async) as errorMessage; else loading&quot;&gt;
+                  <span hstep='4'> Error loading the recipe list: {{ errorMessage }}. &lt;br/&gt;
+                    Please try again later.</span>
+                  &lt;/mat-error&gt;</span>
+                  &lt;ng-template #loading&gt;
+                    Loading recipes...
+                  &lt;/ng-template&gt;<span sstep='3+'>
+                &lt;/mat-card&gt;
               &lt;/ng-template&gt; </span>
             </code></pre>
             <div explanation>

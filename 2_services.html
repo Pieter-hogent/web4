@@ -568,13 +568,17 @@ import { RECIPES } from './mock-recipes';
               <span sstep='6+'>&lt;div fxLayout=&quot;column&quot; fxLayoutGap=&quot;2%&quot;&gt;</span>
                 &lt;app-add-recipe&gt;&lt;/app-add-recipe&gt;
                 <span sstep='2+'>&lt;div
-                  fxLayout=&quot;<span hstep='3'>row</span>&quot;
+                  fxLayout=&quot;<span hstep='3'>row wrap</span>&quot;
                   fxLayout<span hstep='3'>.xs</span>=&quot;<span hstep='3'>column</span>&quot;
-                  fxLayoutWrap
                   fxLayoutGap=&quot;0.5%&quot;
                   fxLayoutAlign=&quot;start&quot;
                 &gt;
-                  &lt;div<span sstep='4+'> *ngFor=&quot;let localRecipe of recipes&quot;</span>&gt;
+                  &lt;div 
+                    class=&quot;recipe&quot;<span sstep='4+'>
+                    *ngFor=&quot;let localRecipe of recipes&quot;</span>
+                    fxFlex=&quot;0 0 calc(25%-0.5%)&quot;
+                    fxFlex.xs=&quot;100%&quot;
+                  &gt;
                     </span>&lt;app-recipe <span sstep='4+'>[recipe]=&quot;localRecipe&quot;</span>&gt;&lt;/app-recipe&gt;
                   <span sstep='2+'>&lt;/div&gt;
                 &lt;/div&gt;</span>
@@ -680,13 +684,17 @@ import { RECIPES } from './mock-recipes';
                 &lt;div fxLayout=&quot;column&quot; fxLayoutGap=&quot;2%&quot;&gt;
                 &lt;app-add-recipe<span sstep='2+'> (newRecipe)=&quot;addNewRecipe($event)&quot;</span>&gt;&lt;/app-add-recipe&gt;
                 &lt;div
-                  fxLayout=&quot;row&quot;
+                  fxLayout=&quot;row wrap&quot;
                   fxLayout.xs=&quot;column&quot;
-                  fxLayoutWrap
                   fxLayoutGap=&quot;0.5%&quot;
                   fxLayoutAlign=&quot;start&quot;
                 &gt;
-                  &lt;div *ngFor=&quot;let localRecipe of recipes&quot;&gt;
+                  &lt;div 
+                    class=&quot;recipe&quot;
+                    *ngFor=&quot;let localRecipe of recipes&quot;
+                    fxFlex=&quot;0 0 calc(25%-0.5%)&quot;
+                    fxFlex.xs=&quot;100%&quot;
+                  &gt;
                     &lt;app-recipe [recipe]=&quot;localRecipe&quot;&gt;&lt;/app-recipe&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
@@ -1015,13 +1023,17 @@ import { RECIPES } from './mock-recipes';
                             &lt;/button&gt;
                           &lt;/mat-card&gt;</span>
                           &lt;div
-                            fxLayout=&quot;row&quot;
+                            fxLayout=&quot;row wrap&quot;
                             fxLayout.xs=&quot;column&quot;
-                            fxLayoutWrap
                             fxLayoutGap=&quot;0.5%&quot;
                             fxLayoutAlign=&quot;start&quot;
                           &gt;
-                            &lt;div *ngFor=&quot;let localRecipe of <span sstep='2+'>(</span>recipes <span sstep='2+'>| recipeFilter</span><span sstep='3+'>: filterRecipeName</span>)&quot;&gt;
+                            &lt;div 
+                              class=&quot;recipe&quot;
+                              *ngFor=&quot;let localRecipe of <span sstep='2+'>(</span>recipes <span sstep='2+'>| recipeFilter</span><span sstep='3+'>: filterRecipeName</span><span sstep='2+'>)</span>&quot;
+                              fxFlex=&quot;0 0 calc(25%-0.5%)&quot;
+                              fxFlex.xs=&quot;100%&quot;
+                            &gt;
                               &lt;app-recipe [recipe]=&quot;localRecipe&quot;&gt;&lt;/app-recipe&gt;
                             &lt;/div&gt;
                           &lt;/div&gt;
