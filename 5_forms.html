@@ -342,51 +342,65 @@
                 &lt;mat-card&gt;
                 &lt;mat-card-title&gt;add recipe&lt;/mat-card-title&gt;
                 &lt;mat-card-content&gt;
-                  &lt;form [formGroup]=&quot;recipe&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+                  &lt;form [<span hstep='2'>formGroup</span>]=&quot;recipe&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
                     &lt;mat-form-field&gt;
                       &lt;input
                         matInput
                         aria-label=&quot;name&quot;
                         placeholder=&quot;name&quot;
                         type=&quot;text&quot;
-                        formControlName=&quot;name&quot;<span sstep='2+'>
-                        required</span><span sstep='4+'>
+                        <span hstep='2'>formControlName</span>=&quot;name&quot;<span sstep='6+'>
+                        required</span><span sstep='5+'>
                         #spy</span>
                       /&gt;
                     &lt;/mat-form-field&gt;
-                    &lt;button type=&quot;submit&quot; mat-raised-button&gt;
+                    &lt;button type=&quot;submit&quot; mat-raised-button <span sstep='3+'>[disabled]='!recipe.valid'</span>&gt;
                       add
                     &lt;/button&gt;
                   &lt;/form&gt;
                 &lt;/mat-card-content&gt;
               &lt;/mat-card&gt;
-              REMOVE {{ recipe.value | json }}<span sstep='3+'> {{ recipe.valid }}
+              REMOVE {{ recipe.value | json }}<span sstep='5+'> 
               {{ spy.className }}</span>
               
             </code></pre>
             <div explanation>
               <span step="1">
                 if there are validators the FormControl will automatically check
-                if it's valid on every change, and add css classes to the
-                control to signal this, which you can use to give feedback
+                if it's valid on every change
               </span>
-              <span step="2">
-                for required checks it's often better to add the html5 required
-                attribute, this way the UI will show a * next to required
-                attributes (just as users expect)</span
+              <span step="1"
+                >and being valid will propagate to the ancestors, if any child
+                is invalid, the parent control is as well</span
               >
-              <span step="3">
-                there are many variables to check whether a control has changed,
-                is valid, ...
+              <span step="2"
+                >so if the input field is invalid, the recipe FormGroup becomes
+                invalid as well</span
+              >
+              <span step="3"
+                >you can use this to disable the add button, by setting the
+                disabled property based on the validness of the root
+                formgroup</span
+              >
+              <span step="4"
+                >when a control is invalid, it doesn't just set the
+                <span class="ilcode">.valid</span> to false, but also adds css
+                classes to the control to signal this, which you can use to give
+                feedback
               </span>
-              <span step="4">
+              <span step="5">
                 let's add a variable and
                 <a href="http://localhost:4200/">see what this does</a>
               </span>
-              <span step="5">
+              <span step="6">
                 you could add custom css based on these classes, but angular
                 material already has some basic css
               </span>
+              <span step="6">
+                for required checks it's often better to add the html5 required
+                attribute as well, this way the UI will show a * next to the
+                input field (just as users expect)</span
+              >
             </div>
           </div>
         </section>
@@ -438,7 +452,7 @@
                         needs at least {{ recipe.get('name').errors.minlength.requiredLength }} characters
                       &lt;/mat-error&gt;</span>
                     &lt;/mat-form-field&gt;
-                    &lt;button type=&quot;submit&quot; mat-raised-button&gt;add&lt;/button&gt;
+                    &lt;button type=&quot;submit&quot; mat-raised-button [disabled]='!recipe.valid'&gt;add&lt;/button&gt;
                   &lt;/form&gt;
                 &lt;/mat-card-content&gt;
               &lt;/mat-card&gt;<span sstep='2+'>
@@ -700,7 +714,7 @@
             >src/app/add-recipe/add-recipe.component.ts  <code class='codesteps' data-noescape data-trim>
                 onSubmit() {
                   let ingredients = this.recipe.value.ingredients.map(Ingredient.fromJSON);
-                  ingredients = i<span hstep='2'>ngredients.filter(ing => ing.name.length > 2);</span>
+                  ingredients = <span hstep='2'>ingredients.filter(ing => ing.name.length > 2);</span>
                   this.newRecipe.emit(new Recipe(this.recipe.value.name, ingredients));
                 }
             </code></pre>
@@ -721,7 +735,7 @@
           </div>
         </section>
         <section>
-          <h3>add ingredient form</h3>
+          <h3>multiple add ingredient</h3>
           <div codesteps>
             <pre
               class="typescript"
@@ -768,21 +782,181 @@
                 you probably want to add an 'else' and remove them again as they
                 are cleared, see the recipe app github for an example
               </span>
+              <span step="7"
+                ><a href="http://localhost:4200">let's try this out</a></span
+              >
             </div>
           </div>
         </section>
         <section>
           <h3>custom validators</h3>
           <ul>
-            <li></li>
+            <li>
+              so this works (as in: new rows to add ingredients appear), but it
+              also breaks everything (as in: we can never push the add anymore),
+              what's going on?
+            </li>
+            <li>
+              whenever we make an ingredient entry valid (by typing 3+ letters
+              in the ingredient name), a new (empty, so invalid) ingredient
+              entry appears in the form
+            </li>
+            <li>
+              ingredient name is invalid > ingredient group is invalid >
+              formarray is invalid > recipe group is invalid (invalidness
+              'bubbles up')
+            </li>
+            <li>what we want is a custom validator</li>
+            <ul>
+              <li>
+                if nothing is filled inside an ingredient 'row', then
+                everything's fine
+              </li>
+              <li>
+                if amount is filled however, the name should be as well
+                (ingredient '1 liter' makes no sense)
+              </li>
+            </ul>
           </ul>
+        </section>
+        <section>
+          <h3>custom validator</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/add-recipe/add-recipe.component.ts  <code class='codesteps' data-noescape data-trim>
+<span sstep='3+'>function validateIngredientName(control: FormGroup)
+  : <span hstep='4'>{ [key: string]: any }</span> {<span sstep='5+'>
+  if (
+    control.get('amount').value.length &gt;= 1 &&
+    control.get('name').value.length &lt; 2
+  ) {
+    return { amountNoName: true };
+  }</span>
+  return null;
+}
+</span>
+export class AddRecipeComponent implements OnInit { 
+  createIngredients(): FormGroup {
+    return this.fb.group({
+        amount: [''],
+        unit: [''],
+        name: [''<span sstep='1'>, <span hstep='1'>[Validators.required, Validators.minLength(3)]</span></span>]
+      }<span sstep='2+'>,
+      { validator: validateIngredientName }
+    </span>);
+  }
+
+  getErrorMessage(errors: any) {
+    // [ ... ]<span sstep='6+'>
+    if (errors.required) {
+      return 'is required';
+    } else if (errors.minlength) {
+      return `needs at least ${
+        errors.minlength.requiredLength
+      } characters (got ${errors.minlength.actualLength})`;
+    } else if (errors.amountNoName) {
+      return `if amount is set you must set a name`;
+    }</span>
+  } 
+            </code></pre>
+            <div explanation>
+              <span step="1"
+                >we can't use the built in validators to do this, so these need
+                to go</span
+              >
+              <span step="2"> we'll apply a validator on the whole group</span>
+              <span step="2"
+                >this is done by passing an object with a validator key and a
+                function to the group</span
+              >
+              <span step="3"
+                >we'll define our validator function as a free function</span
+              >
+              <span step="3"
+                >this function expects an
+                <span class="ilcode">AbstractControl</span> as a parameter (the
+                control being validated)</span
+              >
+              <span step="3"
+                >and returns an object of type
+                <span class="ilcode">{ [key: string]: any }</span></span
+              >
+              <span step="4"
+                >if everything's fine you return
+                <span class="ilcode">null</span>, otherwhise you return an
+                object with the error as key, and extra info as the value</span
+              >
+              <span step="4"
+                >e.g. <span class="ilcode">{ required: true }</span>, this
+                object is set as the <span class="ilcode">.errors</span> on your
+                control</span
+              >
+              <span step="5"
+                >in our case we'll add a new error 'amountNoName', if amount is
+                set but name is empty</span
+              >
+              <span step="6"
+                >next we'll add a proper error message for this error to our
+                getErrorMessage function</span
+              >
+              <span step="6">(scroll down in the code window)</span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>custom validator</h3>
+          <div codesteps>
+            <pre
+              class="html"
+            > src/app/add-recipe/add-recipe.component.html  <code class='codesteps' data-noescape data-trim>
+      &lt;div
+        formArrayName=&quot;ingredients&quot;
+        *ngFor=&quot;let item of ingredients.controls; let i = index&quot;
+      &gt;
+       <span hstep='2'> &lt;div [formGroupName]=&quot;i&quot;&gt;</span>
+          &lt;mat-form-field&gt;
+            &lt;input [...]  formControlName=&quot;amount&quot;
+          /&gt;&lt;/mat-form-field&gt;
+          [ ... ]
+        &lt;/div&gt;<span hstep='1'>
+        &lt;mat-error *ngIf=&quot;item.errors &amp;&amp; item.get('name').touched&quot;&gt;
+          {{ getErrorMessage(item.errors) }}
+        &lt;/mat-error&gt;</span>
+      &lt;/div&gt;
+            </code></pre>
+            <div explanation>
+              <span step="1"
+                >we'll show the error using a
+                <span class="ilcode">mat-error</span>, just like before
+              </span>
+              <span step="2">
+                when using <span class="ilcode">mat-error</span>, make sure you
+                add it inside the correct tag, the ingredient group is the one
+                being checked (and begin invalidated)
+              </span>
+              <span step="3"
+                >mat-error tags are only shown if their encompassing tag is
+                invalid</span
+              >
+              <span step="3"
+                >(don't waste time wondering why the error isn't shown simply
+                because you put it inside the wrong div, like I did when making
+                these slides)</span
+              >
+              <span step="4"
+                ><a href="http://localhost:4200">let's try this out</a></span
+              >
+            </div>
+          </div>
         </section>
         <section>
           <h3>summary</h3>
           <ul>
             <li>
-              we've seen how to build reactive forms, template driven forms are
-              still used and a good way to build forms too
+              we've seen how to build reactive forms (template driven forms are
+              still used and a good way to build forms too, if you're intrigued,
+              do check them out)
             </li>
             <li>
               we've done validation and display error messages based on the
@@ -790,12 +964,11 @@
             </li>
             <li>
               we've seen how to dynamically create forms, and respond to changes
-              in the form
+              in the form, and we added a custom validator
             </li>
             <li>
               there's still more, you can do server side validation too (we'll
-              do that when we create users), and you can construct custom
-              validators, we'll see an example later as well
+              do that when we register new users)
             </li>
           </ul>
         </section>
@@ -825,7 +998,7 @@
                 document.getElementById('sectionID')
               );
               // comment line underneath to start at slide 1
-              // Reveal.slide(51); //Reveal.getTotalSlides());
+              Reveal.slide(Reveal.getTotalSlides());
             }
           },
           { src: 'plugin/codestepper/svgstepper.js' }
