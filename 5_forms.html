@@ -176,7 +176,7 @@
               &lt;mat-card&gt;
                 &lt;mat-card-title&gt;add recipe&lt;/mat-card-title&gt;
                 &lt;mat-card-content&gt;
-                  &lt;form<span sstep='2+'> [formGroup]=&quot;recipe&quot;</span><span sstep='7+'> (ngSubmit)='onSubmit()'</span>&gt;
+                  &lt;form<span sstep='2+'> [formGroup]=&quot;recipe&quot;</span><span sstep='8+'> (ngSubmit)='onSubmit()'</span>&gt;
                     &lt;mat-form-field&gt;
                       &lt;input
                         matInput<span sstep='4+'>
@@ -186,13 +186,13 @@
                         formControlName=&quot;name&quot;</span>
                       /&gt;
                     &lt;/mat-form-field&gt;
-                    &lt;button<span sstep='7+'> type='submit'</span> mat-raised-button&gt;
+                    &lt;button<span sstep='8+'> type='submit'</span> mat-raised-button&gt;
                       add
                     &lt;/button&gt;
                   &lt;/form&gt;
                 &lt;/mat-card-content&gt;
               &lt;/mat-card&gt;
-              <span sstep='5+'>REMOVE {{ recipe.value | json }}</span>
+              <span sstep='6+'>REMOVE {{ recipe.value | json }}</span>
               </code></pre>
             <div explanation>
               <span step="1">now we need to link this to the html form</span>
@@ -216,13 +216,21 @@
                 <span class="ilcode">aria-label</span> attribute instead</span
               >
               <span step="5"
+                >accessibility is often overlooked, but it's little effort and
+                can make a world of change for people who rely on screenreaders,
+                so no excuses!
+              </span>
+              <span step="5"
+                >(and sometimes even required by law, government websites)</span
+              >
+              <span step="6"
                 >for debugging purposes it's convenient to dump the value in the
                 form itself</span
               >
-              <span step="6">
+              <span step="7">
                 <a href="http://localhost:4200">let's try this out</a>
               </span>
-              <span step="7"
+              <span step="8"
                 >if we want the add button to work, we need to respond to the
                 <span class="ilcode">(ngSubmit)</span> event</span
               >
