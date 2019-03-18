@@ -138,7 +138,7 @@
               class="typescript"
             >src/app/add-recipe/add-recipe.component.ts  <code class='codesteps' data-noescape data-trim>
                   export class AddRecipeComponent implements OnInit {
-                    <span sstep='2+'>private recipe: FormGroup;
+                    <span sstep='2+'>public recipe: FormGroup;
                   
                     ngOnInit() {
                       this.recipe = new <span hstep='4'>FormGroup</span>({
@@ -448,23 +448,23 @@
                         type=&quot;text&quot; formControlName=&quot;name&quot;
                       /&gt;<span sstep='3+'>
                       &lt;mat-error
-                        *ngIf=&quot;<span hstep='9'>recipe.get('name').errors</span><span sstep='3-5,7-8'>?.required</span> <span sstep='4+'>&amp;&amp; 
+                        *ngIf=&quot;<span hstep='9'>recipe.get('name')['errors']</span><span sstep='3-5,7-8'>?.required</span> <span sstep='4+'>&amp;&amp; 
                           recipe.get('name').touched&quot;</span>
                       &gt;<span sstep='1-8'>
                         is required<span sstep='6'> and needs at least 2 characters</span></span><span sstep='9+'>
-                        {{ getErrorMessage(recipe.get('name').errors) }}</span>
+                        {{ getErrorMessage(recipe.get('name')['errors']) }}</span>
                       &lt;/mat-error&gt;</span><span sstep='7-8'>
                       &lt;mat-error
-                        *ngIf=&quot;recipe.get('name').errors?.minlength &amp;&amp; recipe.get('name').touched&quot;
+                        *ngIf=&quot;recipe.get('name')['errors']?.minlength &amp;&amp; recipe.get('name').touched&quot;
                       &gt;
-                        needs at least {{ recipe.get('name').errors.minlength.requiredLength }} characters
+                        needs at least {{ recipe.get('name')['errors'].minlength.requiredLength }} characters
                       &lt;/mat-error&gt;</span>
                     &lt;/mat-form-field&gt;
                     &lt;button type=&quot;submit&quot; mat-raised-button [disabled]='!recipe.valid'&gt;add&lt;/button&gt;
                   &lt;/form&gt;
                 &lt;/mat-card-content&gt;
               &lt;/mat-card&gt;<span sstep='2+'>
-              REMOVE {{ recipe.get('name').errors | json }}</span>
+              REMOVE {{ recipe.get('name')['errors'] | json }}</span>
             </code></pre>
             <div explanation>
               <span step="1">
@@ -616,7 +616,7 @@
             <pre
               class="typescript"
             > src/app/add-recipe/add-recipe.component.ts <code class='codesteps' data-noescape data-trim>
-                <span sstep='3'>public readonly unitTypes = ['Liter', 'Gram', 'Tbsp'. 'Pcs'];
+                <span sstep='3'>public readonly unitTypes = ['Liter', 'Gram', 'Tbsp', 'Pcs'];
                 </span>
                 ngOnInit() {
                   this.recipe = this.fb.group({
@@ -655,7 +655,7 @@
               class="html"
             > src/app/add-recipe/add-recipe.component.html <code class='codesteps' data-noescape data-trim>
               &lt;div<span sstep='3+'> formArrayName=&quot;ingredients&quot;</span><span sstep='6+'>
-                *ngFor=&quot;let item of recipe.get('ingredients').controls; let i = index&quot;</span>&gt;
+                *ngFor=&quot;let item of recipe.get('ingredients')['controls']; let i = index&quot;</span>&gt;
                 &lt;div<span sstep='5+'> [formGroupName]=&quot;<span sstep='5'>...</span><span sstep='6+'>i</span>&quot;</span>&gt;
                   &lt;mat-form-field&gt;
                     <span hstep='2'>&lt;input matInput type=&quot;text&quot; aria-label=&quot;ingredient amount&quot;
