@@ -46,17 +46,23 @@
         </section>
         <section>
           <h3>overview</h3>
-          <ol style='font-size: 80%'>
+          <ol style="font-size: 80%">
             <li>
               <a href="#/intro">intro</a> <br /><span style="font-size: 0.7em">
                 what are routing and modules and why do we need them
               </span>
             </li>
-            <li><a href="#/prepare-recipe-app">prepare recipe app</a><br /><span style="font-size: 0.7em">
+            <li>
+              <a href="#/prepare-recipe-app">prepare recipe app</a><br /><span
+                style="font-size: 0.7em"
+              >
                 refactor the existing app to prepare it for routing
               </span>
             </li>
-            <li><a href="#/first-routes">first routes</a><br /><span style="font-size: 0.7em">
+            <li>
+              <a href="#/first-routes">first routes</a><br /><span
+                style="font-size: 0.7em"
+              >
                 add the first few routes to the app module
               </span>
             </li>
@@ -64,26 +70,39 @@
               <a href="#/material-navigation">material design navigation</a>
               <br /><span style="font-size: 0.7em">
                 install a response navigation element from material design
-                </span>
-              </li>
-            <li><a href="#/routing-module">separate routing module</a><br /><span style="font-size: 0.7em">
-              split of routing to a separate module
               </span>
             </li>
-            <li><a href="#/feature-modules">feature modules</a><br /><span style="font-size: 0.7em">
-              introduce feature modules, for recipe and material design
+            <li>
+              <a href="#/routing-module">separate routing module</a><br /><span
+                style="font-size: 0.7em"
+              >
+                split of routing to a separate module
               </span>
             </li>
-            <li><a href="#/parameter-prefetching">parameter prefetching</a><br /><span style="font-size: 0.7em">
-              prefetch parameters from parameterized routes
+            <li>
+              <a href="#/feature-modules">feature modules</a><br /><span
+                style="font-size: 0.7em"
+              >
+                introduce feature modules, for recipe and material design
               </span>
             </li>
-            <li><a href="#/lazy-loading">lazy loading</a><br /><span style="font-size: 0.7em">
-              lazy load feature modules
+            <li>
+              <a href="#/parameter-prefetching">parameter prefetching</a
+              ><br /><span style="font-size: 0.7em">
+                prefetch parameters from parameterized routes
               </span>
             </li>
-            <li><a href="#/prefetch-lazy-loading">prefetch lazy loading</a><br /><span style="font-size: 0.7em">
-              prefetch (certain) lazy loaded modules
+            <li>
+              <a href="#/lazy-loading">lazy loading</a><br /><span
+                style="font-size: 0.7em"
+              >
+                lazy load feature modules
+              </span>
+            </li>
+            <li>
+              <a href="#/prefetch-lazy-loading">prefetch lazy loading</a
+              ><br /><span style="font-size: 0.7em">
+                prefetch (certain) lazy loaded modules
               </span>
             </li>
           </ol>
@@ -905,8 +924,8 @@ installing component
             </li>
             <li>
               the result is immediatelly available, so the callback is called,
-              change detected kicks in, and we have a recipe object and
-              everything looks normal
+              change detection kicks in, and we have a recipe object and
+              everything looks normal on the next draw
             </li>
             <li>
               so while you don't see any errors, for a split second things went
@@ -921,7 +940,7 @@ installing component
   const routes = [
     { path: 'recipe-list', component: RecipeListComponent },
     { path: 'add-recipe', component: AddRecipeComponent },
-    { path: 'recipe-detail/:id', component: RecipeDetailComponent<span sstep='2-3'>,
+    { path: 'recipe-detail/:id', component: RecipeDetailComponent<span sstep='2+'>,
       resolve: { recipe: RecipeResolver} </span>}
   ];
             </code></pre>
@@ -1019,6 +1038,11 @@ installing component
               <span step="3">
                 <a href="http://localhost:4200">let's try this out</a>
               </span>
+              <span step="4"
+                >this works great, but there's a drawback, your component is not
+                loaded (nor drawn) before the resolve is done, which makes
+                loading your page slower</span
+              >
             </div>
           </div>
         </section>
