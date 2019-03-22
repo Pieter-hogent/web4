@@ -673,32 +673,41 @@
             </li>
           </ul>
           <img
-          src="img/rxjs-marble-merge.svg"
-          style="background:none; border:none; box-shadow:none;"
-          alt=""
-        />
+            src="img/rxjs-marble-merge.svg"
+            style="background:none; border:none; box-shadow:none;"
+            alt=""
+          />
         </section>
         <section>
-            <h3>pipeable operators</h3>
-            <ul>
-              <li>this is just the tip of the iceberg, there are many (many) more, allowing you to sometimes do really cool stuff with little code</li>
-              <li>
-                they are called
-                <a
-                  href="https://github.com/ReactiveX/rxjs/blob/master/doc/pipeable-operators.md"
-                  >pipeable operators</a
-                >
-              </li>
-              <li>
-                (until 12 januari 2018 they were called 'lettable operators', if
-                you google)
-              </li>
-              <li><a href="https://rxmarbles.com/">RxMarbles.com</a> has a great visual overview of many of these</li>
-              <li>but there are many more resources to learn these, and more pop up every day, reactive programming is on the rise, and not just in the web world</li>
-            
-            </ul>
-          </section>
-       
+          <h3>pipeable operators</h3>
+          <ul>
+            <li>
+              this is just the tip of the iceberg, there are many (many) more,
+              allowing you to sometimes do really cool stuff with little code
+            </li>
+            <li>
+              they are called
+              <a
+                href="https://github.com/ReactiveX/rxjs/blob/master/doc/pipeable-operators.md"
+                >pipeable operators</a
+              >
+            </li>
+            <li>
+              (until 12 januari 2018 they were called 'lettable operators', if
+              you google)
+            </li>
+            <li>
+              <a href="https://rxmarbles.com/">RxMarbles.com</a> has a great
+              visual overview of many of these
+            </li>
+            <li>
+              but there are many more resources to learn these, and more pop up
+              every day, reactive programming is on the rise, and not just in
+              the web world
+            </li>
+          </ul>
+        </section>
+
         <section>
           <h3>recipe filter</h3>
           <div codesteps>
@@ -804,7 +813,8 @@
             </code></pre>
             <div explanation>
               <span step="1">
-                this works, but the real power comes from applying the pipeable operators
+                this works, but the real power comes from applying the pipeable
+                operators
               </span>
               <span step="2">
                 you do this by passing one or more function to the pipe function
@@ -832,13 +842,17 @@
           </div>
         </section>
         <section>
-            <h3>pipeable operators</h3>
-            <ul>
-              <li>one last remark before we get to http, the <span class='ilcode'>pipe()</span> syntax where you pass other functions is rather new</li>
-              <li>
-                so on google, stackoverflow... you'll often find code with the
-                following syntax
-                <pre class="typescript"><code data-noescape data-trim>
+          <h3>pipeable operators</h3>
+          <ul>
+            <li>
+              one last remark before we get to http, the
+              <span class="ilcode">pipe()</span> syntax where you pass other
+              functions is rather new
+            </li>
+            <li>
+              so on google, stackoverflow... you'll often find code with the
+              following syntax
+              <pre class="typescript"><code data-noescape data-trim>
       import 'rxjs/add/operator/map'
       import 'rxjs/add/operator/distinctUntilChanged'
       
@@ -847,13 +861,13 @@
         .debounceTime(400)
         .map(val => val.toLowerCase());
                   </code></pre>
-              </li>
-              <li>
-                DON'T DO THAT ANYMORE, it's always easily converted to the new
-                syntax
-              </li>
-            </ul>
-          </section> 
+            </li>
+            <li>
+              DON'T DO THAT ANYMORE, it's always easily converted to the new
+              syntax
+            </li>
+          </ul>
+        </section>
         <section>
           <h3>http - observables</h3>
           <ul>
@@ -1378,7 +1392,7 @@
                   &lt;/div&gt;
                 &lt;/div&gt;</span><span sstep='3+'>
               &lt;/div&gt;</span><span sstep='2+'>
-              &lt;ng-template #loading&gt;<span hstep='5'>Loading recipes...</span>&lt;/ng-template&gt;</span>
+              &lt;ng-template #loading&gt;<span hstep='5'>&lt;mat-spinner&gt;&lt;/mat-spinner&gt;</span>&lt;/ng-template&gt;</span>
             </code></pre>
             <div explanation>
               <span step="1"
@@ -1391,8 +1405,7 @@
               >
               <span step="2"
                 >to achieve this, first we add an
-                <span class="ilcode">ng-template</span> with our 'loading'
-                message</span
+                <span class="ilcode">ng-template</span> with a material design spinner which we'll show while loading </span
               >
               <span step="2"
                 ><span class="ilcode">ng-template</span>'s define html building
@@ -1421,10 +1434,6 @@
               <span step="5"
                 >and if not (<span class="ilcode">else</span> case) we show an
                 <span class="ilcode">ng-template</span> defined elsewhere</span
-              >
-              <span step="6"
-                >in a real application we'd like something nicer than simply an
-                unformatted text message, but it'll suffice for our demo</span
               >
               <span step="6"
                 >testing this is bit hard, you're probably not fast enough to
@@ -1506,7 +1515,7 @@
                   return this.http.get(`${environment.apiUrl}/recipes/`).pipe(<span sstep='2+'>
                     catchError(<span sstep='3+'>error => {
                       this.loadingError$.next(error.statusText);<span sstep='4+'>
-                      return of();</span>
+                      return of(null);</span>
                     }</span>),</span>
                     map((list: any[]): Recipe[] => list.map(Recipe.fromJSON))
                   );
@@ -1596,7 +1605,7 @@
                     Please try again later.</span>
                   &lt;/mat-error&gt;</span>
                   &lt;ng-template #loading&gt;
-                    Loading recipes...
+                    &lt;mat-spinner&gt;&lt;/mat-spinner&gt;
                   &lt;/ng-template&gt;<span sstep='3+'>
                 &lt;/mat-card&gt;
               &lt;/ng-template&gt; </span>
@@ -1745,10 +1754,13 @@
         <section>
           <h3>that's all folks</h3>
           <ul>
-            <li>...but not today, we'll tackle this when talking about state and applying more advanced rxjs operators</li>
             <li>
-              so that's it for today, we covered a bit of reactive programming and
-              how to perform http requests
+              ...but not today, we'll tackle this when talking about state and
+              applying more advanced rxjs operators
+            </li>
+            <li>
+              so that's it for today, we covered a bit of reactive programming
+              and how to perform http requests
             </li>
             <li>
               as an exercise try to add a trashcan button to each recipe and
@@ -1779,7 +1791,7 @@
         height: '100%',
         minScale: 1,
         maxScale: 1,
-        dependencies:[
+        dependencies: [
           {
             src: 'plugin/highlight/highlight.js',
             async: true,
