@@ -74,6 +74,7 @@ const CodeStepper =
         this.highlightFirstShown = true;
         this.codeExplanations = new Map(); // map key is a Range object, value the explanation itself
         this.maxIndex = 0;
+        this.cssId = undefined; // remember id and add it to first slide when splitting
         [this.header, this.code, this.footer] = this.splitSection(sectionEl);
         this._convertedSections = null;
       }
@@ -87,6 +88,7 @@ const CodeStepper =
         let footer = [];
         sectionEl.childNodes.forEach(child => {
           if (child.nodeType === 1 && child.hasAttribute('codesteps')) {
+            this.cssId = sectionEl['id'];
             if (child.hasAttribute('no-highlight-first')) {
               this.highlightFirstShown = false;
             }
@@ -200,6 +202,10 @@ const CodeStepper =
 
       createSectionForIndex(idx) {
         let newSection = document.createElement('section');
+        if (idx === 1 && this.cssId) {
+          // add idd only to first slide
+          newSection['id'] = this.cssId;
+        }
         const transition =
           idx == 1 ? 'slide-in none' : idx == this.maxIndex ? 'none' : 'none'; // "none slide-out" for last slide flickers, something with revealjs...
         newSection.setAttribute('data-transition', transition);

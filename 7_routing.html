@@ -45,6 +45,50 @@
           </footer>
         </section>
         <section>
+          <h3>overview</h3>
+          <ol style='font-size: 80%'>
+            <li>
+              <a href="#/intro">intro</a> <br /><span style="font-size: 0.7em">
+                what are routing and modules and why do we need them
+              </span>
+            </li>
+            <li><a href="#/prepare-recipe-app">prepare recipe app</a><br /><span style="font-size: 0.7em">
+                refactor the existing app to prepare it for routing
+              </span>
+            </li>
+            <li><a href="#/first-routes">first routes</a><br /><span style="font-size: 0.7em">
+                add the first few routes to the app module
+              </span>
+            </li>
+            <li>
+              <a href="#/material-navigation">material design navigation</a>
+              <br /><span style="font-size: 0.7em">
+                install a response navigation element from material design
+                </span>
+              </li>
+            <li><a href="#/routing-module">separate routing module</a><br /><span style="font-size: 0.7em">
+              split of routing to a separate module
+              </span>
+            </li>
+            <li><a href="#/feature-modules">feature modules</a><br /><span style="font-size: 0.7em">
+              introduce feature modules, for recipe and material design
+              </span>
+            </li>
+            <li><a href="#/parameter-prefetching">parameter prefetching</a><br /><span style="font-size: 0.7em">
+              prefetch parameters from parameterized routes
+              </span>
+            </li>
+            <li><a href="#/lazy-loading">lazy loading</a><br /><span style="font-size: 0.7em">
+              lazy load feature modules
+              </span>
+            </li>
+            <li><a href="#/prefetch-lazy-loading">prefetch lazy loading</a><br /><span style="font-size: 0.7em">
+              prefetch (certain) lazy loaded modules
+              </span>
+            </li>
+          </ol>
+        </section>
+        <section id="intro">
           <h3>routing</h3>
           <ul>
             <li>
@@ -92,7 +136,7 @@
             </li>
           </ul>
         </section>
-        <section>
+        <section id="prepare-recipe-app">
           <h3>recipe app</h3>
           <ul>
             <li>
@@ -191,7 +235,7 @@
             </div>
           </div>
         </section>
-        <section>
+        <section id="first-routes">
           <h3>routermodule</h3>
           <div codesteps>
             <pre
@@ -306,7 +350,7 @@
             </div>
           </div>
         </section>
-        <section>
+        <section id="material-navigation">
           <h3>navigation</h3>
           <ul>
             <li>
@@ -435,7 +479,7 @@
             </div>
           </div>
         </section>
-        <section>
+        <section id="routing-module">
           <h3>routing module</h3>
           <ul>
             <li>
@@ -499,7 +543,7 @@
             </div>
           </div>
         </section>
-        <section>
+        <section id="feature-modules">
           <h3>modules</h3>
           <ul>
             <li>
@@ -713,8 +757,7 @@
             </div>
           </div>
         </section>
-
-        <section>
+        <section id="route-parameters">
           <h3>route parameters</h3>
           <ul>
             <li>
@@ -871,7 +914,7 @@ installing component
             </li>
           </ul>
         </section>
-        <section>
+        <section id="parameter-prefetching">
           <h3>route parameter prefetching</h3>
           <div codesteps>
             <pre>src/app/recipe/recipe.module.ts<code data-noescape data-trim>
@@ -979,7 +1022,7 @@ installing component
             </div>
           </div>
         </section>
-        <section>
+        <section id="lazy-loading">
           <h3>module lazy loading</h3>
           <ul>
             <li>
@@ -1141,9 +1184,15 @@ export class RecipeModule {}
               </span>
               <span step="2">
                 we simply add a route to our prefix path, and add the
-                <span class='ilcode'>loadChildren</span> key too, with the feature module we want to load
+                <span class="ilcode">loadChildren</span> key too, with the
+                feature module we want to load
               </span>
-              <span step='2'>we'll also adapt the RecipeModule paths to no longer use the <span class='ilcode'>recipe/</span> prefix for each path, we don't want to have to surf to <span class='ilcode'>recipe/recipe/list</span></span>
+              <span step="2"
+                >we'll also adapt the RecipeModule paths to no longer use the
+                <span class="ilcode">recipe/</span> prefix for each path, we
+                don't want to have to surf to
+                <span class="ilcode">recipe/recipe/list</span></span
+              >
               <span step="3">
                 notice that I updated the redirect path too, to the new path
                 layout
@@ -1164,7 +1213,7 @@ export class RecipeModule {}
             </div>
           </div>
         </section>
-        <section>
+        <section id="prefetch-lazy-loading">
           <h3>prefetch lazy loading</h3>
           <div codesteps>
             <pre
@@ -1218,9 +1267,9 @@ export class RecipeModule {}
             <pre
               class="typescript"
             >src/app/app-routing/SelectivePreloadStrategy.ts<code data-noescape data-trim>
-  import { PreloadingStrategy<span sstep='2+'>, Route</span> } from '@angular/router';<span sstep='3+'>
-  import { Observable, of } from 'rxjs';
   import { Injectable } from '@angular/core';
+  import { PreloadingStrategy<span sstep='2+'>, Route</span> } from '@angular/router';<span sstep='3+'>
+  import { Observable, of } from 'rxjs';</span>
   
   @Injectable({ providedIn: 'root' })
   export class SelectivePreloadStrategy implements PreloadingStrategy {
@@ -1283,7 +1332,8 @@ export class RecipeModule {}
                 everything
               </span>
               <span step="3">
-                restart and once more remove default redirect to recipe/list to see this in action
+                restart and once more remove default redirect to recipe/list to
+                see this in action
                 <a href="http://localhost:4200/">let's try this</a>
               </span>
             </div>
