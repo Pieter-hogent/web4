@@ -973,7 +973,9 @@ installing component
           <h3>recipe resolver</h3>
           <div codesteps>
             <pre><code data-noescape data-trim>
-  @Injectable()
+  @Injectable({
+    providedIn: 'root'
+  })
   export class RecipeResolver<span sstep='2-5'> implements Resolve&lt;Recipe&gt;</span> {<span sstep='4-5'> 
     constructor(private recipeService: RecipeDataService) {}
   </span><span sstep='3-5'> 
