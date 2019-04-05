@@ -40,7 +40,18 @@
           <h2>title</h2>
           <footer class="footer">quote</footer>
         </section>
-        <section></section>
+        <section>
+          <h3>overview</h3>
+          <ol style="font-size: 80%">
+            <li>
+              <a href="#/intro">intro</a> <br /><span style="font-size: 0.7em">
+              </span>
+            </li>
+          </ol>
+        </section>
+        <section id="intro">
+          <h3></h3>
+        </section>
       </div>
     </div>
 
@@ -62,10 +73,6 @@
             callback: function() {
               hljs.initHighlightingOnLoad();
 
-              // during slide creation, always start at last slide
-              var indices = Reveal.getIndices(
-                document.getElementById('sectionID')
-              );
               // comment line underneath to start at slide 1
               Reveal.slide(Reveal.getTotalSlides());
             }
