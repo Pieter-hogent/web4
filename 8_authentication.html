@@ -47,13 +47,75 @@
           <h3>overview</h3>
           <ol style="font-size: 80%">
             <li>
-              <a href="#/intro">intro</a> <br /><span style="font-size: 0.7em">
+              <a href="#/intro">intro</a> <br />
+              <span style="font-size: 0.7em"
+                >what do we need at the frontend
+              </span>
+            </li>
+            <li>
+              <a href="#/authservice">authentication service</a> <br />
+              <span style="font-size: 0.7em">
+                provide access to all the backend routes involving
+                authentication
+              </span>
+            </li>
+            <li>
+              <a href="#/registerform">register form</a> <br />
+              <span style="font-size: 0.7em">
+                a form where users can create an account
+              </span>
+            </li>
+            <li>
+              <a href="#/serversidevalidation"> server side validation </a>
+              <br />
+              <span style="font-size: 0.7em">
+                something new w.r.t. forms, do validation at the server side
+              </span>
+            </li>
+            <li>
+              <a href="#/authheaders"> authorization headers </a>
+              <br />
+              <span style="font-size: 0.7em">
+                how to pass the jwt token with each request
+              </span>
+            </li>
+            <li>
+              <a href="#/authguard"> authentication guard </a>
+              <br />
+              <span style="font-size: 0.7em">
+                make parts of the application inaccessible for users who are not
+                logged in
               </span>
             </li>
           </ol>
         </section>
         <section id="intro">
           <h3>what do we need?</h3>
+          <ul>
+            <li>
+              our backend has a login and register route, and all but the GET
+              routes are protected with jwt token authorization
+            </li>
+            <li>at the frontend we need:</li>
+            <ul>
+              <li>an authentication service to talk to these routes</li>
+              <li>a register and login component</li>
+              <li>show in our navigation bar who's logged in</li>
+              <li>
+                a way to limit access to parts of our app which the users can't
+                use if they're not logged in anyway
+              </li>
+            </ul>
+            <li>
+              since most stuff involving the forms and service are old hat by
+              now, we'll only highlight the authentication specific parts in
+              these slides, the full working code can, as always, be found at
+              the
+              <a href="http://github.com/pieter-hogent/recipeapp"
+                >recipeapp github</a
+              >
+            </li>
+          </ul>
         </section>
         <section>
           <div codesteps>
@@ -80,7 +142,7 @@
             </div>
           </div>
         </section>
-        <section>
+        <section id="authservice">
           <h3>authentication service</h3>
           <div codesteps>
             <pre
@@ -262,7 +324,7 @@
             </div>
           </div>
         </section>
-        <section>
+        <section id="registerform">
           <h3>register form</h3>
           <div codesteps>
             <pre
@@ -331,7 +393,7 @@
             </div>
           </div>
         </section>
-        <section>
+        <section id="serversidevalidation">
           <h3>server side validation</h3>
           <div codesteps>
             <pre
@@ -369,7 +431,7 @@
           </div>
         </section>
         <section>
-          <h3>user name availability in nodejs</h3>
+          <h3>user name availability at the backend</h3>
           <div codesteps>
             <pre
               class="csharp"
@@ -471,7 +533,7 @@
             </div>
           </div>
         </section>
-        <section>
+        <section id="authheaders">
           <h3>authorization headers</h3>
           <ul>
             <li>
@@ -612,7 +674,7 @@
             </div>
           </div>
         </section>
-        <section>
+        <section id="authguard">
           <h3>auth guard</h3>
           <div codesteps>
             <pre
