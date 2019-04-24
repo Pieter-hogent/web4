@@ -1,0 +1,924 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>9. state</title>
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="lib/css/atom-one-light.css" />
+
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/hogent.css" />
+
+    <!-- pieter overrides -->
+    <link rel="stylesheet" href="plugin/codestepper/codestepper.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? 'css/print/pdf.css'
+        : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="title-slide">
+          <h2>State</h2>
+          <footer class="footer">
+            "Deleted code is debugged code." - Jeff Sickel
+          </footer>
+        </section>
+        <section>
+          <h3>overview</h3>
+          <ol style="font-size: 80%">
+            <li>
+              <a href="#/intro"> different kinds of state </a> <br />
+              <span style="font-size: 0.7em"> </span>
+            </li>
+            <li>
+              <a href="#/state_problems"> problems with state </a> <br />
+              <span style="font-size: 0.7em"> </span>
+            </li>
+            <li>
+              <a href="#/urlvslocalclient"> url vs local client state</a> <br />
+              <span style="font-size: 0.7em"> </span>
+            </li>
+          </ol>
+        </section>
+        <section id="intro">
+          <h3>intro</h3>
+        </section>
+        <section>
+          <div class="fragment" svg-step>
+            <svg
+              id="svg"
+              class="svg-section"
+              width="100%"
+              height="100%"
+              preserveAspectRatio="xMidYMid"
+              snapfile="img/classic_vs_spa.svg"
+            >
+              <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
+            </svg>
+          </div>
+        </section>
+        <section>
+          <h3>what changed?</h3>
+          <ul>
+            <li>
+              there used to be no 'real' client side state, everything had to be
+              encoded in the url / cookie since the client side was overwritten
+              with every request
+            </li>
+            <li>
+              whatever you kept in arrays or classes in javascript was gone when
+              the next request was made, the javascript got completely reloaded
+            </li>
+            <li>
+              with an SPA the client becomes persistent too; we adapt an
+              existing page with json coming from the server, but the javascript
+              is not reloaded
+            </li>
+            <li>
+              we can now hold a cache of the server state, and some client
+              specific state on top of that
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>5 kinds of state</h3>
+          <p>state is stored, and duplicated, at various places in our app</p>
+          <ul>
+            <li>server state</li>
+            <li>persistent client state</li>
+            <li>local client state</li>
+            <li>url (or router) state</li>
+            <li>transient client state</li>
+          </ul>
+        </section>
+        <section>
+          <h3>server state</h3>
+          <ul>
+            <li>
+              typically some sort of database which stores info about every user
+              and every aspect of our webapp
+            </li>
+            <li>
+              providing efficient and correct access to this state is a (really)
+              hard problem in itself (sharding, CDN, ...) but not the topic of
+              today
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>persistent client state</h3>
+          <ul>
+            <li>
+              this is a subset of the server state on our client, often limited
+              to the current user and what she has done and seen till now
+            </li>
+            <li>
+              while 'in the end' you want the server and persistent client state
+              to be the same, at certain points in time they can (and will)
+              differ
+              <ul>
+                <li>
+                  server can be ahead: the client still needs a 'refresh'
+                </li>
+                <li>
+                  the client can also be ahead, optimisticly showing updates
+                  which still need to happen on the server
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>local client state</h3>
+          <ul>
+            <li>
+              client state that is NOT stored on the server
+            </li>
+            <li>
+              things like a local filter, sort settings on a table, ...
+            </li>
+            <li>
+              usually (but not limited to) stuff that changes the way you view
+              the data from the server
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>url (router) state</h3>
+          <ul>
+            <li>
+              reflects both the persistent and the local client state
+            </li>
+            <li>
+              very important that it always reflects what the user sees, people
+              expect bookmarking, back/forward and copying links to work
+            </li>
+            <li>
+              always keep in mind users can (and will) alter the url to navigate
+              your app, this should always work correctly
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>transient client state</h3>
+          <ul>
+            <li>
+              less important, but some things that are part of your state will
+              not be reflected in the url or on the server
+            </li>
+            <li>
+              the canonical example: if you pause a youtube video, switch to
+              another window and switch back, you can continue playing where you
+              left of, but this is nowhere reflected neither on the server nor
+              in the url
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>syncing state</h3>
+          <img
+            width="900px"
+            height="630px"
+            src="img/state_sync.png"
+            style="background:none; border:none; box-shadow:none;"
+            alt="state synchronization"
+          />
+        </section>
+        <section id="state_problems">
+          <h3>problems with state</h3>
+          <ul>
+            <li>
+              in a single user, synchronous world, where everything a computer
+              does happens instantenously, there wouldn't be problems with
+              keeping state
+            </li>
+            <li>
+              but keeping state means syncing state, and syncing state
+              flawlessly in an asynchronous world is
+              <i>hard</i>
+            </li>
+            <ul>
+              <li>
+                multiple sync requests can happen simultaneously, overwriting
+                (and hence negating) eachother
+              </li>
+              <li>
+                delayed requests can result in out of order syncing, resulting
+                in inconsistent state
+              </li>
+            </ul>
+          </ul>
+        </section>
+        <section id="urlvslocalclient">
+          <h3>URL vs local client state</h3>
+          <ul>
+            <li>
+              as a first example, let's adapt our recipe list component so that
+              the url reflects what's typed in the filter input field, and vice
+              versa,
+            </li>
+            <img
+              width="400px"
+              height="250px"
+              src="img/filter_url_sync.png"
+              alt=""
+            />
+            <li>
+              we'll adapt the server side as well, and do the filtering there
+              (requesting everything and applying client side filtering was
+              never a good idea)
+            </li>
+            <li>
+              and we'll cache these server results in our recipe list component;
+              obviously we need state in order to have problems with state!
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>recipe list component</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/recipe/recipe-list/recipe-list.component.ts <code class='codesteps' data-noescape data-trim>
+                export class RecipeListComponent implements OnInit {
+                  public filterRecipeName: string<span hstep='1'> = ''</span>;
+                  <span hstep='2'>public recipes: Recipe[];</span>
+                  
+                  constructor(<span sstep='3'>
+                    private _recipeDataService: RecipeDataService,
+                    private _router: Router,
+                    private _route: ActivatedRoute
+                  </span><span sstep='4+'>...</span> ) {}
+               
+                  ngOnInit() {
+                  <span sstep='4+'>  this.filterRecipe$
+                      .pipe(<span sstep='4-6'>
+                        distinctUntilChanged(),
+                        debounceTime(250)
+                      </span><span sstep='7+'>...</span>)
+                      .subscribe(<span sstep='5-6'>val => {
+                        const params = val ? { queryParams: { filter: val } } : undefined;
+                        <span hstep='6'>this._router.navigate(['/recipe/list'], params);</span>
+                      </span><span sstep='7+'>...</span>});</span>
+                
+                  <span sstep='7+'>  this._route.queryParams.subscribe(params => {
+                      this._recipeDataService
+                        .<span hstep='8'>getRecipes$(params['filter'])</span>
+                        .subscribe(val => (this.recipes = val));
+                      <span hstep='9'>if (params['filter']) {
+                        this.filterRecipeName = params['filter'];
+                      }</span>
+                    });</span>
+                  }
+                }
+                 
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                we'll update the input field based on the url, so we start with
+                an empty string (and not <span class="ilcode">undefined</span>),
+                and use this as
+                <span class="ilcode">[value]='filterRecipeName'</span> in the
+                html</span
+              >
+              <span step="2"
+                >we'll also keep a local copy of the result of a query</span
+              >
+              <span step="2"
+                >so we no longer async pipe subscribe to a result, but actively
+                subscribe and copy the results</span
+              >
+              <span step="3"
+                >in order to cope with the query parameters in the url, and to
+                be able to change the url if the filter changes, we need access
+                to both the <span class="ilcode">ActivatedRoute</span> and the
+                <span class="ilcode">Router</span></span
+              >
+              <span step="4"
+                >we still subscribe to the
+                <span class="ilcode">filterRecipe$</span>, which emits a value
+                every time a <span class="ilcode">keyup</span> happens in our
+                filter input filed</span
+              >
+              <span step="5">
+                but instead of filtering the recipes based on this value, or
+                requesting a filtered list from the data service, we update the
+                url to reflect this filter
+              </span>
+              <span step="6"
+                >the url becomes the 'source of truth', based on what the url
+                contains we show a filtered list, when the filter changes we
+                update the url and have the router show this new url
+              </span>
+              <span step="7">
+                updating based on the url is done by subscribing to the
+                <span class="ilcode">queryParams</span> of the route
+              </span>
+              <span step="8"
+                >we call the new
+                <span class="ilcode">getRecipe$(name, chef, ingredient)</span>
+                function on our data service, which gets us the filtered
+                results</span
+              >
+              <span step="9"
+                >and we set the contents of the input field based on the query
+                parameters (to be consistent when someone copy pastes or changes
+                the url)
+              </span>
+              <span step="10"
+                >note that this doesn't result in an endless loop, we listen to
+                keyup events to trigger routing to a new url, not to changes of
+                the value of the input field</span
+              >
+              <span step="11"
+                >if we
+                <a href="http://localhost:4200">try this out</a> everything
+                appears to work correctly</span
+              >
+              <span step="11">but...</span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>URL vs local client state</h3>
+          <div class="fragment" svg-step>
+            <svg
+              id="svg1"
+              class="svg-section"
+              width="100%"
+              height="100%"
+              preserveAspectRatio="xMidYMid"
+              snapfile="img/url-local-statesync.svg"
+            >
+              <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
+            </svg>
+          </div>
+        </section>
+        <section>
+          <h3>URL vs local client state</h3>
+          <div codesteps no-highlight-first>
+            <pre
+              class="javascript"
+            >cypress/integration/recipelist.spec.js <code class='codesteps' data-noescape data-trim>
+                  it('delayed response brings state out of sync', () => {
+                    <span sstep='2-7'>cy.server();
+                    cy.route({
+                      method: 'GET',
+                      url: '<span hstep='3'>/api/recipes</span>',
+                      status: 200,
+                      response: '<span hstep='3'>fixture:recipes.json</span>'
+                    });
+                    cy.route({
+                      <span hstep='6'>delay: 2000</span>,
+                      method: 'GET',
+                      url: '/api/recipes/<span hstep='4'>?name=sp</span>',
+                      status: 200,
+                      response: 'fixture:spaghetti.json'
+                    })<span hstep='7'>.as('getSPrecipes')</span>;
+                    cy.route({
+                      method: 'GET',
+                      url: '/api/recipes/<span hstep='5'>?name=la</span>',
+                      status: 200,
+                      response: 'fixture:lasagna.json'
+                    })<span hstep='7'>.as('getLArecipes')</span>;</span><span sstep='8+'>
+                    // ... all the stub routes
+
+                    cy.visit('/');
+                    <span hstep='8'>cy.get('[data-cy=filterInput]').type('sp')</span>;
+                    <span hstep='9'>cy.wait(300);</span>
+                    <span hstep='8'>cy.get('[data-cy=filterInput]').type('{backspace}{backspace}la')</span>;
+                    <span hstep='10'>cy.wait(['@getSPrecipes', '@getLArecipes']);</span>
+                    cy.get('[data-cy=recipeCard]').should('have.length', 1);
+                    <span hstep='11'>cy.get('[data-cy=recipe-title]').should('contain', 'Lasagna');</span></span>
+                  });
+          </code></pre>
+            <div explanation>
+              <span step="1">
+                it used to be very cumbersome to see these errors in your code
+              </span>
+              <span step="1">
+                but not anymore, cypress makes testing this (and seeing it fail)
+                rather easy
+              </span>
+              <span step="2"> we start with stubbing some requests </span>
+              <span step="3">
+                GET of all recipes returns the fixture we defined earlier,
+                containing a recipe for spaghetti, lasagne and risotto
+              </span>
+              <span step="4">
+                the GET of the same url, but with a queryparameter containing
+                'sp', returns a new fixture containing only the spaghetti
+                recipe</span
+              >
+              <span step="5">
+                finally, the GET with the 'la' query parameter returns the
+                lasagna recipe</span
+              >
+              <span step="6">
+                notice how we added a delay to the 'sp' request, but not the
+                others
+              </span>
+              <span step="6">
+                this is what makes it possible to test this scenario
+              </span>
+
+              <span step="7"
+                >also note how we gave the requests a name, this makes it easier
+                to wait for them to complete (rather than wait an arbitrary long
+                enough time)
+              </span>
+              <span step="7">
+                now all that's left is performing two searches</span
+              >
+              <span step="8"
+                >nothing new here, select the input field and type 'sp',
+                followed with typing 'la'</span
+              >
+              <span step="9">
+                we wait 300ms between typing, because our filter has a
+                <span class="ilcode">debounceTime(250)</span>, otherwise this
+                would be seen as one search
+              </span>
+              <span step="10">wait till all requests are done </span>
+              <span step="11">
+                and now check that the 'lasagna' recipe is shown</span
+              >
+              <span step="11">
+                this last test should fail with our current code</span
+              >
+              <span step="11">
+                <a href="http://localhost:4200">let's try this out</a></span
+              >
+            </div>
+          </div>
+        </section>
+        <section id="persistentvsserver">
+          <h3>local persistent vs server state</h3>
+          <ul>
+            <li>
+              before we talk about coping with these issues, lets look at a
+              second potential problem, which involves syncing persistent and
+              server state
+            </li>
+            <li>
+              to see this problem at work, I've added a bit of server and client
+              side code, to allow the users to rate recipes
+            </li>
+            <li>let's look at some code highlights</li>
+          </ul>
+        </section>
+        <section>
+          <h3>rate recipes</h3>
+          <div codesteps no-highlight-first>
+            <pre
+              class="typescript"
+            > src/app/recipe/recipe-list/recipe-list.component.ts  <code class='codesteps' data-noescape data-trim>
+              this._recipeDataService.getRecipes$(params['filter'])
+                .subscribe(val => {
+                  this.recipes = val;<span sstep='2+'>
+                  this._recipeDataService
+                    .<span hstep='3'>getRecipeRatings(this.recipes)</span>
+                    .subscribe((ratingList: any[]) => {
+                      for (const oneRating of ratingList) {
+                       <span hstep='4'> const { id, rating } = oneRating;
+                        this.recipes.find(rec => rec.id === id).rating = rating;</span>
+                      }
+                    });</span>
+                });
+          </code></pre>
+            <div explanation>
+              <span step="1">
+                each user can have her own ratings, so we'll show the currently
+                logged in user her ratings
+              </span>
+              <span step="2">
+                getting recipes is an
+                <span class="ilcode">[AllowAnonymous]</span> route at our
+                backend, so we can't get the recipes + ratings in one request
+              </span>
+              <span step="3">
+                so we'll do a second service call, asking for all the ratings of
+                the recipes we received
+              </span>
+              <span step="4">
+                and based on these results we'll update our recipes with the
+                ratings
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>rate recipes</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/recipe/recipe-data.service.ts <code class='codesteps' data-noescape data-trim>
+                getRecipeRatings(<span hstep='2'>recipes: Recipe[]</span>): Observable&lt;any&gt; {
+                    const idQueryParam = <span hstep='2'>recipes.map(rec => `id=${rec.id}`).join('&')</span>;
+                    return this.http.get(
+                      <span hstep='3'>`${environment.apiUrl}/recipes/rated/?${idQueryParam}`</span>
+                    );
+                  } 
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                the getRecipeRatings in our service doesn't entail much
+              </span>
+              <span step="2">
+                based on the recipes provided, we construct a query param with
+                all their id's</span
+              >
+              <span step="2">
+                passing multiple query parameters with the same name is done by
+                chaining them, e.g. <span class="ilcode">?id=1&id=3&id=4</span>
+              </span>
+              <span step="3">
+                notice that we don't pass any user info explicitly here,
+                although asking for a recipe's rating only makes sense when
+                linked to a user</span
+              >
+              <span step="4">
+                that's because the user is added in the HttpHeader added via the
+                interceptor we created last chapter</span
+              >
+              <span step="4">
+                so the Bearer token will contain all info about the user the
+                backend needs, there's no need to redundantly add this again
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>rate recipes</h3>
+          <div codesteps no-highlight-first>
+            <pre
+              class="csharp"
+            > RecipeApi/Controllers/RecipesController.cs <code class='codesteps' data-noescape data-trim>
+                [HttpGet("Rated")]
+                public IEnumerable&lt;RatedRecipeDTO&gt; GetRatedRecipes(
+                  [FromQuery(Name = "id")] int[] recipeIds)
+                {<span sstep='3-4'>
+                    Customer customer = _customerRepository.GetBy(User.Identity.Name);
+                    List&lt;RatedRecipeDTO&gt; ratedRecipes = new List&lt;RatedRecipeDTO&gt;();
+                    <span hstep='3'>foreach (var ratedRecipe in 
+                      customer.RatedRecipes.Where(p => recipeIds.Contains(p.Key.Id)))</span>
+                    {
+                        ratedRecipes.Add(<span hstep='4'>
+                          new RatedRecipeDTO(ratedRecipe.Key, ratedRecipe.Value)</span>);
+                    }
+                    return ratedRecipes;</span>
+                }
+        
+                [HttpPut("Rate/{id}/{rating}")]
+                public ActionResult&lt;RatedRecipeDTO&gt; RateRecipe(int id, int rating)
+                {<span sstep='5+'>
+                    Customer customer = _customerRepository.GetBy(User.Identity.Name);
+                    Recipe recipe = _recipeRepository.GetBy(id);
+                    if (recipe == null)
+                    {
+                        return NotFound();
+                    }
+                    <span hstep='6'>customer.RateRecipe(recipe, rating);</span>
+                    _customerRepository.SaveChanges();
+                    return <span hstep='7'>new RatedRecipeDTO(recipe, rating)</span>;</span>
+                }
+         
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                at the backend we added two new routes, one to get ratings, one
+                to rate
+              </span>
+              <span step="2">
+                nothing you haven't learned in Web3 already, it involves adding
+                a many-to-many relationship between users and recipes, and
+                associating a (integer) rating with each link
+              </span>
+              <span step="3">
+                retreiving the ratings involves filtering all ratings based on
+                the query id parameters</span
+              >
+              <span step="4">
+                and converting the result into an array with (id, rating) pairs
+              </span>
+              <span step="4">
+                something of the form
+                <span class="ilcode"
+                  >[{"id": 1, "rating": 4}, {"id": 2, "rating": 3}]</span
+                ></span
+              >
+              <span step="5"
+                >rating a recipe by a user is done using a put request with the
+                recipe id and rating as parameter
+              </span>
+              <span step="6"
+                >the 'real' work is done inside the customer class, it's done by
+                removing any previous ratings for this user from the join table,
+                and adding a new one</span
+              >
+              <span step="7"> if we succeed we return the rating we set </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>rate recipes</h3>
+          <div codesteps>
+            <pre
+              class="css"
+            > src/app/rating/rating.component.css <code class='codesteps' data-noescape data-trim>
+.rating:not(:checked) > label:before {
+  content: '★ ';
+}
+
+.rating > input:checked ~ label {
+  color: #f70;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: gold;
+}
+
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+  color: #ea0;
+} 
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                showing the rating is done using a small new component which
+                will display five input radio buttons
+              </span>
+              <span step="1">
+                most of this component is css, showing a star and coloring it on
+                hover and click
+              </span>
+              <span step="2">
+                each input radio button responds to clicks and will emit an
+                event which is captured by the recipe component who uses this
+                rating component
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>rate recipes</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/recipe/recipe/recipe.component.ts <code class='codesteps' data-noescape data-trim>
+                export class RecipeComponent implements OnInit {
+                  @Input() public recipe: Recipe;
+                
+                  constructor(private _recipeDataService: RecipeDataService) {}
+                
+                  adjustRating(clickObj: any): void {
+                    this._recipeDataService
+                      .rateRecipe(this.recipe, this.recipe.rating)
+                      .subscribe(
+                        () => {
+                          <span hstep='2'>this.recipe.rating = clickObj.rating;</span>
+                        }<span sstep='3+'>,
+                        () => {
+                          this.recipe.rating = 0;
+                        }</span>
+                      );
+                  }
+                }
+                 
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                when such a click occurs the recipe will call the rate recipe
+                route through our service
+              </span>
+              <span step="2">
+                we set our rating with the response from the server, if all went
+                correctly this is obviously the same rating we passed in the
+                first place</span
+              >
+              <span step="2">but what if it fails?</span>
+              <span step="3">
+                we'll add an error handler as well, and set the rating to 0 is
+                setting the rating failed
+              </span>
+              <span step="4">
+                we don't want to show four stars highlighted if setting the
+                rating failed
+              </span>
+              <span step="4">
+                the user would think his rating was set, while it wasn't
+              </span>
+              <span step="5">
+                <a href="http://localhost:4200">let's see this in action</a>
+              </span>
+              <span step="5"> once more, it will appear to work, but... </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>persistent local vs server state</h3>
+          <div class="fragment" svg-step>
+            <svg
+              id="svg2"
+              class="svg-section"
+              width="100%"
+              height="100%"
+              preserveAspectRatio="xMidYMid"
+              snapfile="img/persistent-server-state.svg"
+            >
+              <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
+            </svg>
+          </div>
+        </section>
+        <section>
+          <h3>persistent local vs server state</h3>
+          <div codesteps no-highlight-first>
+            <pre
+              class="javascript"
+            > cypress/integration/ratingsync.spec.js <code class='codesteps' data-noescape data-trim>
+                  it('delayed response brings state out of sync', () => {
+                  <span sstep='2-3'>
+                    cy.server();
+                    cy.route({
+                      method: 'GET',
+                      url: '/api/recipes',
+                      status: 200,
+                      response: 'fixture:recipes.json'
+                    });
+                    cy.route({
+                      method: 'GET',
+                      <span hstep='2'>url: '/api/recipes/rated/?id=1&id=2&id=3',</span>
+                      status: 200,
+                      response: [
+                        { id: 1, rating: 0 },
+                        { id: 2, rating: 2 },
+                        { id: 3, rating: 1 }
+                      ]
+                    });</span><span sstep='4'>
+                    cy.route({
+                      method: 'PUT',
+                      url: '/api/recipes/rate/1/4',
+                     <span hstep='4'> status: 500,</span>
+                      response: ''
+                    }).as('rateFail');
+                    cy.route({
+                      method: 'PUT',
+                      url: '/api/recipes/rate/1/2',
+                      status: 200,
+                      response: ''
+                    }).as('rateSucceed');</span><span sstep='5+'>
+                    // stubs for the routes
+
+                    cy.visit('/');
+                    cy.get('[data-cy=rate_4]')
+                      <span hstep='7'>.first()</span>
+                      .click();
+                    cy.get('[data-cy=rate_2]')
+                      <span hstep='7'>.first()</span>
+                      .click();
+                    cy.wait(['@rateFail', '@rateSucceed']);
+                    cy.get('[data-cy=input_2]')
+                      <span hstep='7'>.first()</span>
+                      <span hstep='6'>.should('be.checked');</span></span>
+                  });
+                });
+                 
+          </code></pre>
+            <div explanation>
+              <span step="1">
+                once more, the easiest way to see the error ocurring is using
+                cypress
+              </span>
+              <span step="2"
+                >we start by stubbing some routes to have a starting point when
+                loading the pages, our recipes fixture we always return</span
+              >
+              <span step="3">
+                but now also a route which returns ratings for the current user
+                for those three recipes</span
+              >
+              <span step="4">
+                then we stub two rate routes, both rating recipe 1, but the one
+                rating 4 stars fails with an error 500
+              </span>
+              <span step="5">
+                the test then, involves loading the page, clicking the fourth
+                star followed by the second
+              </span>
+              <span step="6">
+                which should result in the second one being 'checked' (since
+                that one returns a 200), but obviously this will fail with our
+                current code</span
+              >
+              <span step="7">
+                note the use of <span class="ilcode">.first()</span>, since this
+                rating component is used three times on the page, there are
+                multiple elements with the same
+                <span class="ilcode">data-cy</span> on the page</span
+              >
+              <span step="8">
+                <a href="http://localhost:4200">let's check this out</a></span
+              >
+            </div>
+          </div>
+        </section>
+        <!-- <section>
+          <h3>that's it! We're done</h3>
+          <img
+            src="img/windows95_launch.gif"
+            alt="win95 launch party gif"
+            width="600"
+            height="450"
+          />
+          <h3>let's party like <br />it's the windows 95 launch!</h3>
+        </section>
+        <section>
+          <h3>final words</h3>
+          <div
+            style=" display: grid;
+          grid-template-columns: 33% 66%;
+          grid-gap: 10px;"
+          >
+            <div>
+              <img
+                src="img/wiske_einde.jpeg"
+                height="500"
+                width="250"
+                alt="wiske einde"
+              />
+            </div>
+            <div style="text-align: center; ">
+              <ul>
+                <li>
+                  I hope you enjoyed the course, or at the very least learned
+                  something
+                </li>
+                <li>
+                  special thanks to Ms Samyn for creating the backend code and
+                  slides, and both Ms Samyn and Mr De Cock for finding a lot of
+                  small and big mistakes in my slides and code
+                </li>
+                <li>
+                  I'd thank all students who made pull requests on the repo to
+                  fix mistakes here as well, but after three years this has
+                  happened exactly 0 times, so... maybe next year! (I'm starting
+                  to think you lot don't know how to make pull requests)
+                </li>
+                <li>finally, good luck with the exam!</li>
+              </ul>
+            </div>
+          </div>
+        </section> -->
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="plugin/codestepper/codestepper.js"></script>
+    <script>
+      // More info about config & dependencies:
+      CodeStepper.initialize();
+      Reveal.initialize({
+        controls: false,
+        slideNumber: true,
+        width: '100%',
+        height: '100%',
+        dependencies: [
+          {
+            src: 'plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+              hljs.initHighlightingOnLoad();
+
+              // comment line underneath to start at slide 1
+              Reveal.slide(Reveal.getTotalSlides());
+            }
+          },
+          { src: 'plugin/codestepper/svgstepper.js' }
+        ]
+      });
+    </script>
+    <script src="js/snap.svg.js"></script>
+  </body>
+</html>

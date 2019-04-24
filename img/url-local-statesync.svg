@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xl="http://www.w3.org/1999/xlink" width="957" height="482" version="1.1" viewBox="38 159 957 482">
+    <defs>
+        <marker id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" color="black" markerHeight="8" markerUnits="strokeWidth" markerWidth="10" orient="auto" overflow="visible" viewBox="-9 -4 10 8">
+            <g>
+                <path fill="currentColor" stroke="currentColor" stroke-width="1" d="M -8 0 L 0 3 L 0 -3 Z"/>
+            </g>
+        </marker>
+        <font-face x-height="517" ascent="951.9958" cap-height="714" descent="-212.99744" font-family="Helvetica Neue" font-size="16" font-weight="400" panose-1="2 0 5 3 0 0 0 2 0 4" slope="0" underline-position="-100" underline-thickness="50" units-per-em="1000">
+            <font-face-src>
+                <font-face-name name="HelveticaNeue"/>
+            </font-face-src>
+        </font-face>
+        <marker id="FilledArrow_Marker_2" stroke-linejoin="miter" stroke-miterlimit="10" color="black" markerHeight="6" markerUnits="strokeWidth" markerWidth="7" orient="auto" overflow="visible" viewBox="-1 -3 7 6">
+            <g>
+                <path fill="currentColor" stroke="currentColor" stroke-width="1" d="M 4.8 0 L 0 -1.8 L 0 1.8 Z"/>
+            </g>
+        </marker>
+    </defs>
+    <metadata>
+        Produced by OmniGraffle 7.10.2
+        <dc:date>
+            2019-04-17 09:59:13 +0000
+        </dc:date>
+    </metadata>
+    <g id="svgstep" fill="none" fill-opacity="1" stroke="none" stroke-dasharray="none" stroke-opacity="1">
+        <title>
+            svgstep
+        </title>
+        <g id="svgstep: 1+">
+            <title>
+                1+
+            </title>
+            <g id="Graphic_3">
+                <line x1="492.25" x2="492.25" y1="181.5" y2="638.5" fill="black"/>
+                <line x1="492.25" x2="492.25" y1="181.5" y2="638.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+            </g>
+            <g id="Line_4">
+                <line x1="42.032405" x2="43.5" y1="629.8579" y2="181.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" marker-start="url(#FilledArrow_Marker)"/>
+            </g>
+            <g id="Graphic_62">
+                <title>
+                    Line
+                </title>
+                <line x1="542" x2="899" y1="179.75" y2="179.75" fill="white"/>
+                <line x1="542" x2="899" y1="179.75" y2="179.75" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+            </g>
+        </g>
+        <g id="svgstep: 1">
+            <title>
+                1
+            </title>
+            <g id="Graphic_5">
+                <rect width="111.5" height="24" x="543" y="238.5" fill="white"/>
+                <rect width="111.5" height="24" x="543" y="238.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text fill="black" fill-opacity=".32291667" transform="translate(548 240.5)">
+                    <tspan x="0" y="15" fill="black" fill-opacity=".32291667" font-family="Helvetica Neue" font-size="16" font-weight="400">filter</tspan>
+                </text>
+            </g>
+            <g id="Graphic_63">
+                <text fill="black" transform="translate(547 159.25)">
+                    <tspan x="0" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">www.recipeapp.com/recipe/list</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="svgstep: 1-7">
+            <title>
+                1-7
+            </title>
+            <g id="Group_14">
+                <g id="Graphic_6">
+                    <rect width="128" height="150" x="543" y="335" fill="white"/>
+                    <rect width="128" height="150" x="543" y="335" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                    <text fill="black" transform="translate(548 340)">
+                        <tspan x="0" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">spaghetti</tspan>
+                    </text>
+                </g>
+                <g id="Graphic_7">
+                    <rect width="100" height="9" x="557" y="374.5" fill="#ccc"/>
+                </g>
+                <g id="Graphic_8">
+                    <rect width="100" height="9" x="557" y="395" fill="#ccc"/>
+                </g>
+                <g id="Graphic_9">
+                    <rect width="100" height="9" x="557" y="415" fill="#ccc"/>
+                </g>
+                <g id="Graphic_10">
+                    <rect width="100" height="9" x="557" y="435" fill="#ccc"/>
+                </g>
+                <g id="Graphic_11">
+                    <rect width="100" height="9" x="557" y="455" fill="#ccc"/>
+                </g>
+            </g>
+            <g id="Group_15">
+                <g id="Graphic_21">
+                    <rect width="128" height="150" x="836" y="335" fill="white"/>
+                    <rect width="128" height="150" x="836" y="335" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                    <text fill="black" transform="translate(841 340)">
+                        <tspan x="0" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">risotto</tspan>
+                    </text>
+                </g>
+                <g id="Graphic_20">
+                    <rect width="100" height="9" x="850" y="374.5" fill="#ccc"/>
+                </g>
+                <g id="Graphic_19">
+                    <rect width="100" height="9" x="850" y="395" fill="#ccc"/>
+                </g>
+                <g id="Graphic_18">
+                    <rect width="100" height="9" x="850" y="415" fill="#ccc"/>
+                </g>
+                <g id="Graphic_17">
+                    <rect width="100" height="9" x="850" y="435" fill="#ccc"/>
+                </g>
+                <g id="Graphic_16">
+                    <rect width="100" height="9" x="850" y="455" fill="#ccc"/>
+                </g>
+            </g>
+            <g id="Group_22">
+                <g id="Graphic_28">
+                    <rect width="128" height="150" x="689.5" y="335" fill="white"/>
+                    <rect width="128" height="150" x="689.5" y="335" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                    <text fill="black" transform="translate(694.5 340)">
+                        <tspan x="0" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">lasagna</tspan>
+                    </text>
+                </g>
+                <g id="Graphic_27">
+                    <rect width="100" height="9" x="703.5" y="374.5" fill="#ccc"/>
+                </g>
+                <g id="Graphic_26">
+                    <rect width="100" height="9" x="703.5" y="395" fill="#ccc"/>
+                </g>
+                <g id="Graphic_25">
+                    <rect width="100" height="9" x="703.5" y="415" fill="#ccc"/>
+                </g>
+                <g id="Graphic_24">
+                    <rect width="100" height="9" x="703.5" y="435" fill="#ccc"/>
+                </g>
+                <g id="Graphic_23">
+                    <rect width="100" height="9" x="703.5" y="455" fill="#ccc"/>
+                </g>
+            </g>
+        </g>
+        <g id="svgstep: 2">
+            <title>
+                2
+            </title>
+            <g id="Graphic_29">
+                <text fill="black" transform="translate(610.5 607.5)">
+                    <tspan x="0" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">the user types ‘sp’ in the filter input field</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="svgstep: 2-4">
+            <title>
+                2-4
+            </title>
+            <g id="Graphic_30">
+                <rect width="111.5" height="24" x="543" y="238.5" fill="white"/>
+                <rect width="111.5" height="24" x="543" y="238.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text fill="black" transform="translate(548 240.5)">
+                    <tspan x="0" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">sp</tspan>
+                </text>
+            </g>
+            <g id="Graphic_66">
+                <text fill="black" transform="translate(547 159.25)">
+                    <tspan x="0" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">www.recipeapp.com/recipe/list?filter=sp</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="svgstep: 3">
+            <title>
+                3
+            </title>
+            <g id="Graphic_31">
+                <text fill="black" transform="translate(78.778 599.052)">
+                    <tspan x="79.408" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">this results in a backend call</tspan> <tspan x="0" y="33.448" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">searching for all recipes whose name contains ‘sp’</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="svgstep: 3+">
+            <title>
+                3+
+            </title>
+            <g id="Graphic_32">
+                <rect width="218" height="46.895996" x="76.5" y="203" fill="white"/>
+                <rect width="218" height="46.895996" x="76.5" y="203" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text fill="black" transform="translate(81.5 216.448)">
+                    <tspan x="19.776" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">GET /recipes?name=sp</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="svgstep: 4-5">
+            <title>
+                4-5
+            </title>
+            <g id="Graphic_33">
+                <title>
+                    this results in a backend call searching for all recipes whose name contains ‘sp’
+                </title>
+                <text fill="black" transform="translate(131.81 599.052)">
+                    <tspan x="5115908e-19" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">for some reason this requests takes</tspan> <tspan x="55.432" y="33.448" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400"> a while to complete</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="svgstep: 5">
+            <title>
+                5
+            </title>
+            <g id="Graphic_34">
+                <title>
+                    the user types ‘sp’ in the filter input field
+                </title>
+                <text fill="black" transform="translate(598.932 599.052)">
+                    <tspan x="2.224" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">meanwhile, the user changes his mind and </tspan> <tspan x="65.52" y="33.448" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">types ‘la’ in the filter field</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="svgstep: 5+">
+            <title>
+                5+
+            </title>
+            <g id="Graphic_35">
+                <title>
+                    Rectangle
+                </title>
+                <rect width="111.5" height="24" x="543" y="238.5" fill="white"/>
+                <rect width="111.5" height="24" x="543" y="238.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text fill="black" transform="translate(548 240.5)">
+                    <tspan x="0" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">la</tspan>
+                </text>
+            </g>
+            <g id="Graphic_68">
+                <text fill="black" transform="translate(547 159.25)">
+                    <tspan x="0" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">www.recipeapp.com/recipe/list?filter=la</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="svgstep: 6">
+            <title>
+                6
+            </title>
+            <g id="Graphic_36">
+                <title>
+                    this results in a backend call searching for all recipes whose name contains ‘sp’
+                </title>
+                <text fill="black" transform="translate(67.658 599.052)">
+                    <tspan x="47.248" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">this results in a second backend request</tspan> <tspan x="5684342e-19" y="33.448" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">this time looking for recipes whose name contains ‘la’</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="svgstep: 6+">
+            <title>
+                6+
+            </title>
+            <g id="Graphic_38">
+                <rect width="218" height="46.895996" x="78" y="287" fill="white"/>
+                <rect width="218" height="46.895996" x="78" y="287" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text fill="black" transform="translate(83 300.448)">
+                    <tspan x="22.448" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">GET /recipes?name=la</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="svgstep: 7+">
+            <title>
+                7+
+            </title>
+            <g id="Graphic_39">
+                <rect width="218" height="76.396" x="79" y="391.5" fill="white"/>
+                <rect width="218" height="76.396" x="79" y="391.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text fill="black" transform="translate(84 392.802)">
+                    <tspan x="0" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">{ </tspan> <tspan x="0" y="33.448" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400"> name: ‘lasagna’,</tspan> <tspan x="0" y="51.895996" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400"> ingredients: [ … ]</tspan> <tspan x="0" y="70.34399" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">}</tspan>
+                </text>
+            </g>
+            <g id="Line_41">
+                <path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" marker-end="url(#FilledArrow_Marker_2)" d="M 167.30618 333.896 C 163.08986 341.90357 159.9022 351.83674 160 363.5 C 160.0444 368.79557 160.76285 374.05747 161.94292 379.16615"/>
+            </g>
+        </g>
+        <g id="svgstep: 7">
+            <title>
+                7
+            </title>
+            <g id="Graphic_42">
+                <title>
+                    this results in a backend call searching for all recipes whose name contains ‘sp’
+                </title>
+                <text fill="black" transform="translate(79.202 607.5)">
+                    <tspan x="682121e-18" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">somehow this second request returns immediately</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="svgstep: 8-9">
+            <title>
+                8-9
+            </title>
+            <g id="Group_43">
+                <g id="Graphic_49">
+                    <rect width="128" height="150" x="543" y="335" fill="white"/>
+                    <rect width="128" height="150" x="543" y="335" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                    <text fill="black" transform="translate(548 340)">
+                        <tspan x="0" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">lasagna</tspan>
+                    </text>
+                </g>
+                <g id="Graphic_48">
+                    <rect width="100" height="9" x="557" y="374.5" fill="#ccc"/>
+                </g>
+                <g id="Graphic_47">
+                    <rect width="100" height="9" x="557" y="395" fill="#ccc"/>
+                </g>
+                <g id="Graphic_46">
+                    <rect width="100" height="9" x="557" y="415" fill="#ccc"/>
+                </g>
+                <g id="Graphic_45">
+                    <rect width="100" height="9" x="557" y="435" fill="#ccc"/>
+                </g>
+                <g id="Graphic_44">
+                    <rect width="100" height="9" x="557" y="455" fill="#ccc"/>
+                </g>
+            </g>
+        </g>
+        <g id="svgstep: 9">
+            <title>
+                9
+            </title>
+            <g id="Graphic_51">
+                <title>
+                    this results in a backend call searching for all recipes whose name contains ‘sp’
+                </title>
+                <text fill="black" transform="translate(71.058 599.052)">
+                    <tspan x="9094947e-19" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">after some time, the original request, filtering on ‘sp’,</tspan> <tspan x="136.496" y="33.448" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">returns as well</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="svgstep: 9+">
+            <title>
+                9+
+            </title>
+            <g id="Graphic_37">
+                <rect width="218" height="76.396" x="79" y="498" fill="white"/>
+                <rect width="218" height="76.396" x="79" y="498" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text fill="black" transform="translate(84 499.302)">
+                    <tspan x="0" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">{ </tspan> <tspan x="0" y="33.448" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400"> name: ‘spaghetti’,</tspan> <tspan x="0" y="51.895996" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400"> ingredients: [ … ]</tspan> <tspan x="0" y="70.34399" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">}</tspan>
+                </text>
+            </g>
+            <g id="Line_52">
+                <path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" marker-end="url(#FilledArrow_Marker_2)" d="M 294.5 249.896 C 294.5 249.896 345.29174 313.6527 346 385.5 C 346.51902 438.1506 319.96366 477.0028 305.7361 494.0058"/>
+            </g>
+        </g>
+        <g id="svgstep: 10+">
+            <title>
+                10+
+            </title>
+            <g id="Group_53">
+                <g id="Graphic_59">
+                    <rect width="128" height="150" x="543" y="335" fill="white"/>
+                    <rect width="128" height="150" x="543" y="335" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                    <text fill="black" transform="translate(548 340)">
+                        <tspan x="0" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">spaghetti</tspan>
+                    </text>
+                </g>
+                <g id="Graphic_58">
+                    <rect width="100" height="9" x="557" y="374.5" fill="#ccc"/>
+                </g>
+                <g id="Graphic_57">
+                    <rect width="100" height="9" x="557" y="395" fill="#ccc"/>
+                </g>
+                <g id="Graphic_56">
+                    <rect width="100" height="9" x="557" y="415" fill="#ccc"/>
+                </g>
+                <g id="Graphic_55">
+                    <rect width="100" height="9" x="557" y="435" fill="#ccc"/>
+                </g>
+                <g id="Graphic_54">
+                    <rect width="100" height="9" x="557" y="455" fill="#ccc"/>
+                </g>
+            </g>
+            <g id="Graphic_60">
+                <title>
+                    the user types ‘sp’ in the filter input field
+                </title>
+                <text fill="black" transform="translate(517.628 599.052)">
+                    <tspan x="83.4" y="15" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">this results in two states being out of sync, </tspan> <tspan x="0" y="33.448" fill="black" font-family="Helvetica Neue" font-size="16" font-weight="400">while the filter (and url) show ‘la’, the recipelist is filtered using ‘sp’</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
