@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:xl="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" viewBox="38 159 936 482" width="936" height="482">
+<svg xmlns:xl="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" viewBox="38 159 949 492" width="949" height="492">
   <defs>
     <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-9 -4 10 8" markerWidth="10" markerHeight="8" color="black">
       <g>
@@ -24,7 +24,7 @@
     </marker>
   </defs>
   <metadata> Produced by OmniGraffle 7.10.2 
-    <dc:date>2019-04-24 15:51:10 +0000</dc:date>
+    <dc:date>2019-04-25 12:58:28 +0000</dc:date>
   </metadata>
   <g id="svgstep" stroke="none" fill="none" stroke-opacity="1" fill-opacity="1" stroke-dasharray="none">
     <title>svgstep</title>
@@ -184,6 +184,19 @@
         </g>
       </g>
     </g>
+    <g id="svgstep: 2">
+      <title>2</title>
+      <g id="Graphic_29">
+        <text transform="translate(546.636 599.052)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">we’re back at it, this time the user clicks on the fourth star</tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="115.584" y="33.448">of spaghetti, rating it a ‘4’</tspan>
+        </text>
+      </g>
+      <g id="Graphic_87">
+        <path d="M 651.7059 314.0943 L 645.05644 321.225 L 627.8696 305.19803 L 624.5449 308.76338 L 623.1495 294.1307 L 637.84386 294.50198 L 634.5191 298.06733 Z" fill="#999"/>
+        <path d="M 651.7059 314.0943 L 645.05644 321.225 L 627.8696 305.19803 L 624.5449 308.76338 L 623.1495 294.1307 L 637.84386 294.50198 L 634.5191 298.06733 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
     <g id="svgstep: 3">
       <title>3</title>
       <g id="Graphic_31">
@@ -263,9 +276,9 @@ rating recipe ‘1’ a ‘4’</title>
     <g id="svgstep: 7+">
       <title>7+</title>
       <g id="Graphic_39">
-        <rect x="79" y="391.5" width="218" height="76.396" fill="white"/>
-        <rect x="79" y="391.5" width="218" height="76.396" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-        <text transform="translate(84 392.802)" fill="black">
+        <rect x="80.222" y="391.5" width="218" height="76.396" fill="white"/>
+        <rect x="80.222" y="391.5" width="218" height="76.396" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(85.222 392.802)" fill="black">
           <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">{ </tspan>
           <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="33.448">     id: 1,</tspan>
           <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="51.895996">     rating: 2</tspan>
@@ -273,7 +286,15 @@ rating recipe ‘1’ a ‘4’</title>
         </text>
       </g>
       <g id="Line_41">
-        <path d="M 167.30618 333.896 C 163.08986 341.90357 159.9022 351.83674 160 363.5 C 160.0444 368.79557 160.76285 374.05747 161.94292 379.16615" marker-end="url(#FilledArrow_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <path d="M 167.15246 333.896 C 162.93335 341.90357 159.78268 351.83674 160 363.5 C 160.09903 368.8145 160.89001 374.0951 162.15281 379.2209" marker-end="url(#FilledArrow_Marker_2)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+    </g>
+    <g id="svgstep: 8">
+      <title>8</title>
+      <g id="Graphic_116">
+        <text transform="translate(525.348 607.5)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">this is reflected in the client by coloring the first two stars yellow</tspan>
+        </text>
       </g>
     </g>
     <g id="svgstep: 8-9">
@@ -324,6 +345,17 @@ rating recipe ‘1’ a ‘4’</title>
         </g>
       </g>
     </g>
+    <g id="svgstep: 9">
+      <title>9</title>
+      <g id="Graphic_111">
+        <title>this results in a backend call
+rating recipe ‘1’ a ‘4’</title>
+        <text transform="translate(136.258 599.052)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="18474111e-20" y="15">the first request is finally done, but</tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="47.424" y="33.448">it resulted in an error!</tspan>
+        </text>
+      </g>
+    </g>
     <g id="svgstep: 9+">
       <title>9+</title>
       <g id="Graphic_37">
@@ -335,6 +367,16 @@ rating recipe ‘1’ a ‘4’</title>
       </g>
       <g id="Line_52">
         <path d="M 294.5 249.896 C 294.5 249.896 345.29174 313.6527 346 385.5 C 346.51902 438.1506 319.96366 477.0028 305.7361 494.0058" marker-end="url(#FilledArrow_Marker_3)" stroke="#b1001c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+    </g>
+    <g id="svgstep: 10+">
+      <title>10+</title>
+      <g id="Graphic_113">
+        <text transform="translate(547.532 589.828)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="73896445e-20" y="15">so the rating is reset by the client, resulting in a sync error</tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="64.136" y="33.448">the user thinks he didn’t rate the recipe, </tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="17.928" y="51.895996">but the server has a rating of ‘2’ stored for the recipe</tspan>
+        </text>
       </g>
     </g>
   </g>
