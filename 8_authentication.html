@@ -240,9 +240,9 @@
           <span hstep='2'>{ email, password }</span>,
           <span hstep='3'>{ responseType: 'text' }</span>
         )</span>.pipe(
-        map((token: any) => {
+        map((<span hstep='3'>token</span>: any) => {
           if (token) {
-            <span hstep='3'>localStorage.setItem(this._tokenKey, token);</span>
+            localStorage.setItem(this._tokenKey, token);
             <span hstep='4'>this._user$.next(email);</span>
             return true;
           } else {
@@ -335,12 +335,12 @@
     
       ngOnInit() {
         this.user = this.fb.group({
-          username: ['', [Validators.required, Validators.email], 
-            <span hstep='3'>serverSideValidateUsername(this.authService.checkUserNameAvailability)</span>],
-          <span hstep='2'>passwordGroup</span>: this.fb.group({
-            password: ['', [Validators.required, Validators.minLength(8)]],
-            confirmPassword: ['', Validators.required]
-          }, <span hstep='2'>{ validator: comparePasswords }</span>)
+          <span hstep='1'>username</span>: ['', [Validators.required, Validators.email]<span sstep='3+'>, 
+            serverSideValidateUsername(this.authService.checkUserNameAvailability)</span>],<span sstep='2+'>
+          passwordGroup: this.fb.group({</span>
+            <span hstep='1'>password</span>: ['', [Validators.required, Validators.minLength(8)]],
+            <span hstep='1'>confirmPassword</span>: ['', Validators.required]<span sstep='2+'>
+          }, { validator: comparePasswords })</span>
         });
       }
                 </code></pre>
@@ -438,7 +438,8 @@
             > RecipeApi/Controllers/AccountController.cs <code data-noescape data-trim>
               [AllowAnonymous]
               [HttpGet("checkusername")]
-              public async Task&lt;ActionResult&lt;Boolean&gt;&gt; CheckAvailableUserName(string email)
+              public async Task&lt;ActionResult&lt;Boolean&gt;&gt; 
+                CheckAvailableUserName(string email)
               {
                   var user = await _userManager.FindByNameAsync(email);
                   return user == null;
@@ -462,7 +463,7 @@
             <pre
               class="typescript"
             >src/app/user/authentication.services.ts<code data-noescape data-trim>
-    c<span hstep='2'>heckUserNameAvailability = (email: string): Observable&lt;boolean&gt; =></span> {
+    <span hstep='2'>checkUserNameAvailability = (email: string): Observable&lt;boolean&gt; =></span> {
       return this.http.get<span hstep='3'>&lt;boolean&gt;</span>(
         `${environment.apiUrl}/account/checkusername`,
         {
@@ -567,7 +568,7 @@
         </section>
         <section>
           <h3>AuthenticationInterceptor</h3>
-          <div codesteps>
+          <div codesteps no-highlight-first>
             <pre
               class="typescript"
             > src/app/http-interceptors/AuthenticationInterceptor.ts <code data-noescape data-trim style='font-size:0.7em'>
@@ -575,15 +576,15 @@
                 export class AuthenticationInterceptor <span hstep='1'>implements HttpInterceptor</span> {
                   constructor(private authService: AuthenticationService) {}
     
-                  <span hstep='2'>intercept(req: HttpRequest&lt;any&gt;, next: HttpHandler)</span>: Observable&lt;HttpEvent&lt;any&gt;&gt; {
-                    if (this.authService.token.length) {
-                      <span hstep='4'>const clonedRequest = req.clone({
-                        headers: req.headers.set('Authorization',`Bearer ${this.authService.token}`)
-                      });</span>
+                  <span sstep='2+'>intercept(req: HttpRequest&lt;any&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;any&gt;&gt; {<span sstep='4+'>
+                    if (<span hstep='4'>this.authService.token.length</span>) {
+                      const clonedRequest = req.clone({
+                       <span hstep='4'> headers: req.headers.set</span>('Authorization',`Bearer ${this.authService.token}`)
+                      });
                       <span hstep='5'>return next.handle(clonedRequest);</span>
-                    }
-                    return next.handle(req);
-                  }
+                    }</span>
+                    <span sstep='3+'>return <span hstep='3'>next.handle(req);</span></span>
+                  }</span>
                 }
                 </code></pre>
             <div explanation>
@@ -770,11 +771,36 @@
                 the login component then, needs to redirect to this url if login
                 succeeds
               </span>
-              <span step="2">
-                in this component I'll also show how to deal with backend errors
-              </span>
+              <span step="2"
+                >that's it,
+                <a href="http://localhost:4200">let's check this out</a></span
+              >
             </div>
           </div>
+        </section>
+        <section>
+          <h3>summary</h3>
+          <ul>
+            <li>
+              if your backend properly supports authorization updating your
+              frontend is not that much work
+            </li>
+            <li>
+              most work is setting up proper register and login forms, and
+              providing access to these in your application
+            </li>
+            <li>
+              authorizing your backend requests themselves became very simple
+              starting in Angular4+ using interceptors
+            </li>
+            <li>
+              authentication guards make it pretty easy to shield certain parts
+              of your application for users who are not logged in (but remember:
+              this is good for UX, not for security; always properly shield all
+              routes, even if they're only accessible from a 'shielded' part of
+              your app)
+            </li>
+          </ul>
         </section>
       </div>
     </div>

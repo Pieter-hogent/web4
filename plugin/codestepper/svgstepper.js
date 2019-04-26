@@ -7,7 +7,6 @@ var SvgStepper =
     let currentIndex = -1;
     let maxIndex = -1;
 
-    let codeElements = new Set();
     let svgElements = new Set();
 
     let snap = null; // for now, only one active svg
@@ -105,58 +104,6 @@ var SvgStepper =
       }
     }
 
-    // class that handles codelines inside <code> tag, and the explanation underneath
-    class CodeElement {
-      // showRange and highlighRange are objects of the type
-      // {
-      //    range: [1,2,4,5,9,12],
-      //    forever: true  // (meaning everything after 12 too)
-      // }
-      constructor(el, showRange, highlightRange = new Range('')) {
-        this.htmlElement = el;
-        this.showRange = showRange;
-        this.highlightRange = highlightRange;
-
-        // only do 'highlight first in green' inside code blocks (not text underneath)
-        this.insideCodeTag = false;
-        let pnode = el.parentNode;
-        while (pnode && pnode.nodeName != 'HTML') {
-          if (pnode.nodeName === 'CODE') {
-            this.insideCodeTag = true;
-            break;
-          }
-          pnode = pnode.parentNode;
-        }
-      }
-      update(index) {
-        if (this.showRange.max()) {
-          if (this.showRange.includes(index)) {
-            this.htmlElement.removeAttribute('hidden');
-            // first time something is shown, it's highlighted in green (unless options say otherwhise)
-            if (
-              index != 1 && // don't do this when something is show from the start (so don't do it when slide appears)
-              highlightFirstAppearanceInCodeBlocks &&
-              !this.htmlElement.hasAttribute('no-highlight-first') &&
-              this.insideCodeTag &&
-              this.showRange.firstIndex() === index
-            ) {
-              this.htmlElement.classList.add('highlight-green');
-            } else {
-              this.htmlElement.classList.remove('highlight-green');
-            }
-          } else {
-            this.htmlElement.setAttribute('hidden', true);
-            this.htmlElement.classList.remove('highlight-green');
-          }
-        }
-        if (this.highlightRange.includes(index)) {
-          this.htmlElement.classList.add('highlight-red');
-        } else {
-          this.htmlElement.classList.remove('highlight-red');
-        }
-      }
-    }
-
     class SvgElement {
       constructor(el, showRange, highlightRange, highlightColor) {
         this.svgElement = el;
@@ -197,7 +144,6 @@ var SvgStepper =
         });
         Reveal.navigatePrev();
       } else {
-        codeElements.forEach(el => el.update(currentIndex));
         svgElements.forEach(el => el.update(currentIndex));
         readjustTopOfCurrentSection();
       }
@@ -268,6 +214,7 @@ var SvgStepper =
 
               // let x = g.selectAll('.svgstep');
               x.forEach(item => {
+                console.log(item);
                 let elId = item.attr('id');
                 item.node.setAttribute('opacity', 0.0); // start hidden, or the screen 'flashes'
                 let showStepRange = new Range('');
@@ -315,56 +262,6 @@ var SvgStepper =
             });
             //}, 2000);
           });
-      }
-
-      if (event.fragment.hasAttribute('code-step')) {
-        needsInnerNavigation = true;
-        codeElements = new Set();
-
-        // first adapt the 'samespot' childNodes, remove extra added newlines (it's inside a code block)
-        // and add css to the inner span's
-        toArray(event.fragment.getElementsByTagName('*')).forEach(el => {
-          if (el.classList.contains('samespot')) {
-            for (let i = 0; i < el.childNodes.length; ) {
-              if (el.childNodes[i].nodeType == 3) {
-                // TEXT
-                // remove all the newlines that were used to add the different <span> childnodes
-                // in a readable manner (the <pre><code> preserves them, leading to superfluous whitespace)
-                el.removeChild(el.childNodes[i]);
-              } else {
-                if (
-                  el.childNodes[i].nodeName === 'SPAN' ||
-                  el.childNodes[i].nodeName === 'P'
-                ) {
-                  el.childNodes[i].classList.add('samespot-content');
-                }
-                ++i;
-              }
-            }
-          }
-        });
-        // loop again over the children (above loop changed the DOM), now simply remember all the
-        // show-steps, highlight-steps spans
-        toArray(event.fragment.getElementsByTagName('*')).forEach(el => {
-          let showStepRange = new Range('');
-          if (el.hasAttribute('show-steps')) {
-            showStepRange = new Range(el.getAttribute('show-steps'));
-          }
-          let highlightRange = new Range('');
-          if (el.hasAttribute('highlight-steps')) {
-            highlightRange = new Range(el.getAttribute('highlight-steps'));
-          }
-          if (showStepRange.max() || highlightRange.max()) {
-            maxIndex = Math.max(
-              showStepRange.max(),
-              highlightRange.max(),
-              maxIndex
-            );
-            codeElements.add(
-              new CodeElement(el, showStepRange, highlightRange)
-            );
-          }
-        });
       }
 
       if (needsInnerNavigation) {
