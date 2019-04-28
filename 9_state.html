@@ -57,10 +57,24 @@
               <a href="#/urlvslocalclient"> url vs local client state</a> <br />
               <span style="font-size: 0.7em"> </span>
             </li>
+            <li>
+              <a href="#/persistentvsserver">
+                local persistent vs server state</a
+              >
+              <br />
+              <span style="font-size: 0.7em"> </span>
+            </li>
+            <li>
+              <a href="#/rxjsflattening"> RxJS flattening operators</a>
+              <br />
+              <span style="font-size: 0.7em"> </span>
+            </li>
           </ol>
         </section>
         <section id="intro">
           <h3>intro</h3>
+          TODO add intro when everything is finished and I know what we're going
+          to talk about
         </section>
         <section>
           <div class="fragment" svg-step>
@@ -297,7 +311,7 @@
                 we'll update the input field based on the url, so we start with
                 an empty string (and not <span class="ilcode">undefined</span>),
                 and use this as
-                <span class="ilcode">[value]='filterRecipeName'</span> in the
+                <span class="ilcode">[value]= 'filterRecipeName'</span> in the
                 html</span
               >
               <span step="2"
@@ -413,7 +427,7 @@
           </code></pre>
             <div explanation>
               <span step="1">
-                it used to be very cumbersome to see these errors in your code
+                it used to be very cumbersome to see these errors in action
               </span>
               <span step="1">
                 but not anymore, cypress makes testing this (and seeing it fail)
@@ -698,7 +712,7 @@
                       .subscribe(
                         () => {
                           <span hstep='2'>this.recipe.rating = clickObj.rating;</span>
-                        }<span sstep='3+'>,
+                        }<span sstep='4+'>,
                         () => {
                           this.recipe.rating = 0;
                         }</span>
@@ -719,16 +733,17 @@
               >
               <span step="2">but what if it fails?</span>
               <span step="3">
-                we'll add an error handler as well, and set the rating to 0 is
-                setting the rating failed
-              </span>
-              <span step="4">
                 we don't want to show four stars highlighted if setting the
                 rating failed
               </span>
-              <span step="4">
+              <span step="3">
                 the user would think his rating was set, while it wasn't
               </span>
+              <span step="4">
+                so we'll add an error handler as well, and set the rating to 0
+                if setting the rating failed
+              </span>
+
               <span step="5">
                 <a href="http://localhost:4200">let's see this in action</a>
               </span>
@@ -843,7 +858,285 @@
             </div>
           </div>
         </section>
-        <!-- <section>
+        <section>
+          <h3>core of the problem</h3>
+          <ul>
+            <li>our real problem is twofold</li>
+            <ul>
+              <li>there is no clear sync strategy</li>
+              <li>side effects are not separated</li>
+            </ul>
+            <li>
+              one of the more popular ways of dealing with this state problem is
+              facebook's flux architecture, implemented for React as Redux, or
+              for Angular as NgRx
+            </li>
+            <li>
+              (others are popping up lately, one of the more interesting ones
+              being MobX)
+            </li>
+            <li>
+              we'll choose another route though, we'll go pure RxJS, we'll solve
+              state syncing problems by not holding state ourselves
+            </li>
+          </ul>
+        </section>
+        <section id="rxjsflattening">
+          <h3>RxJS Flattening</h3>
+          <div codesteps no-highlight-first>
+            <pre
+              class="javascript"
+            >  <code class='codesteps' data-noescape data-trim>
+                <span sstep='2-4, 7+'>const <span hstep='2'>greetPeople$</span> = of('Destiny', 'Melody', 'Candy');
+                
+                <span sstep='2-4'>greetPeople$
+                  .pipe(<span hstep='2'>map</span>(<span hstep='4'>name => `hi ${name}, nice to meet you!`)</span>)
+                  .subscribe(result => console.log(`${result}`));
+
+                </span></span><span sstep='5+'>const http = {
+                  talkToMe$(name) {
+                    return of(`Hi ${name}, nice to meet you!`,
+                              `Is ${name} your real name or your stripper name?`);
+                  }
+                };<span sstep='8+'>
+
+                <span hstep='8'>greetPeople$</span>
+                  .pipe(<span sstep='13-14'>
+                    </span><span sstep='8-14'>map</span><span sstep='15+'><span hstep='15'>mergeMap</span></span>(name => http.<span hstep='8'>talkToMe$</span>(name))<span sstep='13-14'>,
+                    <span hstep='13'>mergeAll()</span>
+                  </span>)
+                  .subscribe(<span sstep='8-10, 14+'><span hstep='10,14'>result</span> => console.log(`${result}`)</span><span sstep='11-13'>resultObservable => <span hstep='11'>resultObservable.subscribe</span>(result => console.log(`${result}`)));</span></span><span sstep='9-10'>
+                
+                // [Object object]
+                // [Object object]
+                // [Object object]</span><span sstep='12+'>
+
+                // Hi Destiny, nice to meet you!
+                // Is Destiny your real name or your stripper name?
+                // Hi Melody, nice to meet you!
+                // Is Melody your real name or your stripper name?
+                // Hi Candy, nice to meet you!
+                // Is Candy your real name or your stripper name?</span>
+                <span sstep='6'>
+                http.talkToMe$('Shaniah').subscribe(console.log);
+              
+                // Hi Shaniah, nice to meet you!
+                // Is Shaniah your real name or your stripper name?</span></span>
+                <span sstep='3'>// hi Destiny, nice to meet you!
+                // hi Melody, nice to meet you!
+                // hi Candy, nice to meet you!</span>
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                before we can fix our state problems, we'll first introduce a
+                couple RxJS operators that will allow us to handle these
+                situations</span
+              >
+              <span step="2"> let's start with a simple example</span>
+              <span step="2">
+                we have an observable which emits strings (<span class="ilcode"
+                  >greetPeople$</span
+                >), but we want to convert these string using a
+                <span class="ilcode">map</span> function</span
+              >
+              <span step="3">
+                nothing special, the converted string is logged
+              </span>
+              <span step="4">
+                but what if the conversion function we want to use returns an
+                observable itself?
+              </span>
+              <span step="4"
+                >if you pass a function that converts
+                <span class="ilcode">A</span> into
+                <span class="ilcode">B</span> in the map, the
+                <span class="ilcode">Observable&lt;A&gt;</span> will be
+                converted into an
+                <span class="ilcode">Observable&ltB&gt;</span></span
+              >
+              <span step="5">
+                say we have a talkToMe$ stream, applying two greetings to a name
+                returning the result as an observable (e.g. because it comes
+                from some http service)
+              </span>
+              <span step="6">
+                applying this to a string does as you'd expect, logging both
+                greetings
+              </span>
+              <span step="7"> but what if you combine them? </span>
+              <span step="8">
+                every time our greetPeople$ stream emits a new name, we pipe it
+                through our observable-greeting generating function</span
+              >
+              <span step="8"> the result? </span>
+              <span step="9"> ... </span>
+              <span step="10">
+                the problem is that after the subscribe, our result is still an
+                <span class="ilcode">Observable&lt;string&gt;</span> because the
+                result of our pipe function was an
+                <span class="ilcode">
+                  Observable&lt; Observable&lt;string&gt; &gt;
+                </span>
+              </span>
+              <span step="11">
+                an obvious way of dealing with this is subscribing on the result
+                inside the first subscribe
+              </span>
+              <span step="12"> which gives you the result you'd want </span>
+              <span step="12">
+                since this is a common operation, and more involved then we show
+                here (subscription lifetimes matter) there is an
+                <span class="ilcode">rxjs/operator</span>
+                which achieves exactly this
+              </span>
+              <span step="13"
+                >as the last step of your pipe, where you have the
+                <span class="ilcode"
+                  >Observable &lt; Observable&lt;&gt; &gt;</span
+                >, you pipe through <span class="ilcode">mergeAll</span></span
+              >
+              <span step="14">
+                and inside your subscribe you get a string again
+              </span>
+              <span step="15">
+                map'ing and merge'ing afterwards is so common there is shorthand
+                for this, to do this at once:
+                <span class="ilcode">mergeMap</span></span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>rxjs flattening</h3>
+          <ul>
+            <li>
+              flattening means mapping to an observable and immediately
+              subscribing to the result and returning the result of the
+              subscribe
+              <br />(while also managing unsubscribes, not leaking memory)
+            </li>
+            <li>
+              in the example of the previous slide the observables have all
+              values available at the start and complete immediately, 'real'
+              observables often have delays between emitting values, and then a
+              new problem pops up
+            </li>
+            <li>
+              when a second inner observable wants to start a subscription while
+              the first is still not completed, what should happen?
+            </li>
+            <li>
+              there is no right or wrong answer, it depends on what you want to
+              achieve; this is called the 'merge strategy'
+            </li>
+            <li>
+              (the example from the previous slides is implemented in
+              rxjs_flattening.js in the
+              <a href="https://github.com/ksa607/observablesExamples"
+                >observablesExamples</a
+              >
+              repo)
+            </li>
+          </ul>
+        </section>
+        <section>
+          <div class="fragment" svg-step>
+            <svg
+              id="svg3"
+              class="svg-section"
+              width="100%"
+              height="100%"
+              preserveAspectRatio="xMidYMid"
+              snapfile="img/flattening_operators.svg"
+            >
+              <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
+            </svg>
+          </div>
+        </section>
+        <section>
+          <h3>rxjs flattening</h3>
+          <ul>
+            <li>
+              you would usually use the combined operators
+              <span class="ilcode">mergeMap</span> /
+              <span class="ilcode">switchMap</span> / ... i.s.o.
+              <span class="ilcode">map</span> first, followed by
+              <span class="ilcode">mergeAll</span> /
+              <span class="ilcode">switchAll</span> / ... I didn't because it's
+              easier to explain in two separate steps
+            </li>
+            <li>
+              There is no 'best' flattening operator, they all have their uses
+              and it depends on your use case, let's quickly give some examples
+              where you'd use each one
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>merge</h3>
+          <ul>
+            <li>
+              merge means subscribing to all streams and passing everything
+              along as it comes in
+            </li>
+            <li>
+              a usage example would be showing data where your info comes from
+              multiple (third party) sources, e.g. you show movie info and
+              request some extra info from imdb and rotten tomatoes. As soon as
+              any of those http requests finishes, you update the existing info
+              on the screen.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>switch</h3>
+          <ul>
+            <li>
+              switch means only subscribing to the very latest stream, and
+              aborting all the others
+            </li>
+            <li>
+              a typical use case is searching, if the user starts typing a new
+              search string, we no longer care about any previous search results
+              (this solves our recipe filter problem!)
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>concat</h3>
+          <ul>
+            <li>
+              concat means queueing any new streams and only subscribing if the
+              previous one finished
+            </li>
+            <li>
+              a use case is not hammering some third party service with hundreds
+              requests at once because you try to display hundred items
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>exhaust</h3>
+          <ul>
+            <li>
+              exhaust means ignoring any new streams as long as the ongoing one
+              isn't finished
+            </li>
+            <li>
+              a typical use case is e.g. a login screen, if the user types his
+              username and password but has the patience of a three year old and
+              keeps clicking login-login-login while the first login request is
+              still ongoing, you don't want to send dozens of login requests to
+              your server
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>TODO</h3>
+          add some slides who neatly show we can solve the state problems using
+          these operators
+        </section>
+        <section>
           <h3>that's it! We're done</h3>
           <img
             src="img/windows95_launch.gif"
@@ -881,15 +1174,16 @@
                 </li>
                 <li>
                   I'd thank all students who made pull requests on the repo to
-                  fix mistakes here as well, but after three years this has
-                  happened exactly 0 times, so... maybe next year! (I'm starting
-                  to think you lot don't know how to make pull requests)
+                  fix mistakes here as well, but after teaching this course
+                  three times this hasn't happened yet, so... maybe next year!
+                  (I'm starting to think you lot don't know how to make pull
+                  requests)
                 </li>
                 <li>finally, good luck with the exam!</li>
               </ul>
             </div>
           </div>
-        </section> -->
+        </section>
       </div>
     </div>
 
@@ -912,7 +1206,7 @@
               hljs.initHighlightingOnLoad();
 
               // comment line underneath to start at slide 1
-              Reveal.slide(Reveal.getTotalSlides());
+              // Reveal.slide(Reveal.getTotalSlides());
             }
           },
           { src: 'plugin/codestepper/svgstepper.js' }
