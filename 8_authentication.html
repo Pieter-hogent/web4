@@ -235,7 +235,7 @@
               class="typescript"
             >src/app/user/authentication.service.ts<code data-noescape data-trim style='font-size:0.7em'>
     login(email: string, password: string): Observable&lt;boolean&gt; {
-      return <span hstep='1'>.post(
+      return <span hstep='1'>this.http.post(
           `${environment.apiUrl}/account`,
           <span hstep='2'>{ email, password }</span>,
           <span hstep='3'>{ responseType: 'text' }</span>
@@ -281,24 +281,36 @@
             <pre
               class="typescript"
             >src/app/user/authentication.service.ts<code data-noescape data-trim style='font-size:0.7em'>
-    register(email: string, password: string): Observable&lt;boolean&gt; {
-      return this.http.post(`${environment.apiUrl}/account/register`, { email, password }).pipe(
-        map((token: any) => {
-          if (token) {
-            localStorage.setItem(this._tokenKey, token);
-            this._user$.next(email);
-            return true;
-          } else {
-            return false;
-          }
-        })
-      );
-    }
+              register(
+                firstname: string, lastname: string, email: string, password: string
+              ): Observable&lt;boolean&gt; {
+                return this.http
+                  .post(
+                    `${environment.apiUrl}/account/register`,
+                    {
+                      firstname, lastname,
+                      email, password, 
+                      passwordConfirmation: password
+                    },
+                    { responseType: 'text' }
+                  )
+                  .pipe(
+                    map((token: any) => {
+                      if (token) {
+                        localStorage.setItem(this._tokenKey, token);
+                        this._user$.next(email);
+                        return true;
+                      } else {
+                        return false;
+                      }
+                    })
+                  );
+              }
                 </code></pre>
             <div explanation>
               <span step="1">
-                the register method is very similar, but now we post the email
-                and password to the register url
+                the register method is very similar, we have a few more fields
+                (first-, lastname) and now we post to the register url
               </span>
             </div>
           </div>
