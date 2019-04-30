@@ -47,34 +47,73 @@
           <ol style="font-size: 80%">
             <li>
               <a href="#/intro"> different kinds of state </a> <br />
-              <span style="font-size: 0.7em"> </span>
+              <span style="font-size: 0.7em">
+                describe 5 different kinds of state
+              </span>
             </li>
             <li>
               <a href="#/state_problems"> problems with state </a> <br />
-              <span style="font-size: 0.7em"> </span>
+              <span style="font-size: 0.7em">
+                syncing state potentially leads to problems
+              </span>
             </li>
             <li>
               <a href="#/urlvslocalclient"> url vs local client state</a> <br />
-              <span style="font-size: 0.7em"> </span>
+              <span style="font-size: 0.7em">
+                example of a url to local client out of order sync problem
+              </span>
             </li>
             <li>
               <a href="#/persistentvsserver">
                 local persistent vs server state</a
               >
               <br />
-              <span style="font-size: 0.7em"> </span>
+              <span style="font-size: 0.7em">
+                example of a local persistent to server sync problem when one
+                request fails
+              </span>
             </li>
             <li>
               <a href="#/rxjsflattening"> RxJS flattening operators</a>
               <br />
-              <span style="font-size: 0.7em"> </span>
+              <span style="font-size: 0.7em">
+                rxjs flattening operators explained through examples
+              </span>
+            </li>
+            <li>
+              <a href="#/urllocalfix"> url vs local client state fixed</a>
+              <br />
+              <span style="font-size: 0.7em">
+                a fix using these operators for our first problem
+              </span>
+            </li>
+            <li>
+              <a href="#/serverlocalfix">
+                server vs persistent client state fixed</a
+              >
+              <br />
+              <span style="font-size: 0.7em">
+                and a fix for our second problem
+              </span>
             </li>
           </ol>
         </section>
         <section id="intro">
           <h3>intro</h3>
-          TODO add intro when everything is finished and I know what we're going
-          to talk about
+          <ul>
+            <li>
+              Today we'll talk about keeping and syncing state and all related
+              problems and issues
+            </li>
+            <li>
+              We'll look into some more advanced RxJS operators and how to
+              flatten higher order Observables
+            </li>
+            <li>
+              And finally we'll see how to apply those operators to fix the state
+              issues we laid out at the start.
+            </li>
+          </ul>
         </section>
         <section>
           <div class="fragment" svg-step>
@@ -909,7 +948,7 @@
                 
                 // [Object object]
                 // [Object object]
-                // [Object object]</span><span sstep='12+'>
+                // [Object object]</span><span sstep='12,14+'>
 
                 // Hi Destiny, nice to meet you!
                 // Is Destiny your real name or your stripper name?
@@ -1029,7 +1068,6 @@
               there is no right or wrong answer, it depends on what you want to
               achieve; this is called the 'merge strategy'
             </li>
-          
           </ul>
         </section>
         <section>
@@ -1064,13 +1102,13 @@
               where you'd use each one
             </li>
             <li>
-                (the example from the previous slides is implemented in
-                rxjs_flattening.js in the
-                <a href="https://github.com/ksa607/observablesExamples"
-                  >observablesExamples</a
-                >
-                repo)
-              </li>
+              (the example from the previous slides is implemented in
+              rxjs_flattening.js in the
+              <a href="https://github.com/ksa607/observablesExamples"
+                >observablesExamples</a
+              >
+              repo)
+            </li>
           </ul>
         </section>
         <section>
@@ -1132,10 +1170,281 @@
             </li>
           </ul>
         </section>
+        <section id="urllocalfix">
+          <h3>url vs local state - fixed</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/recipe/recipe-list/recipe-list.component.ts <code class='codesteps' data-noescape data-trim>
+              this._route.<span hstep='1,3'>queryParams</span><span sstep='1-5' sl>.subscribe</span><span sstep='5+'>.pipe(
+                <span sstep='6+'>switchMap</span><span sstep='5'>map</span></span>(params => {<span sstep='7+'>
+                  if (params['filter']) {
+                    this.filterRecipeName = params['filter'];
+                  }</span>
+                <span sstep='5+'>  return </span><span hstep='2'>this._recipeDataService.</span><span hstep='1,2'>getRecipes$(params['filter'])</span><span sstep='5+'>
+                )</span>
+                .subscribe(val => {
+                  this.recipes = val;
+                  // ask for and apply ratings here
+                  // (not relevant right now)
+                });<span sstep='1-7' sl>
+                if (params['filter']) {
+                  this.filterRecipeName = params['filter'];
+                }</span>
+              });
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                our problem is that based on new url parameters (i.e. a filter)
+                we request recipes, and show the results as they come in
+              </span>
+              <span step="2">
+                if we make two consecutive calls to the
+                <span class="ilcode">getRecipes$</span> and their results arrive
+                out of order, we end up in an inconsistent state
+              </span>
+              <span step="3">
+                when a new filter comes in, we basically want to completely
+                ignore the previous one
+              </span>
+              <span step="3">
+                we saw how to do this, using a
+                <span class="ilcode">switchMap</span>
+              </span>
+              <span step="4">
+                i.s.o. immediately subscribing to new parameters, we will map
+                each parameter to a list of recipes
+              </span>
+              <span step="5"> so remove the subscribe</span>
+              <span step="5">
+                and replace it with piping the result through a map function
+              </span>
+              <span step="6">
+                we're in <span class="ilcode">Observable</span> of
+                <span class="ilcode">Observable</span> territory here, so we
+                need to flatten this
+              </span>
+              <span step="6">
+                we'll use <span class="ilcode">switchMap</span> to only process
+                the last filter
+              </span>
+              <span step="7">
+                because of our restructuring, we need to move the
+                setting-the-filter code, params is only available here
+              </span>
+              <span step="8">
+                that's it, lets
+                <a href="http://localhost:4200">try this out</a> and see that
+                our cypress tests no longer fail
+              </span>
+            </div>
+          </div>
+        </section>
+        <section id="serverlocalfix">
+          <h3>server vs persistent client state - fixed</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/rating/rating.component.ts <code class='codesteps' data-noescape data-trim>
+                export class RatingComponent {
+                  @Input() rating: number;<span sstep='1-3' sl>
+                  @Output() ratingClick: EventEmitter&lt;any&gt; = new EventEmitter&lt;any&gt;();</span><span sstep='3+'>
+                  public ratingChange$ = new Subject&lt;number&gt;();</span>
+                
+                  onClick(rating: number): void {
+                    this.rating = rating;<span sstep='4+'>
+                    this.ratingChange$.next(this.rating)</span><span sstep='1-4' sl>
+                    this.ratingClick.emit({
+                      rating: rating
+                    });</span>
+                  }
+                }
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                fixing the server vs persistent client state takes slightly more
+                work
+              </span>
+              <span step="1">
+                right now the rating component uses an
+                <span class="ilcode">EventEmitter</span>, our RxJS operators
+                can't hook in here</span
+              >
+              <span step="2">
+                but an RxJs <span class="ilcode">Subject</span> can fulfill the
+                same role as an <span class="ilcode">EventEmitter</span>,
+                generating 'events' when a click happens
+              </span>
+              <span step="3">
+                so let's start by replacing the
+                <span class="ilcode">EventEmitter</span> with a
+                <span class="ilcode">Subject</span>
+              </span>
+              <span step="4"
+                >and i.s.o. emitting a rating object we
+                <span class="ilcode">next</span> a new rating</span
+              >
+            </div>
+          </div>
+        </section>
         <section>
-          <h3>TODO</h3>
-          add some slides who neatly show we can solve the state problems using
-          these operators
+          <h3>server vs persistent client state - fixed</h3>
+          <div codesteps>
+            <pre
+              class="html"
+            > src/app/recipe/recipe/recipe.component.html <code class='codesteps' data-noescape data-trim>
+                &lt;mat-card&gt;
+                  &lt;mat-card-header&gt;
+                    &lt;mat-card-title data-cy=&quot;recipe-title&quot;&gt;
+                      &lt;mat-icon&gt;local_dining&lt;/mat-icon&gt; {{ recipe.name }}&lt;/mat-card-title
+                    &gt;
+                    &lt;mat-card-subtitle&gt;
+                      added on {{ recipe.dateAdded | date: longDate }}
+                    &lt;/mat-card-subtitle&gt;
+                    &lt;mat-card-subtitle&gt;
+                      &lt;app-rating
+                        [rating]=&quot;recipe.rating&quot;<span sstep='1-2' sl>
+                        (ratingClick)=&quot;adjustRating($event)&quot;</span><span sstep='2+'>
+                        #ratingComponent</span>
+                      &gt;&lt;/app-rating&gt;
+                    &lt;/mat-card-subtitle&gt;
+                  &lt;/mat-card-header&gt;
+                  &lt;!-- .... --&gt;
+                &lt;/mat-card&gt; 
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                our html needs to change a little bit, we no longer listen to an
+                event originating in the rating component
+              </span>
+              <span step="2">
+                now we want to subscribe to an Observable property of this
+                component, but in order to do that, we need access to this child
+                component in our code
+              </span>
+              <span step="2">
+                so we'll start by adding a reference to this app-rating
+                component
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>server vs persistent client state - fixed</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/recipe/recipe/recipe.component.ts <code class='codesteps' data-noescape data-trim>
+                export class RecipeComponent implements OnInit {
+                  @Input() public recipe: Recipe;<span hstep='1'>
+                  @ViewChild('ratingComponent') public ratingComp: RatingComponent;</span>
+                
+                  constructor(private _recipeDataService: RecipeDataService) {}
+                
+                  ngOnInit() {<span sstep='3+'>
+                    this.ratingComp.ratingChange$<span sstep='4+'>
+                      .pipe(
+                        switchMap(newRating => {
+                          return this._recipeDataService.rateRecipe(this.recipe, newRating);
+                        })
+                      )</span><span sstep='5+'>
+                      .subscribe(
+                        (newRating: number) => {
+                          this.recipe.rating = newRating;
+                        },
+                        () => {
+                          this.recipe.rating = 0;
+                        }
+                      );</span>
+                  </span>}
+
+                 <span sstep='1-2' sl> adjustRating(clickObj: any): void {
+                    this._recipeDataService
+                      .rateRecipe(this.recipe, this.recipe.rating)
+                      .subscribe(
+                        () => {
+                          this.recipe.rating = clickObj.rating;
+                        },
+                        () => {
+                          this.recipe.rating = 0;
+                        }
+                      );
+                  }</span>
+                }
+                 
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                in our typescript we start by accessing the rating component
+                using a <span class="ilcode">@ViewChild</span> decorator
+              </span>
+              <span step="2">
+                we no longer need the
+                <span class="ilcode">adjustRating</span> function (the event
+                that triggered it no longer happens), we'll adjust the rating
+                based on changes in the
+                <span class="ilcode">ratingChange$</span>
+                <span class="ilcode">Subject</span></span
+              >
+              <span step="3"
+                >we'll access the <span class="ilcode">Subject</span> in our
+                <span class="ilcode">ngOnInit</span>, making sure we're
+                listening to the correct stream once we're initialized for use
+              </span>
+              <span step="3">
+                for every rating that appears on the stream, we have to persist
+                it using our service, and update our client side as well
+              </span>
+              <span step="4">
+                similar to the previous case, we pipe this through a
+                <span class="ilcode">switchMap</span> which notifies the backend
+                through our service
+              </span>
+              <span step="5">
+                and we'll subscribe to the (flattened) result and update the
+                client side based on what the backend returned
+              </span>
+              <span step="5"> or reset the rating if there's an error </span>
+              <span step="6">
+                so in a way we're translating (mapping) a number coming from a
+                stream into a backend call which returns an
+                <span class="ilcode">Observable&lt;number&gt;</span> itself, and
+                we flatten the resulting
+                <span class="ilcode"
+                  >Observable&lt; Observable&lt;number&gt; &gt;</span
+                >
+                using a switch merge strategy to alleviate sync issues
+              </span>
+              <span step="6">
+                <i>Toto, I don't think we're in Kansas anymore</i>
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>reactive programming</h3>
+          <ul>
+            <li>
+              we only scratched the tip of the iceberg <br />(no really, there
+              are 134 rxjs operators right now)
+            </li>
+            <li>
+              you can do cool stuff with very little code, but you sometimes
+              really have to apply a different way of thinking and organising
+              your code
+            </li>
+            <li>
+              reactive programming is 'in' right now, the next few years it'll
+              get bigger for sure
+            </li>
+            <li>
+              it's probably here to stay in some capacity, who knows, time will
+              tell
+            </li>
+            <li>
+              at the very least you now had some introduction to the subject
+            </li>
+          </ul>
         </section>
         <section>
           <h3>that's it! We're done</h3>

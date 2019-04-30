@@ -9,6 +9,7 @@
   /* --explanation-bgcolor: rgba(135, 206, 250, 1); */
   --explanation-bordercolor: rgba(135, 206, 250, 1);
   --explanation-bgcolor-darkbg: darkgrey;
+  --strikethrough-bgcolor: #ffbdaf;
 }
 
 .reveal div.code-with-explanation {
@@ -38,6 +39,11 @@
 }
 .reveal .code-highlight .console {
   background-color: var(--explanation-bgcolor-darkbg);
+}
+
+.reveal .code-strikethrough {
+  text-decoration: line-through;
+  background-color: var(--strikethrough-bgcolor);
 }
 .reveal .code-firstshown {
   background-color: var(--explanation-bgcolor);

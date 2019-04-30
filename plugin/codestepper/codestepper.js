@@ -40,17 +40,18 @@ const CodeStepper =
       }
 
       max() {
-        if (this.range.length === 0) {
-          return 0;
-        }
+        if (this.range.length === 0) return 0;
         return Math.max(...this.range);
       }
 
       firstIndex() {
-        if (this.range.length === 0) {
-          return -1;
-        }
+        if (this.range.length === 0) return -1;
         return this.range[0];
+      }
+
+      lastIndex() {
+        if (this.forever || this.range.length === 0) return -1;
+        return this.range[this.range.length - 1];
       }
 
       includes(index) {
@@ -168,13 +169,26 @@ const CodeStepper =
           const showRange = new Range(sstepDiv.getAttribute('sstep'));
           if (showRange.firstIndex() == idx) {
             sstepDiv.removeAttribute('hidden');
-            if (idx != 1 && this.highlightFirstShown) {
+
+            if (
+              (idx != 1 && this.highlightFirstShown) ||
+              sstepDiv.hasAttribute('hf')
+            ) {
               sstepDiv.classList.add('code-firstshown');
             }
           } else if (showRange.includes(idx)) {
             sstepDiv.removeAttribute('hidden');
-            if (idx != 1 && this.highlightFirstShown) {
+            if (
+              (idx != 1 && this.highlightFirstShown) ||
+              sstepDiv.hasAttribute('nhf')
+            ) {
               sstepDiv.classList.remove('code-firstshown');
+            }
+
+            if (idx == showRange.lastIndex() && sstepDiv.hasAttribute('sl')) {
+              sstepDiv.classList.add('code-strikethrough');
+            } else {
+              sstepDiv.classList.remove('code-strikethrough');
             }
           } else {
             sstepDiv.setAttribute('hidden', true);
