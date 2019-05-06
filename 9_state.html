@@ -110,8 +110,8 @@
               flatten higher order Observables
             </li>
             <li>
-              And finally we'll see how to apply those operators to fix the state
-              issues we laid out at the start.
+              And finally we'll see how to apply those operators to fix the
+              state issues we laid out at the start.
             </li>
           </ul>
         </section>
@@ -747,10 +747,10 @@
                 
                   adjustRating(clickObj: any): void {
                     this._recipeDataService
-                      .rateRecipe(this.recipe, this.recipe.rating)
+                      .rateRecipe(this.recipe, clickObj.rating)
                       .subscribe(
-                        () => {
-                          <span hstep='2'>this.recipe.rating = clickObj.rating;</span>
+                        (newRating: number) => {
+                          <span hstep='2'>this.recipe.rating = newRating;</span>
                         }<span sstep='4+'>,
                         () => {
                           this.recipe.rating = 0;
@@ -831,6 +831,7 @@
                       ]
                     });</span><span sstep='4'>
                     cy.route({
+                      delay: 200,
                       method: 'PUT',
                       url: '/api/recipes/rate/1/4',
                      <span hstep='4'> status: 500,</span>
@@ -840,7 +841,7 @@
                       method: 'PUT',
                       url: '/api/recipes/rate/1/2',
                       status: 200,
-                      response: ''
+                      response: { id: 1, rating: 2 }
                     }).as('rateSucceed');</span><span sstep='5+'>
                     // stubs for the routes
 
@@ -1360,10 +1361,10 @@
 
                  <span sstep='1-2' sl> adjustRating(clickObj: any): void {
                     this._recipeDataService
-                      .rateRecipe(this.recipe, this.recipe.rating)
+                      .rateRecipe(this.recipe, clickObj.rating)
                       .subscribe(
-                        () => {
-                          this.recipe.rating = clickObj.rating;
+                        newRating => {
+                          this.recipe.rating = newRating;
                         },
                         () => {
                           this.recipe.rating = 0;
