@@ -1,0 +1,245 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>NIEUWE SLIDE</title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="lib/css/atom-one-light.css" />
+
+    <link rel="stylesheet" href="css/reveal.css" />
+
+    <!-- pieter overrides -->
+    <link rel="stylesheet" href="css/theme/hogent.css" />
+    <link rel="stylesheet" href="plugin/codestepper/codestepper.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? 'css/print/pdf.css'
+        : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section
+          class="title-slide"
+          data-transition="none"
+          data-background-transition="none"
+        >
+          <img class="title-img" src="img/hogent_titlepic2.png" />
+
+          <h2>title of this class</h2>
+          <h4>Teacher McTeachFace</h4>
+
+          <footer class="footer">
+            "The first step of any project is to grossly underestimate its
+            complexity and difficulty." - Nicoll Hunt
+          </footer>
+        </section>
+        <section class="contents-slide">
+          <h3>overview.</h3>
+          <ol style="font-size: 80%">
+            <div class="two-columns">
+              <div class="column-one">
+                <li>
+                  <a href="#/list">intro</a> <br />
+                  <span> list example </span>
+                </li>
+                <li>
+                  <a href="#/code">code</a><br />
+                  <span>step through piece of code</span>
+                </li>
+                <li>
+                  <a href="#/image">image</a><br />
+                  <span>image with some text</span>
+                </li>
+                <li>
+                  <a href="#/chart">chart</a><br />
+                  <span>json data based charts</span>
+                </li>
+              </div>
+              <div class="column-two">
+                <li>
+                  <a href="#/gif">gif</a><br />
+                  <span>animated gif</span>
+                </li>
+                <li>
+                  <a href="#/svgslide">svg</a><br />
+                  <span>step through an svg</span>
+                </li>
+                <li>
+                  <a href="#/math">math</a><br />
+                  <span>LateX based equations</span>
+                </li>
+              </div>
+            </div>
+          </ol>
+        </section>
+        <section id="list">
+          <h3>some Reveal.js keyboard shortcuts.</h3>
+          <ul>
+            <li>F to go fullscreen</li>
+            <li>ESC to get an overview of all slides (navigate faster)</li>
+            <li>B to turn the screen black</li>
+            <li>navigate using ← →</li>
+            <li>? shows a helpscreen with all these shortcuts (and more)</li>
+          </ul>
+        </section>
+        <section id="code">
+          <h3>interesting code example.</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/recipe/recipe-list/recipe-list.component.ts <code class='codesteps' data-noescape data-trim>
+              this._route.<span hstep='1,3'>queryParams</span><span sstep='1-5' sl>.subscribe</span><span sstep='5+'>.pipe(
+                <span sstep='6+'>switchMap</span><span sstep='5'>map</span></span>(params => {<span sstep='7+'>
+                  if (params['filter']) {
+                    this.filterRecipeName = params['filter'];
+                  }</span>
+                <span sstep='5+'>  return </span><span hstep='2'>this._recipeDataService.</span><span hstep='1,2'>getRecipes$(params['filter'])</span><span sstep='5+'>
+                )</span>
+                .subscribe(val => {
+                  this.recipes = val;
+                  // ask for and apply ratings here
+                  // (not relevant right now)
+                });<span sstep='1-7' sl>
+                if (params['filter']) {
+                  this.filterRecipeName = params['filter'];
+                }</span>
+              });
+            </code></pre>
+            <div explanation>
+              <span step="1">
+                our problem is that based on new url parameters (i.e. a filter)
+                we request recipes, and show the results as they come in
+              </span>
+              <span step="2">
+                if we make two consecutive calls to the
+                <span class="ilcode">getRecipes$</span> and their results arrive
+                out of order, we end up in an inconsistent state
+              </span>
+              <span step="3">
+                when a new filter comes in, we basically want to completely
+                ignore the previous one
+              </span>
+              <span step="3">
+                we saw how to do this, using a
+                <span class="ilcode">switchMap</span>
+              </span>
+              <span step="4">
+                i.s.o. immediately subscribing to new parameters, we will map
+                each parameter to a list of recipes
+              </span>
+              <span step="5"> so remove the subscribe</span>
+              <span step="5">
+                and replace it with piping the result through a map function
+              </span>
+              <span step="6">
+                we're in <span class="ilcode">Observable</span> of
+                <span class="ilcode">Observable</span> territory here, so we
+                need to flatten this
+              </span>
+              <span step="6">
+                we'll use <span class="ilcode">switchMap</span> to only process
+                the last filter
+              </span>
+              <span step="7">
+                because of our restructuring, we need to move the
+                setting-the-filter code, params is only available here
+              </span>
+              <span step="8">
+                that's it, lets
+                <a href="http://localhost:4200">try this out</a> and see that
+                our cypress tests no longer fail
+              </span>
+            </div>
+          </div>
+        </section>
+        <section id="image">
+          <h3>slide with image and text side by side.</h3>
+          <div class="two-columns">
+            <div style="height: 600px; grid-row: 1/4">
+              <img src="img/hogent_titlepic1.png" alt="hogent model" />
+            </div>
+            <div style="text-align: center; grid-row: 2">
+              picturing the underpaid stock photo model used by hogent in all
+              its slides
+            </div>
+          </div>
+        </section>
+        <section id="chart">
+          <div class="xkcd-chart">
+            <svg
+              class="xy-chart"
+              data-chart-json="data-files/angular-react-vue.json"
+            ></svg>
+          </div>
+        </section>
+        <section>
+          <div class="xkcd-chart">
+            <svg
+              class="bar-chart"
+              data-chart-json="data-files/student-behaviour.json"
+            ></svg>
+          </div>
+        </section>
+        <section id="gif">
+          <h3 style="text-align: center;">gifs.</h3>
+          <img src="img/babyyoda.gif" alt="the child" />
+        </section>
+        <section id="svgslide">
+          <h3>step through an svg.</h3>
+          <div class="fragment" svg-step>
+            <svg
+              id="svg"
+              class="svg-section"
+              width="100%"
+              height="100%"
+              preserveAspectRatio="xMidYMid"
+              snapfile="svg/url-local-statesync.svg"
+            >
+              <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
+            </svg>
+          </div>
+        </section>
+        <section id="math">
+          <h3>Math equations using LateX.</h3>
+          <div>
+            <pre>
+            &lt;p&gt;
+              When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\)
+              and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$ 
+            &lt;/p&gt;
+            </pre>
+            is turned into: <br />
+            <p>
+              When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\)
+              and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/chart.xkcd.min.js"></script>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="plugin/codestepper/codestepper.js"></script>
+    <script src="js/hogent-reveal.js" data-start-at-last="false"></script>
+    <script src="js/snap.svg.js"></script>
+  </body>
+</html>

@@ -1,0 +1,190 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>NIEUWE SLIDE</title>
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="lib/css/atom-one-light.css" />
+
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/hogent.css" />
+
+    <!-- pieter overrides -->
+    <link rel="stylesheet" href="plugin/codestepper/codestepper.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? 'css/print/pdf.css'
+        : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="title-slide">
+          <h2>title</h2>
+          <footer class="footer">quote</footer>
+        </section>
+        <section>
+          iets met retrystrategy
+          https://www.learnrxjs.io/operators/error_handling/retrywhen.html
+        </section>
+        <section>
+          <h3>http post</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >src/app/app.component.ts  <code class='codesteps' data-noescape data-trim>
+                export class AppComponent {
+                  <span sstep='2+'>private _refreshRecipes$ = new <span sstep='8+'>Behavior</span>Subject&lt;boolean&gt;(<span sstep='8+'>true</span>);
+                  </span>private _fetchRecipes$: <span sstep='5'>Observable&lt;</span>Observable&lt;Recipe[]&gt;<span sstep='5'>&gt;</span> = 
+                  <span sstep='4+'>  this._refreshRecipes$.pipe(
+                      <span sstep='4-5'>map</span><span sstep='6+'>switchMap</span>(() => </span>  this._recipeDataService.recipes$<span sstep='4+'>)
+                    );</span>
+
+                  // [ ... ]
+                  
+                  addNewRecipe(recipe) {
+                    this._recipeDataService
+                      .addNewRecipe(recipe)
+                      .subscribe(<span sstep='3+'>() => this._refreshRecipes$.next(true)</span>);
+                  }
+                }
+            </code></pre>
+            <div explanation>
+              <span step="1"
+                >we want to 'rerun' the
+                <span class="ilcode">fetchRecipes$</span> when a trigger happens
+              </span>
+              <span step="1"
+                >this will trigger change detection, async pipe, and redraw the
+                needed parts</span
+              >
+              <span step="2"
+                >so we'll add a (Subject) Observable of type boolean, every time
+                we put a new value on this stream, we want the fetch to happen
+                again</span
+              >
+              <span step="3"
+                >we'll call his <span class="ilcode">next</span> when the
+                subscribe signals us that the backend call is done, that's when
+                we're sure the new data is in the backend</span
+              >
+              <span step="4"
+                >then we essentially want a function to create
+                <span class="ilcode">Observable&lt;Recipe[]&gt;</span> from the
+                fetch when such <span class="ilcode">boolean</span> values are
+                put on the stream: a simple map!</span
+              >
+              <span step="4"
+                >every time a new value is 'next()'-ed, the map function is
+                called, and a new fetch happens</span
+              >
+              <span step="5"
+                >this is not entirely correct, the function inside the map is of
+                type
+                <span class="ilcode"
+                  >(boolean): Observable&lt;Recipe[]&gt;</span
+                ></span
+              >
+              <span step="5"
+                >this means the Observable.map will map an
+                <span class="ilcode">Observable&lt;boolean&gt;</span> on an
+                <span class="ilcode"
+                  >Observable&lt;Observable&lt;Recipe[]&gt;&gt;</span
+                ></span
+              >
+              <span step="5"
+                >(I can <i>not</i> fit that type in these bubbles, look at the
+                code)</span
+              >
+              <span step="6"
+                >what we need is a flatten operator, there are a few of them in
+                RxJS (flatMap, mergeMap, switchMap, ...)</span
+              >
+              <span step="6"
+                >maybe we'll go into more detail later, but for now remember
+                that you probably want a switchMap in these situations</span
+              >
+              <span step="7"
+                ><span class="ilcode">switchMaps</span> cancel any previous
+                ongoing requests, and 'switch' to the new request</span
+              >
+              <span step="7"
+                >that's a neat feature when accessing a backend; imagine
+                multiple requests for a refresh coming in quick succession</span
+              >
+              <span step="8"
+                >one last thing is to change to trigger
+                <span class="ilcode">Subject</span> to a
+                <span class="ilcode">BehaviorSubject</span>
+              </span>
+              <span step="8"
+                >BehaviorSubjects are just like Subjects, but they remember the
+                last value, and if you subscribe you always get the last value
+                that was emitted as a first trigger as soon as you
+                subscribe</span
+              >
+              <span step="9"
+                >so you don't have to wait till a new value is emitted after you
+                subscribe</span
+              >
+              <span step="9"
+                >in our case this guarantees the fetch is done once when we
+                start, as there will be a value on the BehaviorSubject stream,
+                and hence the switchMap will happen</span
+              >
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="plugin/codestepper/codestepper.js"></script>
+    <script>
+      // More info about config & dependencies:
+      CodeStepper.initialize();
+      Reveal.initialize({
+        controls: false,
+        slideNumber: true,
+        width: '100%',
+        height: '100%',
+        dependencies: [
+          {
+            src: 'plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+              hljs.initHighlightingOnLoad();
+
+              // during slide creation, always start at last slide
+              var indices = Reveal.getIndices(
+                document.getElementById('sectionID')
+              );
+              // comment line underneath to start at slide 1
+              Reveal.slide(Reveal.getTotalSlides());
+            }
+          },
+          { src: 'plugin/codestepper/svgstepper.js' }
+        ]
+      });
+    </script>
+    <script src="js/snap.svg.js"></script>
+  </body>
+</html>

@@ -36,14 +36,54 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section class="title-slide">
+        <section
+          class="title-slide"
+          data-transition="none"
+          data-background-transition="none"
+        >
+          <img class="title-img" src="img/babyyoda2.png" />
           <h2>angular basics</h2>
+          <h4>Karine Samyn, Stefaan De Cock, Pieter Van Der Helst</h4>
           <footer class="footer">
             "The strength of JavaScript is that you can do anything.<br />
             The weakness is that you will." - Reg Braithwaite
           </footer>
         </section>
-        <section>
+        <section class="contents-slide">
+          <h3>overview.</h3>
+          <ol>
+                <li>
+                  <a href="#/intro">intro</a> <br />
+                  <span> what is an SPA? </span>
+                </li>
+                <li>
+                  <a href="#/app">app</a><br />
+                  <span>creating a new angular application</span>
+                </li>
+                <li>
+                  <a href="#/components">components</a><br />
+                  <span>it's all about components</span>
+                </li>
+                <li>
+                  <a href="#/typescript">typescript</a><br />
+                  <span>typescript, not javascript</span>
+                </li>
+              
+                <li>
+                  <a href="#/pipe">pipes</a><br />
+                  <span>how to format data</span>
+                </li>
+                <li>
+                  <a href="#/input">@Input()</a><br />
+                  <span>pass data between two components</span>
+                </li>
+                <li>
+                  <a href="#/debugging">debugging</a><br />
+                  <span>how to debug angular application in VSCode</span>
+                </li>
+          </ol>
+        </section>
+        <section id="intro">
           <h3>what is an SPA?</h3>
           <ul>
             <li>
@@ -99,7 +139,7 @@
             </svg>
           </div>
         </section>
-        <section>
+        <section id="app">
           <h3>our example app</h3>
           <ul>
             <li>a recipe webapp</li>
@@ -181,7 +221,7 @@
             <li>restart everything, still errors: start googling</li>
           </ul>
         </section>
-        <section>
+        <section id="components">
           <h3>it's all about components</h3>
           <ul>
             <li>
@@ -381,7 +421,7 @@ installing component
             </div>
           </div>
         </section>
-        <section>
+        <section id="typescript">
           <h3>typescript? I thought this was javascript</h3>
           <ul>
             <li>
@@ -398,10 +438,10 @@ installing component
               angular/react/...) it's becoming more and more popular
             </li>
             <li>
-              it was #4 on stackoverflow's
+              it was #2 on stackoverflow's
               <a
-                href="https://insights.stackoverflow.com/survey/2018#most-loved-dreaded-and-wanted"
-                >"most loved languages" in 2018</a
+                href="https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted"
+                >"most loved languages" in 2019</a
               >
             </li>
           </ul>
@@ -422,8 +462,10 @@ installing component
             </li>
             <li>
               but we don't really have the time; very simply put: if you're not
-              perfect, you're better of with static typing</li><li>(for the same reasons
-              unit testing is good: you catch bugs early)
+              perfect, you're better of with static typing
+            </li>
+            <li>
+              (for the same reasons unit testing is good: you catch bugs early)
             </li>
             <li style="font-size: small">
               while we're at it: tabs! spaces are for suckers, and vim forever,
@@ -519,7 +561,8 @@ let notThatUseful<span hstep='5'>: any</span>;</span>
                 inside your class definition
               </span>
               <span step="3">
-                and not just using <span class='ilcode'>this.propertyname</span> in the constructor
+                and not just using
+                <span class="ilcode">this.propertyname</span> in the constructor
               </span>
               <span step="4"> you can also specify access modifiers </span>
               <span step="4">
@@ -669,7 +712,7 @@ Ingredients:
             </div>
           </div>
         </section>
-        <section>
+        <section id="pipe">
           <h3>formatting data</h3>
           <ul>
             <li>
@@ -796,7 +839,7 @@ Ingredients:
             </tr>
           </table>
         </section>
-        <section>
+        <section id="input">
           <h3>pass data between components</h3>
           <ul>
             <li>
@@ -924,7 +967,7 @@ Ingredients:
             </svg>
           </div>
         </section>
-        <section>
+        <section id="debugging">
           <h3>debugging</h3>
           <p>
             visual studio code has a lot of (third party) extensions, we'll use
@@ -1010,36 +1053,11 @@ Ingredients:
       </div>
     </div>
 
+    <script src="lib/js/chart.xkcd.min.js"></script>
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
     <script src="plugin/codestepper/codestepper.js"></script>
-    <script>
-      // More info about config & dependencies:
-      CodeStepper.initialize();
-      Reveal.initialize({
-        controls: false,
-        slideNumber: true,
-        width: '100%',
-        height: '100%',
-        dependencies: [
-          {
-            src: 'plugin/highlight/highlight.js',
-            async: true,
-            callback: function() {
-              hljs.initHighlightingOnLoad();
-
-              // during slide creation, always start at last slide
-              var indices = Reveal.getIndices(
-                document.getElementById('sectionID')
-              );
-              // comment line underneath to start at slide 1
-              // Reveal.slide(62); //Reveal.getTotalSlides());
-            }
-          },
-          { src: 'plugin/codestepper/svgstepper.js' }
-        ]
-      });
-    </script>
+    <script src="js/hogent-reveal.js" data-start-at-last="false"></script>
     <script src="js/snap.svg.js"></script>
   </body>
 </html>

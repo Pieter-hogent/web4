@@ -1,0 +1,71 @@
+.reveal .slides section .svg-section {
+  width: 960px;
+  height: 600px;
+}
+
+:root {
+  --explanation-bgcolor: rgba(176, 224, 230, 1);
+  /* --explanation-bordercolor: rgba(135, 206, 250, 1); */
+  /* --explanation-bgcolor: rgba(135, 206, 250, 1); */
+  --explanation-bordercolor: rgba(135, 206, 250, 1);
+  --explanation-bgcolor-darkbg: darkgrey;
+  --strikethrough-bgcolor: #ffbdaf;
+}
+
+.reveal div.code-with-explanation {
+  position: relative;
+}
+
+.reveal .explanations {
+  position: absolute;
+  top: 4%;
+  right: 6%;
+  width: 25%;
+}
+.reveal .code-explanation {
+  font-size: 1em;
+  width: 115%;
+  background-color: var(--explanation-bgcolor);
+  border-color: var(--explanation-bordercolor);
+  border-width: 2px;
+  border-style: solid;
+  padding: 10px;
+  box-shadow: 5px 5px 30px grey;
+  margin-bottom: 15px;
+}
+
+.reveal .code-highlight {
+  background-color: var(--explanation-bgcolor);
+}
+.reveal .code-highlight .console {
+  background-color: var(--explanation-bgcolor-darkbg);
+}
+
+.reveal .code-strikethrough {
+  text-decoration: line-through;
+  background-color: var(--strikethrough-bgcolor);
+}
+
+.reveal .console .code-firstshown {
+  background-color: var(--explanation-bgcolor-darkbg);
+}
+.reveal code.codesteps {
+  min-height: 350px;
+  overflow: auto scroll;
+}
+
+.reveal .code-firstshown .is-visible {
+  display: block;
+  height: auto;
+}
+
+.reveal .code-firstshown {
+  background-color: var(--explanation-bgcolor);
+
+  display: none;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 350ms ease-in-out;
+  /* transition: height 2000ms ease-in-out; */
+}
