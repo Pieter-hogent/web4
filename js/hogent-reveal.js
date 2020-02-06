@@ -23,6 +23,13 @@ Reveal.initialize({
 
         if (thisScript.getAttribute('data-start-at-last') === 'true') {
           Reveal.slide(Reveal.getTotalSlides());
+        } else if (
+          parseInt(thisScript.getAttribute('data-start-at-last')) > 0
+        ) {
+          // -1, reveal counts zero based, but the number at the bottom is 1 based, so this is more what you'd expect
+          Reveal.slide(
+            parseInt(thisScript.getAttribute('data-start-at-last')) - 1
+          );
         }
       }
     },
