@@ -1,73 +1,73 @@
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-		/>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-		<title>2. services</title>
+    <title>2. services</title>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link
-			href="https://fonts.googleapis.com/css?family=Montserrat"
-			rel="stylesheet"
-		/>
-		<link rel="stylesheet" href="lib/css/atom-one-light.css" />
+    <!-- Theme used for syntax highlighting of code -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="lib/css/atom-one-light.css" />
 
-		<link rel="stylesheet" href="css/reveal.css" />
-		<link rel="stylesheet" href="css/theme/hogent.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/hogent.css" />
 
-		<!-- pieter overrides -->
-		<link rel="stylesheet" href="plugin/codestepper/codestepper.css" />
+    <!-- pieter overrides -->
+    <link rel="stylesheet" href="plugin/codestepper/codestepper.css" />
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement('link');
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match(/print-pdf/gi)
-				? 'css/print/pdf.css'
-				: 'css/print/paper.css';
-			document.getElementsByTagName('head')[0].appendChild(link);
-		</script>
-	</head>
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? 'css/print/pdf.css'
+        : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+  </head>
 
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section
-					class="title-slide"
-					data-transition="none"
-					data-background-transition="none"
-				>
-					<img class="title-img" src="img/babyyoda3.png" />
-					<h2>services</h2>
-					<h4>Karine Samyn, Stefaan De Cock, Pieter Van Der Helst</h4>
-					<footer class="footer">
-						"We build our computer systems the way we build our cities: over
-						time, without a plan, on top of ruins." — Ellen UIlman
-					</footer>
-				</section>
-				<section class="contents-slide">
-					<h3>overview.</h3>
-					<ol>
-						<li>
-							<a href="#/modules">modules</a> <br />
-							<span>use modules to group angular building blocks</span>
-						</li>
-						<li>
-							<a href="#/material">angular material</a> <br />
-							<span>use angular material as our layout library</span>
-						</li>
-					</ol>
-				</section>
-				<section id="modules">
-					<h3>modules.</h3>
-					<div codesteps>
-						<pre
-							class="typescript"
-						>src/app/app.module.ts  <code class='codesteps' data-noescape data-trim>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section
+          class="title-slide"
+          data-transition="none"
+          data-background-transition="none"
+        >
+          <img class="title-img" src="img/babyyoda3.png" />
+          <h2>services</h2>
+          <h4>Karine Samyn, Stefaan De Cock, Pieter Van Der Helst</h4>
+          <footer class="footer">
+            "We build our computer systems the way we build our cities: over
+            time, without a plan, on top of ruins." — Ellen UIlman
+          </footer>
+        </section>
+        <section class="contents-slide">
+          <h3>overview.</h3>
+          <ol>
+            <li>
+              <a href="#/modules">modules</a> <br />
+              <span>use modules to group angular building blocks</span>
+            </li>
+            <li>
+              <a href="#/material">angular material</a> <br />
+              <span>use angular material as our layout library</span>
+            </li>
+          </ol>
+        </section>
+        <section id="modules">
+          <h3>modules.</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >src/app/app.module.ts  <code class='codesteps' data-noescape data-trim>
               import { BrowserModule } from '@angular/platform-browser';
               import { NgModule } from '@angular/core';
               
@@ -84,112 +84,112 @@
               export class AppModule {}
               
           </code><span class='githubcommit'></span> </pre>
-						<div explanation>
-							<span step="1"
-								>last week we used the
-								<span class="ilcode">angular-cli</span> to generate a few
-								components
-							</span>
-							<span step="1"
-								>these consist of a few files (html, css, typescript) which we
-								could use immediately in our other components</span
-							>
-							<span step="1"
-								>the reason this worked is because
-								<span class="ilcode">angular-cli</span> added those files to our
-								<span class="ilcode">app.module</span> as well</span
-							>
-							<span step="2"
-								>every angular application always has an app.module</span
-							>
-							<span step="3"
-								>it says which component should be rendered when the user surfs
-								to the root of our webapp</span
-							>
-							<span step="3"
-								>(and that <span class="ilcode">AppComponent</span> will contain
-								the tags of our other components to render them, and so
-								on)</span
-							>
-							<span step="4"
-								>you can imagine that large apps consists of many
-								components</span
-							>
-							<span step="4"
-								>to make re-use easier angular allows you to create your own
-								modules, and import those</span
-							>
-							<span step="4"
-								>let's do that for our <span class="ilcode">Recipe</span>- and
-								<span class="ilcode">IngredientComponent</span></span
-							>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>RecipeModule.</h3>
-					<pre data-trim class="console">
+            <div explanation>
+              <span step="1"
+                >last week we used the
+                <span class="ilcode">angular-cli</span> to generate a few
+                components
+              </span>
+              <span step="1"
+                >these consist of a few files (html, css, typescript) which we
+                could use immediately in our other components</span
+              >
+              <span step="1"
+                >the reason this worked is because
+                <span class="ilcode">angular-cli</span> added those files to our
+                <span class="ilcode">app.module</span> as well</span
+              >
+              <span step="2"
+                >every angular application always has an app.module</span
+              >
+              <span step="3"
+                >it says which component should be rendered when the user surfs
+                to the root of our webapp</span
+              >
+              <span step="3"
+                >(and that <span class="ilcode">AppComponent</span> will contain
+                the tags of our other components to render them, and so
+                on)</span
+              >
+              <span step="4"
+                >you can imagine that large apps consists of many
+                components</span
+              >
+              <span step="4"
+                >to make re-use easier angular allows you to create your own
+                modules, and import those</span
+              >
+              <span step="4"
+                >let's do that for our <span class="ilcode">Recipe</span>- and
+                <span class="ilcode">IngredientComponent</span></span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>RecipeModule.</h3>
+          <pre data-trim class="console">
 <span class='prompt'>~/recipapp$</span> ng generate module recipe --module=app
           </pre>
-					<ul>
-						<li>You can use ng generate for modules as well</li>
-						<li>
-							<span class="ilcode">--module=app</span> makes sure this recipe
-							module is imported in the app module
-						</li>
-					</ul>
-				</section>
-				<section>
-					<h3>RecipeModule.</h3>
-					<div class="two-columns">
-						<div><img src="img/recipemodule_1.png" alt="" /></div>
-						<div>
-							<ul>
-								<li>
-									the cli created the
-									<span class="ilcode">recipe.module.ts</span> file in our
-									(already existing) <span class="ilcode">recipe/</span> folder
-								</li>
-								<li>
-									it would be nicer if both the ingredient component as the
-									recipe component their files would be in subfolders of this
-									module, so let's do that first
-								</li>
-							</ul>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>RecipeModule.</h3>
-					<pre data-trim class="console">
+          <ul>
+            <li>You can use ng generate for modules as well</li>
+            <li>
+              <span class="ilcode">--module=app</span> makes sure this recipe
+              module is imported in the app module
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>RecipeModule.</h3>
+          <div class="two-columns">
+            <div><img src="img/recipemodule_1.png" alt="" /></div>
+            <div>
+              <ul>
+                <li>
+                  the cli created the
+                  <span class="ilcode">recipe.module.ts</span> file in our
+                  (already existing) <span class="ilcode">recipe/</span> folder
+                </li>
+                <li>
+                  it would be nicer if both the ingredient component as the
+                  recipe component their files would be in subfolders of this
+                  module, so let's do that first
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>RecipeModule.</h3>
+          <pre data-trim class="console">
 <span class='prompt'>~/recipapp$</span> cd src/app
 <span class='prompt'>~/recipapp/src/app$</span> mkdir recipe/recipe
 <span class='prompt'>~/recipapp/src/app$</span> git mv recipe/recipe.component* recipe/recipe
 <span class='prompt'>~/recipapp/src/app$</span> git mv ingredient recipe/
           </pre>
-					<ul>
-						<li>
-							first we'll create a recipe folder inside the existing recipe
-							folder
-						</li>
-						<li>next we'll move all recipe component files to that folder</li>
-						<li>
-							it's always best to use git mv when moving files under git control
-							(it's a shorthand for moving a file / removing the old one /
-							adding the new one)
-						</li>
-						<li>
-							lastly, we'll move the ingredient folder inside this recipe folder
-							as well
-						</li>
-					</ul>
-				</section>
-				<section>
-					<h3>RecipeModule.</h3>
-					<div codesteps>
-						<pre
-							class="typescript"
-						> src/app/app.module.ts <code class='codesteps' data-noescape data-trim>
+          <ul>
+            <li>
+              first we'll create a recipe folder inside the existing recipe
+              folder
+            </li>
+            <li>next we'll move all recipe component files to that folder</li>
+            <li>
+              it's always best to use git mv when moving files under git control
+              (it's a shorthand for moving a file / removing the old one /
+              adding the new one)
+            </li>
+            <li>
+              lastly, we'll move the ingredient folder inside this recipe folder
+              as well
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>RecipeModule.</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/app.module.ts <code class='codesteps' data-noescape data-trim>
               import { BrowserModule } from '@angular/platform-browser';
               import { NgModule } from '@angular/core';
 
@@ -207,36 +207,36 @@
 
             
             </code><span class='githubcommit'></span> </pre>
-						<div explanation>
-							<span step="1"
-								>if you open app.module.ts, you'll see squiggly red lines where
-								we're importing the components
-							</span>
-							<span step="1"
-								>we moved them, they can no longer be found at there original
-								spot</span
-							>
-							<span step="2"
-								>we want to declare them in our recipe module though, so let's
-								remove the imports here</span
-							>
-							<span step="3"
-								>and remove from <span class="ilcode">declarations</span> as
-								well</span
-							>
-							<span step="4"
-								>that's it, now let's add them again in the
-								<span class="ilcode">recipe.module.ts</span></span
-							>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>RecipeModule.</h3>
-					<div codesteps>
-						<pre
-							class="typescript"
-						> src/app/recipe/recipe.module.ts <code class='codesteps' data-noescape data-trim>
+            <div explanation>
+              <span step="1"
+                >if you open app.module.ts, you'll see squiggly red lines where
+                we're importing the components
+              </span>
+              <span step="1"
+                >we moved them, they can no longer be found at there original
+                spot</span
+              >
+              <span step="2"
+                >we want to declare them in our recipe module though, so let's
+                remove the imports here</span
+              >
+              <span step="3"
+                >and remove from <span class="ilcode">declarations</span> as
+                well</span
+              >
+              <span step="4"
+                >that's it, now let's add them again in the
+                <span class="ilcode">recipe.module.ts</span></span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>RecipeModule.</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/recipe/recipe.module.ts <code class='codesteps' data-noescape data-trim>
               <span hstep='1'>import { IngredientComponent } from './ingredient/ingredient.component';
               import { RecipeComponent } from './recipe/recipe.component';</span>
               import { NgModule } from '@angular/core';
@@ -249,101 +249,103 @@
               })
               export class RecipeModule {}
                
-            </code><span class='githubcommit'>c60d1c0</span> </pre>
-						<div explanation>
-							<span step="1">
-								here we simply add both components to the declarations again
-							</span>
-							<span step="2">
-								this should add the imports automatically as well, but check to
-								make sure they already point at the new locations</span
-							>
-							<span step="2"
-								>(sometimes you get weird caching here and vs code still uses
-								the old path)</span
-							>
-							<span step="3">
-								if you would open the webapp now, you would still get an error
-								indicating RecipeComponent is not found
-							</span>
-							<span step="4"
-								>when importing a module, you only import what the module
-								exports, so we need to export the RecipeComponent here so the
-								AppComponent can use it</span
-							>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>modules.</h3>
-					<ul>
-						<li>
-							every component must be declared in <i>exactly one</i> module
-						</li>
-						<li>
-							you need to declare or import every component you want to use
-						</li>
-						<li>
-							importing a module imports all components that module exports (all
-							declared but not exported components can only be used inside that
-							module)
-						</li>
-						<li>
-							there's more to modules (lazy loading / preloading / ...) but
-							we'll talk about that in a later chapter
-						</li>
-					</ul>
-				</section>
-				<section id="material">
-					<h3>style.</h3>
-					<ul>
-						<li>
-							next, let's talk about styling our app, this is not a design
-							class, and nobody likes to write (or debug) css, so we'll use one
-							of the many frameworks to make our lives easier: angular material,
-							together with flexbox
-						</li>
-						<li>
-							Material design was created by Google in 2014, it's widely used on
-							Android, but as of Angular 5, there is a good angular port as well
-						</li>
-						<li>
-							there are many others we could have chosen: bootstrap, semantic
-							ui, etc.
-						</li>
-						<li>
-							or write our own css, it's still a webpage, we're not really
-							limited in this regard
-						</li>
-					</ul>
-				</section>
+            </code><span class='githubcommit'>b6df265</span> </pre>
+            <div explanation>
+              <span step="1">
+                here we simply add both components to the declarations again
+              </span>
+              <span step="2">
+                this should add the imports automatically as well, but check to
+                make sure they already point at the new locations</span
+              >
+              <span step="2"
+                >(sometimes you get weird caching here and vs code still uses
+                the old path)</span
+              >
+              <span step="3">
+                if you would open the webapp now, you would still get an error
+                indicating RecipeComponent is not found
+              </span>
+              <span step="4"
+                >when importing a module, you only import what the module
+                exports, so we need to export the RecipeComponent here so the
+                AppComponent can use it</span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>modules.</h3>
+          <ul>
+            <li>
+              every component must be declared in <i>exactly one</i> module
+            </li>
+            <li>
+              you need to declare or import every component you want to use
+            </li>
+            <li>
+              importing a module imports all components that module exports (all
+              declared but not exported components can only be used inside that
+              module)
+            </li>
+            <li>
+              there's more to modules (lazy loading / preloading / ...) but
+              we'll talk about that in a later chapter
+            </li>
+          </ul>
+        </section>
+        <section id="material">
+          <h3>style.</h3>
+          <ul>
+            <li>
+              next, let's talk about styling our app, this is not a design
+              class, and nobody likes to write (or debug) css, so we'll use one
+              of the many frameworks to make our lives easier: angular material,
+              together with flexbox
+            </li>
+            <li>
+              Material design was created by Google in 2014, it's widely used on
+              Android, but as of Angular 5, there is a good angular port as well
+            </li>
+            <li>
+              there are many others we could have chosen: bootstrap, semantic
+              ui, etc.
+            </li>
+            <li>
+              or write our own css, it's still a webpage, we're not really
+              limited in this regard
+            </li>
+          </ul>
+        </section>
 
-				<section>
-					<h3>angular material.</h3>
-					<pre data-trim class="console">
+        <section>
+          <h3>angular material.</h3>
+          <pre data-trim class="console">
 <span class='prompt'>~/recipeapp$ </span>npm install --save @angular/material @angular/cdk @angular/animations @angular/flex-layout
       </pre>
-					<ul>
-						<li>
-							first we need to add the modules to our application
-						</li>
-						<li>
-							the <span class="ilcode">--save</span> when doing an npm install
-							adds it to our package.json as well, so that teammembers will get
-							the right libraries when they git pull our code
-						</li>
-					</ul>
-				</section>
-				<section>
-					<h3>angular material.</h3>
-					<div codesteps>
-						<pre
-							class="typescript"
-						> src/app/material/material.module.ts <code class='codesteps' data-noescape data-trim>
+          <ul>
+            <li>
+              first we need to add the modules to our application
+            </li>
+            <li>
+              the <span class="ilcode">--save</span> when doing an npm install
+              adds it to our package.json as well, so that teammembers will get
+              the right libraries when they git pull our code
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>angular material.</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/material/material.module.ts <code class='codesteps' data-noescape data-trim>
               import { NgModule } from '@angular/core';
               import { CommonModule } from '@angular/common';
               <span sstep='2+'>import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-              import { MatListModule, MatCardModule, MatIconModule } from '@angular/material';
+              import { MatListModule } from '@angular/material/list';
+              import { MatIconModule } from '@angular/material/icon';
+              import { MatCardModule } from '@angular/material/card';
               import { FlexLayoutModule } from '@angular/flex-layout';
               </span>
               @NgModule({
@@ -366,38 +368,38 @@
               })
               export class MaterialModule {}
             </code><span class='githubcommit'></span> </pre>
-						<div explanation>
-							<span step="1">
-								we'll create a separate module to group everyting from material
-								design
-							</span>
-							<span step="1">
-								create it using the angular cli just like we did before with the
-								recipe module</span
-							>
-							<span step="2">
-								we'll import all modules we installed from material design</span
-							>
-							<span step="3">
-								and then we export them again so they are available to modules
-								importing our material module</span
-							>
-							<span step="4">
-								for this small recipe web app, this might look a bit silly</span
-							>
-							<span step="4"
-								>but when you have larger apps with many modules it pays to keep
-								this cleanly separated
-							</span>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>angular material.</h3>
-					<div codesteps>
-						<pre
-							class="typescript"
-						> src/app/recipe/recipe/module.ts <code class='codesteps' data-noescape data-trim>
+            <div explanation>
+              <span step="1">
+                we'll create a separate module to group everyting from material
+                design
+              </span>
+              <span step="1">
+                create it using the angular cli just like we did before with the
+                recipe module</span
+              >
+              <span step="2">
+                we'll import all modules we installed from material design</span
+              >
+              <span step="3">
+                and then we export them again so they are available to modules
+                importing our material module</span
+              >
+              <span step="4">
+                for this small recipe web app, this might look a bit silly</span
+              >
+              <span step="4"
+                >but when you have larger apps with many modules it pays to keep
+                this cleanly separated
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>angular material.</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/recipe/recipe.module.ts <code class='codesteps' data-noescape data-trim>
              <span sstep='2+'> import { MaterialModule } from './../material/material.module';
               </span>import { IngredientComponent } from './ingredient/ingredient.component';
               import { RecipeComponent } from './recipe/recipe.component';
@@ -411,79 +413,79 @@
               })
               export class RecipeModule {}
               
-            </code><span class='githubcommit'>112cf9d</span> </pre>
-						<div explanation>
-							<span step="1"
-								>if you generated the material module using the --module command
-								line option the AppModule already imports this</span
-							>
-							<span step="2"
-								>but we want to use it in the recipe module as well, so import
-								here too</span
-							>
-							<span step="3"
-								>by importing all the material modules a lot of new tags and
-								attributes are provided which we can use in the html of our
-								components</span
-							>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>angular material.</h3>
-					<ul>
-						<li>
-							angular material can be used with different styles, defined in
-							their own css files
-						</li>
-						<li>
-							this poses a bit of a problem, we said that every component its
-							css is scoped (that's a feature)
-						</li>
-						<li>
-							but that also implies we would have to add our theme-css file to
-							every component we create
-						</li>
-						<li>
-							luckily, angular provides us with a global style.css, which is
-							included in every html we define
-						</li>
-					</ul>
-				</section>
-				<section>
-					<h3>style.css</h3>
-					<div codesteps>
-						<pre
-							class="css"
-						> src/styles.css <code class='codesteps' data-noescape data-trim>
+            </code><span class='githubcommit'>5005567</span> </pre>
+            <div explanation>
+              <span step="1"
+                >if you generated the material module using the --module command
+                line option the AppModule already imports this</span
+              >
+              <span step="2"
+                >but we want to use it in the recipe module as well, so import
+                here too</span
+              >
+              <span step="3"
+                >by importing all the material modules a lot of new tags and
+                attributes are provided which we can use in the html of our
+                components</span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>angular material.</h3>
+          <ul>
+            <li>
+              angular material can be used with different styles, defined in
+              their own css files
+            </li>
+            <li>
+              this poses a bit of a problem, we said that every component its
+              css is scoped (that's a feature)
+            </li>
+            <li>
+              but that also implies we would have to add our theme-css file to
+              every component we create
+            </li>
+            <li>
+              luckily, angular provides us with a global style.css, which is
+              included in every html we define
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>style.css</h3>
+          <div codesteps>
+            <pre
+              class="css"
+            > src/styles.css <code class='codesteps' data-noescape data-trim>
               <span sstep='2'>  @import '~@angular/material/prebuilt-themes/indigo-pink.css';  </span>      
           </code></pre>
-						<div explanation>
-							<span step="1"> by default, this is an empty file </span>
-							<span step="2">
-								we'll simply add one of the default angular material themes
-								here: the pink one, everybody loves pink!
-							</span>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>material icons</h3>
-					<ul>
-						<li>
-							material design provides a large set of icons, which can be used
-							inside buttons, etc.
-						</li>
-						<li>
-							these are actually defined inside a custom font, so if you want to
-							use these (we do), we'll have to include the font in our
-							<span class="ilcode">index.html</span>
-						</li>
-					</ul>
-					<div>
-						<pre
-							class="html"
-						> src/index.html <code class='codesteps' data-noescape data-trim>
+            <div explanation>
+              <span step="1"> by default, this is an empty file </span>
+              <span step="2">
+                we'll simply add one of the default angular material themes
+                here: the pink one, everybody loves pink!
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>material icons</h3>
+          <ul>
+            <li>
+              material design provides a large set of icons, which can be used
+              inside buttons, etc.
+            </li>
+            <li>
+              these are actually defined inside a custom font, so if you want to
+              use these (we do), we'll have to include the font in our
+              <span class="ilcode">index.html</span>
+            </li>
+          </ul>
+          <div>
+            <pre
+              class="html"
+            > src/index.html <code class='codesteps' data-noescape data-trim>
               &lt;head&gt;
                 &lt;!-- [...] --&gt;
                 &lt;link
@@ -492,14 +494,14 @@
                 /&gt;
               &lt;/head&gt;
             </code></pre>
-					</div>
-				</section>
-				<section>
-					<h3>angular material</h3>
-					<div codesteps>
-						<pre
-							class="html"
-						> src/app/recipe/recipe.component.html <code class='codesteps' data-noescape data-trim>
+          </div>
+        </section>
+        <section>
+          <h3>angular material</h3>
+          <div codesteps>
+            <pre
+              class="html"
+            > src/app/recipe/recipe/recipe.component.html <code class='codesteps' data-noescape data-trim>
              <span sstep='2+'> &lt;mat-card&gt;
                 &lt;mat-card-header&gt;</span>
                  <span sstep='4+'> &lt;mat-card-title&gt;</span><span sstep='5+'>&lt;mat-icon&gt;local_dining&lt;/mat-icon&gt;</span> <span sstep='1-3'>&lt;p&gt;recipe for</span> {{ name }} <span sstep='4+'>&lt;/mat-card-title&gt;
@@ -514,72 +516,77 @@
                   &lt;/<span sstep='3+'>mat-list</span><span sstep='1-2'>ul</span>&gt;
               <span sstep='2+'>  &lt;/mat-card-content&gt;
               &lt;/mat-card&gt; </span>
-          </code></pre>
-						<div explanation>
-							<span step="1">
-								all is set, let's adapt the html of our recipe component to use
-								these material design elements</span
-							>
-							<span step="2"
-								>first let's put everything in a basic card, with a card header
-								and card content</span
-							>
-							<span step="3"
-								>next we'll change the list,
-								<span class="ilcode">ul</span> becomes
-								<span class="ilcode">mat-list</span> etc.</span
-							>
-							<span step="4"
-								>then we'll change the header a bit, use proper title tags</span
-							>
-							<span step="5">finally we'll add an icon to our card</span>
-							<span step="5"
-								>that's it,
-								<a href="http://localhost:4200">let's have a look</a></span
-							>
-						</div>
-					</div>
-				</section>
+          </code><span class='githubcommit'>9e91f87</span></pre>
+            <div explanation>
+              <span step="1">
+                all is set, let's adapt the html of our recipe component to use
+                these material design elements</span
+              >
+              <span step="2"
+                >first let's put everything in a basic card, with a card header
+                and card content</span
+              >
+              <span step="3"
+                >next we'll change the list,
+                <span class="ilcode">ul</span> becomes
+                <span class="ilcode">mat-list</span> etc.</span
+              >
+              <span step="4"
+                >then we'll change the header a bit, use proper title tags</span
+              >
+              <span step="5">finally we'll add an icon to our card</span>
+              <span step="5"
+                >that's it,
+                <a href="http://localhost:4200">let's have a look</a></span
+              >
+            </div>
+          </div>
+        </section>
 
-				<section>
-					<h3>refactor existing code</h3>
-					<div style="text-align:left">
-						right now our recipe component is hardcoded to always show
-						'spaghetti', we need to make some changes before we can cope with
-						adding new recipes:
-					</div>
-					<ul>
-						<li>we need a way to represent our recipes: a model class</li>
-						<li>
-							our component needs to be updated to get a recipe as an
-							<span class="ilcode">Input</span> of this model i.s.o. being
-							hardcoded
-						</li>
-						<li>
-							we'll add a mock data object to hold some recipes (these will come
-							from a proper backend in a later chapter)
-						</li>
-						<li>
-							then we need a new "recipe list" component, which will create and
-							show recipe components for all the recipes
-						</li>
-					</ul>
-				</section>
-				<section>
-					<h3>model</h3>
-					<div codesteps>
-						<pre
-							class="typescript"
-						>src/app/recipe.model.ts <code class='codesteps' data-noescape data-trim>
-                export class Recipe {
+        <section>
+          <h3>refactor existing code.</h3>
+          <div style="text-align:left">
+            right now our recipe component is hardcoded to always show
+            'spaghetti', we need to make some changes before we can cope with
+            adding new recipes:
+          </div>
+          <ul>
+            <li>we need a way to represent our recipes: a model class</li>
+            <li>
+              our component needs to be updated to get a recipe as an
+              <span class="ilcode">Input</span> of this model i.s.o. being
+              hardcoded
+            </li>
+            <li>
+              we'll add a mock data object to hold some recipes (these will come
+              from a proper backend in a later chapter)
+            </li>
+            <li>
+              then we need a new "recipe list" component, which will create and
+              show recipe components for all the recipes
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>model.</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >src/app/recipe/recipe.model.ts <code class='codesteps' data-noescape data-trim>
+               <span sstep='2+'> <span hstep='3'>interface RecipeJson</span> {
+                  name: string;
+                  ingredients: string[];
+                  dateAdded: string;
+                }
+                </span>export class Recipe {
                   constructor(
                     private _name: string,
                     private _ingredients = new Array&lt;string&gt;(),
                     private _dateAdded = new Date()
                   ) {}
                 <span sstep='2+'>
-                  static fromJSON(json: any): Recipe {
-                    const rec = new Recipe(json<span hstep='3'>.name</span>, json<span hstep='3'>.ingredients</span>, json<span hstep='3'>.dateAdded</span>);
+                  static fromJSON(json: <span hstep='3'>RecipeJson</span>): Recipe {
+                    const rec = new Recipe(json.name, json.ingredients, <span hstep='4'>new Date(json.dateAdded)</span>);
                     return rec;
                   }</span>
                   // [...] other getters<span sstep='1'>
@@ -592,67 +599,71 @@
                   }</span>
                 }
             </code></pre>
-						<div explanation>
-							<span step="1">
-								our model class is just a class with some private members and
-								getters
-							</span>
-							<span step="2">
-								our backend server will return JSON objects, so lets add a
-								convenience method to convert those</span
-							>
-							<span step="3">
-								so we need a json object with a name, ingredients and dateAdded
-								key of the appropriate types</span
-							>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>mock data object</h3>
-					<div codesteps>
-						<pre
-							class="typescript"
-						>src/app/mock-recipes.ts <code class='codesteps' data-noescape data-trim>
+            <div explanation>
+              <span step="1">
+                our model class is just a class with some private members and
+                getters
+              </span>
+              <span step="2">
+                our backend server will return JSON objects, so lets add a
+                convenience method to convert those</span
+              >
+              <span step="3">
+                you can always use any, but if you want 'type' your json
+                creating a small interface is the most convenient way
+              </span>
+              <span step="4">
+                dates will be stringified, so we'll convert them as we create
+                our Recipe object
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>mock data object</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >src/app/recipe/mock-recipes.ts <code class='codesteps' data-noescape data-trim>
                 <span hstep='2'>import { Recipe } from './recipe.model';</span>
 
                 const <span hstep='3'>JsonRecipes</span> = [
                   {
                     name: 'spaghetti',
                     ingredients: ['tomato', 'onion', 'celery', 'carrot', 'minced meat'],
-                    dateAdded: new Date(2019, 2, 3)
+                    dateAdded: '2020-02-07T18:25:43.511Z'
                   },
                   {
                     name: 'risotto',
                     ingredients: ['rice', 'onion', 'parmesan', 'butter'],
-                    dateAdded: new Date(2019, 2, 5)
-                  }
+                    dateAdded: '2020-02-08T16:25:43.511Z'
+	                }
                 ];
                 export const RECIPES: Recipe[] = <span hstep='4'>JsonRecipes.map(Recipe.fromJSON)</span>;
                  
             </code></pre>
-						<div explanation>
-							<span step="1">
-								we'll create a separate file which can hold a list of such
-								recipes to have some initial data
-							</span>
-							<span step="2"> import the model definition </span>
-							<span step="3">
-								create some json representation of our recipe model
-							</span>
-							<span step="4">
-								and finally map them to our class type using the convenience
-								method we added previously</span
-							>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>recipe component</h3>
-					<div codesteps>
-						<pre
-							class="typescript"
-						>src/app/recipe/recipe.component.ts <code class='codesteps' data-noescape data-trim>
+            <div explanation>
+              <span step="1">
+                we'll create a separate file which can hold a list of such
+                recipes to have some initial data
+              </span>
+              <span step="2"> import the model definition </span>
+              <span step="3">
+                create some json representation of our recipe model
+              </span>
+              <span step="4">
+                and finally map them to our class type using the convenience
+                method we added previously</span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>recipe component</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >src/app/recipe/recipe.component.ts <code class='codesteps' data-noescape data-trim>
                 export class RecipeComponent implements OnInit {<span hstep='1' sstep='1'>
                   name: string;
                   ingredients: string[];
@@ -668,31 +679,31 @@
                   ngOnInit() {}
                 } 
             </code></pre>
-						<div explanation>
-							<span step="1">
-								everything was hardcoded here, let's throw that out</span
-							>
-							<span step="2"> and replace them with a recipe object</span>
-							<span step="3">
-								we don't want to initialize this in the constructor but let
-								other components pass the data</span
-							>
-							<span step="4">
-								<span class="ilcode">@Input()</span> properties should be
-								public</span
-							>
-							<span step="4">
-								semantically correct, and important for AOT compiling</span
-							>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>recipe component</h3>
-					<div codesteps>
-						<pre
-							class="html"
-						>src/app/recipe/recipe.component.html <code class='codesteps' data-noescape data-trim>
+            <div explanation>
+              <span step="1">
+                everything was hardcoded here, let's throw that out</span
+              >
+              <span step="2"> and replace them with a recipe object</span>
+              <span step="3">
+                we don't want to initialize this in the constructor but let
+                other components pass the data</span
+              >
+              <span step="4">
+                <span class="ilcode">@Input()</span> properties should be
+                public</span
+              >
+              <span step="4">
+                semantically correct, and important for AOT compiling</span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>recipe component</h3>
+          <div codesteps>
+            <pre
+              class="html"
+            >src/app/recipe/recipe.component.html <code class='codesteps' data-noescape data-trim>
             &lt;mat-card&gt;
               &lt;mat-card-header&gt;
                 &lt;mat-card-title&gt;
@@ -712,141 +723,216 @@
               &lt;/mat-card-content&gt;
             &lt;/mat-card&gt; 
           </code></pre>
-						<div explanation>
-							<span step="1"> we need to adapt the html as well </span>
-							<span step="2">
-								<span class="ilcode">name</span>,
-								<span class="ilcode">ingredients</span> nor
-								<span class="ilcode">dateAdded</span> exist in our updated class
-							</span>
-							<span step="3">
-								we access them through our recipe property now</span
-							>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>app component</h3>
-					<div codesteps>
-						<pre
-							class="typescript"
-						>src/app/app.component.ts <code class='codesteps' data-noescape data-trim><span sstep='2+'>
+            <div explanation>
+              <span step="1"> we need to adapt the html as well </span>
+              <span step="2">
+                <span class="ilcode">name</span>,
+                <span class="ilcode">ingredients</span> nor
+                <span class="ilcode">dateAdded</span> exist in our updated class
+              </span>
+              <span step="3">
+                we access them through our recipe property now</span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>recipe list component.</h3>
+          <ul>
+            <li>
+              we'll create a new component to hold all the recipes and to
+              display a recipe component for each
+            </li>
+
+            <pre data-trim class="console">
+<span class='prompt'>~/recipeapp$</span> cd src/app/recipe
+<span class='prompt'>~/recipeapp/src/app/recipe$</span> ng g c recipe-list --module=recipe --dry-run
+<span class='prompt'>~/recipeapp/src/app/recipe$</span> ng g c recipe-list --module=recipe
+          </pre>
+
+            <li>
+              first make sure you're in the recipe/ folder so the component gets
+              created in a subfolder of the recipe folder
+            </li>
+            <li>
+              you can always use the
+              <span class="ilcode">--dry-run</span> option to run the command
+              without changing anything (see what would happen) and then run it
+              for real
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>recipe list component.</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >src/app/recipe/recipe-list/recipe-list.component.ts <code class='codesteps' data-noescape data-trim>
 import { RECIPES } from './mock-recipes';
 
-</span>export class AppComponent {
-  <span sstep='1'>title = 'recipeapp';</span><span sstep='2'>recipes = RECIPES;
-</span>  constructor() {}
+export class RecipeListComponent {
+  <span hstep='1'>private _recipes = RECIPES;</span>
+
+  constructor() {}
+  
+  <span hstep='1'>get recipes() {
+    return this._recipes;
+  }</span>
 }
         </code></pre>
-						<div explanation>
-							<span step="1">
-								let's quickly adapt the app component to pass the recipes form
-								our mock data to the component</span
-							>
-							<span step="1"> so we can check that everything still works</span>
-							<span step="2">
-								we don't need the title property anymore, but we'll take a
-								reference to the list of recipes</span
-							>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>app component</h3>
-					<div codesteps>
-						<pre
-							class="html"
-						> src/app/app.component.html <code class='codesteps' data-noescape data-trim>
-                <span sstep='2+'>&lt;div
-                  fxLayout=&quot;<span hstep='3'>row wrap</span>&quot;
-                  fxLayout<span hstep='3'>.xs</span>=&quot;<span hstep='3'>column</span>&quot;
-                  fxLayoutGap=&quot;0.5%&quot;
-                  fxLayoutAlign=&quot;start&quot;
-                &gt;
-                  &lt;div 
-                    class=&quot;recipe&quot;<span sstep='4+'>
-                    *ngFor=&quot;let localRecipe of recipes&quot;</span>
-                    fxFlex=&quot;0 0 calc(25%-0.5%)&quot;
-                    fxFlex.xs=&quot;100%&quot;
-                  &gt;
-                    </span>&lt;app-recipe <span sstep='4+'>[recipe]=&quot;localRecipe&quot;</span>&gt;&lt;/app-recipe&gt;
-                  <span sstep='2+'>&lt;/div&gt;
-                &lt;/div&gt;</span>
-            </code></pre>
-						<div explanation>
-							<span step="1">
-								in the html we want to loop over all the recipes using
-								<span class="ilcode">*ngFor</span>
-							</span>
-							<span step="2">
-								we first wrap the recipe in a
-								<span class="ilcode">angular/flex-layout</span> div</span
-							>
-							<span step="2"
-								>this is a convenient wrapper of CSS3 flexbox, if you have no
-								idea what this is about,
-								<a
-									href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/"
-									>spent 5 minutes reading</a
-								></span
-							>
-							<span step="2"
-								>and another 10 minutes reading about
-								<a
-									href="https://css-tricks.com/snippets/css/complete-guide-grid/"
-									>css grid</a
-								>
-								while you're at it</span
-							>
-							<span step="3"
-								>it makes it easy to create responsive 'flows', here we'll use
-								'row' layout unless on very small screens, many more options are
-								available</span
-							>
-							<span step="4"
-								>then we loop over our recipes and pass them one by one to the
-								<span class="ilcode">@Input</span> of our recipe component</span
-							>
-							<span step="5"
-								>notice that we put the <span class="ilcode">*ngFor</span>
-								<i>inside</i> the tag we want to see repeated</span
-							>
-							<span step="5"
-								>we want to repeat the div inside the flexbox, not the flexbox
-								itself</span
-							>
-							<span step="6">
-								<a href="http://localhost:4200"
-									>let's check that this still works</a
-								></span
-							>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>linking components</h3>
-					<ul>
-						<li>
-							we learned how to pass data between components and their html
-							(using <span class="ilcode">{{}}</span>)
-						</li>
-						<li>
-							we also saw how to pass data from one component to its child
-							component (using <span class="ilcode">[ ]</span> )
-						</li>
-						<li>
-							now we're going to learn a way to pass data from a child component
-							to its parent
-						</li>
-						<li>and how to respond to actions from the user (clicks)</li>
-					</ul>
-				</section>
-				<section>
-					<h3>add recipe component</h3>
-					<div codesteps>
-						<pre
-							class="html"
-						>src/app/add-recipe/add-recipe.component.html <code class='codesteps' data-noescape data-trim>
+            <div explanation>
+              <span step="1">
+                inside the recipe list component we'll access our mock data and
+                provide a getter which the html can use to loop over all
+                recipes</span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>recipe list component.</h3>
+          <div codesteps>
+            <pre
+              class="html"
+            > src/app/recipe/recipe-list/recipe-list.component.html <code class='codesteps' data-noescape data-trim>
+            <span sstep='2+'>&lt;div
+              fxLayout=&quot;<span hstep='3'>row wrap</span>&quot;
+              fxLayout<span hstep='3'>.xs</span>=&quot;<span hstep='3'>column</span>&quot;
+              fxLayoutGap=&quot;0.5%&quot;
+              fxLayoutAlign=&quot;start&quot;
+            &gt;
+              &lt;div 
+                class=&quot;recipe&quot;<span sstep='4+'>
+                *ngFor=&quot;let localRecipe of recipes&quot;</span>
+                fxFlex=&quot;0 0 calc(25%-0.5%)&quot;
+                fxFlex.xs=&quot;100%&quot;
+              &gt;
+                </span>&lt;app-recipe<span sstep='4+'> [recipe]=&quot;localRecipe&quot;</span>&gt;&lt;/app-recipe&gt;
+              <span sstep='2+'>&lt;/div&gt;
+            &lt;/div&gt;</span>
+        </code></pre>
+            <div explanation>
+              <span step="1">
+                in the html we 'll use
+                <span class="ilcode">*ngFor</span> to loop over the recipes
+              </span>
+              <span step="2">
+                we first wrap the recipe in a
+                <span class="ilcode">angular/flex-layout</span> div</span
+              >
+              <span step="2"
+                >this is a convenient wrapper of CSS3 flexbox, if you have no
+                idea what this is about,
+                <a
+                  href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/"
+                  >spent 5 minutes reading</a
+                ></span
+              >
+              <span step="2"
+                >and another 10 minutes reading about
+                <a
+                  href="https://css-tricks.com/snippets/css/complete-guide-grid/"
+                  >css grid</a
+                >
+                while you're at it</span
+              >
+              <span step="3"
+                >it makes it easy to create responsive 'flows', here we'll use
+                'row' layout unless on very small screens, many more options are
+                available</span
+              >
+              <span step="4"
+                >then we loop over our recipes and pass them one by one to the
+                <span class="ilcode">@Input</span> of our recipe component</span
+              >
+              <span step="5"
+                >notice that we put the <span class="ilcode">*ngFor</span>
+                <i>inside</i> the tag we want to see repeated</span
+              >
+              <span step="5"
+                >we want to repeat the div inside the flexbox, not the flexbox
+                itself</span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>recipe module</h3>
+          <div codesteps>
+            <pre class='typescript'> src/app/recipe/recipe.module.ts <code class='codesteps' data-noescape data-trim>
+              import { MaterialModule } from './../material/material.module';
+              import { IngredientComponent } from './ingredient/ingredient.component';
+              import { RecipeComponent } from './recipe/recipe.component';
+              import { NgModule } from '@angular/core';
+              import { CommonModule } from '@angular/common';
+              import { RecipeListComponent } from './recipe-list/recipe-list.component';
+              
+              @NgModule({
+                declarations: [RecipeComponent, IngredientComponent, RecipeListComponent],
+                imports: [CommonModule, MaterialModule],
+                exports: [<span sstep='1-2' sl>RecipeComponent</span><span sstep='2+'>RecipeListComponent</span>]
+              })
+              export class RecipeModule {}
+               
+            </code><span class='githubcommit'></span> </pre>
+            <div explanation>
+              <span step='1'>the recipe list component was automatically added to the declarations when we created the component because of the --moduule=recipe option we provided </span>
+              <span step='2'>we still need to take care of exporting though, we want users of our module to use the recipe list to show all recipes</span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>app component</h3>
+          <div codesteps>
+            <pre
+              class="html"
+            > src/app/app.component.html <code class='codesteps' data-noescape data-trim>
+            &lt;div style=&quot;text-align:center&quot;&gt;
+              &lt;h1&gt;welcome to {{ title }}&lt;/h1&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+              <span sstep='1-2' sl>&lt;app-recipe&gt;&lt;/app-recipe&gt;</span><span sstep='2+'>
+              &lt;app-recipe-list&gt;&lt;/app-recipe-list&gt;</span>
+            &lt;/div&gt;
+            </code><span class="githubcommit">9bb3c80</span></pre>
+            <div explanation>
+              <span step="1">
+                now all that's left is adapting the html of app component to use this new recipe list component
+              </span>
+              <span step="2">so replace the app-recipe tag with an app-recipe-list tag</span>
+              <span step="3">
+                that's it 
+                <a href="http://localhost:4200"
+                  >let's check that this still works</a
+                ></span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>linking components</h3>
+          <ul>
+            <li>
+              we learned how to pass data between components and their html
+              (using <span class="ilcode">{{}}</span>)
+            </li>
+            <li>
+              we also saw how to pass data from one component to its child
+              component (using <span class="ilcode">[ ]</span> )
+            </li>
+            <li>
+              now we're going to learn a way to pass data from a child component
+              to its parent
+            </li>
+            <li>and how to respond to actions from the user (clicks)</li>
+          </ul>
+        </section>
+        <section>
+          <h3>add recipe component</h3>
+          <div codesteps>
+            <pre
+              class="html"
+            >src/app/recipe/add-recipe/add-recipe.component.html <code class='codesteps' data-noescape data-trim>
               &lt;mat-card&gt;
                 &lt;mat-form-field&gt;
                   &lt;<span hstep='1'>input</span> matInput placeholder=&quot;name&quot; type=&quot;text&quot; <span sstep='4+'>
@@ -857,51 +943,51 @@ import { RECIPES } from './mock-recipes';
                 &lt;/button&gt;
               &lt;/mat-card&gt;          
             </code></pre>
-						<div explanation>
-							<span step="1">
-								let's add a (very basic) add recipe component, with only a input
-								field for the name, and an add button
-							</span>
-							<span step="1">
-								(we'll convert this into a proper form in a later class)
-							</span>
-							<span step="2">
-								from now on, the slides will no longer show everything
-								excrutiatingly detailed if it covers something we already saw,
-								like in this case, creating a new component
-							</span>
-							<span step="2"
-								><a href="http://localhost:4200">let's do this</a></span
-							>
-							<span step="3"
-								>we want to respond to the button being clicked</span
-							>
-							<span step="3"
-								>this is done using an eventhandler, between
-								<span class="ilcode">( )</span></span
-							>
-							<span step="4">
-								when the button is clicked, we want to process what is inside
-								the input field</span
-							>
-							<span step="4">
-								we do this by populating a template variable for the input
-								field, using this 'hashtag' syntax</span
-							>
-							<span step="5">
-								now we add the function being called on our typescript class
-								when the event fires, with this variable as a parameter</span
-							>
-							<span step="6">the newrecipename is a <i>local</i> variable</span>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>@Output()</h3>
-					<div codesteps>
-						<pre
-							class="typescript"
-						>src/app/add-recipe/add-recipe.component.ts  <code class='codesteps' data-noescape data-trim>
+            <div explanation>
+              <span step="1">
+                let's add a (very basic) add recipe component, with only a input
+                field for the name, and an add button
+              </span>
+              <span step="1">
+                (we'll convert this into a proper form in a later class)
+              </span>
+              <span step="2">
+                from now on, the slides will no longer show everything
+                excrutiatingly detailed if it covers something we already saw,
+                like in this case, creating a new component
+              </span>
+              <span step="2"
+                ><a href="http://localhost:4200">let's do this</a></span
+              >
+              <span step="3"
+                >we want to respond to the button being clicked</span
+              >
+              <span step="3"
+                >this is done using an eventhandler, between
+                <span class="ilcode">( )</span></span
+              >
+              <span step="4">
+                when the button is clicked, we want to process what is inside
+                the input field</span
+              >
+              <span step="4">
+                we do this by populating a template variable for the input
+                field, using this 'hashtag' syntax</span
+              >
+              <span step="5">
+                now we add the function being called on our typescript class
+                when the event fires, with this variable as a parameter</span
+              >
+              <span step="6">the newrecipename is a <i>local</i> variable</span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>@Output()</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >src/app/recipe/add-recipe/add-recipe.component.ts  <code class='codesteps' data-noescape data-trim>
                 import { Component, OnInit<span sstep='8+'>, Output, EventEmitter</span> } from '@angular/core';<span sstep='8+'>
                 import { Recipe } from '../recipe.model';</span>
                 
@@ -919,64 +1005,64 @@ import { RECIPES } from './mock-recipes';
                   }
                 }
                          
-          </code></pre>
-						<div explanation>
-							<span step="1">
-								we're referencing the
-								<span class="ilcode">addRecipe</span> function, so we need to
-								add it to our code</span
-							>
-							<span step="2"
-								>"hashtag fields" are basic DOM HTMLElements (HTMlInputElement
-								here, since it's an &lt;input&gt; tag)</span
-							>
-							<span step="3">use .value to access to contents </span>
-							<span step="4"
-								>event handlers return a boolean, true if you want to propagate
-								the event to other handlers, false to "eat" the event
-							</span>
-							<span step="5"
-								><a href="http://localhost:4200"> let's try this out</a></span
-							>
-							<span step="6">
-								when the <span class="ilcode">addRecipe</span> is triggered by
-								clicking the button, we'd like this recipe to end up in our list
-								of recipes and show up in the grid
-							</span>
-							<span step="7">
-								to be able to communicate with a component that contains us, we
-								need an <span class="ilcode">@Output</span> variable, of type
-								<span class="ilcode">EventEmitter</span>
-							</span>
-							<span step="7">
-								we don't (and shouldn't) know who contains us, so we're limited
-								to simply sending something 'out there', to anyone who cares to
-								listen</span
-							>
-							<span step="8"> don't forget all necessary imports</span>
-							<span step="9">
-								when the button is clicked, we'll emit a new event, with the new
-								created recipe</span
-							>
-							<span step="10">
-								notice that our <span class="ilcode">EventEmitter</span> sends
-								objects of the type <span class="ilcode">Recipe</span>, so we
-								simply emit the recipe, not wrapped into some event class</span
-							>
-							<span step="10"
-								>the html doesn't change, we already called the
-								<span class="ilcode">addRecipe</span> when the add button was
-								clicked</span
-							>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>receive the event</h3>
-					<div codesteps>
-						<pre
-							class="html"
-						> src/app/app.component.html <code class='codesteps' data-noescape data-trim>
+          </code><span class="githubcommit">21a08c3</span></pre>
+            <div explanation>
+              <span step="1">
+                we're referencing the
+                <span class="ilcode">addRecipe</span> function, so we need to
+                add it to our code</span
+              >
+              <span step="2"
+                >"hashtag fields" are basic DOM HTMLElements (HTMlInputElement
+                here, since it's an &lt;input&gt; tag)</span
+              >
+              <span step="3">use .value to access to contents </span>
+              <span step="4"
+                >event handlers return a boolean, true if you want to propagate
+                the event to other handlers, false to "eat" the event
+              </span>
+              <span step="5"
+                >let's add the component to the recipe list and <a href="http://localhost:4200"> try this out</a></span
+              >
+              <span step="6">
+                when the <span class="ilcode">addRecipe</span> is triggered by
+                clicking the button, we'd like this recipe to end up in our list
+                of recipes and show up in the grid
+              </span>
+              <span step="7">
+                to be able to communicate with a component that contains us, we
+                need an <span class="ilcode">@Output</span> variable, of type
+                <span class="ilcode">EventEmitter</span>
+              </span>
+              <span step="7">
+                we don't (and shouldn't) know who contains us, so we're limited
+                to simply sending something 'out there', to anyone who cares to
+                listen</span
+              >
+              <span step="8"> don't forget all necessary imports</span>
+              <span step="9">
+                when the button is clicked, we'll emit a new event, with the new
+                created recipe</span
+              >
+              <span step="10">
+                notice that our <span class="ilcode">EventEmitter</span> sends
+                objects of the type <span class="ilcode">Recipe</span>, so we
+                simply emit the recipe, not wrapped into some event class</span
+              >
+              <span step="10"
+                >the html doesn't change, we already called the
+                <span class="ilcode">addRecipe</span> when the add button was
+                clicked</span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>receive the event</h3>
+          <div codesteps>
+            <pre
+              class="html"
+            > src/app/recipe/recipe-list/recipe-list.component.html <code class='codesteps' data-noescape data-trim>
               <span sstep='2+'>&lt;div fxLayout=&quot;column&quot; fxLayoutGap=&quot;2%&quot;&gt;
                 &lt;app-add-recipe<span sstep='3+'> (newRecipe)=&quot;addNewRecipe($event)&quot;</span>&gt;&lt;/app-add-recipe&gt;</span>
                 &lt;div
@@ -996,130 +1082,132 @@ import { RECIPES } from './mock-recipes';
                 &lt;/div&gt;<span sstep='2+'>
               &lt;/div&gt;</span>
             </code></pre>
-						<div explanation>
-							<span step="1">
-								the event is sent, but nobody's listening, let's change
-								that</span
-							>
-							<span step="2"
-								>first, we'll add the
-								<span class="ilcode">app-add-recipe</span> component to our app
-								component (inside another flexbox div)</span
-							>
-							<span step="3"
-								>then we want to listen to the Output / event of this
-								component</span
-							>
-							<span step="3"> this event works just like system events</span>
-							<span step="3">
-								a <span class="ilcode">click</span> of a
-								<span class="ilcode">&lt;button&gt;</span>, or a
-								<span class="ilcode">newRecipe</span> of an
-								<span class="ilcode">&lt;app-add-recipe&gt;</span>, they're just
-								the same</span
-							>
-							<span step="4">
-								so add an eventhandler (using <span class="ilcode">( )</span>)
-								to the tag/component sending the event</span
-							>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>receive the event</h3>
-					<div codesteps>
-						<pre
-							class="typescript"
-						>src/app/app.component.ts <code class='codesteps' data-noescape data-trim>
-                export class AppComponent {
-                  recipes = RECIPES;
-                  constructor() {}<span sstep='2+'>
-                
-                  addNewRecipe(<span hstep='3'>recipe: Recipe</span>) {
-                    this.recipes.push(recipe);
-                  }</span>
-                } 
-            </code></pre>
-						<div explanation>
-							<span step="1">
-								now we still need to add this event handler to our class</span
-							>
-							<span step="2"
-								>so we add an <span class="ilcode">addNewRecipe</span> method,
-								which will push the new recipe to our list of recipes</span
-							>
-							<span step="3"
-								>notice that the <span class="ilcode">$event</span> parameter is
-								simply an object of type <span class="ilcode">Recipe</span>, as
-								that's what we were sending</span
-							>
-							<span step="4"
-								><a href="http://localhost:4200"> let's try this out</a>
-							</span>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>status</h3>
-					<ul>
-						<li>
-							we can add recipes now, or at least simply the name of a new
-							recipe
-						</li>
-						<li>
-							while you could expand this into a fully functioning form, there
-							are FAR better ways to handle forms! (we'll cover that in a later
-							chapter)
-						</li>
-						<li>
-							still, while we can add recipes now, data is stored in the app
-							component, it shouldn't be in a component at all
-						</li>
-						<li>
-							we need a new concept, a class which performs functionality across
-							components
-						</li>
-					</ul>
-				</section>
-				<section>
-					<h3>services</h3>
-					<ul>
-						<li>services typically serve one of these goals</li>
-						<ul>
-							<li>encapsulate business logic needed throughout your app</li>
-							<li>providing data access to different components</li>
-						</ul>
-						<li>
-							you use services to share code / data across components, so
-							obviously you don't want to simply instantiate local copies in
-							each component
-						</li>
-						<li>
-							you use injection to add them to components, and 'share' your copy
-						</li>
-					</ul>
-				</section>
-				<section>
-					<h3>services</h3>
-					we'll use angular-cli to generate our service
-					<pre data-trim class="console">
+            <div explanation>
+              <span step="1">
+                the event is sent, but nobody's listening, let's change
+                that</span
+              >
+              <span step="2"
+                >first, we'll add the
+                <span class="ilcode">app-add-recipe</span> component to our app
+                component (inside another flexbox div)</span
+              >
+              <span step="3"
+                >then we want to listen to the Output / event of this
+                component</span
+              >
+              <span step="3"> this event works just like system events</span>
+              <span step="3">
+                a <span class="ilcode">click</span> of a
+                <span class="ilcode">&lt;button&gt;</span>, or a
+                <span class="ilcode">newRecipe</span> of an
+                <span class="ilcode">&lt;app-add-recipe&gt;</span>, they're just
+                the same</span
+              >
+              <span step="4">
+                so add an eventhandler (using <span class="ilcode">( )</span>)
+                to the tag/component sending the event</span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>receive the event</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >src/app/recipe/recipe-list/recipe-list.component.ts <code class='codesteps' data-noescape data-trim>
+              export class RecipeListComponent implements OnInit {
+                private _recipes = RECIPES;
+                constructor() {}
+              
+                get recipes() {
+                  return this._recipes;
+                }<span sstep='2+'>
+                addNewRecipe(<span hstep='3'>recipe: Recipe</span>) {
+                  this._recipes.push(recipe);
+                }</span>
+            </code><span class="githubcommit">a5b210b</span></pre>
+            <div explanation>
+              <span step="1">
+                now we still need to add this event handler to our class</span
+              >
+              <span step="2"
+                >so we add an <span class="ilcode">addNewRecipe</span> method,
+                which will push the new recipe to our list of recipes</span
+              >
+              <span step="3"
+                >notice that the <span class="ilcode">$event</span> parameter is
+                simply an object of type <span class="ilcode">Recipe</span>, as
+                that's what we were sending</span
+              >
+              <span step="4"
+                ><a href="http://localhost:4200"> let's try this out</a>
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>status</h3>
+          <ul>
+            <li>
+              we can add recipes now, or at least simply the name of a new
+              recipe
+            </li>
+            <li>
+              while you could expand this into a fully functioning form, there
+              are FAR better ways to handle forms! (we'll cover that in a later
+              chapter)
+            </li>
+            <li>
+              still, while we can add recipes now, data is stored in the app
+              component, it shouldn't be in a component at all
+            </li>
+            <li>
+              we need a new concept, a class which performs functionality across
+              components
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>services</h3>
+          <ul>
+            <li>services typically serve one of these goals</li>
+            <ul>
+              <li>encapsulate business logic needed throughout your app</li>
+              <li>providing data access to different components</li>
+            </ul>
+            <li>
+              you use services to share code / data across components, so
+              obviously you don't want to simply instantiate local copies in
+              each component
+            </li>
+            <li>
+              you use injection to add them to components, and 'share' your copy
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>services</h3>
+          we'll use angular-cli to generate our service
+          <pre data-trim class="console">
 <span class='prompt'>~/recipeapp$ </span>ng generate service RecipeData		
             </pre>
-					<pre data-trim class="console">
+          <pre data-trim class="console">
   <span class="cli-green">CREATE</span> src/app/recipe-data.service.spec.ts (354 bytes)
   <span class="cli-green">CREATE</span> src/app/recipe-data.service.ts (159 bytes)
             </pre>
-					<div>
-						note that no html nor css is created, a service is not something
-						that will be shown
-					</div>
-				</section>
-				<section>
-					<h3>services</h3>
-					<div codesteps>
-						<pre
-							class="typescript"
-						>src/app/recipe-data.service.ts  <code class='codesteps' data-noescape data-trim>
+          <div>
+            note that no html nor css is created, a service is not something
+            that will be shown
+          </div>
+        </section>
+        <section>
+          <h3>services</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >src/app/recipe-data.service.ts  <code class='codesteps' data-noescape data-trim>
                 import { Injectable } from '@angular/core';
 
                 <span hstep='2'>@Injectable</span>({
@@ -1131,43 +1219,43 @@ import { RECIPES } from './mock-recipes';
                 }
                 
             </code></pre>
-						<div explanation>
-							<span step="1"> not much here, a class with a decorator</span>
-							<span step="2"
-								>services are always <span class="ilcode">@Injectable</span>,
-								you never create ('new') one yourself, they are always added
-								using dependency injection
-							</span>
-							<span step="3"
-								>you've seen this before, but basically when first needed the
-								Angular framework will create a singleton instance of this class
-								and pass it</span
-							>
-							<span step="3"
-								>then any subsequent request for this service in the same
-								'scope' will use the same object</span
-							>
-							<span step="4"
-								>services need to be provided by a module (their 'scope'),
-								that's what the <span class="ilcode">providedIn</span> is for,
-								we'll see modules in depth in a later chapter</span
-							>
-							<span step="5"
-								><span class="ilcode">providedIn</span> is new in Angular6, on
-								stackoverflow etc you'll often find services being provided
-								inside the providers list of the module, this still works, but
-								the new shiny way is to use
-								<span class="ilcode">providedIn</span></span
-							>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>recipedataservice</h3>
-					<div codesteps>
-						<pre
-							class="typescript"
-						>src/app/recipe-data.service.ts <code class='codesteps' data-noescape data-trim>
+            <div explanation>
+              <span step="1"> not much here, a class with a decorator</span>
+              <span step="2"
+                >services are always <span class="ilcode">@Injectable</span>,
+                you never create ('new') one yourself, they are always added
+                using dependency injection
+              </span>
+              <span step="3"
+                >you've seen this before, but basically when first needed the
+                Angular framework will create a singleton instance of this class
+                and pass it</span
+              >
+              <span step="3"
+                >then any subsequent request for this service in the same
+                'scope' will use the same object</span
+              >
+              <span step="4"
+                >services need to be provided by a module (their 'scope'),
+                that's what the <span class="ilcode">providedIn</span> is for,
+                we'll see modules in depth in a later chapter</span
+              >
+              <span step="5"
+                ><span class="ilcode">providedIn</span> is new in Angular6, on
+                stackoverflow etc you'll often find services being provided
+                inside the providers list of the module, this still works, but
+                the new shiny way is to use
+                <span class="ilcode">providedIn</span></span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>recipedataservice</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >src/app/recipe-data.service.ts <code class='codesteps' data-noescape data-trim>
                 @Injectable({
                   providedIn: 'root'
                 })
@@ -1185,23 +1273,23 @@ import { RECIPES } from './mock-recipes';
                 }
                            
             </code></pre>
-						<div explanation>
-							<span step="1">
-								first we move the list of recipes, initialized with the mock
-								data, from the app component to this service</span
-							>
-							<span step="2">
-								let's make it a private variable with a proper getter</span
-							>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>app component</h3>
-					<div codesteps>
-						<pre
-							class="typescript"
-						>src/app/app.component.ts <code class='codesteps' data-noescape data-trim>
+            <div explanation>
+              <span step="1">
+                first we move the list of recipes, initialized with the mock
+                data, from the app component to this service</span
+              >
+              <span step="2">
+                let's make it a private variable with a proper getter</span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>app component</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >src/app/app.component.ts <code class='codesteps' data-noescape data-trim>
                 export class AppComponent {
                   constructor(<span hstep='2'><span hstep='3'>private</span> _recipeDataService: RecipeDataService</span>) {}
                 
@@ -1214,115 +1302,115 @@ import { RECIPES } from './mock-recipes';
                   }
                 } 
             </code></pre>
-						<div explanation>
-							<span step="1">
-								now we update the app component to use this data service</span
-							>
-							<span step="2">
-								first we add a parameter of the data service type to the
-								constructor</span
-							>
-							<span step="2">
-								this will make sure the DI system is used, if the service is
-								properly provided somewhere</span
-							>
-							<span step="3"
-								>notice the <span class="ilcode">private</span> before the
-								parameter; remember, this creates a member variable and
-								initializes it</span
-							>
-							<span step="4"
-								>the <span class="ilcode">get</span> and
-								<span class="ilcode">addNewRecipe</span> methods now simply call
-								their respective methods on the data service directly</span
-							>
-							<span step="5"
-								>notice that the component no longer holds any data itself, this
-								is very important as components can (and will) be recreated and
-								reused throughout the use of your app</span
-							>
-							<span step="5">where services are 'stable' singletons</span>
-							<span step="6"
-								>it's also important since services will be reused across
-								components</span
-							>
-							<span step="6"
-								>if you add a recipe in one component, you'll typically want
-								other components to reflect this as well</span
-							>
-							<span step="6"
-								><a href="http://localhost:4200">let's try this out</a></span
-							>
-						</div>
-					</div>
-				</section>
-				<section>
-					<div class="fragment" code-step svg-step>
-						<svg
-							id="svg1"
-							class="svg-section"
-							width="100%"
-							height="100%"
-							preserveAspectRatio="xMidYMid"
-							snapfile="img/output_eventemitter.svg"
-						>
-							<use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
-						</svg>
-					</div>
-				</section>
-				<section>
-					<h3>service</h3>
-					<ul>
-						<li>
-							we succesfully moved our data to a shared service, ready to be
-							used throughout the app
-						</li>
-						<li>
-							still, we lose everything after a refresh... we need a backend
-							with a database and the whole shebang, we'll tackle that in later
-							chapter
-						</li>
-					</ul>
-				</section>
-				<section>
-					<h3>custom pipe</h3>
-					<ul>
-						<li>
-							last week we talked about pipes to transform how data is displayed
-						</li>
-						<li>
-							but you can also use pipes to filter data (in a way this is
-							transforming your array)
-						</li>
-						<li>
-							since we can have many recipes now, let's illustrate this by
-							adding a filter to only show recipes matching a certain string
-						</li>
-					</ul>
-				</section>
-				<section>
-					<h3>recipe filter</h3>
-					like components and services, we can use the angular-cli to generate
-					pipes
-					<pre data-trim class="console">
+            <div explanation>
+              <span step="1">
+                now we update the app component to use this data service</span
+              >
+              <span step="2">
+                first we add a parameter of the data service type to the
+                constructor</span
+              >
+              <span step="2">
+                this will make sure the DI system is used, if the service is
+                properly provided somewhere</span
+              >
+              <span step="3"
+                >notice the <span class="ilcode">private</span> before the
+                parameter; remember, this creates a member variable and
+                initializes it</span
+              >
+              <span step="4"
+                >the <span class="ilcode">get</span> and
+                <span class="ilcode">addNewRecipe</span> methods now simply call
+                their respective methods on the data service directly</span
+              >
+              <span step="5"
+                >notice that the component no longer holds any data itself, this
+                is very important as components can (and will) be recreated and
+                reused throughout the use of your app</span
+              >
+              <span step="5">where services are 'stable' singletons</span>
+              <span step="6"
+                >it's also important since services will be reused across
+                components</span
+              >
+              <span step="6"
+                >if you add a recipe in one component, you'll typically want
+                other components to reflect this as well</span
+              >
+              <span step="6"
+                ><a href="http://localhost:4200">let's try this out</a></span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="fragment" code-step svg-step>
+            <svg
+              id="svg1"
+              class="svg-section"
+              width="100%"
+              height="100%"
+              preserveAspectRatio="xMidYMid"
+              snapfile="img/output_eventemitter.svg"
+            >
+              <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
+            </svg>
+          </div>
+        </section>
+        <section>
+          <h3>service</h3>
+          <ul>
+            <li>
+              we succesfully moved our data to a shared service, ready to be
+              used throughout the app
+            </li>
+            <li>
+              still, we lose everything after a refresh... we need a backend
+              with a database and the whole shebang, we'll tackle that in later
+              chapter
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>custom pipe</h3>
+          <ul>
+            <li>
+              last week we talked about pipes to transform how data is displayed
+            </li>
+            <li>
+              but you can also use pipes to filter data (in a way this is
+              transforming your array)
+            </li>
+            <li>
+              since we can have many recipes now, let's illustrate this by
+              adding a filter to only show recipes matching a certain string
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>recipe filter</h3>
+          like components and services, we can use the angular-cli to generate
+          pipes
+          <pre data-trim class="console">
 <span class='prompt'>~/recipeapp$ </span>ng generate pipe RecipeFilter 
                   </pre>
-					<pre data-trim class="console">
+          <pre data-trim class="console">
 <span class="cli-green">CREATE</span> src/app/recipe-filter.pipe.spec.ts (212 bytes)
 <span class="cli-green">CREATE</span> src/app/recipe-filter.pipe.ts (213 bytes)
 <span >UPDATE</span> src/app/app.module.ts (971 bytes)
                   </pre>
-					<div>
-						just like a service, there's no css or html here, pipes are to be
-						used inside other components
-					</div>
-				</section>
-				<section>
-					<h3>RecipeFilterPipe</h3>
-					<div codesteps>
-						<pre
-							class="typescript"
-						>src/app/recipe-filter.pipe.ts  <code class='codesteps' data-noescape data-trim>
+          <div>
+            just like a service, there's no css or html here, pipes are to be
+            used inside other components
+          </div>
+        </section>
+        <section>
+          <h3>RecipeFilterPipe</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >src/app/recipe-filter.pipe.ts  <code class='codesteps' data-noescape data-trim>
                         import { Pipe, <span hstep='3'>PipeTransform</span> } from '@angular/core';
           
                         <span hstep='1'>@Pipe</span>({
@@ -1340,56 +1428,56 @@ import { RECIPES } from './mock-recipes';
                           }
                         }
                     </code></pre>
-						<div explanation>
-							<span step="1"
-								>pipes are configured using the @Pipe decorator</span
-							>
-							<span step="2"
-								>they have a name, that's how you call them using the pipe
-								character
-								<span class="ilcode">| recipeFilter</span>
-							</span>
-							<span step="3"
-								>you must implement the
-								<span class="ilcode">PipeTransform</span> interface, which
-								contains one function: <span class="ilcode">transform</span>,
-								with two parameters</span
-							>
-							<span step="4"
-								>the first parameter is the value to the left of the pipe |, on
-								which the pipe is applied
-							</span>
-							<span step="5"
-								>the second parameter is optional, an extra parameter for your
-								pipe (e.g. | date: "longDate")</span
-							>
-							<span step="6"
-								>by default parameters are of type 'any', you should change
-								these to the real types and take advantage of static
-								typechecking
-							</span>
-							<span step="7"
-								>in our case we will filter a
-								<span class="ilcode">Recipe[]</span>, based on a
-								<span class="ilcode">string</span></span
-							>
-							<span step="8"
-								>as an example we'll simply check if the name of the recipe
-								starts with the string we filter on</span
-							>
-							<span step="9"
-								>so return the full list if no filter is passed, and filter the
-								array on the name if there is a filter</span
-							>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>using the recipefilter</h3>
-					<div codesteps>
-						<pre
-							class="html"
-						>src/app/app.component.html  <code class='codesteps' data-noescape data-trim>
+            <div explanation>
+              <span step="1"
+                >pipes are configured using the @Pipe decorator</span
+              >
+              <span step="2"
+                >they have a name, that's how you call them using the pipe
+                character
+                <span class="ilcode">| recipeFilter</span>
+              </span>
+              <span step="3"
+                >you must implement the
+                <span class="ilcode">PipeTransform</span> interface, which
+                contains one function: <span class="ilcode">transform</span>,
+                with two parameters</span
+              >
+              <span step="4"
+                >the first parameter is the value to the left of the pipe |, on
+                which the pipe is applied
+              </span>
+              <span step="5"
+                >the second parameter is optional, an extra parameter for your
+                pipe (e.g. | date: "longDate")</span
+              >
+              <span step="6"
+                >by default parameters are of type 'any', you should change
+                these to the real types and take advantage of static
+                typechecking
+              </span>
+              <span step="7"
+                >in our case we will filter a
+                <span class="ilcode">Recipe[]</span>, based on a
+                <span class="ilcode">string</span></span
+              >
+              <span step="8"
+                >as an example we'll simply check if the name of the recipe
+                starts with the string we filter on</span
+              >
+              <span step="9"
+                >so return the full list if no filter is passed, and filter the
+                array on the name if there is a filter</span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>using the recipefilter</h3>
+          <div codesteps>
+            <pre
+              class="html"
+            >src/app/app.component.html  <code class='codesteps' data-noescape data-trim>
                         &lt;div fxLayout=&quot;column&quot; fxLayoutGap=&quot;2%&quot;&gt;
                           &lt;app-add-recipe (newRecipe)=&quot;addNewRecipe($event)&quot;&gt;&lt;/app-add-recipe&gt;<span sstep='4+'>
                           &lt;mat-card&gt;
@@ -1418,41 +1506,41 @@ import { RECIPES } from './mock-recipes';
                         &lt;/div&gt;
                         
                     </code></pre>
-						<div explanation>
-							<span step="1"
-								>we loop over the recipe list in the AppComponent, so that's
-								where we'll apply the filter
-							</span>
-							<span step="2"
-								>so we want to apply the (filter) pipe to the recipes list
-								here</span
-							>
-							<span step="3"
-								>the name on which we'll filter will be a property from the
-								typescript class, let's name it
-								<span class="ilcode">filterRecipeName</span></span
-							>
-							<span step="4"
-								>this property will be set using a input field and filter
-								button</span
-							>
-							<span step="5"
-								>once more, we'll create a local 'hashtag' variable to store
-								this input field, and pass it's value to the function</span
-							>
-							<span step="6"
-								>all that's left is adding this function and the property to the
-								typescript code</span
-							>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>using the recipefilter</h3>
-					<div codesteps>
-						<pre
-							class="typescript"
-						>src/app/app.component.html  <code class='codesteps' data-noescape data-trim>
+            <div explanation>
+              <span step="1"
+                >we loop over the recipe list in the AppComponent, so that's
+                where we'll apply the filter
+              </span>
+              <span step="2"
+                >so we want to apply the (filter) pipe to the recipes list
+                here</span
+              >
+              <span step="3"
+                >the name on which we'll filter will be a property from the
+                typescript class, let's name it
+                <span class="ilcode">filterRecipeName</span></span
+              >
+              <span step="4"
+                >this property will be set using a input field and filter
+                button</span
+              >
+              <span step="5"
+                >once more, we'll create a local 'hashtag' variable to store
+                this input field, and pass it's value to the function</span
+              >
+              <span step="6"
+                >all that's left is adding this function and the property to the
+                typescript code</span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>using the recipefilter</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            >src/app/app.component.html  <code class='codesteps' data-noescape data-trim>
                       export class AppComponent {
                         constructor(private _recipeDataService: RecipeDataService) {}
                         <span hstep='1'>public filterRecipeName: string;</span>
@@ -1465,138 +1553,138 @@ import { RECIPES } from './mock-recipes';
                         }
                         // [...]
                   </code></pre>
-						<div explanation>
-							<span step="1"
-								>the typescript class is pretty straightforward, we simply add a
-								new property for the filter</span
-							>
-							<span step="2"
-								>and then create the function which will set this property if
-								the button is clicked</span
-							>
-							<span step="3"
-								>notice that we pass a string now, not a HTMLInputElement, since
-								I passed the .value in the html)</span
-							>
-							<span step="4"
-								>that's it,
-								<a href="http://localhost:4200">let's try this out</a>
-							</span>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>change detection</h3>
-					<ul>
-						<li>
-							so this mostly works, but the filter doesn't get reapplied, what's
-							going on?
-						</li>
-						<li>
-							the problem is related to change detection, angular tries to
-							update the DOM as little as possible there's a whole mechanism in
-							place, change detection, to 'know' which parts changed and which
-							didn't
-						</li>
-					</ul>
-				</section>
-				<section>
-					<h3>change detection</h3>
-					<ul>
-						<li>
-							Pipe's transform function is considered 'pure', given the same
-							inputs, the exact same output is expected
-						</li>
-						<li>
-							while the contents of the recipe[] changed, the variable itself
-							didn't; angular is very conservative when deciding if a pipe
-							triggers a change, pipes are potentially called a lot of times
-						</li>
-					</ul>
-				</section>
-				<section>
-					<h3>change detection</h3>
-					<ul>
-						<li>
-							so how do you solve this? there are two ways, declare the pipe as
-							not being pure in the properties
-							<pre
-								class="typescript"
-							>src/app/recipe-filter.pipe.ts<code data-noescape data-trim>
+            <div explanation>
+              <span step="1"
+                >the typescript class is pretty straightforward, we simply add a
+                new property for the filter</span
+              >
+              <span step="2"
+                >and then create the function which will set this property if
+                the button is clicked</span
+              >
+              <span step="3"
+                >notice that we pass a string now, not a HTMLInputElement, since
+                I passed the .value in the html)</span
+              >
+              <span step="4"
+                >that's it,
+                <a href="http://localhost:4200">let's try this out</a>
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>change detection</h3>
+          <ul>
+            <li>
+              so this mostly works, but the filter doesn't get reapplied, what's
+              going on?
+            </li>
+            <li>
+              the problem is related to change detection, angular tries to
+              update the DOM as little as possible there's a whole mechanism in
+              place, change detection, to 'know' which parts changed and which
+              didn't
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>change detection</h3>
+          <ul>
+            <li>
+              Pipe's transform function is considered 'pure', given the same
+              inputs, the exact same output is expected
+            </li>
+            <li>
+              while the contents of the recipe[] changed, the variable itself
+              didn't; angular is very conservative when deciding if a pipe
+              triggers a change, pipes are potentially called a lot of times
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>change detection</h3>
+          <ul>
+            <li>
+              so how do you solve this? there are two ways, declare the pipe as
+              not being pure in the properties
+              <pre
+                class="typescript"
+              >src/app/recipe-filter.pipe.ts<code data-noescape data-trim>
                             @Pipe({
                               name: 'recipeFilter',
                               pure: false
                             })
                         </code></pre>
-						</li>
-						<li>
-							or make sure the variable really changes, clone it and add the new
-							recipe to the clone
-							<pre
-								class="typescript"
-							>src/app/recipe-data.service.ts<code data-noescape data-trim>
+            </li>
+            <li>
+              or make sure the variable really changes, clone it and add the new
+              recipe to the clone
+              <pre
+                class="typescript"
+              >src/app/recipe-data.service.ts<code data-noescape data-trim>
                           addNewRecipe(recipe: Recipe) {
                             this._recipes = [...this._recipes, recipe];
                           }
                       </code></pre>
-						</li>
-					</ul>
-				</section>
-				<section>
-					<h3>immutable</h3>
-					<ul>
-						<li>
-							we'll go with the second option, taking a more functional approach
-							(immutable objects / pure functions) is the way to go
-						</li>
-						<li>
-							it makes for code that is a lot easier to test and understand; in
-							a way, if you can avoid tracking state you should, but we'll have
-							a LOT more to say about state later
-						</li>
-						<li>
-							a filter like this should really be a live-filter though, but
-							we'll fix that in a later chapter using observables
-						</li>
-						<li>
-							anyway,
-							<a href="http://localhost:4200">let's try this out</a>
-						</li>
-					</ul>
-				</section>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>immutable</h3>
+          <ul>
+            <li>
+              we'll go with the second option, taking a more functional approach
+              (immutable objects / pure functions) is the way to go
+            </li>
+            <li>
+              it makes for code that is a lot easier to test and understand; in
+              a way, if you can avoid tracking state you should, but we'll have
+              a LOT more to say about state later
+            </li>
+            <li>
+              a filter like this should really be a live-filter though, but
+              we'll fix that in a later chapter using observables
+            </li>
+            <li>
+              anyway,
+              <a href="http://localhost:4200">let's try this out</a>
+            </li>
+          </ul>
+        </section>
 
-				<section>
-					<h3>summary</h3>
-					<ul>
-						<li>
-							basic actions are handled by enclosing them in parentheses
-							<span class="ilcode">(click)="myClickFunction()"</span>
-						</li>
-						<li>
-							you can easily capture data in your html hashtag syntax
-							<span class="ilcode">#inputfield</span>, and pass it to event
-							handlers
-						</li>
-						<li>
-							creating data from one component, to be used by another, is
-							achieved using <span class="ilcode">@Output</span> and
-							<span class="ilcode">EventEmitter</span>
-						</li>
-						<li>
-							use a service to encapsulate data or logic used by several
-							components using
-							<span class="ilcode">@Injectable</span>
-						</li>
-					</ul>
-				</section>
-			</div>
-		</div>
+        <section>
+          <h3>summary</h3>
+          <ul>
+            <li>
+              basic actions are handled by enclosing them in parentheses
+              <span class="ilcode">(click)="myClickFunction()"</span>
+            </li>
+            <li>
+              you can easily capture data in your html hashtag syntax
+              <span class="ilcode">#inputfield</span>, and pass it to event
+              handlers
+            </li>
+            <li>
+              creating data from one component, to be used by another, is
+              achieved using <span class="ilcode">@Output</span> and
+              <span class="ilcode">EventEmitter</span>
+            </li>
+            <li>
+              use a service to encapsulate data or logic used by several
+              components using
+              <span class="ilcode">@Injectable</span>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
 
-		<script src="lib/js/chart.xkcd.min.js"></script>
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
-		<script src="plugin/codestepper/codestepper.js"></script>
-		<script src="js/hogent-reveal.js" data-start-at-last="20"></script>
-		<script src="js/snap.svg.js"></script>
-	</body>
+    <script src="lib/js/chart.xkcd.min.js"></script>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="plugin/codestepper/codestepper.js"></script>
+    <script src="js/hogent-reveal.js" data-start-at-last="91"></script>
+    <script src="js/snap.svg.js"></script>
+  </body>
 </html>
