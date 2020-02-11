@@ -60,6 +60,36 @@
               <a href="#/material">angular material</a> <br />
               <span>use angular material as our layout library</span>
             </li>
+            <li>
+              <a href="#/recipemodel">recipe model</a> <br />
+              <span>refactor the code to use a separate class for recipes</span>
+            </li>
+            <li>
+              <a href="#/recipelistcomponent">recipe list component</a> <br />
+              <span
+                >add a recipe list component so we can show several
+                recipes</span
+              >
+            </li>
+            <li>
+              <a href="#/addrecipecomponent">add recipe component</a> <br />
+              <span
+                >illustrate @Output() by adding a minimal add recipe
+                component</span
+              >
+            </li>
+            <li>
+              <a href="#/services">services</a> <br />
+              <span> use a service to access our (mock) data </span>
+            </li>
+            <li>
+              <a href="#/custompipe">recipe filter</a> <br />
+              <span> create a custom pipe to filter recipes </span>
+            </li>
+            <li>
+              <a href="#/changedetection">change detection</a> <br />
+              <span> change detection in angular </span>
+            </li>
           </ol>
         </section>
         <section id="modules">
@@ -543,7 +573,7 @@
           </div>
         </section>
 
-        <section>
+        <section id="recipemodel">
           <h3>refactor existing code.</h3>
           <div style="text-align:left">
             right now our recipe component is hardcoded to always show
@@ -736,7 +766,7 @@
             </div>
           </div>
         </section>
-        <section>
+        <section id="recipelistcomponent">
           <h3>recipe list component.</h3>
           <ul>
             <li>
@@ -859,7 +889,9 @@ export class RecipeListComponent {
         <section>
           <h3>recipe module</h3>
           <div codesteps>
-            <pre class='typescript'> src/app/recipe/recipe.module.ts <code class='codesteps' data-noescape data-trim>
+            <pre
+              class="typescript"
+            > src/app/recipe/recipe.module.ts <code class='codesteps' data-noescape data-trim>
               import { MaterialModule } from './../material/material.module';
               import { IngredientComponent } from './ingredient/ingredient.component';
               import { RecipeComponent } from './recipe/recipe.component';
@@ -876,8 +908,15 @@ export class RecipeListComponent {
                
             </code><span class='githubcommit'></span> </pre>
             <div explanation>
-              <span step='1'>the recipe list component was automatically added to the declarations when we created the component because of the --moduule=recipe option we provided </span>
-              <span step='2'>we still need to take care of exporting though, we want users of our module to use the recipe list to show all recipes</span>
+              <span step="1"
+                >the recipe list component was automatically added to the
+                declarations when we created the component because of the
+                --moduule=recipe option we provided
+              </span>
+              <span step="2"
+                >we still need to take care of exporting though, we want users
+                of our module to use the recipe list to show all recipes</span
+              >
             </div>
           </div>
         </section>
@@ -897,11 +936,14 @@ export class RecipeListComponent {
             </code><span class="githubcommit">9bb3c80</span></pre>
             <div explanation>
               <span step="1">
-                now all that's left is adapting the html of app component to use this new recipe list component
+                now all that's left is adapting the html of app component to use
+                this new recipe list component
               </span>
-              <span step="2">so replace the app-recipe tag with an app-recipe-list tag</span>
+              <span step="2"
+                >so replace the app-recipe tag with an app-recipe-list tag</span
+              >
               <span step="3">
-                that's it 
+                that's it
                 <a href="http://localhost:4200"
                   >let's check that this still works</a
                 ></span
@@ -909,7 +951,7 @@ export class RecipeListComponent {
             </div>
           </div>
         </section>
-        <section>
+        <section id="addrecipecomponent">
           <h3>linking components</h3>
           <ul>
             <li>
@@ -1022,7 +1064,8 @@ export class RecipeListComponent {
                 the event to other handlers, false to "eat" the event
               </span>
               <span step="5"
-                >let's add the component to the recipe list and <a href="http://localhost:4200"> try this out</a></span
+                >let's add the component to the recipe list and
+                <a href="http://localhost:4200"> try this out</a></span
               >
               <span step="6">
                 when the <span class="ilcode">addRecipe</span> is triggered by
@@ -1127,7 +1170,7 @@ export class RecipeListComponent {
                 addNewRecipe(<span hstep='3'>recipe: Recipe</span>) {
                   this._recipes.push(recipe);
                 }</span>
-            </code><span class="githubcommit">a5b210b</span></pre>
+            </code><span class="githubcommit">7557a1d</span></pre>
             <div explanation>
               <span step="1">
                 now we still need to add this event handler to our class</span
@@ -1169,7 +1212,7 @@ export class RecipeListComponent {
             </li>
           </ul>
         </section>
-        <section>
+        <section id="services">
           <h3>services</h3>
           <ul>
             <li>services typically serve one of these goals</li>
@@ -1191,11 +1234,11 @@ export class RecipeListComponent {
           <h3>services</h3>
           we'll use angular-cli to generate our service
           <pre data-trim class="console">
-<span class='prompt'>~/recipeapp$ </span>ng generate service RecipeData		
+<span class='prompt'>~/recipeapp/src/app/recipe$ </span>ng generate service RecipeData		
             </pre>
           <pre data-trim class="console">
-  <span class="cli-green">CREATE</span> src/app/recipe-data.service.spec.ts (354 bytes)
-  <span class="cli-green">CREATE</span> src/app/recipe-data.service.ts (159 bytes)
+  <span class="cli-green">CREATE</span> src/app/recipe/recipe-data.service.spec.ts (354 bytes)
+  <span class="cli-green">CREATE</span> src/app/recipe/recipe-data.service.ts (159 bytes)
             </pre>
           <div>
             note that no html nor css is created, a service is not something
@@ -1260,15 +1303,15 @@ export class RecipeListComponent {
                   providedIn: 'root'
                 })
                 export class RecipeDataService {
-                  <span sstep='2+'>private _</span>recipes = RECIPES;
-                  constructor() {}<span sstep='2+'>
+                  private _recipes = RECIPES;
+                  constructor() {}
                 
                   get recipes(): Recipe[] {
                     return this._recipes;
-                  }</span>
+                  }
                 
                   addNewRecipe(recipe: Recipe) {
-                    this.<span sstep='2+'>_</span>recipes.push(recipe);
+                    this._recipes.push(recipe);
                   }
                 }
                            
@@ -1276,21 +1319,18 @@ export class RecipeListComponent {
             <div explanation>
               <span step="1">
                 first we move the list of recipes, initialized with the mock
-                data, from the app component to this service</span
-              >
-              <span step="2">
-                let's make it a private variable with a proper getter</span
+                data, from the recipe list component to this service</span
               >
             </div>
           </div>
         </section>
         <section>
-          <h3>app component</h3>
+          <h3>recipe list component</h3>
           <div codesteps>
             <pre
               class="typescript"
-            >src/app/app.component.ts <code class='codesteps' data-noescape data-trim>
-                export class AppComponent {
+            >src/app/recipe/recipe-list/recipe-list.component.ts <code class='codesteps' data-noescape data-trim>
+                export class RecipeListComponent{
                   constructor(<span hstep='2'><span hstep='3'>private</span> _recipeDataService: RecipeDataService</span>) {}
                 
                   get recipes(): Recipe[] {
@@ -1301,7 +1341,7 @@ export class RecipeListComponent {
                     <span hstep='4'>this._recipeDataService.</span>addNewRecipe(recipe);
                   }
                 } 
-            </code></pre>
+            </code><span class="githubcommit">f76e8b8</span></pre>
             <div explanation>
               <span step="1">
                 now we update the app component to use this data service</span
@@ -1372,7 +1412,7 @@ export class RecipeListComponent {
             </li>
           </ul>
         </section>
-        <section>
+        <section id="custompipe">
           <h3>custom pipe</h3>
           <ul>
             <li>
@@ -1393,12 +1433,12 @@ export class RecipeListComponent {
           like components and services, we can use the angular-cli to generate
           pipes
           <pre data-trim class="console">
-<span class='prompt'>~/recipeapp$ </span>ng generate pipe RecipeFilter 
+<span class='prompt'>~/recipeapp/src/app/recipe$ </span>ng generate pipe RecipeFilter --module=recipe
                   </pre>
           <pre data-trim class="console">
-<span class="cli-green">CREATE</span> src/app/recipe-filter.pipe.spec.ts (212 bytes)
-<span class="cli-green">CREATE</span> src/app/recipe-filter.pipe.ts (213 bytes)
-<span >UPDATE</span> src/app/app.module.ts (971 bytes)
+<span class="cli-green">CREATE</span> src/app/recipe/recipe-filter.pipe.spec.ts (212 bytes)
+<span class="cli-green">CREATE</span> src/app/recipe/recipe-filter.pipe.ts (213 bytes)
+<span >UPDATE</span> src/app/recipe/recipe.module.ts (971 bytes)
                   </pre>
           <div>
             just like a service, there's no css or html here, pipes are to be
@@ -1417,7 +1457,7 @@ export class RecipeListComponent {
                           <span hstep='2'>name: 'recipeFilter'</span>
                         })
                         export class RecipeFilterPipe implements <span hstep='3'>PipeTransform</span> {
-                          <span hstep='3'>transform</span>(<span sstep='7+'>recipes: Recipe[]</span><span sstep='1-6'><span hstep='4'>value: <span hstep='6'>any</span></span></span>, <span sstep='7+'>name: string</span><span sstep='1-6'><span hstep='5'>args?: <span hstep='6'>any</span></span></span>): <span sstep='7+'>Recipe[]</span><span sstep='1-6'><span hstep='6'>any</span></span> {<span sstep='1-7'>
+                          <span hstep='3'>transform</span>(<span sstep='7+'>recipes: Recipe[]</span><span sstep='1-6'><span hstep='4'>value: <span hstep='6'>unknown</span></span></span>, <span sstep='7+'>name: string</span><span sstep='1-6'><span hstep='5'>args?: <span hstep='6'>unknown</span></span></span>): <span sstep='7+'>Recipe[]</span><span sstep='1-6'><span hstep='6'>unknown</span></span> {<span sstep='1-7'>
                             return null;</span><span sstep='8+'>
                             if (!name || name.length === 0) {
                               return recipes;
@@ -1451,11 +1491,17 @@ export class RecipeListComponent {
                 >the second parameter is optional, an extra parameter for your
                 pipe (e.g. | date: "longDate")</span
               >
+              <span step="6">by default parameters are of type 'unknown' </span>
               <span step="6"
-                >by default parameters are of type 'any', you should change
-                these to the real types and take advantage of static
-                typechecking
-              </span>
+                >just like <span class="ilcode">any</span>, everything can be
+                assigned to an <span class="ilcode">unknown</span> type, but
+                unline <span class="ilcode">any</span> you can assign an
+                <span class="ilcode">unknown</span> type to almost nothing</span
+              >
+              <span step="7"
+                >we'll use static type checking to our advantage and change them
+                into the real types</span
+              >
               <span step="7"
                 >in our case we will filter a
                 <span class="ilcode">Recipe[]</span>, based on a
@@ -1477,7 +1523,7 @@ export class RecipeListComponent {
           <div codesteps>
             <pre
               class="html"
-            >src/app/app.component.html  <code class='codesteps' data-noescape data-trim>
+            >src/app/recipe/recipe-list.component.html  <code class='codesteps' data-noescape data-trim>
                         &lt;div fxLayout=&quot;column&quot; fxLayoutGap=&quot;2%&quot;&gt;
                           &lt;app-add-recipe (newRecipe)=&quot;addNewRecipe($event)&quot;&gt;&lt;/app-add-recipe&gt;<span sstep='4+'>
                           &lt;mat-card&gt;
@@ -1540,8 +1586,8 @@ export class RecipeListComponent {
           <div codesteps>
             <pre
               class="typescript"
-            >src/app/app.component.html  <code class='codesteps' data-noescape data-trim>
-                      export class AppComponent {
+            >src/app/recipe/recipe-list.component.ts  <code class='codesteps' data-noescape data-trim>
+                      export class RecipeListComponent {
                         constructor(private _recipeDataService: RecipeDataService) {}
                         <span hstep='1'>public filterRecipeName: string;</span>
                       
@@ -1552,7 +1598,7 @@ export class RecipeListComponent {
                           return this._recipeDataService.recipes;
                         }
                         // [...]
-                  </code></pre>
+                  </code><span class="githubcommit">e62e438</span></pre>
             <div explanation>
               <span step="1"
                 >the typescript class is pretty straightforward, we simply add a
@@ -1573,7 +1619,7 @@ export class RecipeListComponent {
             </div>
           </div>
         </section>
-        <section>
+        <section id="changedetection">
           <h3>change detection</h3>
           <ul>
             <li>
@@ -1610,7 +1656,7 @@ export class RecipeListComponent {
               not being pure in the properties
               <pre
                 class="typescript"
-              >src/app/recipe-filter.pipe.ts<code data-noescape data-trim>
+              >src/app/recipe/recipe-filter.pipe.ts<code data-noescape data-trim>
                             @Pipe({
                               name: 'recipeFilter',
                               pure: false
@@ -1622,7 +1668,7 @@ export class RecipeListComponent {
               recipe to the clone
               <pre
                 class="typescript"
-              >src/app/recipe-data.service.ts<code data-noescape data-trim>
+              >src/app/recipe/recipe-data.service.ts<code data-noescape data-trim>
                           addNewRecipe(recipe: Recipe) {
                             this._recipes = [...this._recipes, recipe];
                           }
@@ -1684,7 +1730,7 @@ export class RecipeListComponent {
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
     <script src="plugin/codestepper/codestepper.js"></script>
-    <script src="js/hogent-reveal.js" data-start-at-last="91"></script>
+    <script src="js/hogent-reveal.js" data-start-at-last="false"></script>
     <script src="js/snap.svg.js"></script>
   </body>
 </html>
