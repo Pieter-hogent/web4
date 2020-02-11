@@ -64,8 +64,8 @@
             />
           </div>
 
-          if you spent spent last class on facebook (or at the pub), branch the
-          repo at the correct commit and follow along!
+          if you spent last class on facebook (or at the pub), branch the repo
+          at the correct commit and follow along!
           <p></p>
           <pre data-trim class="console">
 <span class='prompt'>~$</span> git clone https://github.com/Pieter-hogent/recipeapp.git
@@ -1668,6 +1668,20 @@ export class RecipeListComponent {
           </ul>
         </section>
         <section>
+          <div class="fragment" code-step svg-step>
+            <svg
+              id="svg2"
+              class="svg-section"
+              width="100%"
+              height="100%"
+              preserveAspectRatio="xMidYMid"
+              snapfile="img/changedetection.svg"
+            >
+              <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
+            </svg>
+          </div>
+        </section>
+        <section>
           <h3>change detection</h3>
           <ul>
             <li>
@@ -1697,8 +1711,8 @@ export class RecipeListComponent {
                         </code></pre>
             </li>
             <li>
-              or make sure the variable really changes, clone it and add the new
-              recipe to the clone
+              or make sure the variable (reference) really changes, clone it and
+              add the new recipe to the clone
               <pre
                 class="typescript"
               >src/app/recipe/recipe-data.service.ts<code data-noescape data-trim>
