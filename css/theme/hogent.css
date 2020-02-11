@@ -566,6 +566,9 @@ body:not(.hogent-white-text):after {
     0 100%
   );
 }
+.reveal .pdf-page .title-slide .title-img {
+  display: none;
+}
 /*********************************************
  * CONTENTS SLIDE
  *********************************************/
