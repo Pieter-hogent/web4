@@ -15,7 +15,7 @@
     "statusBarItem.hoverBackground": "#359268",
     "statusBar.foreground": "#15202b"
   },
-  "workbench.colorTheme": "Default Light+",
+  "workbench.colorTheme": "Default Dark+",
   "workbench.statusBar.visible": true,
   "workbench.activityBar.visible": true,
   "explorer.openEditors.visible": 0,

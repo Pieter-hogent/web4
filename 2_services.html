@@ -1426,6 +1426,14 @@ export class RecipeListComponent {
               since we can have many recipes now, let's illustrate this by
               adding a filter to only show recipes matching a certain string
             </li>
+            <li>
+              this is only intended to illustrate custom pipes, in real
+              applications you should (obviously?) never filter on the client
+              side; when you can have an arbitrary amount of recipes you want to
+              paginate and apply filters on the server side, probably in the
+              database (e.g. if you have 100.000 recipes you don't want to send
+              all those MBs to every client and then hide 99.990 of them)
+            </li>
           </ul>
         </section>
         <section>
