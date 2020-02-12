@@ -68,9 +68,10 @@
           at the correct commit and follow along!
           <p></p>
           <pre data-trim class="console">
-<span class='prompt'>~$</span> git clone https://github.com/Pieter-hogent/recipeapp.git
+<span class='prompt'>~$</span> git clone https://github.com/Pieter-hogent/recipeapp.git  (or git pull)
 <span class='prompt'>~$</span> cd recipeapp
-<span class='prompt'>~$recipeapp/</span> git checkout -b mybranch <span class="githubcommit">aa93285</span>
+<span class='prompt'>~/recipeapp$</span> npm install
+<span class='prompt'>~/recipeapp$</span> git checkout -b mybranch <span class="githubcommit">aa93285</span>
           </pre>
         </section>
 
@@ -1369,7 +1370,8 @@ export class RecipeListComponent {
             </code><span class="githubcommit">f76e8b8</span></pre>
             <div explanation>
               <span step="1">
-                now we update the app component to use this data service</span
+                now we update the recipe list component to use this data
+                service</span
               >
               <span step="2">
                 first we add a parameter of the data service type to the
@@ -1490,7 +1492,7 @@ export class RecipeListComponent {
                           <span hstep='2'>name: 'recipeFilter'</span>
                         })
                         export class RecipeFilterPipe implements <span hstep='3'>PipeTransform</span> {
-                          <span hstep='3'>transform</span>(<span sstep='7+'>recipes: Recipe[]</span><span sstep='1-6'><span hstep='4'>value: <span hstep='6'>unknown</span></span></span>, <span sstep='7+'>name: string</span><span sstep='1-6'><span hstep='5'>args?: <span hstep='6'>unknown</span></span></span>): <span sstep='7+'>Recipe[]</span><span sstep='1-6'><span hstep='6'>unknown</span></span> {<span sstep='1-7'>
+                          <span hstep='3'>transform</span>(<span sstep='7+'>recipes: Recipe[]</span><span sstep='1-6'><span hstep='4'>value: <span hstep='6'>unknown</span></span></span>, <span sstep='7+'>name: string</span><span sstep='1-6'><span hstep='5'>...args?: <span hstep='6'>unknown</span></span></span>): <span sstep='7+'>Recipe[]</span><span sstep='1-6'><span hstep='6'>unknown</span></span> {<span sstep='1-7'>
                             return null;</span><span sstep='8+'>
                             if (!name || name.length === 0) {
                               return recipes;
@@ -1587,8 +1589,8 @@ export class RecipeListComponent {
                     </code></pre>
             <div explanation>
               <span step="1"
-                >we loop over the recipe list in the AppComponent, so that's
-                where we'll apply the filter
+                >we loop over the recipe list in the RecipeListComponent, so
+                that's where we'll apply the filter
               </span>
               <span step="2"
                 >so we want to apply the (filter) pipe to the recipes list
