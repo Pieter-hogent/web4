@@ -37,64 +37,89 @@
     <div class="reveal">
       <div class="slides">
         <section
-        class="title-slide"
-        data-transition="none"
-        data-background-transition="none"
-      >
-        <img class="title-img" src="img/babyyoda4.png" />
-        <h2>use the api</h2>
-        <h4>Karine Samyn, Stefaan De Cock, Pieter Van Der Helst</h4>
-        <footer class="footer">
-          "What one programmer can do in one month, two programmers can do in
-          two months." - Fred Brooks
-        </footer>
-      </section>
-      <section class="contents-slide">
-        <h3>overview.</h3>
-        <ol>
-              <li>
-                <a href="#/whatisasync">intro</a> <br />
-                <span> what is an async call? </span>
-              </li>
-              <li>
-                <a href="#/callbacks">callbacks</a><br />
-                <span>using callbacks to handle async</span>
-              </li>
-              <li>
-                <a href="#/promises">promises</a><br />
-                <span>how and why do promises handle async better</span>
-              </li>
-              <li>
-                <a href="#/observables">observables</a><br />
-                <span>the new kid in town to handle async</span>
-              </li>
-           
-              <li>
-                <a href="#/recipefilter">recipe filter</a><br />
-                <span>using a Subject observable to create a recipe filter</span>
-              </li>
-              <li>
-                <a href="#/httpclientmodule">HttpClientModule</a><br />
-                <span>how to make http calls in Angular </span>
-              </li>
-              <li>
-                <a href="#/recipedataservice">RecipeDataService</a><br />
-                <span>using the http module in our service</span>
-              </li>
-              <li>
-                <a href="#/asyncpipe">async pipe</a><br />
-                <span>display async data using the async pipe</span>
-              </li>
-              <li>
-                <a href="#/errorhandling">error handling</a><br />
-                <span>how to handle observable errors</span>
-              </li>
-              <li>
-                <a href="#/httppost">http post</a><br />
-                <span>how to make a http post call</span>
-              </li>
-            </ol>
-      </section>
+          class="title-slide"
+          data-transition="none"
+          data-background-transition="none"
+        >
+          <img class="title-img" src="img/babyyoda4.png" />
+          <h2>use the api</h2>
+          <h4>Karine Samyn, Stefaan De Cock, Pieter Van Der Helst</h4>
+          <footer class="footer">
+            "What one programmer can do in one month, two programmers can do in
+            two months." - Fred Brooks
+          </footer>
+        </section>
+        <section class="contents-slide">
+          <h3>overview.</h3>
+          <ol>
+            <li>
+              <a href="#/whatisasync">intro</a> <br />
+              <span> what is an async call? </span>
+            </li>
+            <li>
+              <a href="#/callbacks">callbacks</a><br />
+              <span>using callbacks to handle async</span>
+            </li>
+            <li>
+              <a href="#/promises">promises</a><br />
+              <span>how and why do promises handle async better</span>
+            </li>
+            <li>
+              <a href="#/observables">observables</a><br />
+              <span>the new kid in town to handle async</span>
+            </li>
+
+            <li>
+              <a href="#/recipefilter">recipe filter</a><br />
+              <span>using a Subject observable to create a recipe filter</span>
+            </li>
+            <li>
+              <a href="#/httpclientmodule">HttpClientModule</a><br />
+              <span>how to make http calls in Angular </span>
+            </li>
+            <li>
+              <a href="#/recipedataservice">RecipeDataService</a><br />
+              <span>using the http module in our service</span>
+            </li>
+            <li>
+              <a href="#/asyncpipe">async pipe</a><br />
+              <span>display async data using the async pipe</span>
+            </li>
+            <li>
+              <a href="#/errorhandling">error handling</a><br />
+              <span>how to handle observable errors</span>
+            </li>
+            <li>
+              <a href="#/httppost">http post</a><br />
+              <span>how to make a http post call</span>
+            </li>
+          </ol>
+        </section>
+        <section>
+          <h3>recipe app startpoint</h3>
+          <div>
+            <img
+              src="img/facebooklogo.png"
+              alt=""
+              style="border:none; box-shadow: none; transform:matrix(0.58,-0.13,0.13,0.58,-140,0);"
+            />
+            <img
+              src="img/beer.png"
+              alt=""
+              style="position: absolute; border:none; box-shadow: none; top: 60px; left: 100px; transform:matrix(0.37,0.17,-0.17,0.37,200,-140);"
+            />
+          </div>
+
+          if you spent last class on facebook (or at the pub), branch the repo
+          at the correct commit and follow along!
+          <p></p>
+          <pre data-trim class="console">
+<span class='prompt'>~$</span> git clone https://github.com/Pieter-hogent/recipeapp.git  (or git pull)
+<span class='prompt'>~$</span> cd recipeapp
+<span class='prompt'>~/recipeapp$</span> npm install
+<span class='prompt'>~/recipeapp$</span> git checkout -b mybranch <span class="githubcommit">4b40342</span>
+        </pre>
+        </section>
         <section>
           <h3>Observable</h3>
           <ul>
@@ -389,7 +414,7 @@
             </div>
           </div>
         </section>
-        <section id ="promises">
+        <section id="promises">
           <h3>promises</h3>
           <div codesteps>
             <pre
@@ -765,10 +790,10 @@
           <div codesteps>
             <pre
               class="typescript"
-            >src/app/app.component.ts  <code class='codesteps' data-noescape data-trim>
+            >src/app/recipe/recipe-list/recipe-list.component.ts  <code class='codesteps' data-noescape data-trim>
                 <span sstep='2+'>import { Subject } from 'rxjs';
     
-                  </span>export class AppComponent {
+                  </span>export class RecipeListComponent {
                     public filterRecipeName: string;<span sstep='2+'>
                     public filterRecipe<span hstep='4'>$</span> = new Subject&lt;string&gt;();</span>
                   
@@ -820,12 +845,15 @@
           <div codesteps>
             <pre
               class="html"
-            >src/app/app.component.html  <code class='codesteps' data-noescape data-trim>
+            >src/app/recipe/recipe-list/recipe-list.component.html  <code class='codesteps' data-noescape data-trim>
               &lt;mat-form-field&gt;
-                &lt;input matInput <span hstep='2'>(keyup)</span>='<span hstep='3'>filterRecipe$.next</span>($event.target.value)' 
+                &lt;input matInput <span sstep='2+'>(keyup)='<span hstep='3'>filterRecipe$.next</span>($event.target.value)'</span>
                   type='text' 
-                  placeholder='filter recipe name...'&gt;
+                  placeholder='filter recipe name...' <span sstep='1-2' sl>#filter</span>&gt;
               &lt;/mat-form-field&gt;      
+              <span sstep='1-2' sl>&lt;button (click)="applyFilter(filter.value)" mat-raised-button&gt; 
+                filter
+              &lt;/button&gt; </span>
             </code></pre>
             <div explanation>
               <span step="1-2">
@@ -848,7 +876,7 @@
           <div codesteps>
             <pre
               class="typescript"
-            >src/app/app.component.ts  <code class='codesteps' data-noescape data-trim>
+            >src/app/recipe/recipe-list/recipe-list.component.ts  <code class='codesteps' data-noescape data-trim>
                 <span sstep='8+'>import { distinctUntilChanged, debounceTime,
                     map, filter } from 'rxjs/operators';
                   
@@ -862,7 +890,7 @@
                     )</span>
                     .subscribe(val => (this.filterRecipeName = val));
                 } 
-            </code></pre>
+            </code><span class="githubcommit">87dd96b</span></pre>
             <div explanation>
               <span step="1">
                 this works, but the real power comes from applying the pipeable
@@ -938,25 +966,23 @@
           <div codesteps>
             <pre
               class="typescript"
-            >src/app/app.module.ts  <code class='codesteps' data-noescape data-trim>
+            >src/app/recipe/recipe.module.ts  <code class='codesteps' data-noescape data-trim>
                 @NgModule({
                   declarations: [
-                    AppComponent,
                     RecipeComponent,
+                    IngredientComponent,
+                    RecipeListComponent,
                     AddRecipeComponent,
                     RecipeFilterPipe
                   ],
                   imports: [
-                    BrowserModule,<span sstep='2+'>
+                    CommonModule,<span sstep='2+'>
                     HttpClientModule,</span>
-                    MatButtonModule,
-                    MatInputModule,
-                    // ... 
+                    MaterialModule
                   ],
-                  providers: [],
-                  bootstrap: [AppComponent]
+                  exports: [RecipeListComponent]
                 })
-                export class AppModule {}           
+                export class RecipeModule {}           
             </code></pre>
             <div explanation>
               <span step="1"
@@ -1020,7 +1046,7 @@
               >
               <span step="3" style="width:120%"
                 >so e.g. http://localhost:4200/api/recipes becomes
-                https://localhost:5100/api/recipes</span
+                https://localhost:5001/api/recipes</span
               >
               <span step="3" style="width:120%"
                 >but http://localhost:4200/recipes remains
@@ -1061,7 +1087,7 @@
           </div>
         </section>
         <section>
-          <h3>environment</h3>
+          <h3>environment.</h3>
           <ul>
             <li>
               we'd rather not have our backend url hardcoded in the source code
@@ -1081,7 +1107,7 @@
               both, pointing to '/api', which is where our frontend can find our
               backend
             </li>
-            <pre>environments/environment.json<code data-noescape data-trim>
+            <pre>environments/environment.ts<code data-noescape data-trim>
                 export const environment = {
                   production: false,
                   apiUrl: '/api'
@@ -1090,7 +1116,7 @@
           </ul>
         </section>
         <section id="recipedataservice">
-          <h3>recipedataservice</h3>
+          <h3>recipedataservice.</h3>
           <div codesteps>
             <pre
               class="typescript"
@@ -1200,12 +1226,12 @@
           </div>
         </section>
         <section>
-          <h3>http</h3>
+          <h3>http.</h3>
           <div codesteps>
             <pre
               class="typescript"
-            >src/app/app.component.html <code class='codesteps' data-noescape data-trim>
-                export class AppComponent {
+            >src/app/recipe/recipe-list/recipe-list.component.html <code class='codesteps' data-noescape data-trim>
+                export class RecipeListComponent {
                   // ....
 
                   get recipes<span sstep='2+'>$</span>(): <span sstep='2+'>Observable&lt;</span>Recipe[]<span sstep='2+'>&gt;</span> {
@@ -1270,8 +1296,8 @@
           <div codesteps>
             <pre
               class="typescript"
-            > src/app/app.component.ts <code class='codesteps' data-noescape data-trim>
-                export class AppComponent {
+            > src/app/recipe/recipe-list/recipe-list.component.ts <code class='codesteps' data-noescape data-trim>
+                export class RecipeComponent {
                   <span sstep='2-6'>private _recipes: Recipes[];
                 </span><span sstep='7+'>private _fetchRecipes$: Observable&lt;Recipe[]&gt; 
                     = this._recipeDataService.recipes$;
@@ -1283,7 +1309,7 @@
                   </span>}
                 
                   get recipes<span sstep='1-3,9'>$</span>(): <span sstep='1-3,9+'>Observable&lt;</span>Recipe[]<span sstep='1-3,9+'>&gt;</span> {
-                    return <span sstep='9+'>this._fetchRecipe$</span><span sstep='4-8'>this._recipes</span><span sstep='1-3'>this._recipeDataService.recipes$</span>;
+                    return <span sstep='9+'>this._fetchRecipes$</span><span sstep='4-8'>this._recipes</span><span sstep='1-3'>this._recipeDataService.recipes$</span>;
                   } 
             </code></pre>
             <div explanation>
@@ -1346,7 +1372,7 @@
               &lt;/div&gt;
             &lt;/div&gt;
             
-            </code></pre>
+            </code><span class="githubcommit">97466f4</span></pre>
             <div explanation>
               <span step="1">
                 in our html code we simply add the
@@ -1421,6 +1447,10 @@
               (if you have trouble with this, it's probably advised to start
               studying for this course)
             </li>
+            <li>
+              (and if you reeeaally can't figure it out: commit
+              <span class="githubcommit">837cc7c</span>)
+            </li>
           </ul>
         </section>
         <section>
@@ -1428,10 +1458,10 @@
           <div codesteps>
             <pre
               class="html"
-            >src/app/app.component.html  <code class='codesteps' data-noescape data-trim>
+            >src/app/recipe/recipe-list/recipe-list.component.html  <code class='codesteps' data-noescape data-trim>
               <span sstep='3+'>&lt;div *ngIf=&quot;(recipes$ | async) as recipes; else <span hstep='5'>loading</span>&quot;&gt;
                </span><span hstep='4'> &lt;div
-                  fxLayout=&quot;row&quot;
+                  fxLayout=&quot;row wrap&quot;
                   fxLayout.xs=&quot;column&quot;
                   fxLayoutWrap
                   fxLayoutGap=&quot;0.5%&quot;
@@ -1457,8 +1487,9 @@
               >
               <span step="2"
                 >to achieve this, first we add an
-                <span class="ilcode">ng-template</span> with a material design spinner which we'll show while loading </span
-              >
+                <span class="ilcode">ng-template</span> with a material design
+                spinner which we'll show while loading
+              </span>
               <span step="2"
                 ><span class="ilcode">ng-template</span>'s define html building
                 blocks, which are not shown until you explicitly include
@@ -1487,6 +1518,10 @@
                 >and if not (<span class="ilcode">else</span> case) we show an
                 <span class="ilcode">ng-template</span> defined elsewhere</span
               >
+              <span step="5"
+                ><span class="ilcode">mat-spinner</span> can be found in the
+                MatProgressSpinnerModule</span
+              >
               <span step="6"
                 >testing this is bit hard, you're probably not fast enough to
                 see if this works (unless if your computer is really old)</span
@@ -1510,7 +1545,7 @@
                     );
                   } 
                 }
-            </code></pre>
+            </code><span class="githubcommit">eb23d85</span></pre>
             <div explanation>
               <span step="1">RxJS to the rescue</span>
               <span step="1"
@@ -1830,12 +1865,11 @@
       </div>
     </div>
 
-  
     <script src="lib/js/chart.xkcd.min.js"></script>
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
     <script src="plugin/codestepper/codestepper.js"></script>
-    <script src="js/hogent-reveal.js" data-start-at-last="false"></script>
+    <script src="js/hogent-reveal.js" data-start-at-last="126"></script>
     <script src="js/snap.svg.js"></script>
   </body>
 </html>
