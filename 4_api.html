@@ -1569,10 +1569,33 @@
           <h3>error handling</h3>
           <ul>
             <li>
+              it's important to realize any given stream can only
+              <i>error out once</i>
+            </li>
+            <li>
+              streams can complete, ending their lifecycle without any error,
+              the stream will no longer produce values
+            </li>
+            <li>
+              an alternative to completion is erroring out, the stream's
+              lifecycle ended with an error, it will no longer emit values
+            </li>
+            <li>
+              notice that there is no obligation for a stream to complete or
+              error out, both are optional, but they
+              <i>are mutually exclusive</i>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>error handling</h3>
+          <ul>
+            <li>
               just as Promises have a catch function, you can specify a second
               function when subscribing to Observables to process any errors
               that happened
             </li>
+            <li>(and a third, to be called when a stream completes)</li>
             <li>
               but we only subscribe implicitly by using our AsyncPipe, adding
               error handling at the point of our AsyncPipe would be messy
@@ -1580,10 +1603,6 @@
             <li>
               once more, we'll rely on an RxJS operator to help us out:
               <span class="ilcode">catchError</span>
-            </li>
-            <li>
-              inside our data service we'll add a second stream, on which we'll
-              report errors, neatly separating normal and error behavior
             </li>
           </ul>
         </section>
@@ -1593,54 +1612,72 @@
             <pre
               class="typescript"
             > src/app/recipe-data.service.ts <code class='codesteps' data-noescape data-trim>
-              export class RecipeDataService {<span hstep='1'>
-                public loadingError$ = new Subject&lt;string&gt;();
-              </span>
+              export class RecipeDataService {
                 constructor(private http: HttpClient) {}
               
                 get recipes$(): Observable&lt;Recipe[]&gt; {
-                  return this.http.get(`${environment.apiUrl}/recipes/`).pipe(<span sstep='2+'>
-                    catchError(<span sstep='3+'>error => {
-                      this.loadingError$.next(error.statusText);<span sstep='4+'>
-                      return of(null);</span>
-                    }</span>),</span>
-                    map((list: any[]): Recipe[] => list.map(Recipe.fromJSON))
+                  return <span hstep='2'>this.http.get</span>(`${environment.apiUrl}/recipes/`).pipe(<span sstep='1+'>
+                    <span hstep='1'>catchError</span>(<span sstep='3+'>handleError</span>),</span>
+                    <span hstep='2'>map</span>((list: any[]): Recipe[] => list.map(Recipe.fromJSON))
                   );
-                } 
+                }<span sstep='3+'>
+
+                handleError(err: any)<span sstep='6+'>: Observable&lt;never&gt;</span> {
+                  let errorMessage: string;
+                  if (err instanceof HttpErrorResponse) {
+                    errorMessage = `'${err.status} ${err.statusText}' when accessing '${err.url}'`;
+                  } else {
+                    errorMessage = `an unknown error occurred ${err}`;
+                  }
+                  console.error(err);<span sstep='5'>
+                  return of([]);</span><span sstep='6+'>
+                  return throwError(errorMessage);</span>
+                }</span>
               }
             </code></pre>
             <div explanation>
               <span step="1"
-                >we start with adding a new observable, a Subject, which we'll
-                use to signal errors</span
-              >
-              <span step="1"
-                >this doesn't just make our code cleaner, it also becomes easy
-                for completely different components to do error reporting
-                without them needing to know because of which components errors
-                can originate</span
-              >
-              <span step="2"
                 >we add a <span class="ilcode">catchError</span> operator to the
                 pipe</span
               >
-              <span step="3"
-                >which expects a function which gets passed the error</span
+              <span step="1"
+                >like any <span class="ilcode">pipe</span> operator, this one
+                gets an input observable and returns an output observable
+              </span>
+              <span step="2"
+                >as long as the original produces no error,
+                <span class="ilcode">catchError</span> simply passes the values
+                from its input observable to its output observable</span
               >
+
               <span step="3"
-                >here we put the statusText property of the error on our
-                stream</span
+                >when an error occurs however, the function passed to
+                <span class="ilcode">catchError</span> is called to deal with
+                this error</span
               >
+              <span step="4">
+                the original stream no longer emits values (an error occurred),
+                but we still need a stream to pass in the pipe, so after dealing
+                with the error we create a stream ourselves
+              </span>
               <span step="4"
-                >pipeable operators should return an observable,
-                <span class="ilcode">Observable.of()</span> is used to convert
-                plain objects to Observables, here we simply pass 'nothing'
-                (undefined) to get an empty observable, effectively 'eating' the
-                chain</span
+                >this is called the
+                <span class="ilcode">catch and replace strategy</span></span
               >
               <span step="5"
-                >that's it for the data service, now let's adapt our component
-                to show this error</span
+                >we could simply return an observable created from an empty
+                area, which will immediately complete without emitting
+                values</span
+              >
+              <span step="6"
+                >or we'll use the static
+                <span class="ilcode">throwError</span> function from RxJS, which
+                will never return a value but immediatelly error out
+                itself</span
+              >
+              <span step="6"
+                >now let's update the component so we can present this error to
+                the user</span
               >
             </div>
           </div>
@@ -1650,22 +1687,42 @@
           <div codesteps>
             <pre
               class="typescript"
-            > src/app/app.component.ts <code class='codesteps' data-noescape data-trim>
-                export class AppComponent {
-                  public filterRecipeName: string;
-                  public filterRecipe$ = new Subject&lt;string&gt;();
-                
-                  private _fetchRecipes$: Observable&lt;Recipe[]&gt; = this._recipeDataService
-                    .recipes$;<span hstep='1'>
-                  public loadingError$ = this._recipeDataService.loadingError$;</span>
+            > src/app/recipe/recipe-list/recipe-list.component.ts <code class='codesteps' data-noescape data-trim>
+                  export class RecipeListComponent implements OnInit {
+                    private _fetchRecipes$: Observable&lt;Recipe[]&gt;<span sstep='1-2' sl> = this._recipeDataService
+                    .recipes$;</span><span sstep='2+'>
+                    public errorMessage: string = '';</span>
+                      
+                    // [...] 
 
-                  // [...]
+                    ngOnInit(): void {<span sstep='2+'>
+                      this._fetchRecipes$ = this._recipeDataService.recipes$.pipe(
+                        catchError(err => {
+                          <span hstep='3'>this.errorMessage = err;</span>
+                          return EMPTY;
+                        })
+                      );
+                    </span>}
+                 
                 }
             </code></pre>
             <div explanation>
               <span step="1">
-                not much here, we only add a second stream which captures the
-                loadingError stream we created in the previous step</span
+                we'll change how we deal with the fetchRecipes$ stream</span
+              >
+              <span step="2"
+                >we'll pipe it through a <span class="ilcode">catchError</span>,
+                to capture the error we rethrow with
+                <span class="ilcode">throwError</span></span
+              >
+              <span step="2"
+                >and assign that one to a new variable that will hold the error
+                message</span
+              >
+              <span step="3"
+                >so if we never get an error, nothing changes, but if any error
+                occurs the <span class="ilcode">this.errorMessage</span> will
+                hold it</span
               >
             </div>
           </div>
@@ -1675,7 +1732,7 @@
           <div codesteps>
             <pre
               class="html"
-            > src/app/app.component.html <code class='codesteps' data-noescape data-trim>
+            > src/app/recipe/recipe-list/recipe-list.component.html <code class='codesteps' data-noescape data-trim>
               &lt;div *ngIf=&quot;(recipes$ | async) as recipes; else <span sstep='1'>loading</span><span sstep='2+'>loadingOrError</span>&quot;&gt;
                 &lt;div
                   fxLayout=&quot;row&quot;
@@ -1686,17 +1743,15 @@
                 &lt;/div&gt;
               &lt;/div&gt;
               <span sstep='3+'>&lt;ng-template #loadingOrError&gt;
-                &lt;mat-card&gt;
-                  &lt;mat-error *ngIf=&quot;(loadingError$ | async) as errorMessage; else loading&quot;&gt;
+                &lt;mat-card class="error" *ngIf=&quot;errorMessage; else loading&quot;&gt;
                   <span hstep='4'> Error loading the recipe list: {{ errorMessage }}. &lt;br/&gt;
-                    Please try again later.</span>
-                  &lt;/mat-error&gt;</span>
+                    Please try again later.</span></span>
                   &lt;ng-template #loading&gt;
                     &lt;mat-spinner&gt;&lt;/mat-spinner&gt;
                   &lt;/ng-template&gt;<span sstep='3+'>
                 &lt;/mat-card&gt;
               &lt;/ng-template&gt; </span>
-            </code></pre>
+            </code><span class="githubcommit">4fd078b</span></pre>
             <div explanation>
               <span step="1"
                 >here we do pretty much the same thing we did for loading
@@ -1732,14 +1787,17 @@
           <div codesteps>
             <pre
               class="typescript"
-            > src/app/recipe-data.service.ts <code class='codesteps' data-noescape data-trim>
+            > src/app/recipe/recipe-data.service.ts <code class='codesteps' data-noescape data-trim>
               export class RecipeDataService {
               
                 constructor(private http: HttpClient) {}
               
                 addNewRecipe(recipe: Recipe) {<span sstep='2+'>
-                  return this.http.post(`${environment.apiUrl}/recipes/`<span sstep='3+'>, 
-                    recipe.toJSON()</span>);</span>
+                  return this.http
+                    .post(`${environment.apiUrl}/recipes/`, <span sstep='3+'>recipe.toJSON()</span>)
+                    .pipe(catchError(this.handleError), map(Recipe.fromJSON))<span sstep='4+'>
+                    .subscribe();</span>
+                  </span>
                 }
               }
           </code></pre>
@@ -1773,39 +1831,6 @@
         </section>
         <section>
           <h3>http post</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            > src/app/app.component.ts <code class='codesteps' data-noescape data-trim>
-                export class AppComponent {
-                  // [ ... ]
-                
-                  addNewRecipe(recipe) {
-                    this._recipeDataService.addNewRecipe(recipe)<span hstep='1'>.subscribe()</span>;
-                  }
-                } 
-            </code></pre>
-            <div explanation>
-              <span step="1"
-                >so we add a <span class="ilcode">.subscribe</span> call inside
-                our app component</span
-              >
-              <span step="1"
-                >(we respond to the click here, it's here we want to start the
-                observable)</span
-              >
-              <span step="1"
-                >we don't do anything with the result, feedback will happen by
-                showing the new recipe in our list</span
-              >
-              <span step="1"
-                ><a href="http://localhost:4200">let's try it</a></span
-              >
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>http post</h3>
           <ul>
             <li>
               the recipe gets added, but it doesn't get added to the list of
@@ -1827,11 +1852,6 @@
                 routes in a future chapter (and not the cleanest solution)
               </li>
               <li>
-                wrap the data service in a function and call it when needed, but
-                then we need to manually keep track of subscriptions and
-                unsubscribe
-              </li>
-              <li>
                 use some RxJS operators! since we've all fallen in love with
                 this approach by now, that's what we'll do
               </li>
@@ -1843,7 +1863,8 @@
           <ul>
             <li>
               ...but not today, we'll tackle this when talking about state and
-              applying more advanced rxjs operators
+              applying more advanced rxjs operators (the solution is in the
+              repo, you can have a peak)
             </li>
             <li>
               so that's it for today, we covered a bit of reactive programming
@@ -1869,7 +1890,7 @@
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
     <script src="plugin/codestepper/codestepper.js"></script>
-    <script src="js/hogent-reveal.js" data-start-at-last="126"></script>
+    <script src="js/hogent-reveal.js" data-start-at-last="false"></script>
     <script src="js/snap.svg.js"></script>
   </body>
 </html>
