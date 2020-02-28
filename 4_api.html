@@ -1841,30 +1841,136 @@
               automatically know something was added in the backend) this is not
               what we want
             </li>
-            <li>there are a few ways around this</li>
+            <li>there are essentially two ways around this</li>
             <ul>
               <li>
-                holding a local cache and adding it there too (but then we need
-                to keep state in sync, that's HARD)
+                you either make sure the list gets refreshed when needed (so a
+                GET of all recipes happens everytime a recipe was succesfully
+                added or removed)
               </li>
               <li>
-                reload a route to redraw a component, but we'll only learn about
-                routes in a future chapter (and not the cleanest solution)
-              </li>
-              <li>
-                use some RxJS operators! since we've all fallen in love with
-                this approach by now, that's what we'll do
+                you keep a local cache of the recipes and update it when you add
+                or remove a recipe
               </li>
             </ul>
+            <li>both have their advantages / disadvantages and their uses</li>
           </ul>
+        </section>
+        <section>
+          <h3>local cache</h3>
+          <h4>advantage</h4>
+          <ul>
+            <li>
+              less http requests, meaning a faster webapp, and you need less
+              server resources
+            </li>
+            <li>user action feedback is immediatelly reflected in the UI</li>
+          </ul>
+          <h4>disadvantage</h4>
+          <ul>
+            <li>what if multiple people manipulate the data?</li>
+            <li>
+              even if it's just you, keeping state in sync correctly is HARD
+              (see lesson 9)
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>local cache</h3>
+          <ul>
+            <li>
+              it greatly depends on the use case as well, when designing a stock
+              market ticker, or an orderpage for tomorrowland tickets you most
+              definitely do not want to much caching
+            </li>
+            <li>
+              we'll have a lot more to say about state management later, for now
+              we'll create a local array with a copy of the recipes and provide
+              observable access to that array
+            </li>
+            <li>
+              I'd like to stress again that this is FAR from a good solution to
+              this problem, you just haven't learned enough rxjs to do this
+              properly
+            </li>
+            <li>we'll get back to this...</li>
+          </ul>
+        </section>
+        <section>
+          <h3>local copy of the recipes</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/recipe/recipe-data.service.ts <code class='codesteps' data-noescape data-trim>
+            export class RecipeDataService {<span sstep='3+'>
+              private _recipes$ = new BehaviorSubject&lt;Recipe[]&gt;([]);</span><span hstep='1'>
+              private _recipes: Recipe[];</span>
+            
+              constructor(private http: HttpClient) {<span sstep='2+'>
+                this.recipes$.subscribe((recipes: Recipe[]) => {
+                  this._recipes = recipes;<span sstep='4+'>
+                  this._recipes$.next(this._recipes);</span>
+                });</span>
+              }<span sstep='3+'>
+            
+              get allRecipes$(): Observable&lt;Recipe[]&gt; {
+                return this._recipes$;
+              }</span>
+            
+              get recipes$(): Observable&lt;Recipe[]&gt; {
+                return this.http.get(`${environment.apiUrl}/recipes/`).pipe(
+                  catchError(this.handleError),
+                  map((list: any[]): Recipe[] => list.map(Recipe.fromJSON))
+                );
+              }
+            
+              addNewRecipe(recipe: Recipe) {
+                return this.http
+                  .post(`${environment.apiUrl}/recipes/`, recipe.toJSON())
+                  .pipe(catchError(this.handleError),map(Recipe.fromJSON))
+                  .subscribe((rec: Recipe) => {<span sstep='2+'>
+                    this._recipes = [...this._recipes, rec];<span sstep='4+'>
+                    this._recipes$.next(this._recipes);</span>
+                  </span>});
+              } 
+  </code><span class='githubcommit'></span> </pre>
+            <div explanation>
+              <span step="1"
+                >we'll keep a copy of all recipes in a local array
+              </span>
+              <span step="1"
+                >while we could simply grant access to this array to the
+                components, we want to keep our public interface using
+                observables (we'll change the inner workings of this class
+                later)</span
+              >
+              <span step="2"
+                >we'll initialize the array with the original recipes from the
+                backend</span
+              >
+              <span step="2">and update the list when a recipe is added</span>
+              <span step="3"
+                >we'll then provide observable access to this list using a new
+                subject</span
+              >
+              <span step="4"
+                >and resend the array of recipes whenever it's updated through
+                this subjectarray</span
+              >
+              <span step="5"
+                >all that's left now is updating the component to use
+                <span class="ilcode">allRecipes</span> i.s.o.
+                <span class="ilcode">recipes</span></span
+              >
+            </div>
+          </div>
         </section>
         <section>
           <h3>that's all folks</h3>
           <ul>
             <li>
-              ...but not today, we'll tackle this when talking about state and
-              applying more advanced rxjs operators (the solution is in the
-              repo, you can have a peak)
+              this will do for now, we'll tackle this for real when we learn
+              about more advanced rxjs operators
             </li>
             <li>
               so that's it for today, we covered a bit of reactive programming
@@ -1872,7 +1978,8 @@
             </li>
             <li>
               as an exercise try to add a trashcan button to each recipe and
-              call a http delete when clicked
+              call a http delete when clicked (solution: see
+              <span class="githubcommit">ffec8a5</span>)
             </li>
             <li>
               note that you know most things you need for your task now, we
@@ -1890,7 +1997,7 @@
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
     <script src="plugin/codestepper/codestepper.js"></script>
-    <script src="js/hogent-reveal.js" data-start-at-last="false"></script>
+    <script src="js/hogent-reveal.js" data-start-at-last="146"></script>
     <script src="js/snap.svg.js"></script>
   </body>
 </html>
