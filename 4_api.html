@@ -1134,7 +1134,8 @@
                   get recipes<span sstep='5+'>$</span>(): <span sstep='5+'>Observable&lt; </span>Recipe[]<span sstep='5+'> &gt;</span> {
                   <span sstep='1-2'>  return this._recipes;
                   </span><span sstep='4+'>  return this.http.get(`${environment.apiUrl}/recipes/`))<span sstep='6+'>.pipe(<span sstep='7+'>
-                      map(<span sstep='8+'>
+                      <span sstep='11+'>tap(console.log),
+                      </span>map(<span sstep='8+'>
                         (list<span hstep='10'>: any[]</span>)<span hstep='10'>: Recipe[]</span> => <span sstep='8'>{}</span><span sstep='9+'>list.map(Recipe.fromJSON)</span>              
                       </span>)
                     </span>)</span>;
@@ -1215,10 +1216,19 @@
                 where static type checking can really help you</span
               >
               <span step="11"
+                >a usefull operator when dealing with observables it
+                <span class="ilcode">tap</span></span
+              >
+              <span step="11"
+                >tap will simply pass everything it gets to the next operator,
+                leaving it untouched, but you get a change to 'tap into' the
+                stream</span
+              >
+              <span step="12"
                 >that's it, not a lot of code, but a lot is happening here; it's
                 important to really understand this</span
               >
-              <span step="11"
+              <span step="12"
                 >now all that's left is subscribing to this service where we
                 need the data</span
               >
