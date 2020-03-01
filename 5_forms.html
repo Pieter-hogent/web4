@@ -49,6 +49,31 @@
             programmers write code that humans can understand." - Martin Fowler
           </footer>
         </section>
+        <section>
+          <h3>recipe app startpoint</h3>
+          <div>
+            <img
+              src="img/facebooklogo.png"
+              alt=""
+              style="border:none; box-shadow: none; transform:matrix(0.58,-0.13,0.13,0.58,-140,0);"
+            />
+            <img
+              src="img/beer.png"
+              alt=""
+              style="position: absolute; border:none; box-shadow: none; top: 60px; left: 100px; transform:matrix(0.37,0.17,-0.17,0.37,200,-140);"
+            />
+          </div>
+
+          if you spent last class on facebook (or at the pub), branch the repo
+          at the correct commit and follow along!
+          <p></p>
+          <pre data-trim class="console">
+<span class='prompt'>~$</span> git clone https://github.com/Pieter-hogent/recipeapp.git  (or git pull)
+<span class='prompt'>~$</span> cd recipeapp
+<span class='prompt'>~/recipeapp$</span> npm install
+<span class='prompt'>~/recipeapp$</span> git checkout -b mybranch <span class="githubcommit">08654da</span>
+        </pre>
+        </section>
         <section class="contents-slide">
           <h3>overview.</h3>
           <ol>
@@ -106,14 +131,14 @@
           <div codesteps>
             <pre
               class="typescript"
-            >app.module.ts  <code class='codesteps' data-noescape data-trim>
+            >src/app/recipe/recipe.module.ts  <code class='codesteps' data-noescape data-trim>
                   import { <span hstep='1+'>ReactiveFormsModule</span> } from '@angular/forms';
-    
-                  import { AppComponent } from './app.component';
                   
                   @NgModule({
                   imports: [
-                    BrowserModule,
+                    CommonModule,
+                    HttpClientModule,
+                    MaterialModule,
                     <span hstep='1+'>ReactiveFormsModule</span>
                   ], ...  
               </code></pre>
@@ -151,7 +176,7 @@
           <div codesteps>
             <pre
               class="typescript"
-            >src/app/add-recipe/add-recipe.component.ts  <code class='codesteps' data-noescape data-trim>
+            >src/app/recipe/add-recipe/add-recipe.component.ts  <code class='codesteps' data-noescape data-trim>
                   export class AddRecipeComponent implements OnInit {
                     <span sstep='2+'>public recipe: FormGroup;
                   
@@ -202,7 +227,7 @@
                       /&gt;
                     &lt;/mat-form-field&gt;
                     &lt;button<span sstep='8+'> type='submit'</span> mat-raised-button&gt;
-                      add
+                      add recipe
                     &lt;/button&gt;
                   &lt;/form&gt;
                 &lt;/mat-card-content&gt;
@@ -257,7 +282,7 @@
           <div codesteps>
             <pre
               class="typescript"
-            > src/app/add-recipe/add-recipe.component.ts <code class='codesteps' data-noescape data-trim>
+            > src/app/recipe/add-recipe/add-recipe.component.ts <code class='codesteps' data-noescape data-trim>
                 export class AddRecipeComponent implements OnInit {
                   @Output() public newRecipe = new EventEmitter&lt;Recipe&gt;();
                   private recipe: FormGroup;
@@ -268,7 +293,7 @@
                     this.newRecipe.emit(new Recipe(this.recipe.value.name));
                   }</span>
                 };
-            </code></pre>
+            </code><span class="githubcommit">7bec462</span></pre>
             <div explanation>
               <span step="1">and then we need to add this onSubmit method</span>
               <span step="2">
@@ -321,7 +346,7 @@
           <div codesteps>
             <pre
               class="typescript"
-            > src/app/add-recipe/add-recipe.component.ts <code class='codesteps' data-noescape data-trim>
+            > src/app/recipe/add-recipe/add-recipe.component.ts <code class='codesteps' data-noescape data-trim>
                 export class AddRecipeComponent implements OnInit {
                   ngOnInit() {
                     this.recipe = new FormGroup({
@@ -361,7 +386,7 @@
           <div codesteps>
             <pre
               class="html"
-            > src/app/add-recipe/add-recipe.component.html <code class='codesteps' data-noescape data-trim>
+            > src/app/recipe/add-recipe/add-recipe.component.html <code class='codesteps' data-noescape data-trim>
                 &lt;mat-card&gt;
                 &lt;mat-card-title&gt;add recipe&lt;/mat-card-title&gt;
                 &lt;mat-card-content&gt;
@@ -386,7 +411,7 @@
               REMOVE {{ recipe.value | json }}<span sstep='5+'> 
               {{ spy.className }}</span>
               
-            </code></pre>
+            </code><span class="githubcommit">af010eb</span></pre>
             <div explanation>
               <span step="1">
                 if there are validators the FormControl will automatically check
@@ -452,7 +477,7 @@
           <div codesteps>
             <pre
               class="html"
-            >src/app/add-recipe/add-recipe.component.html  <code class='codesteps' data-noescape data-trim>
+            >src/app/recipe/add-recipe/add-recipe.component.html  <code class='codesteps' data-noescape data-trim>
               &lt;mat-card&gt;
                 &lt;mat-card-title&gt;add recipe&lt;/mat-card-title&gt;
                 &lt;mat-card-content&gt;
@@ -527,11 +552,11 @@
           <div codesteps>
             <pre
               class="typescript"
-            > src/app/add-recipe/add-recipe.component.ts <code class='codesteps' data-noescape data-trim>
+            > src/app/recipe/add-recipe/add-recipe.component.ts <code class='codesteps' data-noescape data-trim>
                 export class AddRecipeComponent implements OnInit {
                   // [ ... ]
                 
-                  getErrorMessage(errors: any) {
+                  getErrorMessage(errors: any): string {
                     if (<span hstep='1'>errors.required</span>) {
                       return 'is required';
                     } else if (<span hstep='1'>errors.minlength</span>) {
@@ -539,7 +564,7 @@
                         characters (got ${errors.<span hstep='3'>minlength.actualLength</span>})`;
                     }
                   }
-            </code></pre>
+            </code><span class="githubcommit">8c8b4e9</span></pre>
             <div explanation>
               <span step="1">
                 then inside the class contruct different error messages based on
@@ -560,11 +585,11 @@
           </div>
         </section>
         <section>
-          <h3>formbuilder</h3>
+          <h3>formbuilder.</h3>
           <div codesteps>
             <pre
               class="typescript"
-            >src/app/add-recipe/add-recipe.component.ts  <code class='codesteps' data-noescape data-trim>
+            >src/app/recipe/add-recipe/add-recipe.component.ts  <code class='codesteps' data-noescape data-trim>
                 import { FormGroup, <span sstep='1'>FormControl</span><span sstep='2-4'>FormBuilder</span> } from '@angular/forms'; 
     
                 export class AddRecipeComponent implements OnInit {<span sstep='2-4'>
@@ -626,11 +651,11 @@
           </ul>
         </section>
         <section>
-          <h3>add ingredient form</h3>
+          <h3>add ingredient form.</h3>
           <div codesteps>
             <pre
               class="typescript"
-            > src/app/add-recipe/add-recipe.component.ts <code class='codesteps' data-noescape data-trim>
+            > src/app/recipe/add-recipe/add-recipe.component.ts <code class='codesteps' data-noescape data-trim>
                 <span sstep='3'>public readonly unitTypes = ['Liter', 'Gram', 'Tbsp', 'Pcs'];
                 </span>
                 ngOnInit() {
@@ -664,11 +689,11 @@
           </div>
         </section>
         <section>
-          <h3>add ingredient form</h3>
+          <h3>add ingredient form.</h3>
           <div codesteps>
             <pre
               class="html"
-            > src/app/add-recipe/add-recipe.component.html <code class='codesteps' data-noescape data-trim>
+            > src/app/recipe/add-recipe/add-recipe.component.html <code class='codesteps' data-noescape data-trim>
               &lt;div<span sstep='3+'> formArrayName=&quot;ingredients&quot;</span><span sstep='6+'>
                 *ngFor=&quot;let item of recipe.get('ingredients')['controls']; let i = index&quot;</span>&gt;
                 &lt;div<span sstep='5+'> [formGroupName]=&quot;<span sstep='5'>...</span><span sstep='6+'>i</span>&quot;</span>&gt;
@@ -730,17 +755,22 @@
           </div>
         </section>
         <section>
-          <h3>add ingredient form</h3>
+          <h3>add ingredient form.</h3>
           <div codesteps>
             <pre
               class="typescript"
-            >src/app/add-recipe/add-recipe.component.ts  <code class='codesteps' data-noescape data-trim>
+            >src/app/recipe/add-recipe/add-recipe.component.ts  <code class='codesteps' data-noescape data-trim>
                 onSubmit() {
                   let ingredients = this.recipe.value.ingredients.map(Ingredient.fromJSON);
                   ingredients = <span hstep='2'>ingredients.filter(ing => ing.name.length > 2);</span>
-                  this.newRecipe.emit(new Recipe(this.recipe.value.name, ingredients));
+                  this.newRecipe.emit(new Recipe(this.recipe.value.name, ingredients));<span sstep='3+'>
+
+                  this.recipe = this.fb.group({
+                    name: ['', [Validators.required, Validators.minLength(2)]],
+                    ingredients: this.fb.array([this.createIngredients()])
+                  });</span>
                 }
-            </code></pre>
+            </code><span class="githubcommit">43acb73</span></pre>
             <div explanation>
               <span step="1">
                 back in our typescript file we need to adapt our onSubmit method
@@ -750,7 +780,11 @@
                 I explicitly check for a valid ingredientname, I don't want to
                 include empty input fields
               </span>
-              <span step="3">
+              <span step="3"
+                >it's probably a good idea to rebind to a new group here after a
+                submit (so the form resets)</span
+              >
+              <span step="4">
                 we can't add more than one ingredient yet, but
                 <a href="http://localhost:4200">let's try this out</a>
               </span>
@@ -758,11 +792,11 @@
           </div>
         </section>
         <section>
-          <h3>multiple add ingredient</h3>
+          <h3>multiple add ingredient.</h3>
           <div codesteps>
             <pre
               class="typescript"
-            > src/app/add-recipe/add-recipe.component.ts <code class='codesteps' data-noescape data-trim>
+            > src/app/recipe/add-recipe/add-recipe.component.ts <code class='codesteps' data-noescape data-trim>
                 export class AddRecipeComponent implements OnInit {
                   <span hstep='3'>get ingredients(): FormArray {
                     return &lt;FormArray&gt;this.recipe.get('ingredients');
@@ -870,7 +904,7 @@ export class AddRecipeComponent implements OnInit {
     </span>);
   }
 
-  getErrorMessage(errors: any) {
+  getErrorMessage(errors: any): string {
     // [ ... ]<span sstep='6+'>
     if (errors.required) {
       return 'is required';
