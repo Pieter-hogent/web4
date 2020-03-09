@@ -50,16 +50,45 @@
             Hunt
           </footer>
         </section>
+        <section>
+          <h3>recipe app startpoint</h3>
+          <div>
+            <img
+              src="img/facebooklogo.png"
+              alt=""
+              style="border:none; box-shadow: none; transform:matrix(0.58,-0.13,0.13,0.58,-140,0);"
+            />
+            <img
+              src="img/beer.png"
+              alt=""
+              style="position: absolute; border:none; box-shadow: none; top: 60px; left: 100px; transform:matrix(0.37,0.17,-0.17,0.37,200,-140);"
+            />
+          </div>
+
+          if you spent last class on facebook (or at the pub), branch the repo
+          at the correct commit and follow along!
+          <p></p>
+          <pre data-trim class="console">
+<span class='prompt'>~$</span> git clone https://github.com/Pieter-hogent/recipeapp.git  (or git pull)
+<span class='prompt'>~$</span> cd recipeapp
+<span class='prompt'>~/recipeapp$</span> npm install
+<span class='prompt'>~/recipeapp$</span> git checkout -b week6 <span class="githubcommit">3bfdae5</span>
+        </pre>
+        </section>
         <section class="contents-slide">
           <h3>overview.</h3>
           <ol>
             <li>
-              <a href="#/intro">todo</a> <br />
-              <span> add inner links and complete this overview</span>
+              <a href="#/intro">intro to testing in angular</a> <br />
+              <span> what comes include, why we won't use it</span>
+            </li>
+            <li>
+              <a href="#/cypress">cypress</a> <br />
+              <span> the testing framework we will use</span>
             </li>
           </ol>
         </section>
-        <section>
+        <section id="intro">
           <h3>why write tests?</h3>
           <ul>
             <li>
@@ -102,7 +131,7 @@
             </ul>
           </ul>
         </section>
-        <section>
+        <section id="cypress">
           <h3>cypress</h3>
           <ul>
             <li>released oct 17</li>
@@ -167,7 +196,7 @@
                 <li>
                   these examples are great to show how everything's done, but
                   we'll remove them from our recipe app for now (you can easily
-                  get them back by doing an cypress install on an empty project)
+                  get them back by doing a cypress install on an empty project)
                 </li>
               </ul>
             </div>
@@ -238,7 +267,7 @@
                   });</span>
                 });
                     
-            </code></pre>
+            </code><span class="githubcommit">afd0439</span></pre>
             <div explanation>
               <span step="1"
                 >this works, but testing tautologies is hardly useful, let's do
@@ -308,7 +337,7 @@
           <div codesteps>
             <pre
               class="html"
-            > src/app/app.component.html <code class='codesteps' data-noescape data-trim>
+            > src/app/recipe/recipe-list/recipe-list.component.html <code class='codesteps' data-noescape data-trim>
               &lt;div fxLayout=&quot;column&quot; fxLayoutGap=&quot;2%&quot;&gt;
                 &lt;app-add-recipe (newRecipe)=&quot;addNewRecipe($event)&quot;&gt;&lt;/app-add-recipe&gt;
                 &lt;mat-card&gt;
@@ -330,7 +359,7 @@
                   &lt;/div&gt;
                 &lt;/div&gt;
             
-            </code></pre>
+            </code><span class="githubcommit">f3574f3]</span></pre>
             <div explanation>
               <span step="1"
                 >let's add some attributes to help us test the application
@@ -649,7 +678,7 @@
                   cy.visit('/');
                   cy.get('[data-cy=appError]').should('be.visible');</span>
                 });
-            </code></pre>
+            </code><span class="githubcommit">be18b22</span></pre>
             <div explanation>
               <span step="1"
                 >as a last example lets add a test to make sure our error
@@ -659,7 +688,7 @@
                 >start by adding a
                 <span class="ilcode">data-cy='appError'</span> attribute to the
                 <span class="ilcode">&lt;mat-error&gt;</span> in our
-                app.component
+                recipe-list.component
               </span>
               <span step="2"
                 >then define a route and make sure a server error occurs when
