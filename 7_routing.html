@@ -37,22 +37,47 @@
     <div class="reveal">
       <div class="slides">
         <section
-        class="title-slide"
-        data-transition="none"
-        data-background-transition="none"
-      >
-        <img class="title-img" src="img/babyyoda7.png" />
-        <h2>routing & modules</h2>
-        <h4>Karine Samyn, Stefaan De Cock, Pieter Van Der Helst</h4>
-        <footer class="footer">
-          "Sometimes it pays to stay in bed on Monday, rather than spending
-          the rest of the week debugging Monday's code." - Christopher
-          Thompson
-        </footer>
-      </section>
-      <section class="contents-slide">
-        <h3>overview.</h3>
-        <ol >
+          class="title-slide"
+          data-transition="none"
+          data-background-transition="none"
+        >
+          <img class="title-img" src="img/babyyoda7.png" />
+          <h2>routing & modules</h2>
+          <h4>Karine Samyn, Stefaan De Cock, Pieter Van Der Helst</h4>
+          <footer class="footer">
+            "Sometimes it pays to stay in bed on Monday, rather than spending
+            the rest of the week debugging Monday's code." - Christopher
+            Thompson
+          </footer>
+        </section>
+        <section>
+          <h3>recipe app startpoint</h3>
+          <div>
+            <img
+              src="img/facebooklogo.png"
+              alt=""
+              style="border:none; box-shadow: none; transform:matrix(0.58,-0.13,0.13,0.58,-140,0);"
+            />
+            <img
+              src="img/beer.png"
+              alt=""
+              style="position: absolute; border:none; box-shadow: none; top: 60px; left: 100px; transform:matrix(0.37,0.17,-0.17,0.37,200,-140);"
+            />
+          </div>
+
+          if you spent last class on facebook (or at the pub), branch the repo
+          at the correct commit and follow along!
+          <p></p>
+          <pre data-trim class="console">
+<span class='prompt'>~$</span> git clone https://github.com/Pieter-hogent/recipeapp.git  (or git pull)
+<span class='prompt'>~$</span> cd recipeapp
+<span class='prompt'>~/recipeapp$</span> npm install
+<span class='prompt'>~/recipeapp$</span> git checkout -b week7 <span class="githubcommit">be18b22</span>
+      </pre>
+        </section>
+        <section class="contents-slide">
+          <h3>overview.</h3>
+          <ol>
             <li>
               <a href="#/intro">intro</a> <br /><span style="font-size: 0.7em">
                 what are routing and modules and why do we need them
@@ -79,14 +104,13 @@
               </span>
             </li>
             <li>
-
               <a href="#/routing-module">separate routing module</a><br /><span
                 style="font-size: 0.7em"
               >
                 split of routing to a separate module
               </span>
             </li>
-           
+
             <li>
               <a href="#/feature-modules">feature modules</a><br /><span
                 style="font-size: 0.7em"
@@ -134,32 +158,16 @@
           <h3>modules</h3>
           <ul>
             <li>
-              we've already used modules, everything resides in the AppModule
-              and we've added HttpClientModule, ReactiveFormsModule as we needed
-              them
+              we've already talked about the basics of modules, we imported some
+              angular modules (ReactiveFormsModule and HttpClientModule)
             </li>
             <li>
-              modules can be used to encapsulate parts of your app, promoting
-              reusability and separation of concerns
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>routing & modules</h3>
-          <ul>
-            <li>
-              routing and modules are not inherently linked, you can create a
-              very complex routing app without any modules; or use many modules
-              creating one big page without any routing
-            </li>
-            <li>(neither feel like a particulary good idea)</li>
-            <li>
-              but you split your app visually in pages, and split the code in
-              modules, these concepts naturally fit together
+              and we created a few ourselves, RecipeModule en MaterialModule,
+              facilitating separation of concerns and code reuse
             </li>
             <li>
-              and you can do lazy loading if you route to separate modules; so
-              we'll learn about them together
+              but when routing is added we can also use modules to lazily load
+              parts of our webapp only when they are needed
             </li>
           </ul>
         </section>
@@ -173,71 +181,35 @@
             <li>
               we'll split these up, and we'll add navigation to access both
             </li>
-            <li>
-              we'll start by adding a recipe list component, which will wrap
-              showing the recipes
-            </li>
           </ul>
         </section>
-        <section>
-          <h3>recipe list</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            >src/app/recipe-list/recipe-list.component.ts<code class='codesteps' data-noescape data-trim>
-              export class RecipeListComponent 
-                public filterRecipeName: string;
-                public filterRecipe$ = new Subject&lt;string&gt;();
-              
-                private _fetchRecipes$: Observable&lt;Recipe[]&gt; = this._recipeDataService
-                  .recipes$;
-                public loadingError$ = this._recipeDataService.loadingError$;
-              
-                constructor(private _recipeDataService: RecipeDataService) {
-                  this.filterRecipe$
-                    .pipe(
-                      distinctUntilChanged(),
-                      debounceTime(400),
-                      map(val => val.toLowerCase())
-                    )
-                    .subscribe(val => (this.filterRecipeName = val));
-                }
-              
-                get recipes$() {
-                  return this._fetchRecipes$;
-                }
-              }
-            </code></pre>
-            <div explanation>
-              <span step="1"
-                >we'll add a new RecipeListComponent, which will show the grid
-                as it's shown now, using our existing RecipeComponent</span
-              >
-              <span step="1"
-                >creating a new component and copy pasting some code? eh, you
-                got this</span
-              >
-            </div>
-          </div>
-        </section>
+
         <section>
           <h3>add recipe</h3>
           <div codesteps>
             <pre
               class="typescript"
             >src/app/add-recipe/add-recipe.component.ts<code class='codesteps' data-noescape data-trim>
+                constructor(
+                  private fb: FormBuilder<span sstep='2+'>,
+                  private _recipeDataService: RecipeDataService</span>
+                ) {}
+
                 onSubmit() {
-                  // ...
+                  // ...<span sstep='1-2' sl>
+                  this.newRecipe.emit(new Recipe(this.recipe.value.name, ingredients));</span><span sstep='2+'>
                   this._recipeDataService
-                  .addNewRecipe(new Recipe(this.recipe.value.name, ingredients))
-                  .subscribe();
+                  .addNewRecipe(new Recipe(this.recipe.value.name, ingredients));</span>
                 }         
             </code></pre>
             <div explanation>
               <span step="1"
-                >the AddRecipeComponent doesn't change much, we'll simply do the
-                save of a new recipe ourselves i.s.o. emitting using an
-                EventEmitter
+                >right now add-recipe is part of the recipe-list component,
+                which responds to the @Output of add-recipe</span
+              >
+              <span step="2">
+                we'll make the add-recipe self contained, injecting the data
+                service and taking care of the add ourselves
               </span>
             </div>
           </div>
@@ -246,14 +218,20 @@
           <h3>appcomponent</h3>
           <div codesteps>
             <pre class="html"><code class='codesteps' data-noescape data-trim>
+              &lt;div fxLayout="column" fxLayoutGap="2%"&gt;
                 &lt;app-add-recipe&gt;&lt;/app-add-recipe&gt;
                 &lt;recipe-list&gt;&lt;/recipe-list&gt;
+              &lt;div&gt;
                           
-            </code></pre>
+            </code><span class="githubcommit">8700a3c</span></pre>
             <div explanation>
+              <span step="1">
+                the AppComponent now contains two components, which we'll turn
+                into two separate pages in a minute</span
+              >
               <span step="1"
-                >the AppComponent is almost empty, the ts code becomes an empty
-                file, and the html simply shows two components</span
+                >don't forget to add this component to the exports list as
+                well</span
               >
               <span step="2"
                 >we're ready to add the router, let's see that
@@ -271,13 +249,15 @@
   import { RouterModule<span sstep='2-6'>, Routes</span> } from '@angular/router';
   <span sstep='2-6'>
   const appRoutes: Routes = [
-    { <span hstep='4'>path</span>: '<span hstep='5'>recipe-list</span>', <span hstep='4'>component</span>: <span hstep='5'>RecipeListComponent</span> },
-    { path: 'add-recipe', component: AddRecipeComponent }
+    { <span hstep='4'>path</span>: '<span hstep='5'>recipe/list</span>', <span hstep='4'>component</span>: <span hstep='5'>RecipeListComponent</span> },
+    { path: 'recipe/add', component: AddRecipeComponent }
   ];
   </span>
   @NgModule({
     imports: [
       BrowserModule,
+      BrowserModule,
+      RecipeModule,
       <span hstep='1'>RouterModule</span><span sstep='3-6'>.forRoot(appRoutes)</span>
     ]
   });          
@@ -296,12 +276,12 @@
                 the forRoot later)</span
               >
               <span step="4"
-                >in there simplest form, routes simply associate a URL with a
+                >in their simplest form, routes simply associate a URL with a
                 component</span
               >
               <span style="width: 400px" step="5"
                 >so if anyone goes to
-                <span class="ilcode">http://localhost:4200 /recipe-list</span>,
+                <span class="ilcode">http://localhost:4200 /recipe/list</span>,
                 the <span class="ilcode">RecipeListComponent</span> should be
                 rendered</span
               >
@@ -331,8 +311,8 @@
               </span>
               <span step="3"
                 >let's try this out
-                <a href="http://localhost:4200/recipe-list"
-                  >http://localhost:4200/ recipe-list</a
+                <a href="http://localhost:4200/recipe/list"
+                  >http://localhost:4200/ recipe/list</a
                 >
               </span>
             </div>
@@ -343,12 +323,12 @@
           <div codesteps>
             <pre class="typescript"><code data-noescape data-trim>
   const appRoutes: Routes = [
-    { path: 'recipe-list', component: RecipeListComponent },
-    { path: 'add-recipe', component: AddRecipeComponent }<span sstep='2-6'>,
-    { path: '', <span hstep='4'>redirectTo: 'recipe-list'</span>, <span hstep='3'>pathMatch: 'full'</span>}</span><span sstep='5-6'>,
+    { path: 'recipe/list', component: RecipeListComponent },
+    { path: 'recipe/add', component: AddRecipeComponent }<span sstep='2-6'>,
+    { path: '', <span hstep='4'>redirectTo: 'recipe/list'</span>, <span hstep='3'>pathMatch: 'full'</span>}</span><span sstep='5-6'>,
     { path: '**', component: <span hstep='6'>PageNotFoundComponent</span>}</span>
   ];
-            </code></pre>
+            </code><span class="githubcommit">4d26a16</span></pre>
             <div explanation>
               <span step="1">
                 we have two routes, but our webpage only works if we explicitly
@@ -417,8 +397,8 @@
                 &gt;<span sstep='1'>
                 &lt;mat-toolbar&gt;Menu&lt;/mat-toolbar&gt;</span>
                   &lt;mat-nav-list&gt;
-                    &lt;a mat-list-item <span sstep='1-2'>href=&quot;#&quot;&gt;Link 1&lt;</span><span sstep='3+'><span hstep='4'>[routerLink]</span>=&quot;<span hstep='5'>['recipe-list']</span>&quot;&gt;recipes&lt;</span>/a&gt;
-                    &lt;a mat-list-item <span sstep='1-2'>href=&quot;#&quot;&gt;Link 2&lt;</span><span sstep='3+'><span hstep='4'>[routerLink]</span>=&quot;['add-recipe']&quot;&gt;add recipe&lt;</span>/a&gt;<span sstep='1-2'>
+                    &lt;a mat-list-item <span sstep='1-2'>href=&quot;#&quot;&gt;Link 1&lt;</span><span sstep='3+'><span hstep='4'>[routerLink]</span>=&quot;<span hstep='5'>['recipe/list']</span>&quot;&gt;recipes&lt;</span>/a&gt;
+                    &lt;a mat-list-item <span sstep='1-2'>href=&quot;#&quot;&gt;Link 2&lt;</span><span sstep='3+'><span hstep='4'>[routerLink]</span>=&quot;['recipe/add']&quot;&gt;add recipe&lt;</span>/a&gt;<span sstep='1-2'>
                     &lt;a mat-list-item href=&quot;#&quot;&gt;Link 3&lt;/a&gt;;</span>
                   &lt;/mat-nav-list&gt;
                 &lt;/mat-sidenav&gt;
@@ -490,7 +470,7 @@
                 <span hstep='1'>&lt;app-main-nav&gt;</span>
                  <span hstep='2'> &lt;router-outlet&gt;&lt;/router-outlet&gt;</span>
                 <span hstep='1'>&lt;/app-main-nav&gt;</span>
-            </code></pre>
+            </code><span class="githubcommit">a75a6ea</span></pre>
             <div explanation>
               <span step="1">
                 so if you use the <span class="ilcode">app-main-nav</span> tag
@@ -537,7 +517,8 @@
           <div codesteps>
             <pre>src/app/app-routing/app-routing.module.ts<code data-noescape data-trim>
   import { RouterModule, Routes } from '@angular/router';
-  <span hstep='2'>import { RecipeComponent } from 'recipe/recipe.component'</span>
+  <span hstep='2'>import { RecipeListComponent } from './recipe/recipe-list/recipe-list.component';
+  import { PageNotFoundComponent } from './page-not-found/page-not-found.component';</span>
 
   const appRoutes: Routes = [ ... ];
   
@@ -552,7 +533,7 @@
   })
   export class AppRoutingModule { }
                 
-            </code></pre>
+            </code><span class="githubcommit">41d44e6</span></pre>
             <div explanation>
               <span step="1">
                 We copy the appRoutes from the AppModule, and add the necessary
@@ -564,223 +545,11 @@
               >
               <span step="3">
                 note that we also export the RouterModule again</span
-              ><span step="3"
-                >maybe it's time to talk a bit about modules
-              </span>
-            </div>
-          </div>
-        </section>
-        <section id="feature-modules">
-          <h3>modules</h3>
-          <ul>
-            <li>
-              you always have at least one module, the root module, which
-              bootstraps your app
-            </li>
-            <li>typically you'll also have several 'feature modules'</li>
-            <li>
-              all components, directives, pipes defined in a module should be in
-              the declarations of <i>exactly one</i> module
-            </li>
-            <li>
-              you can only use something in a module if you declared it, or
-              imported it
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>modules</h3>
-          <ul>
-            <li>
-              only one module (the root) should import
-              <span class="ilcode">BrowserModule</span>, others which need
-              <span class="ilcode">ngFor</span> etc should import
-              <span class="ilcode">CommonModule</span> (if you use ng generate
-              module, this happens automatically)
-            </li>
-            <li>
-              you should export all declarables other modules should have access
-              to
-            </li>
-            <li>
-              you can export an entire module, which will export all its exports
-            </li>
-            <li>
-              so by exporting the RouterModule from our AppRoutingModule,
-              everyone who import AppRoutingModule gets RoutingModule as well
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>modules</h3>
-          <ul>
-            <li>
-              to illustrate how you'd use feature modules we'll create two new
-              modules
-            </li>
-            <ul>
-              <li>
-                <span class="ilcode">RecipeModule</span>: which will contain
-                everything needed to work with and display our recipes
-              </li>
-              <li>
-                <span class="ilcode">MaterialModule</span>: import/exporting
-                everything from material design, which we'll typically use in
-                several modules, so it's convenient to split it off
-              </li>
-            </ul>
-            <li>
-              then we'll lazily load the RecipeModule to show how that's done
-            </li>
-            <li>
-              but there's a lot more to say about modules, the
-              <a href="https://angular.io/guide/ngmodule"
-                >official documentation</a
               >
-              is a good startpoint if that interests you
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>recipe feature module</h3>
-          <ul>
-            <li>
-              while not a requirement, it's nice to group modules in their own
-              folders
-            </li>
-            <li>
-              this means we have to refactor everything a bit, mainly moving
-              files around
-            </li>
-            <li>
-              you shouldn't simply move a file under git control, it gets
-              registered as a delete / create new, messing up your history
-            </li>
-            <li>
-              always use a <span class="ilcode">git mv</span>, which is seen as
-              'the same file renamed'
-            </li>
-          </ul>
-          <pre data-trim class="console">
-<span class='prompt'>~recipeapp$</span> ng generate module recipe --module=app
-<span class='prompt'>~recipeapp$</span> cd src/app
-<span class='prompt'>~recipeapp/src/app$</span> git mv recipe.model.ts recipe/
-<span class='prompt'>~recipeapp/src/app$</span> git mv recipe/recipe.component.* recipe/recipe/
-<span class='prompt'>~recipeapp/src/app$</span> git mv ingredient recipe/
-<span class='prompt'>~recipeapp/src/app$</span> git mv recipe-list recipe/
-<span class='prompt'>~recipeapp/src/app$</span> git mv add-recipe recipe/
-<span class='prompt'>~recipeapp/src/app$</span> git mv ingredient.model.ts recipe/
-<span class='prompt'>~recipeapp/src/app$</span> git mv recipe-* recipe/
-          </pre>
-        </section>
-        <section>
-          <h3>recipe module</h3>
-          <div codesteps>
-            <pre>src/app/recipe/recipe.module.ts<code data-noescape data-trim>
-  @NgModule({
-    imports: [<span hstep='2'>
-      HttpClientModule,
-      CommonModule,
-      MaterialModule
-      ReactiveFormsModule</span>
-    ],
-    declarations: [<span hstep='1'>
-      RecipeComponent,
-      IngredientComponent,
-      AddRecipeComponent,
-      RecipeFilterPipe,
-      RecipeListComponent</span>]
-  })
-  export class RecipeModule { }
-            </code></pre>
-            <div explanation>
-              <span step="1">
-                the recipe module itself declares all the components we need
-              </span>
-              <span step="2">
-                import all the external stuff we'll use, note the CommonModule,
-                not BrowserModule
-              </span>
-              <span step="3">
-                we don't export anything, we'll only use all things recipe
-                inside this module itself
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>material module</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            > src/app/material/material.module.ts <code class='codesteps' data-noescape data-trim>
-                @NgModule({
-                  declarations: [],
-                  imports: [
-                    CommonModule,
-                   <span hstep='1'> FlexLayoutModule,
-                    LayoutModule,
-                    MatButtonModule,
-                    MatInputModule,
-                    // [...] 
-                    MatProgressSpinnerModule,
-                    MatToolbarModule,
-                    MatSidenavModule</span>
-                  ],
-                  exports: [
-                    <span hstep='2'>FlexLayoutModule,
-                    LayoutModule,
-                    MatButtonModule,
-                    MatInputModule,
-                    // [...] 
-                    MatProgressSpinnerModule,
-                    MatToolbarModule,
-                    MatSidenavModule</span>
-                  ]
-                })
-                export class MaterialModule {}
-            
-            </code></pre>
-            <div explanation>
-              <span step="1">
-                we'll also create a material module, in which we import
-                everything needed for our layout
-              </span>
-              <span step="2"> ... and export it again as well</span>
-              <span step="2"
-                >all other modules can now simply import MaterialModule and get
-                everything we're using</span
+              <span step="3"
+                >if we now import this module in our appmodule routing will work
+                just like before</span
               >
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>app module</h3>
-          <div codesteps>
-            <pre>src/app/app.module.ts<code data-noescape data-trim>
-  @NgModule({
-    declarations: [
-      AppComponent,
-      MainNavComponent
-      PageNotFoundComponent
-    ],
-    imports: [
-      BrowserModule,
-      AppRoutingModule,
-      RecipeModule
-    ],
-    bootstrap: [AppComponent]
-  })
-  export class AppModule { }
-            </code></pre>
-            <div explanation>
-              <span step="1">
-                the app module then becomes a lot smaller, remove all the recipe
-                and material stuff and only import the recipemodule
-              </span>
-              <span step="2">
-                <a href="http://localhost:4200">let's try this</a>
-              </span>
             </div>
           </div>
         </section>
@@ -815,10 +584,10 @@ installing component
           <div codesteps>
             <pre>src/app/app-routing.module.ts<code data-noescape data-trim>
   const routes = [
-    { path: 'recipe-list', component: RecipeListComponent },
-    { path: 'add-recipe', component: AddRecipeComponent },<span sstep='2-3'>
-    { path: 'recipe-detail/:id', component: RecipeDetailComponent},</span>
-    { path: '', redirectTo: 'recipe-list', pathMatch: 'full' },
+    { path: 'recipe/list', component: RecipeListComponent },
+    { path: 'recipe/add', component: AddRecipeComponent },<span sstep='2-3'>
+    { path: 'recipe/detail/:id', component: RecipeDetailComponent},</span>
+    { path: '', redirectTo: 'recipe/list', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
   ];
             </code></pre>
@@ -851,7 +620,7 @@ installing component
         .subscribe(item => this.recipe = item);</span></span>
     }
   }
-            </code></pre>
+            </code><span class="githubcommit">f0ea708</span></pre>
             <div explanation>
               <span step="1">
                 the html of the component is not important right now (we'll
@@ -897,11 +666,11 @@ installing component
       );
     }
   }
-            </code></pre>
+            </code><span class="githubcommit">62f6acf</span></pre>
             <div explanation>
               <span step="1">
                 so what's going on? when changing the id the router routes to
-                the same component, and it doesn't get recreated, so the onInit
+                the same component, and it doesn't get recreated, so the OnInit
                 is not re-executed
               </span>
               <span step="2">
@@ -946,9 +715,9 @@ installing component
           <div codesteps>
             <pre>src/app/recipe/recipe.module.ts<code data-noescape data-trim>
   const routes = [
-    { path: 'recipe-list', component: RecipeListComponent },
-    { path: 'add-recipe', component: AddRecipeComponent },
-    { path: 'recipe-detail/:id', component: RecipeDetailComponent<span sstep='2+'>,
+    { path: 'recipe/list', component: RecipeListComponent },
+    { path: 'recipe/add', component: AddRecipeComponent },
+    { path: 'recipe/detail/:id', component: RecipeDetailComponent<span sstep='2+'>,
       resolve: { recipe: RecipeResolver} </span>}
   ];
             </code></pre>
@@ -980,7 +749,7 @@ installing component
         <section>
           <h3>recipe resolver</h3>
           <div codesteps>
-            <pre><code data-noescape data-trim>
+            <pre>src/app/recipe/RecipeResolver.ts<code data-noescape data-trim>
   @Injectable({
     providedIn: 'root'
   })
@@ -1022,13 +791,13 @@ installing component
         <section>
           <h3>recipe detail component</h3>
           <div codesteps>
-            <pre><code data-noescape data-trim>
+            <pre>src/app/recipe/recipe-detail/recipe-detail.component.ts<code data-noescape data-trim>
   ngOnInit() {<span sstep='2+'>
     this.route.data.subscribe(item => 
       this._recipe = item['recipe']);</span><span sstep='1'>
     this.route.paramMap.subscribe(pa =>
       this.recipeDataService.getRecipe(pa.get('id'))
-        .subscribe(item => this._recipe = item)
+        .subscribe(item => this.recipe = item)
     );</span>
   }
             </code></pre>
@@ -1083,9 +852,9 @@ installing component
           <div codesteps>
             <pre><code data-noescape data-trim>
 <span sstep='2+'>const routes = [
-  { path: '<span sstep='3+'>recipe/list</span><span sstep='1-2'>recipe-list</span>', component: RecipeListComponent },
-  { path: '<span sstep='3+'>recipe/add</span><span sstep='1-2'>add-recipe</span>', component: AddRecipeComponent },
-  { path: '<span sstep='3+'>recipe/:id</span><span sstep='1-2'>recipe-detail/:id</span>',  component: RecipeDetailComponent,
+  { path: 'recipe/list', component: RecipeListComponent },
+  { path: 'recipe/add', component: AddRecipeComponent },
+  { path: 'recipe/detail/:id',  component: RecipeDetailComponent,
       resolve: { recipe: RecipeResolver }
   }
 ];
@@ -1116,14 +885,11 @@ export class RecipeModule {}
                 we'll move all the recipe loading routes inside the module,
                 using the <span class="ilcode">forChild</span> of RouterModule
               </span>
-              <span step="3">
-                while we're at it, let's clean the routes up a bit, giving them
-                all the same prefix and a subroute
-              </span>
-              <span step="3">
+
+              <span step="2">
                 <a href="http://localhost:4200">let's try this out</a>
               </span>
-              <span step="4">
+              <span step="3">
                 so we always end up with the PageNotFoundComponent, what's going
                 on?</span
               >
@@ -1135,7 +901,7 @@ export class RecipeModule {}
           <div codesteps>
             <pre>src/app/app-routing/app-routing.module.ts<code data-noescape data-trim>
       const appRoutes: Routes = [
-        { path: '', redirectTo: 'recipe-list', pathMatch: 'full'},
+        { path: '', redirectTo: 'recipe/list', pathMatch: 'full'},
         { path: '**', component: PageNotFoundComponent}
       ];
       
@@ -1179,7 +945,7 @@ export class RecipeModule {}
                         bootstrap: [AppComponent]
                       })
                       export class AppModule { }
-                                </code></pre>
+                                </code><span class="githubcommit">337f765</span></pre>
             <div explanation>
               <span step="1">
                 the problem is that the order matters! the approutingmodule is
@@ -1204,9 +970,9 @@ export class RecipeModule {}
   const appRoutes: Routes = [<span sstep='2+'>
     {
       path: 'recipe',
-      loadChildren: 'app/recipe/recipe.module#RecipeModule'
+      loadChildren: () => import('./recipe/recipe.module').then(mod => mod.RecipeModule)
     },</span>
-    <span sstep='1-3'>{ path: '', redirectTo: '<span hstep='3'>recipe/list</span>', pathMatch: 'full'},</span><span sstep='4+'>
+    <span sstep='1-2'>{ path: '', redirectTo: 'recipe/list', pathMatch: 'full'},</span><span sstep='3+'>
     // { path: '', redirectTo: 'recipe/list', pathMatch: 'full'},</span>
     { path: '**', component: PageNotFoundComponent}
   ];
@@ -1218,32 +984,87 @@ export class RecipeModule {}
               </span>
               <span step="2">
                 we simply add a route to our prefix path, and add the
-                <span class="ilcode">loadChildren</span> key too, with the
+                <span class="ilcode">loadChildren</span> key to, with the
                 feature module we want to load
               </span>
-              <span step="2"
-                >we'll also adapt the RecipeModule paths to no longer use the
-                <span class="ilcode">recipe/</span> prefix for each path, we
-                don't want to have to surf to
-                <span class="ilcode">recipe/recipe/list</span></span
-              >
+
               <span step="3">
-                notice that I updated the redirect path too, to the new path
-                layout
+                for now I'm even going to comment out the redirect path, if I
+                always redirect to something in the RecipeModule, I can't show
+                the lazy loading at work
               </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>recipe module</h3>
+          <div codesteps>
+            <pre
+              class="typescript"
+            > src/app/recipe/recipe.module.ts <code class='codesteps' data-noescape data-trim>
+            // ...
+            const routes: Routes = [
+              { path: '<span sstep='1-3' sl>recipe/</span>list', component: RecipeListComponent },
+              { path: '<span sstep='1-3' sl>recipe/</span>add', component: AddRecipeComponent },
+              {
+                path: '<span sstep='1-3' sl>recipe/</span>detail/:id',
+                component: RecipeDetailComponent,
+                resolve: { recipe: RecipeResolver }
+              }
+            ]; 
+            // ....
+            </code><span class='githubcommit'>bfd6221</span> </pre>
+            <div explanation>
+              <span step="1">
+                we'll have to adapt our recipe module routing as well</span
+              >
+              <span step="2">
+                we had <span class="ilcode">{ path: 'recipe' }</span> for the
+                <span class="ilcode">RecipeModule</span>, meaning every url that
+                starts with <span class="ilcode">recipe/</span> refers to the
+                <span class="ilcode">RecipeModule</span>
+              </span>
+              <span step="2"
+                >this would mean we'd need to navigate to
+                <span class="ilcode">recipe/recipe/list</span> and
+                <span class="ilcode">recipe/recipe/add</span>, obviously not
+                what we want</span
+              >
+              <span step="3"
+                >so let's remove the <span class="ilcode">recipe/</span> prefix
+                here</span
+              >
               <span step="4">
-                but for now I'm even going to comment it out, if I always
-                redirect to something in the RecipeModule, I can't show the lazy
-                loading at work
-              </span>
-              <span step="5">
                 we also still need to remove the RecipeModule as a dependency
                 from the app.module, since we're lazy loaded
               </span>
-              <span step="6">
-                that's it!,
-                <a href="http://localhost:4200">let's try this out</a>
-              </span>
+              <span step="5">
+                <a href="http://localhost:4200">let's try this out</a></span
+              >
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>lazy loading</h3>
+          to see the lazy loading at work open the network tab of your devtools,
+          you'll see that the (compiled) recipe module is only loaded as soon as
+          you navigate to e.g. <span class="ilcode">recipe/list/</span>
+          <div
+            style=" display: grid;
+        grid-template-columns: 50% 50%;
+        grid-gap: 10px;"
+          >
+            <div style="height: 600px; grid-row: 1/4">
+              <img
+                src="img/recipemodule_lazyloaded_pre.png"
+                alt="recipe module before being lazy loaded"
+              />
+            </div>
+            <div style="height: 600px; grid-row: 1/4">
+              <img
+                src="img/recipemodule_lazyloaded_post.png"
+                alt="recipe module after being lazy loaded"
+              />
             </div>
           </div>
         </section>
@@ -1252,7 +1073,7 @@ export class RecipeModule {}
           <div codesteps>
             <pre
               class="typescript"
-            >src/app/app-routing/app-routing.module.ts<code data-noescape data-trim>
+            >src/app/app-routing.module.ts<code data-noescape data-trim>
   @NgModule({
     imports: [
       RouterModule.forRoot(appRoutes<span sstep='3+'>,
@@ -1300,7 +1121,7 @@ export class RecipeModule {}
           <div codesteps>
             <pre
               class="typescript"
-            >src/app/app-routing/SelectivePreloadStrategy.ts<code data-noescape data-trim>
+            >src/app/SelectivePreloadStrategy.ts<code data-noescape data-trim>
   import { Injectable } from '@angular/core';
   import { PreloadingStrategy<span sstep='2+'>, Route</span> } from '@angular/router';<span sstep='3+'>
   import { Observable, of } from 'rxjs';</span>
@@ -1344,7 +1165,7 @@ export class RecipeModule {}
   const appRoutes: Routes = [
   {
     path: 'recipe',
-    loadChildren: 'app/recipe/recipe.module#RecipeModule',
+    loadChildren: () => import('./recipe/recipe.module').then(mod => mod.RecipeModule),
     <span hstep='1'>data: { preload: true }</span>
   }, ... ];
   
@@ -1356,7 +1177,7 @@ export class RecipeModule {}
     ]
   })
   export class AppRoutingModule {}
-            </code></pre>
+            </code><span class="githubcommit">a4591be</span></pre>
             <div explanation>
               <span step="1">
                 first add the data property with preload to the route
