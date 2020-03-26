@@ -71,8 +71,8 @@
           <pre data-trim class="console">
 <span class='prompt'>~$</span> git clone https://github.com/Pieter-hogent/recipeapp.git  (or git pull)
 <span class='prompt'>~$</span> cd recipeapp
-<span class='prompt'>~/recipeapp$</span> npm install
 <span class='prompt'>~/recipeapp$</span> git checkout -b week7 <span class="githubcommit">be18b22</span>
+<span class='prompt'>~/recipeapp$</span> npm install
       </pre>
         </section>
         <section class="contents-slide">
@@ -794,7 +794,7 @@ installing component
             <pre>src/app/recipe/recipe-detail/recipe-detail.component.ts<code data-noescape data-trim>
   ngOnInit() {<span sstep='2+'>
     this.route.data.subscribe(item => 
-      this._recipe = item['recipe']);</span><span sstep='1'>
+      this.recipe = item['recipe']);</span><span sstep='1'>
     this.route.paramMap.subscribe(pa =>
       this.recipeDataService.getRecipe(pa.get('id'))
         .subscribe(item => this.recipe = item)
