@@ -54,41 +54,41 @@
           <ol>
             <li>
               <a href="#/intro">intro</a> <br />
-              <span style="font-size: 0.7em"
+              <span style="font-size: 0.7em;"
                 >what do we need at the frontend
               </span>
             </li>
             <li>
               <a href="#/authservice">authentication service</a> <br />
-              <span style="font-size: 0.7em">
+              <span style="font-size: 0.7em;">
                 provide access to all the backend routes involving
                 authentication
               </span>
             </li>
             <li>
               <a href="#/registerform">register form</a> <br />
-              <span style="font-size: 0.7em">
+              <span style="font-size: 0.7em;">
                 a form where users can create an account
               </span>
             </li>
             <li>
               <a href="#/serversidevalidation"> server side validation </a>
               <br />
-              <span style="font-size: 0.7em">
+              <span style="font-size: 0.7em;">
                 something new w.r.t. forms, do validation at the server side
               </span>
             </li>
             <li>
               <a href="#/authheaders"> authorization headers </a>
               <br />
-              <span style="font-size: 0.7em">
+              <span style="font-size: 0.7em;">
                 how to pass the jwt token with each request
               </span>
             </li>
             <li>
               <a href="#/authguard"> authentication guard </a>
               <br />
-              <span style="font-size: 0.7em">
+              <span style="font-size: 0.7em;">
                 make parts of the application inaccessible for users who are not
                 logged in
               </span>
@@ -353,11 +353,15 @@
     
       ngOnInit() {
         this.user = this.fb.group({
-          <span hstep='1'>username</span>: ['', [Validators.required, Validators.email]<span sstep='3+'>, 
-            serverSideValidateUsername(this.authService.checkUserNameAvailability)</span>],<span sstep='2+'>
+          <span hstep='1'>firstname</span>: ['', Validators.required],
+          <span hstep='1'>lastname</span>: ['', Validators.required],
+          <span hstep='1'>email</span>: [
+            '', [Validators.required, Validators.email],<span sstep='4+'>, 
+            serverSideValidateUsername(this.authService.checkUserNameAvailability)</span>
+          ],<span sstep='3+'>
           passwordGroup: this.fb.group({</span>
-            <span hstep='1'>password</span>: ['', [Validators.required, Validators.minLength(8)]],
-            <span hstep='1'>confirmPassword</span>: ['', Validators.required]<span sstep='2+'>
+            <span hstep='1'>password</span>: ['', [Validators.required, Validators.minLength(8)<span sstep='2'>, patternValidator(...)</span>]],
+            <span hstep='1'>confirmPassword</span>: ['', Validators.required]<span sstep='3+'>
           }, { validator: comparePasswords })</span>
         });
       }
@@ -365,17 +369,28 @@
             <div explanation>
               <span step="1">
                 next up, the register form, we'll create a standard register
-                form, three input fields, one username, one password, and one to
-                confirm the password
+                form, the user's name and firstname, an email address (which
+                will function as username) and both password and confirm
+                password fields
               </span>
               <span step="2">
+                in the code on github I added password validation to make sure
+                there's a number, and an upper- and lowercase letter; as that is
+                what our backend requires</span
+              >
+              <span step="2"
+                >(although this is microsoft defaults being old school, length
+                beats all when considering a password to be good or not)</span
+              >
+
+              <span step="3">
                 we put both passwords in a group, so that we can add a custom
                 validator to that group, which will check that both passwords
                 are the same
               </span>
-              <span step="3">
+              <span step="4">
                 we're also using server side validation for the first time</span
-              ><span step="3">
+              ><span step="4">
                 this async validator function will be called if the other
                 validators succeeded, we'll check for uniqueness of our username
                 using a function (we still need to add) from our authentication
@@ -390,7 +405,7 @@
             <pre
               class="typescript"
             >src/app/user/register/register.component.ts<code data-noescape data-trim style='font-size:0.8em'>
-    <span hstep='1'>function</span> comparePasswords(<span hstep='1'>control: AbstractControl)</span>: <span hstep='1'>{ [key: string]: any }</span> {
+    <span hstep='1'>function</span> comparePasswords(<span hstep='1'>control: AbstractControl)</span>: <span hstep='1'>ValidationErrors</span> {
       const password = control.get('password');
       const confirmPassword = control.get('confirmPassword');
       return password.value === confirmPassword.value ? <span hstep='1'>null</span> 
@@ -404,8 +419,9 @@
                 succeeded
               </span>
               <span step="2">
-                or they return a key:value object if there's an error (remember
-                our <span class="ilcode">{required: true}</span> error from last
+                or they return a ValidationErrors object if there's an error
+                (which is basically a key:value field, remember our
+                <span class="ilcode">{required: true}</span> error from last
                 time)
               </span>
             </div>
@@ -420,7 +436,7 @@
                 function serverSideValidateUsername(
                   checkAvailabilityFn: (n: string) => Observable&lt;boolean&gt;
                 ): ValidatorFn {
-                  return (control: AbstractControl): <span hstep='2'>Observable&lt;{ [key: string]: any }&gt;</span> => {
+                  return (control: AbstractControl): <span hstep='2'>Observable&lt;ValidationErrors&gt;</span> => {
                     return <span hstep='3'>checkAvailabilityFn(control.value)</span>.pipe(
                       map(available => {
                         if (available) {
@@ -439,7 +455,9 @@
               </span>
               <span step="2">
                 the signature is the same of a regular validator, but now we're
-                async, so we return an Observable of such a key:value object
+                async, so we return an Observable of such a
+                <span class="ilcode">ValidationErrors</span>
+                object
               </span>
               <span step="3">
                 we'll add a function to our service to check for user name
