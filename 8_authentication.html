@@ -328,7 +328,7 @@
               class="typescript"
             >src/app/user/authentication.service.ts<code data-noescape data-trim>
     logout() {
-      if (this.user$.getValue()) {
+      if (this._user$.getValue()) {
         localStorage.removeItem('currentUser');
         this._user$.next(null);
       }
@@ -751,7 +751,7 @@
     export class AuthGuard implements CanActivate {
       canActivate(route: ActivatedRouteSnapshot, 
             state: RouterStateSnapshot): boolean {
-        if (this.authService.user$.getValue()) {
+        if (this.authService._user$.getValue()) {
           return true;
         }<span sstep='4'>
         this.authService.redirectUrl = state.url;</span><span sstep='3-4'>
