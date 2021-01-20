@@ -1,274 +1,285 @@
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
 
-    <title>0. introduction</title>
+		<title>0. introduction</title>
 
-    <!-- Theme used for syntax highlighting of code -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="lib/css/atom-one-light.css" />
+		<!-- Theme used for syntax highlighting of code -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Montserrat"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="lib/css/atom-one-light.css" />
 
-    <link rel="stylesheet" href="css/reveal.css" />
-    <link rel="stylesheet" href="css/theme/hogent.css" />
+		<link rel="stylesheet" href="css/reveal.css" />
+		<link rel="stylesheet" href="css/theme/hogent.css" />
 
-    <!-- pieter overrides -->
-    <link rel="stylesheet" href="css/introduction.css" />
-    <link rel="stylesheet" href="plugin/codestepper/codestepper.css" />
+		<!-- pieter overrides -->
+		<link rel="stylesheet" href="css/introduction.css" />
+		<link rel="stylesheet" href="plugin/codestepper/codestepper.css" />
 
-    <!-- Printing and PDF exports -->
-    <script>
-      var link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = window.location.search.match(/print-pdf/gi)
-        ? 'css/print/pdf.css'
-        : 'css/print/paper.css';
-      document.getElementsByTagName('head')[0].appendChild(link);
-    </script>
-  </head>
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement('link');
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match(/print-pdf/gi)
+				? 'css/print/pdf.css'
+				: 'css/print/paper.css';
+			document.getElementsByTagName('head')[0].appendChild(link);
+		</script>
+	</head>
 
-  <body>
-    <div class="reveal">
-      <div class="slides">
-        <section
-          class="title-slide"
-          data-transition="none"
-          data-background-transition="none"
-        >
-          <img class="title-img" src="img/babyyoda.png" alt="it is the way" />
-          <h2>Webapplications 4</h2>
-          <h4>Karine Samyn, Stefaan De Cock, Pieter Van Der Helst</h4>
-          <footer class="footer">
-            "Give someone a program, you frustrate them for a day; teach them
-            how to program, you frustrate them for a lifetime" - David Leinweber
-          </footer>
-        </section>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section
+					class="title-slide"
+					data-transition="none"
+					data-background-transition="none"
+				>
+					<img class="title-img" src="img/babyyoda.png" alt="it is the way" />
+					<h2>Webapplications 4</h2>
+					<h4>
+						Karine Samyn, Benjamin Vertonghen, Thomas Aelbrecht, Pieter Van Der
+						Helst
+					</h4>
+					<footer class="footer">
+						"Give someone a program, you frustrate them for a day; teach them
+						how to program, you frustrate them for a lifetime" - David Leinweber
+					</footer>
+				</section>
 
-        <section>
-          <table class="leerlijnen">
-            <tr>
-              <td class="applicatie">Applicatieontwikkeling</td>
-            </tr>
-            <tr>
-              <td class="netwerken">Netwerken en systeembeheer</td>
-            </tr>
-            <tr>
-              <td class="gegevens">Gegevensbehandeling en beheer</td>
-            </tr>
-            <tr>
-              <td class="probleemanalyse">
-                Probleemanalyserend denken en Business
-              </td>
-            </tr>
-            <tr>
-              <td class="communicatie">Communicatie</td>
-            </tr>
-            <tr>
-              <td class="pod">Probleemonderzoekend en oplossend denken</td>
-            </tr>
-            <tr>
-              <td class="individuele">Professionele en individuele groei</td>
-            </tr>
-          </table>
-        </section>
-        <section>
-          <table class="leerlijnen">
-            <tr>
-              <th>1e jaar</th>
-              <th>2e jaar</th>
-              <th>3e jaar</th>
-            </tr>
-            <tr>
-              <td rowspan="9" class="communicatie">Algemene vorming</td>
-              <td rowspan="3" class="communicatie">Algemene vorming</td>
-              <td rowspan="2" class="communicatie">Algemene vorming</td>
-            </tr>
-            <tr></tr>
-            <tr>
-              <td class="applicatie">KP mobiele applicaties</td>
-            </tr>
-            <tr>
-              <td rowspan="3" class="applicatie">KP Programmeren</td>
-              <td rowspan="2" class="netwerken">
-                KP systeem- en netwerkbeheer
-              </td>
-            </tr>
-            <tr></tr>
-            <tr>
-              <td rowspan="2" class="pod">KP e-Business</td>
-            </tr>
-            <tr></tr>
-            <tr>
-              <td rowspan="2" class="netwerken">KP netwerken</td>
-              <td rowspan="2" class="gegevens">
-                KP Mainframe applicaties en -beheer
-              </td>
-            </tr>
-            <tr></tr>
-            <tr>
-              <td colspan="3" class="individuele">
-                Projecten, iTalent, Stage, Bachelorproef
-              </td>
-            </tr>
-          </table>
-        </section>
-        <section>
-          <h3>Applicatieontwikkeling</h3>
-          De student kan kwaliteitsvolle IT-oplossingen efficiënt en autonoom
-          ontwerpen, ontwikkelen, documenteren en testen, rekening houdend met
-          nieuwe ontwikkelingen en toepassingsdomeinen.
+				<section>
+					<table class="leerlijnen">
+						<tr>
+							<td class="applicatie">Applicatieontwikkeling</td>
+						</tr>
+						<tr>
+							<td class="netwerken">Netwerken en systeembeheer</td>
+						</tr>
+						<tr>
+							<td class="gegevens">Gegevensbehandeling en beheer</td>
+						</tr>
+						<tr>
+							<td class="probleemanalyse">
+								Probleemanalyserend denken en Business
+							</td>
+						</tr>
+						<tr>
+							<td class="communicatie">Communicatie</td>
+						</tr>
+						<tr>
+							<td class="pod">Probleemonderzoekend en oplossend denken</td>
+						</tr>
+						<tr>
+							<td class="individuele">Professionele en individuele groei</td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<table class="leerlijnen">
+						<tr>
+							<th>1e jaar</th>
+							<th>2e jaar</th>
+							<th>3e jaar</th>
+						</tr>
+						<tr>
+							<td rowspan="9" class="communicatie">Algemene vorming</td>
+							<td rowspan="3" class="communicatie">Algemene vorming</td>
+							<td rowspan="2" class="communicatie">Algemene vorming</td>
+						</tr>
+						<tr></tr>
+						<tr>
+							<td class="applicatie">KP mobiele applicaties</td>
+						</tr>
+						<tr>
+							<td rowspan="3" class="applicatie">KP Programmeren</td>
+							<td rowspan="2" class="netwerken">
+								KP systeem- en netwerkbeheer
+							</td>
+						</tr>
+						<tr></tr>
+						<tr>
+							<td rowspan="2" class="pod">KP e-Business</td>
+						</tr>
+						<tr></tr>
+						<tr>
+							<td rowspan="2" class="netwerken">KP netwerken</td>
+							<td rowspan="2" class="gegevens">
+								KP Mainframe applicaties en -beheer
+							</td>
+						</tr>
+						<tr></tr>
+						<tr>
+							<td colspan="3" class="individuele">
+								Projecten, iTalent, Stage, Bachelorproef
+							</td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<h3>Applicatieontwikkeling</h3>
+					De student kan kwaliteitsvolle IT-oplossingen efficiënt en autonoom
+					ontwerpen, ontwikkelen, documenteren en testen, rekening houdend met
+					nieuwe ontwikkelingen en toepassingsdomeinen.
 
-          <img src="img/leerlijn.png" alt="" />
-        </section>
-        <section>
-          <h3>what are we going to do?</h3>
-          <ul>
-            <li>Single Page Application (SPA)</li>
-            <li>
-              Angular 9.0 (º 6 feb 2020)<span style="font-size: small">
-                yes, really, they had to release right before the semester,
-                fml</span
-              >
-            </li>
+					<img src="img/leerlijn.png" alt="" />
+				</section>
+				<section>
+					<h3>what are we going to do?</h3>
+					<ul>
+						<li>Single Page Application (SPA)</li>
+						<li>Angular 9.0 (º 6 feb 2020)</li>
 
-            <li>open source, made by Google</li>
-            <li>
-              other similar frameworks exist: React, Vue
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>why Angular? (and not React, Vue)</h3>
-          <ul>
-            <li>first of all: it doesn' t (really) matter</li>
-            <li>learning a modern javascript framework is what matters</li>
-            <li>neither will exist (in it's current form) in 5 years anyway</li>
-            <li>
-              still, which one to chose to teach a modern javascript framework?
-            </li>
-            <li>
-              vdab: # jobs for programmers in Gent +60km mentioning (Angular |
-              React | Vue)
-            </li>
-          </ul>
-        </section>
-        <section>
-          <div class="xkcd-chart">
-            <svg
-              class="xy-chart"
-              data-chart-json="data-files/angular-react-vue.json"
-            ></svg>
-          </div>
-        </section>
-        <section>
-          <h3>what are you going to do?</h3>
-          <ul>
-            <li>
-              you can only learn programming by making things, not by reading
-              slides
-            </li>
-            <li>((add chamilo link here))</li>
-            <li>so: build a webapp by the end of week 13</li>
-            <li>a github classroom link will be provided on chamilo</li>
-            <li>
-              oral exam during the exam period, where you get asked some
-              questions about your webapp
-            </li>
-            <li>
-              btw, angular is also half of projecten3 next year (other half
-              being android), so you'll have to remember it at least till
-              januari '21
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>"we have too much work"</h3>
-          <div
-            style=" display: grid;
-          grid-template-columns: 50% 50%;
-          grid-gap: 10px;"
-          >
-            <div style="height: 600px; grid-row: 1/4">
-              <img
-                src="img/margarethamilton_nasacode.jpg"
-                alt="margaret hamilton at nasa"
-              />
-            </div>
-            <div style="text-align: center; grid-row: 2">
-              "Margaret Hamilton, NASA's lead software engineer for the Apollo
-              Program, stands next to the code she wrote by hand that took
-              Humanity to the moon in 1969"
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>"we have too much work"</h3>
-          <ul>
-            <li>each year students complain about "too much work"</li>
-            <li>
-              they're not (entirely) wrong, you also have projecten2, research
-              techniques with the same deadline (and iTalent!)
-            </li>
-            <li>
-              but everything from web4 is on github, so... we check the
-              complainers and notice they all start working in week 9 or 10 (or
-              later)
-            </li>
-            <li>so we shrug and pretty much ignore the complaints</li>
-            <li>
-              if you want your complaints to be taken seriously, start working
-              and committing early (but then there will be no need to complain
-              and everyone will be happy)
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>deadline.</h3>
-          <ul>
-            <li>you know the deadline, plan accordingly</li>
-            <li>
-              we've heard all excuses over the years; we're real sympathetic, we
-              still won't make an exception just for you, it wouldn't be fair
-            </li>
-            <li>some highlights!</li>
-            <ul>
-              <li>
-                "I have to train for the world championship athletics during the
-                week of the deadline"
-              </li>
-              <li>
-                "my firstborn son was born prematurely on the day of the
-                deadline and I was at the hospital"
-              </li>
-            </ul>
-          </ul>
-        </section>
-        <section>
-          <h3>examples.</h3>
-          <img
-            src="img/introduction_example1.png"
-            alt=""
-            style="border-style:none; box-shadow: none; transform:matrix(0.48,-0.13,0.13,0.48,-140,-260);"
-          />
-          <img
-            src="img/introduction_example2.png"
-            alt=""
-            style="position: absolute; border-style:none; box-shadow: none; top: 60px; left: 100px; transform:matrix(0.47,0.17,-0.17,0.47,200,-250);"
-          />
-          <img
-            src="img/introduction_example3.png"
-            alt=""
-            style="position: absolute; border-style:none; box-shadow: none; top: 60px; left: 100px; transform:matrix(0.50,0.00,0.00,0.50,0,50);"
-          />
-          <p>made by students in previous years</p>
-          <!-- <ul>
+						<li>open source, made by Google</li>
+						<li>other similar frameworks exist: React, Vue</li>
+					</ul>
+				</section>
+				<section>
+					<h3>why Angular? (and not React, Vue)</h3>
+					<ul>
+						<li>first of all: it doesn' t (really) matter</li>
+						<li>learning a modern javascript framework is what matters</li>
+						<li>neither will exist (in it's current form) in 5 years anyway</li>
+						<li>
+							still, which one to chose to teach a modern javascript framework?
+						</li>
+						<li>
+							vdab: # jobs for programmers in Gent +60km mentioning (Angular |
+							React | Vue)
+						</li>
+					</ul>
+				</section>
+				<section>
+					<div class="xkcd-chart">
+						<svg
+							class="xy-chart"
+							data-chart-json="data-files/angular-react-vue.json"
+						></svg>
+					</div>
+				</section>
+				<section>
+					<h3>what are you going to do?</h3>
+					<ul>
+						<li>
+							you can only learn programming by making things, not by reading
+							slides
+						</li>
+						<li>((add chamilo link here))</li>
+						<li>so: build a webapp by the end of week 13</li>
+						<li>a github classroom link will be provided on chamilo</li>
+						<li>
+							oral exam during the exam period, where you get asked some
+							questions about your webapp
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>"we have too much work"</h3>
+					<div
+						style="
+							display: grid;
+							grid-template-columns: 50% 50%;
+							grid-gap: 10px;
+						"
+					>
+						<div style="height: 600px; grid-row: 1/4">
+							<img
+								src="img/margarethamilton_nasacode.jpg"
+								alt="margaret hamilton at nasa"
+							/>
+						</div>
+						<div style="text-align: center; grid-row: 2">
+							"Margaret Hamilton, NASA's lead software engineer for the Apollo
+							Program, stands next to the code she wrote by hand that took
+							Humanity to the moon in 1969"
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>"we have too much work"</h3>
+					<ul>
+						<li>each year students complain about "too much work"</li>
+						<li>
+							they're not (entirely) wrong, you also have projecten2, research
+							techniques with the same deadline (and iTalent!)
+						</li>
+						<li>
+							but everything from web4 is on github, so... we check the
+							complainers and notice they all start working in week 9 or 10 (or
+							later)
+						</li>
+						<li>so we shrug and pretty much ignore the complaints</li>
+						<li>
+							if you want your complaints to be taken seriously, start working
+							and committing early (but then there will be no need to complain
+							and everyone will be happy)
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>deadline.</h3>
+					<ul>
+						<li>you know the deadline, plan accordingly</li>
+						<li>
+							we've heard all excuses over the years; we're real sympathetic, we
+							still won't make an exception just for you, it wouldn't be fair
+						</li>
+						<li>some highlights!</li>
+						<ul>
+							<li>
+								"I have to train for the world championship athletics during the
+								week of the deadline"
+							</li>
+							<li>
+								"my firstborn son was born prematurely on the day of the
+								deadline and I was at the hospital"
+							</li>
+						</ul>
+					</ul>
+				</section>
+				<section>
+					<h3>examples.</h3>
+					<img
+						src="img/introduction_example1.png"
+						alt=""
+						style="
+							border-style: none;
+							box-shadow: none;
+							transform: matrix(0.48, -0.13, 0.13, 0.48, -140, -260);
+						"
+					/>
+					<img
+						src="img/introduction_example2.png"
+						alt=""
+						style="
+							position: absolute;
+							border-style: none;
+							box-shadow: none;
+							top: 60px;
+							left: 100px;
+							transform: matrix(0.47, 0.17, -0.17, 0.47, 200, -250);
+						"
+					/>
+					<img
+						src="img/introduction_example3.png"
+						alt=""
+						style="
+							position: absolute;
+							border-style: none;
+							box-shadow: none;
+							top: 60px;
+							left: 100px;
+							transform: matrix(0.5, 0, 0, 0.5, 0, 50);
+						"
+					/>
+					<p>made by students in previous years</p>
+					<!-- <ul>
             <li>some examples from your predecessors</li>
             <li>
               <a href="https://carmeets-frontend.herokuapp.com/home"
@@ -286,171 +297,291 @@
               class)
             </li>
           </ul> -->
-        </section>
-        <section>
-          <div class="fragment" svg-step>
-            <svg
-              id="svg"
-              class="svg-section"
-              width="100%"
-              height="100%"
-              preserveAspectRatio="xMidYMid"
-              snapfile="img/angular_timeline.svg"
-            >
-              <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
-            </svg>
-          </div>
-        </section>
-        <section>
-          <h3>schedule.</h3>
-          <ul>
-            <li>week 1: introduction, Angular basics</li>
-            <li>week 2: services, communicating between components</li>
-            <li>week 3: backend API in .NET Core</li>
+				</section>
+				<section>
+					<div class="fragment" svg-step>
+						<svg
+							id="svg"
+							class="svg-section"
+							width="100%"
+							height="100%"
+							preserveAspectRatio="xMidYMid"
+							snapfile="img/angular_timeline.svg"
+						>
+							<use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
+						</svg>
+					</div>
+				</section>
+				<section id="schedule">
+					<h3>schedule.</h3>
+					<div
+						style="
+							display: grid;
+							grid-template-columns: 120px auto auto;
+							grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto auto;
+						"
+					>
+						<div style="grid-column: 2; grid-row: 1">
+							<h4>theory (all together)</h4>
+						</div>
+						<div style="grid-column: 3; grid-row: 1">
+							<h4>exercise (per class)</h4>
+						</div>
 
-            <li>
-              week 4: observables (basics) so we can use the API
-            </li>
-            <li>
-              week 5: (you'll all have some DB 2 thing, which I'm sure will be
-              great)
-            </li>
-            <li>week 6: reactive forms / Cypress testing</li>
-            <li>week 7: modules / routing</li>
-            <li>week 8: (no new material, get help working on your task)</li>
-            <li>- easter holiday -</li>
-            <li>week 9: authentication and authorization</li>
-            <li>
-              week 10: state management, observables and rxjs in depth (?)
-            </li>
-            <li>week 11: guest lecture: see chamilo for slides and repo's</li>
-            <li>week 12: (no new material, get help working on your task)</li>
-          </ul>
-        </section>
-        <section>
-          <h3></h3>
-          <object data="img/youarehere.svg" type="image/svg+xml">
-            <!-- <img src="yourfallback.jpg" /> -->
-          </object>
-        </section>
-        <section>
-          <h3>slides?</h3>
-          <ul>
-            <li>
-              they are hosted on my github pages
-              <a href="https://pieter-hogent.github.io/web4/"
-                >https://pieter-hogent.github.io/web4/</a
-              >
-            </li>
-            <li>
-              the code from the example built in the slides can be found on
-              github
-              <ul>
-                <li>
-                  frontend:
-                  <a href="https://github.com/pieter-hogent/recipeapp">
-                    https://github.com/pieter-hogent/recipeapp</a
-                  >
-                </li>
-                <li>
-                  backend:
-                  <a href="https://github.com/ksa607/RecipeApi">
-                    https://github.com/ksa607/RecipeApi</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li>
-              slides are in
-              <a href="https://revealjs.com/#/">Reveal.js</a> (with some custom
-              plugins)
-              <ul>
-                <li>press ESC to navigate faster</li>
-                <li>
-                  you can print these slides but it's pretty wasteful (1 slide /
-                  page), add
-                  <a href="0_introduction.html?print-pdf">?print-pdf</a> to the
-                  end of the url
-                </li>
-                <li>should work on touch devices</li>
-              </ul>
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>software?</h3>
-          <ul>
-            <li>
-              Visual Studio Code
-              <a href="https://code.visualstudio.com"
-                >https://code.visualstudio.com</a
-              >
-            </li>
-            <li>
-              Node.js v10.6.x
-              <a href="https://nodejs.org/en/">https://nodejs.org/en/</a>
-            </li>
-            <li>Angular CLI (v9.0+): "npm install -g @angular/cli"</li>
-          </ul>
-        </section>
-        <section>
-          <h3>we're here to help.</h3>
-          <img
-            src="img/gudim_highfive.png"
-            alt=""
-            style="border:none; box-shadow: none"
-          />
-        </section>
-        <section>
-          <h3>we're here to help.</h3>
-          <ul>
-            <li>read errors / warnings; copy-paste them in google</li>
-            <li>no errors?</li>
-            <ul>
-              <li>find steps to reliably reproduce the problem</li>
-              <li>
-                isolate the problem (backend / frontend; rendering / database /
-                ...)
-              </li>
-              <li>use a debugger; use your brain</li>
-              <li>ask on stackoverflow</li>
-            </ul>
-          </ul>
-        </section>
-        <section>
-          <h3>we're here to help.</h3>
-          <ul>
-            <li>still stuck?</li>
-            <ul>
-              <li>email me a link to your stackoverflow question</li>
-              <li>
-                if not applicable: create branch on github with the problem, add
-                steps to reproduce in the readme of the branch
-              </li>
-              <li>
-                email me with your name, class and the link to this github
-                branch, with a short explanation
-              </li>
-              <li>
-                meet me after the next class and we'll discuss your problem
-              </li>
-            </ul>
-            <li>
-              if you email me ALWAYS add your class and a link to your github
-              (your mail is automatically filtered as spam if you forget, I
-              won't even see it)
-            </li>
-          </ul>
-        </section>
-        <section><h2>questions?</h2></section>
-      </div>
-    </div>
+						<div style="grid-column: 1; grid-row: 2" class="grid-week">
+							week 1.
+						</div>
+						<div style="grid-column: 2; grid-row: 2" class="grid-item">
+							introduction, Angular basics <br />
+						</div>
+						<div style="grid-column: 3; grid-row: 2" class="grid-item">
+							trouble installing?
+						</div>
+						<div style="grid-column: 1; grid-row: 3" class="grid-week">
+							week 2.
+						</div>
+						<div style="grid-column: 2; grid-row: 3" class="grid-item">
+							holiday - no class
+						</div>
+						<div style="grid-column: 3; grid-row: 3" class="grid-item">
+							(mandatory) discuss your webapp idea - setup github
+						</div>
+						<div style="grid-column: 1; grid-row: 4" class="grid-week">
+							week 3.
+						</div>
+						<div style="grid-column: 2; grid-row: 4" class="grid-item">
+							services, communication between components
+						</div>
+						<div style="grid-column: 3; grid-row: 4" class="grid-item">
+							get help while working on your webapp
+						</div>
+						<div style="grid-column: 1; grid-row: 5" class="grid-week">
+							week 4.
+						</div>
+						<div style="grid-column: 2; grid-row: 5" class="grid-item">
+							backend API in .NET Core (part 1)
+						</div>
+						<div style="grid-column: 3; grid-row: 5" class="grid-item">
+							get help while working on your webapp
+						</div>
+						<div style="grid-column: 1; grid-row: 6" class="grid-week">
+							week 5.
+						</div>
+						<div style="grid-column: 2; grid-row: 6" class="grid-item">
+							backend API in .NET Core (part 2)
+						</div>
+						<div style="grid-column: 3; grid-row: 6" class="grid-item">
+							get help while working on your webapp
+						</div>
+						<div style="grid-column: 1; grid-row: 7" class="grid-week">
+							week 6.
+						</div>
+						<div style="grid-column: 2; grid-row: 7" class="grid-item">
+							observables (basics) so we can use the API
+						</div>
+						<div style="grid-column: 3; grid-row: 7" class="grid-item">
+							exercise on observables
+						</div>
+						<div style="grid-column: 1; grid-row: 8" class="grid-week">
+							week 7.
+						</div>
+						<div style="grid-column: 2; grid-row: 8" class="grid-item">
+							reactive forms / Cypress testing
+						</div>
+						<div style="grid-column: 3; grid-row: 8" class="grid-item">
+							(mandatory) discuss your REST API
+						</div>
+						<div style="grid-column: 1; grid-row: 9" class="grid-week">
+							week 8.
+						</div>
+						<div style="grid-column: 2; grid-row: 9" class="grid-item">
+							modules / routing
+						</div>
+						<div style="grid-column: 3; grid-row: 9" class="grid-item">
+							get help while working on your webapp
+						</div>
+						<div style="grid-column: 1; grid-row: 10" class="grid-week">
+							week 9.
+						</div>
+						<div style="grid-column: 2; grid-row: 10" class="grid-item">
+							authentication and authorization
+						</div>
+						<div style="grid-column: 3; grid-row: 10" class="grid-item">
+							get help while working on your webapp
+						</div>
+						<div style="grid-column: 1; grid-row: 11" class="grid-week">
+							week 10.
+						</div>
+						<div style="grid-column: 2; grid-row: 11" class="grid-item">
+							state management, observables and rxjs in depth
+						</div>
+						<div style="grid-column: 3; grid-row: 11" class="grid-item">
+							get help while working on your webapp
+						</div>
+						<div style="grid-column: 1; grid-row: 12" class="grid-week">
+							week 11.
+						</div>
+						<div style="grid-column: 2; grid-row: 12" class="grid-item">
+							"guest" lecture - get everything running online (maybe)
+						</div>
+						<div style="grid-column: 3; grid-row: 12" class="grid-item">
+							get help while working on your webapp
+						</div>
+						<div style="grid-column: 1; grid-row: 13" class="grid-week">
+							week 12.
+						</div>
+						<div style="grid-column: 2; grid-row: 13" class="grid-item">
+							get help while working on your webapp
+						</div>
+						<div style="grid-column: 3; grid-row: 13" class="grid-item">
+							get help while working on your webapp
+						</div>
+					</div>
 
-    <script src="lib/js/chart.xkcd.min.js"></script>
-    <script src="lib/js/head.min.js"></script>
-    <script src="js/reveal.js"></script>
-    <script src="plugin/codestepper/codestepper.js"></script>
-    <script src="js/hogent-reveal.js" data-start-at-last="false"></script>
-    <script src="js/snap.svg.js"></script>
-  </body>
+					<!-- <ul>
+						<li>week 1: introduction, Angular basics</li>
+						<li>week 2: services, communicating between components</li>
+						<li>week 3: backend API in .NET Core</li>
+
+						<li>week 4: observables (basics) so we can use the API</li>
+						<li>
+							week 5: (you'll all have some DB 2 thing, which I'm sure will be
+							great)
+						</li>
+						<li>week 6: reactive forms / Cypress testing</li>
+						<li>week 7: modules / routing</li>
+						<li>week 8: (no new material, get help working on your task)</li>
+						<li>- easter holiday -</li>
+						<li>week 9: authentication and authorization</li>
+						<li>
+							week 10: state management, observables and rxjs in depth (?)
+						</li>
+						<li>week 11: guest lecture: see chamilo for slides and repo's</li>
+						<li>week 12: (no new material, get help working on your task)</li>
+					</ul> -->
+				</section>
+				<section>
+					<h3></h3>
+					<object data="img/youarehere.svg" type="image/svg+xml">
+						<!-- <img src="yourfallback.jpg" /> -->
+					</object>
+				</section>
+				<section>
+					<h3>slides?</h3>
+					<ul>
+						<li>
+							they are hosted on my github pages
+							<a href="https://pieter-hogent.github.io/web4/"
+								>https://pieter-hogent.github.io/web4/</a
+							>
+						</li>
+						<li>
+							the code from the example built in the slides can be found on
+							github
+							<ul>
+								<li>
+									frontend:
+									<a href="https://github.com/pieter-hogent/recipeapp">
+										https://github.com/pieter-hogent/recipeapp</a
+									>
+								</li>
+								<li>
+									backend:
+									<a href="https://github.com/ksa607/RecipeApi">
+										https://github.com/ksa607/RecipeApi</a
+									>
+								</li>
+							</ul>
+						</li>
+						<li>
+							slides are in
+							<a href="https://revealjs.com/#/">Reveal.js</a> (with some custom
+							plugins)
+							<ul>
+								<li>press ESC to navigate faster</li>
+								<li>
+									you can print these slides but it's pretty wasteful (1 slide /
+									page), add
+									<a href="0_introduction.html?print-pdf">?print-pdf</a> to the
+									end of the url
+								</li>
+								<li>should work on touch devices</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>software?</h3>
+					<ul>
+						<li>
+							Visual Studio Code
+							<a href="https://code.visualstudio.com"
+								>https://code.visualstudio.com</a
+							>
+						</li>
+						<li>
+							Node.js v10.6.x
+							<a href="https://nodejs.org/en/">https://nodejs.org/en/</a>
+						</li>
+						<li>Angular CLI (v9.0+): "npm install -g @angular/cli"</li>
+					</ul>
+				</section>
+				<section>
+					<h3>we're here to help.</h3>
+					<img
+						src="img/gudim_highfive.png"
+						alt=""
+						style="border: none; box-shadow: none"
+					/>
+				</section>
+				<section>
+					<h3>we're here to help.</h3>
+					<ul>
+						<li>read errors / warnings; copy-paste them in google</li>
+						<li>no errors?</li>
+						<ul>
+							<li>find steps to reliably reproduce the problem</li>
+							<li>
+								isolate the problem (backend / frontend; rendering / database /
+								...)
+							</li>
+							<li>use a debugger; use your brain</li>
+							<li>ask on stackoverflow</li>
+						</ul>
+					</ul>
+				</section>
+				<section>
+					<h3>we're here to help.</h3>
+					<ul>
+						<li>still stuck?</li>
+						<ul>
+							<li>email me a link to your stackoverflow question</li>
+							<li>
+								if not applicable: create branch on github with the problem, add
+								steps to reproduce in the readme of the branch
+							</li>
+							<li>
+								email me with your name, class, the link to this github branch,
+								a gif CLEARLY showing the problem, and a short explanation
+							</li>
+							<li>we'll talk after the next class to discuss your problem</li>
+						</ul>
+						<li>
+							if you email me ALWAYS add your class and a link to your github
+							(your mail is automatically filtered as spam if you forget, I
+							won't even see it)
+						</li>
+					</ul>
+				</section>
+				<section><h2>questions?</h2></section>
+			</div>
+		</div>
+
+		<script src="lib/js/chart.xkcd.min.js"></script>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script src="plugin/codestepper/codestepper.js"></script>
+		<script src="js/hogent-reveal.js" data-start-at-last="false"></script>
+		<script src="js/snap.svg.js"></script>
+	</body>
 </html>

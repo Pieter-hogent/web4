@@ -1,159 +1,162 @@
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
 
-    <title>8. authentication</title>
+		<title>8. authentication</title>
 
-    <!-- Theme used for syntax highlighting of code -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="lib/css/atom-one-light.css" />
+		<!-- Theme used for syntax highlighting of code -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Montserrat"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="lib/css/atom-one-light.css" />
 
-    <link rel="stylesheet" href="css/reveal.css" />
-    <link rel="stylesheet" href="css/theme/hogent.css" />
+		<link rel="stylesheet" href="css/reveal.css" />
+		<link rel="stylesheet" href="css/theme/hogent.css" />
 
-    <!-- pieter overrides -->
-    <link rel="stylesheet" href="plugin/codestepper/codestepper.css" />
+		<!-- pieter overrides -->
+		<link rel="stylesheet" href="plugin/codestepper/codestepper.css" />
 
-    <!-- Printing and PDF exports -->
-    <script>
-      var link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = window.location.search.match(/print-pdf/gi)
-        ? 'css/print/pdf.css'
-        : 'css/print/paper.css';
-      document.getElementsByTagName('head')[0].appendChild(link);
-    </script>
-  </head>
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement('link');
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match(/print-pdf/gi)
+				? 'css/print/pdf.css'
+				: 'css/print/paper.css';
+			document.getElementsByTagName('head')[0].appendChild(link);
+		</script>
+	</head>
 
-  <body>
-    <div class="reveal">
-      <div class="slides">
-        <section
-          class="title-slide"
-          data-transition="none"
-          data-background-transition="none"
-        >
-          <img class="title-img" src="img/babyyoda8.png" />
-          <h2>authentication</h2>
-          <h4>Karine Samyn, Stefaan De Cock, Pieter Van Der Helst</h4>
-          <footer class="footer">
-            "The best way to get the right answer on the internet is not to ask
-            a question; it’s to post the wrong answer.” - Cunningham’s Law
-          </footer>
-        </section>
-        <section class="contents-slide">
-          <h3>overview</h3>
-          <ol>
-            <li>
-              <a href="#/intro">intro</a> <br />
-              <span style="font-size: 0.7em;"
-                >what do we need at the frontend
-              </span>
-            </li>
-            <li>
-              <a href="#/authservice">authentication service</a> <br />
-              <span style="font-size: 0.7em;">
-                provide access to all the backend routes involving
-                authentication
-              </span>
-            </li>
-            <li>
-              <a href="#/registerform">register form</a> <br />
-              <span style="font-size: 0.7em;">
-                a form where users can create an account
-              </span>
-            </li>
-            <li>
-              <a href="#/serversidevalidation"> server side validation </a>
-              <br />
-              <span style="font-size: 0.7em;">
-                something new w.r.t. forms, do validation at the server side
-              </span>
-            </li>
-            <li>
-              <a href="#/authheaders"> authorization headers </a>
-              <br />
-              <span style="font-size: 0.7em;">
-                how to pass the jwt token with each request
-              </span>
-            </li>
-            <li>
-              <a href="#/authguard"> authentication guard </a>
-              <br />
-              <span style="font-size: 0.7em;">
-                make parts of the application inaccessible for users who are not
-                logged in
-              </span>
-            </li>
-          </ol>
-        </section>
-        <section id="intro">
-          <h3>what do we need?</h3>
-          <ul>
-            <li>
-              our backend has a login and register route, and all but the GET
-              routes are protected with jwt token authorization
-            </li>
-            <li>at the frontend we need:</li>
-            <ul>
-              <li>an authentication service to talk to these routes</li>
-              <li>a register and login component</li>
-              <li>show in our navigation bar who's logged in</li>
-              <li>
-                a way to limit access to parts of our app which the users can't
-                use if they're not logged in anyway
-              </li>
-            </ul>
-            <li>
-              since most stuff involving the forms and service are old hat by
-              now, we'll only highlight the authentication specific parts in
-              these slides, the full working code can, as always, be found at
-              the
-              <a href="http://github.com/pieter-hogent/recipeapp"
-                >recipeapp github</a
-              >
-            </li>
-          </ul>
-        </section>
-        <section>
-          <div codesteps>
-            <pre class="console">  
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section
+					class="title-slide"
+					data-transition="none"
+					data-background-transition="none"
+				>
+					<img class="title-img" src="img/babyyoda8.png" />
+					<h2>authentication</h2>
+					<h4>
+						Karine Samyn, Benjamin Vertonghen, Thomas Aelbrecht, Pieter Van Der
+						Helst
+					</h4>
+					<footer class="footer">
+						"The best way to get the right answer on the internet is not to ask
+						a question; it’s to post the wrong answer.” - Cunningham’s Law
+					</footer>
+				</section>
+				<section class="contents-slide">
+					<h3>overview</h3>
+					<ol>
+						<li>
+							<a href="#/intro">intro</a> <br />
+							<span style="font-size: 0.7em"
+								>what do we need at the frontend
+							</span>
+						</li>
+						<li>
+							<a href="#/authservice">authentication service</a> <br />
+							<span style="font-size: 0.7em">
+								provide access to all the backend routes involving
+								authentication
+							</span>
+						</li>
+						<li>
+							<a href="#/registerform">register form</a> <br />
+							<span style="font-size: 0.7em">
+								a form where users can create an account
+							</span>
+						</li>
+						<li>
+							<a href="#/serversidevalidation"> server side validation </a>
+							<br />
+							<span style="font-size: 0.7em">
+								something new w.r.t. forms, do validation at the server side
+							</span>
+						</li>
+						<li>
+							<a href="#/authheaders"> authorization headers </a>
+							<br />
+							<span style="font-size: 0.7em">
+								how to pass the jwt token with each request
+							</span>
+						</li>
+						<li>
+							<a href="#/authguard"> authentication guard </a>
+							<br />
+							<span style="font-size: 0.7em">
+								make parts of the application inaccessible for users who are not
+								logged in
+							</span>
+						</li>
+					</ol>
+				</section>
+				<section id="intro">
+					<h3>what do we need?</h3>
+					<ul>
+						<li>
+							our backend has a login and register route, and all but the GET
+							routes are protected with jwt token authorization
+						</li>
+						<li>at the frontend we need:</li>
+						<ul>
+							<li>an authentication service to talk to these routes</li>
+							<li>a register and login component</li>
+							<li>show in our navigation bar who's logged in</li>
+							<li>
+								a way to limit access to parts of our app which the users can't
+								use if they're not logged in anyway
+							</li>
+						</ul>
+						<li>
+							since most stuff involving the forms and service are old hat by
+							now, we'll only highlight the authentication specific parts in
+							these slides, the full working code can, as always, be found at
+							the
+							<a href="http://github.com/pieter-hogent/recipeapp"
+								>recipeapp github</a
+							>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<div codesteps>
+						<pre class="console">  
 <span class='prompt'>~/recipeapp/$</span> ng g m User --module=app<span sstep='2-3'>
 <span class='prompt'>~/recipeapp/$</span> ng g s user/Authentication</span><span sstep='3'>
 <span class='prompt'>~/recipeapp/$</span> ng g c user/Login --module=user
 <span class='prompt'>~/recipeapp/$</span> ng g c user/Register --module=user</span> 
             </pre>
-            <div explanation>
-              <span step="1">
-                lets put everything concerning users and authentication in its
-                own module
-              </span>
-              <span step="2">
-                just like we put all our recipe http calls in a separate
-                service, we'll add an authentication service to do all our user
-                http calls
-              </span>
-              <span step="3">
-                let's add a login and register component already too, we'll need
-                them soon
-              </span>
-            </div>
-          </div>
-        </section>
-        <section id="authservice">
-          <h3>authentication service</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            >src/app/user/authentication.service.ts<code data-noescape data-trim >
+						<div explanation>
+							<span step="1">
+								lets put everything concerning users and authentication in its
+								own module
+							</span>
+							<span step="2">
+								just like we put all our recipe http calls in a separate
+								service, we'll add an authentication service to do all our user
+								http calls
+							</span>
+							<span step="3">
+								let's add a login and register component already too, we'll need
+								them soon
+							</span>
+						</div>
+					</div>
+				</section>
+				<section id="authservice">
+					<h3>authentication service</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						>src/app/user/authentication.service.ts<code data-noescape data-trim >
                 function parseJwt(token) {
                   if (!token) {
                     return null;
@@ -163,29 +166,29 @@
                   return JSON.parse(window.<span hstep='3'>atob</span>(base64));
                 }
               </code></pre>
-            <div explanation>
-              <span step="1">
-                the authentication service will do our login / register backend
-                calls, but we'll also manage our jwt here
-              </span>
-              <span step="2">
-                we can't do anything with the encrypted (signed) part, only the
-                backend knows the secret, but we can get to the other info
-                stored there: username and expire date
-              </span>
-              <span step="3">
-                so first, let's add a function to parse the token, which is
-                base64 encoded
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>authentication service</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            >src/app/user/authentication.service.ts<code data-noescape data-trim style='font-size:0.7em'>
+						<div explanation>
+							<span step="1">
+								the authentication service will do our login / register backend
+								calls, but we'll also manage our jwt here
+							</span>
+							<span step="2">
+								we can't do anything with the encrypted (signed) part, only the
+								backend knows the secret, but we can get to the other info
+								stored there: username and expire date
+							</span>
+							<span step="3">
+								so first, let's add a function to parse the token, which is
+								base64 encoded
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>authentication service</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						>src/app/user/authentication.service.ts<code data-noescape data-trim style='font-size:0.7em'>
     @Injectable()
     export class AuthenticationService {
       <span hstep='1'>private readonly _tokenKey = 'currentUser'</span>;
@@ -202,44 +205,44 @@
         }
        <span hstep='5'> this._user$ = new BehaviorSubject&lt;string&gt;(parsedToken && parsedToken.unique_name);</span>
       }      </code></pre>
-            <div explanation>
-              <span step="1">
-                when a user succesfully logs in, we'll store the token in the
-                localstorage, to remember the user
-              </span>
-              <span step="2">
-                so in our constructor we check the localstorage for a token, and
-                parse it using the parse method from the previous slide
-              </span>
-              <span step="3">
-                we check for an expire date here too, this doesn't make our app
-                secure (backend is the only one who can check for valid tokens)
-              </span>
-              <span step="4">
-                this is merely a UX issue, we don't want to imply the user is
-                logged in until she makes a first backend call
-              </span>
-              <span step="5">
-                we set the user as a
-                <span class="ilcode">BehaviorSubject</span>, similar to a
-                <span class="ilcode">Subject</span>, but a
-                <span class="ilcode">BehaviorSubject</span> always has a value,
-                even if it was set before you subscribed
-              </span>
-              <span step="6">
-                so every other component can subscribe to our
-                <span class="ilcode">user$</span> and will always see the logged
-                in user
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>login method</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            >src/app/user/authentication.service.ts<code data-noescape data-trim style='font-size:0.7em'>
+						<div explanation>
+							<span step="1">
+								when a user succesfully logs in, we'll store the token in the
+								localstorage, to remember the user
+							</span>
+							<span step="2">
+								so in our constructor we check the localstorage for a token, and
+								parse it using the parse method from the previous slide
+							</span>
+							<span step="3">
+								we check for an expire date here too, this doesn't make our app
+								secure (backend is the only one who can check for valid tokens)
+							</span>
+							<span step="4">
+								this is merely a UX issue, we don't want to imply the user is
+								logged in until she makes a first backend call
+							</span>
+							<span step="5">
+								we set the user as a
+								<span class="ilcode">BehaviorSubject</span>, similar to a
+								<span class="ilcode">Subject</span>, but a
+								<span class="ilcode">BehaviorSubject</span> always has a value,
+								even if it was set before you subscribed
+							</span>
+							<span step="6">
+								so every other component can subscribe to our
+								<span class="ilcode">user$</span> and will always see the logged
+								in user
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>login method</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						>src/app/user/authentication.service.ts<code data-noescape data-trim style='font-size:0.7em'>
     login(email: string, password: string): Observable&lt;boolean&gt; {
       return <span hstep='1'>this.http.post(
           `${environment.apiUrl}/account`,
@@ -258,35 +261,35 @@
       );
     }        
                 </code></pre>
-            <div explanation>
-              <span step="1">
-                we'll post to the <span class="ilcode">/api/account</span> route
-                with a body containing the email and password keys
-              </span>
-              <span step="2">
-                note the ES2015 object initializer syntax, when key and value
-                are the same (this is like typing {email: email, password:
-                password})
-              </span>
-              <span step="3">
-                if the login is succesful, our backend returns the jwt token as
-                a simple string, so we can't use the default json response type
-                anymore, we need to specify in our http request that we expect a
-                text response
-              </span>
-              <span step="4">
-                we'll also signal through our BehaviorSubject that a new user is
-                logged in
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>register method</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            >src/app/user/authentication.service.ts<code data-noescape data-trim style='font-size:0.7em'>
+						<div explanation>
+							<span step="1">
+								we'll post to the <span class="ilcode">/api/account</span> route
+								with a body containing the email and password keys
+							</span>
+							<span step="2">
+								note the ES2015 object initializer syntax, when key and value
+								are the same (this is like typing {email: email, password:
+								password})
+							</span>
+							<span step="3">
+								if the login is succesful, our backend returns the jwt token as
+								a simple string, so we can't use the default json response type
+								anymore, we need to specify in our http request that we expect a
+								text response
+							</span>
+							<span step="4">
+								we'll also signal through our BehaviorSubject that a new user is
+								logged in
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>register method</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						>src/app/user/authentication.service.ts<code data-noescape data-trim style='font-size:0.7em'>
               register(
                 firstname: string, lastname: string, email: string, password: string
               ): Observable&lt;boolean&gt; {
@@ -313,20 +316,20 @@
                   );
               }
                 </code></pre>
-            <div explanation>
-              <span step="1">
-                the register method is very similar, we have a few more fields
-                (first-, lastname) and now we post to the register url
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>logout method</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            >src/app/user/authentication.service.ts<code data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								the register method is very similar, we have a few more fields
+								(first-, lastname) and now we post to the register url
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>logout method</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						>src/app/user/authentication.service.ts<code data-noescape data-trim>
     logout() {
       if (this.user$.getValue()) {
         localStorage.removeItem('currentUser');
@@ -334,20 +337,20 @@
       }
     }
                 </code></pre>
-            <div explanation>
-              <span step="1">
-                logging out is achieved by removing the token, and signaling we
-                have no user anymore
-              </span>
-            </div>
-          </div>
-        </section>
-        <section id="registerform">
-          <h3>register form</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            >src/app/user/register/register.component.ts<code data-noescape data-trim style='font-size:0.8em'>
+						<div explanation>
+							<span step="1">
+								logging out is achieved by removing the token, and signaling we
+								have no user anymore
+							</span>
+						</div>
+					</div>
+				</section>
+				<section id="registerform">
+					<h3>register form</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						>src/app/user/register/register.component.ts<code data-noescape data-trim style='font-size:0.8em'>
     export class RegisterComponent implements OnInit {
       public user: FormGroup;
     
@@ -366,45 +369,45 @@
         });
       }
                 </code></pre>
-            <div explanation>
-              <span step="1">
-                next up, the register form, we'll create a standard register
-                form, the user's name and firstname, an email address (which
-                will function as username) and both password and confirm
-                password fields
-              </span>
-              <span step="2">
-                in the code on github I added password validation to make sure
-                there's a number, and an upper- and lowercase letter; as that is
-                what our backend requires</span
-              >
-              <span step="2"
-                >(although this is microsoft defaults being old school, length
-                beats all when considering a password to be good or not)</span
-              >
+						<div explanation>
+							<span step="1">
+								next up, the register form, we'll create a standard register
+								form, the user's name and firstname, an email address (which
+								will function as username) and both password and confirm
+								password fields
+							</span>
+							<span step="2">
+								in the code on github I added password validation to make sure
+								there's a number, and an upper- and lowercase letter; as that is
+								what our backend requires</span
+							>
+							<span step="2"
+								>(although this is microsoft defaults being old school, length
+								beats all when considering a password to be good or not)</span
+							>
 
-              <span step="3">
-                we put both passwords in a group, so that we can add a custom
-                validator to that group, which will check that both passwords
-                are the same
-              </span>
-              <span step="4">
-                we're also using server side validation for the first time</span
-              ><span step="4">
-                this async validator function will be called if the other
-                validators succeeded, we'll check for uniqueness of our username
-                using a function (we still need to add) from our authentication
-                service
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>custom validators</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            >src/app/user/register/register.component.ts<code data-noescape data-trim style='font-size:0.8em'>
+							<span step="3">
+								we put both passwords in a group, so that we can add a custom
+								validator to that group, which will check that both passwords
+								are the same
+							</span>
+							<span step="4">
+								we're also using server side validation for the first time</span
+							><span step="4">
+								this async validator function will be called if the other
+								validators succeeded, we'll check for uniqueness of our username
+								using a function (we still need to add) from our authentication
+								service
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>custom validators</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						>src/app/user/register/register.component.ts<code data-noescape data-trim style='font-size:0.8em'>
     <span hstep='1'>function</span> comparePasswords(<span hstep='1'>control: AbstractControl)</span>: <span hstep='1'>ValidationErrors</span> {
       const password = control.get('password');
       const confirmPassword = control.get('confirmPassword');
@@ -412,27 +415,27 @@
         : <span hstep='2'>{ 'passwordsDiffer': true }</span>;
     }
                 </code></pre>
-            <div explanation>
-              <span step="1">
-                we've seen custom validators, they are simply functions which
-                take a control as parameter and return null if the validation
-                succeeded
-              </span>
-              <span step="2">
-                or they return a ValidationErrors object if there's an error
-                (which is basically a key:value field, remember our
-                <span class="ilcode">{required: true}</span> error from last
-                time)
-              </span>
-            </div>
-          </div>
-        </section>
-        <section id="serversidevalidation">
-          <h3>server side validation</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            >src/app/user/register/register.component.ts<code data-noescape data-trim >
+						<div explanation>
+							<span step="1">
+								we've seen custom validators, they are simply functions which
+								take a control as parameter and return null if the validation
+								succeeded
+							</span>
+							<span step="2">
+								or they return a ValidationErrors object if there's an error
+								(which is basically a key:value field, remember our
+								<span class="ilcode">{required: true}</span> error from last
+								time)
+							</span>
+						</div>
+					</div>
+				</section>
+				<section id="serversidevalidation">
+					<h3>server side validation</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						>src/app/user/register/register.component.ts<code data-noescape data-trim >
                 function serverSideValidateUsername(
                   checkAvailabilityFn: (n: string) => Observable&lt;boolean&gt;
                 ): ValidatorFn {
@@ -448,30 +451,30 @@
                   };
                 }
                 </code></pre>
-            <div explanation>
-              <span step="1">
-                our server side validation needs the check function from our
-                authentication service passed as a parameter
-              </span>
-              <span step="2">
-                the signature is the same of a regular validator, but now we're
-                async, so we return an Observable of such a
-                <span class="ilcode">ValidationErrors</span>
-                object
-              </span>
-              <span step="3">
-                we'll add a function to our service to check for user name
-                availability
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>user name availability at the backend</h3>
-          <div codesteps>
-            <pre
-              class="csharp"
-            > RecipeApi/Controllers/AccountController.cs <code data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								our server side validation needs the check function from our
+								authentication service passed as a parameter
+							</span>
+							<span step="2">
+								the signature is the same of a regular validator, but now we're
+								async, so we return an Observable of such a
+								<span class="ilcode">ValidationErrors</span>
+								object
+							</span>
+							<span step="3">
+								we'll add a function to our service to check for user name
+								availability
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>user name availability at the backend</h3>
+					<div codesteps>
+						<pre
+							class="csharp"
+						> RecipeApi/Controllers/AccountController.cs <code data-noescape data-trim>
               [AllowAnonymous]
               [HttpGet("checkusername")]
               public async Task&lt;ActionResult&lt;Boolean&gt;&gt; 
@@ -481,24 +484,24 @@
                   return user == null;
               }
                 </code></pre>
-            <div explanation>
-              <span step="1">
-                before we can add it to the service, we need a route on our
-                server, so let's add a checkusername route
-              </span>
-              <span step="2">
-                we'll simply return a boolean indicating if the user exists
-                already or not
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>user name availability in service</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            >src/app/user/authentication.services.ts<code data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								before we can add it to the service, we need a route on our
+								server, so let's add a checkusername route
+							</span>
+							<span step="2">
+								we'll simply return a boolean indicating if the user exists
+								already or not
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>user name availability in service</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						>src/app/user/authentication.services.ts<code data-noescape data-trim>
     <span hstep='2'>checkUserNameAvailability = (email: string): Observable&lt;boolean&gt; =></span> {
       return this.http.get<span hstep='3'>&lt;boolean&gt;</span>(
         `${environment.apiUrl}/account/checkusername`,
@@ -508,31 +511,31 @@
       );
     }
                 </code></pre>
-            <div explanation>
-              <span step="1">
-                our service then, simply needs to call this route with the email
-                address as url parameter and return the response
-              </span>
-              <span step="2"
-                >we use the arrow function notation for our member function so
-                that this binding will work when this function is passed as a
-                parameter (you learned this in web2, yes, really, you did)</span
-              >
-              <span step="3"
-                >if you got a class to represent the type, or if its a built in
-                type like we do here, you can pass this as a generic parameter
-                to the get, and i.s.o.
-                <span class="ilcode">Observable&lt;any&gt;</span> the
-                <span class="ilcode">get</span> function will return an
-                <span class="ilcode">Observable&lt;boolean&gt;</span></span
-              >
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>register html</h3>
-          <div codesteps>
-            <pre class="html"><code data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								our service then, simply needs to call this route with the email
+								address as url parameter and return the response
+							</span>
+							<span step="2"
+								>we use the arrow function notation for our member function so
+								that this binding will work when this function is passed as a
+								parameter (you learned this in web2, yes, really, you did)</span
+							>
+							<span step="3"
+								>if you got a class to represent the type, or if its a built in
+								type like we do here, you can pass this as a generic parameter
+								to the get, and i.s.o.
+								<span class="ilcode">Observable&lt;any&gt;</span> the
+								<span class="ilcode">get</span> function will return an
+								<span class="ilcode">Observable&lt;boolean&gt;</span></span
+							>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>register html</h3>
+					<div codesteps>
+						<pre class="html"><code data-noescape data-trim>
             &lt;form [formGroup]=&quot;user&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
               &lt;mat-card-header&gt;
                 &lt;mat-card-title&gt;Register&lt;/mat-card-title&gt;
@@ -557,57 +560,57 @@
                   &lt;/mat-form-field&gt;
                   &lt;!-- ... and so on --&gt;
                 </code></pre>
-            <div explanation>
-              <span step="1">
-                in our html we simply need to link the three input fields to
-                their controls and add a whole lot of error divs
-              </span>
-              <span step="2">
-                <a href="http://localhost:4200/register"
-                  >let's check this out</a
-                >
-              </span>
-            </div>
-          </div>
-        </section>
-        <section id="authheaders">
-          <h3>authorization headers</h3>
-          <ul>
-            <li>
-              many of our backend routes are properly protected, we'll have to
-              add the jwt token to all requests needing authorization or we'll
-              get a '401 unauthorized' error
-            </li>
-            <li>
-              this is done using (standard) authorization headers with a Bearer
-              token
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>http interceptor</h3>
-          <ul>
-            <li>
-              while you could add a headers object to each request, the
-              <span class="ilcode">HttpClientModule</span> added http
-              interceptors which make this a lot more convenient
-            </li>
-            <li>
-              as their name implies, they intercept every request and then you
-              can alter / log / ... them
-            </li>
-            <li>
-              we'll simply clone each request and add an authorization header
-              with our token if we're logged in
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>AuthenticationInterceptor</h3>
-          <div codesteps no-highlight-first>
-            <pre
-              class="typescript"
-            > src/app/http-interceptors/AuthenticationInterceptor.ts <code data-noescape data-trim style='font-size:0.7em'>
+						<div explanation>
+							<span step="1">
+								in our html we simply need to link the three input fields to
+								their controls and add a whole lot of error divs
+							</span>
+							<span step="2">
+								<a href="http://localhost:4200/register"
+									>let's check this out</a
+								>
+							</span>
+						</div>
+					</div>
+				</section>
+				<section id="authheaders">
+					<h3>authorization headers</h3>
+					<ul>
+						<li>
+							many of our backend routes are properly protected, we'll have to
+							add the jwt token to all requests needing authorization or we'll
+							get a '401 unauthorized' error
+						</li>
+						<li>
+							this is done using (standard) authorization headers with a Bearer
+							token
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>http interceptor</h3>
+					<ul>
+						<li>
+							while you could add a headers object to each request, the
+							<span class="ilcode">HttpClientModule</span> added http
+							interceptors which make this a lot more convenient
+						</li>
+						<li>
+							as their name implies, they intercept every request and then you
+							can alter / log / ... them
+						</li>
+						<li>
+							we'll simply clone each request and add an authorization header
+							with our token if we're logged in
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>AuthenticationInterceptor</h3>
+					<div codesteps no-highlight-first>
+						<pre
+							class="typescript"
+						> src/app/http-interceptors/AuthenticationInterceptor.ts <code data-noescape data-trim style='font-size:0.7em'>
                 @Injectable()
                 export class AuthenticationInterceptor <span hstep='1'>implements HttpInterceptor</span> {
                   constructor(private authService: AuthenticationService) {}
@@ -623,36 +626,36 @@
                   }</span>
                 }
                 </code></pre>
-            <div explanation>
-              <span step="1">
-                we'll create a new class for this, which implements the
-                HttpInterceptor interface
-              </span>
-              <span step="2">
-                we have to override the intercept method, which gets two
-                parameters, the request and the standard handler
-              </span>
-              <span step="3">
-                simply calling this handler on the request is the standard
-                behavior, as if you didn't write an interceptor at all
-              </span>
-              <span step="4">
-                so we'll simply check if we have a valid token in our
-                authentication service, and add it to the headers if we do
-              </span>
-              <span step="5">
-                after which the next handlers can process this new request, with
-                a token
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>AuthenticationInterceptor</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            >frontend/src/app/http-interceptors/index.ts<code data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								we'll create a new class for this, which implements the
+								HttpInterceptor interface
+							</span>
+							<span step="2">
+								we have to override the intercept method, which gets two
+								parameters, the request and the standard handler
+							</span>
+							<span step="3">
+								simply calling this handler on the request is the standard
+								behavior, as if you didn't write an interceptor at all
+							</span>
+							<span step="4">
+								so we'll simply check if we have a valid token in our
+								authentication service, and add it to the headers if we do
+							</span>
+							<span step="5">
+								after which the next handlers can process this new request, with
+								a token
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>AuthenticationInterceptor</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						>frontend/src/app/http-interceptors/index.ts<code data-noescape data-trim>
     import { HTTP_INTERCEPTORS } from '@angular/common/http';
     import { AuthenticationInterceptor } from './AuthenticationInterceptor';
     
@@ -664,30 +667,30 @@
       }
     ];
               </code></pre>
-            <div explanation>
-              <span step="1">
-                Because interceptors are dependencies of the HttpClient service,
-                you must provide them in the same injector that provides
-                HttpClient
-              </span>
-              <span step="2">
-                you could provide these directly in the providers list of your
-                module, but it's rather verbose, so it's considered 'best
-                practice' to create a 'barrel' file that gathers all
-                interceptors
-              </span>
-              <span step="3">
-                so we'll create a small file to declare our interceptor provider
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>AuthenticationInterceptor</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            >src/app/app.module.ts<code data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								Because interceptors are dependencies of the HttpClient service,
+								you must provide them in the same injector that provides
+								HttpClient
+							</span>
+							<span step="2">
+								you could provide these directly in the providers list of your
+								module, but it's rather verbose, so it's considered 'best
+								practice' to create a 'barrel' file that gathers all
+								interceptors
+							</span>
+							<span step="3">
+								so we'll create a small file to declare our interceptor provider
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>AuthenticationInterceptor</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						>src/app/app.module.ts<code data-noescape data-trim>
                   import { httpInterceptorProviders } from '../http-interceptors/index';
                   
                   @NgModule({
@@ -698,25 +701,25 @@
                   })
                   export class AppModule {}
               </code></pre>
-            <div explanation>
-              <span step="1">
-                which we'll add to the providers list of our AppModule, as our
-                recipe data service is provided in the root, we need our
-                interceptor available at the same 'level'
-              </span>
-              <span step="2">
-                this will result in all http.get / .post / ... calls done from
-                AppModule to get the token added if one is available
-              </span>
-            </div>
-          </div>
-        </section>
-        <section id="authguard">
-          <h3>auth guard</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            >src/app/app-routing/app-routing.module.ts<code data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								which we'll add to the providers list of our AppModule, as our
+								recipe data service is provided in the root, we need our
+								interceptor available at the same 'level'
+							</span>
+							<span step="2">
+								this will result in all http.get / .post / ... calls done from
+								AppModule to get the token added if one is available
+							</span>
+						</div>
+					</div>
+				</section>
+				<section id="authguard">
+					<h3>auth guard</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						>src/app/app-routing/app-routing.module.ts<code data-noescape data-trim>
     const appRoutes: Routes = [
       {
         path: 'recipe',<span sstep='2'>
@@ -727,24 +730,24 @@
       { path: '**', component: PageNotFoundComponent}
     ];
                 </code></pre>
-            <div explanation>
-              <span step="1">
-                one thing we still want is to 'lock' parts of our frontend, only
-                show them to authorized users
-              </span>
-              <span step="2">
-                you do this by adding guards, we'll put our full recipe module
-                behind a guard (so only logged in users can access anything)
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>AuthGuard</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            >src/app/user/auth-guard.service.ts<code data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								one thing we still want is to 'lock' parts of our frontend, only
+								show them to authorized users
+							</span>
+							<span step="2">
+								you do this by adding guards, we'll put our full recipe module
+								behind a guard (so only logged in users can access anything)
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>AuthGuard</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						>src/app/user/auth-guard.service.ts<code data-noescape data-trim>
     import { CanActivate } from '@angular/router';
     
     @Injectable()
@@ -760,34 +763,34 @@
       }
     }
                 </code></pre>
-            <div explanation>
-              <span step="1"
-                >create the guard using the cli
-                <span class="ilcode">ng g guard user/auth</span></span
-              >
-              <span step="1">
-                we added a CanActivate guard, so we implement the CanActivate
-                interface
-              </span>
-              <span step="2">
-                guards return a boolean, now we simply need to return true or
-                false if we're logged in or not
-              </span>
-              <span step="3">
-                if we're not logged in we'll redirect to the login page
-              </span>
-              <span step="4">
-                we'll do one more thing though, we remember which url we were
-                trying to access, after a successfull login we'll "continue" to
-                the page
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>login component</h3>
-          <div codesteps>
-            <pre class="typescript"><code data-noescape data-trim>
+						<div explanation>
+							<span step="1"
+								>create the guard using the cli
+								<span class="ilcode">ng g guard user/auth</span></span
+							>
+							<span step="1">
+								we added a CanActivate guard, so we implement the CanActivate
+								interface
+							</span>
+							<span step="2">
+								guards return a boolean, now we simply need to return true or
+								false if we're logged in or not
+							</span>
+							<span step="3">
+								if we're not logged in we'll redirect to the login page
+							</span>
+							<span step="4">
+								we'll do one more thing though, we remember which url we were
+								trying to access, after a successfull login we'll "continue" to
+								the page
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>login component</h3>
+					<div codesteps>
+						<pre class="typescript"><code data-noescape data-trim>
     onSubmit() {
       this.authService.login(this.user.value.username, 
               this.user.value.password).subscribe(val => {
@@ -802,50 +805,50 @@
       }<span hstep='2'>, err => this.errorMsg = err.json().message)</span>;
     }
                 </code></pre>
-            <div explanation>
-              <span step="1">
-                the login component then, needs to redirect to this url if login
-                succeeds
-              </span>
-              <span step="2"
-                >that's it,
-                <a href="http://localhost:4200">let's check this out</a></span
-              >
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>summary</h3>
-          <ul>
-            <li>
-              if your backend properly supports authorization updating your
-              frontend is not that much work
-            </li>
-            <li>
-              most work is setting up proper register and login forms, and
-              providing access to these in your application
-            </li>
-            <li>
-              authorizing your backend requests themselves became very simple
-              starting in Angular4+ using interceptors
-            </li>
-            <li>
-              authentication guards make it pretty easy to shield certain parts
-              of your application for users who are not logged in (but remember:
-              this is good for UX, not for security; always properly shield all
-              routes, even if they're only accessible from a 'shielded' part of
-              your app)
-            </li>
-          </ul>
-        </section>
-      </div>
-    </div>
+						<div explanation>
+							<span step="1">
+								the login component then, needs to redirect to this url if login
+								succeeds
+							</span>
+							<span step="2"
+								>that's it,
+								<a href="http://localhost:4200">let's check this out</a></span
+							>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>summary</h3>
+					<ul>
+						<li>
+							if your backend properly supports authorization updating your
+							frontend is not that much work
+						</li>
+						<li>
+							most work is setting up proper register and login forms, and
+							providing access to these in your application
+						</li>
+						<li>
+							authorizing your backend requests themselves became very simple
+							starting in Angular4+ using interceptors
+						</li>
+						<li>
+							authentication guards make it pretty easy to shield certain parts
+							of your application for users who are not logged in (but remember:
+							this is good for UX, not for security; always properly shield all
+							routes, even if they're only accessible from a 'shielded' part of
+							your app)
+						</li>
+					</ul>
+				</section>
+			</div>
+		</div>
 
-    <script src="lib/js/chart.xkcd.min.js"></script>
-    <script src="lib/js/head.min.js"></script>
-    <script src="js/reveal.js"></script>
-    <script src="plugin/codestepper/codestepper.js"></script>
-    <script src="js/hogent-reveal.js" data-start-at-last="false"></script>
-    <script src="js/snap.svg.js"></script>
-  </body>
+		<script src="lib/js/chart.xkcd.min.js"></script>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script src="plugin/codestepper/codestepper.js"></script>
+		<script src="js/hogent-reveal.js" data-start-at-last="false"></script>
+		<script src="js/snap.svg.js"></script>
+	</body>
 </html>

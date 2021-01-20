@@ -1,229 +1,245 @@
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
 
-    <title>6. testing</title>
+		<title>6. testing</title>
 
-    <!-- Theme used for syntax highlighting of code -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="lib/css/atom-one-light.css" />
+		<!-- Theme used for syntax highlighting of code -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Montserrat"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="lib/css/atom-one-light.css" />
 
-    <link rel="stylesheet" href="css/reveal.css" />
-    <link rel="stylesheet" href="css/theme/hogent.css" />
+		<link rel="stylesheet" href="css/reveal.css" />
+		<link rel="stylesheet" href="css/theme/hogent.css" />
 
-    <!-- pieter overrides -->
-    <link rel="stylesheet" href="plugin/codestepper/codestepper.css" />
+		<!-- pieter overrides -->
+		<link rel="stylesheet" href="plugin/codestepper/codestepper.css" />
 
-    <!-- Printing and PDF exports -->
-    <script>
-      var link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = window.location.search.match(/print-pdf/gi)
-        ? 'css/print/pdf.css'
-        : 'css/print/paper.css';
-      document.getElementsByTagName('head')[0].appendChild(link);
-    </script>
-  </head>
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement('link');
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match(/print-pdf/gi)
+				? 'css/print/pdf.css'
+				: 'css/print/paper.css';
+			document.getElementsByTagName('head')[0].appendChild(link);
+		</script>
+	</head>
 
-  <body>
-    <div class="reveal">
-      <div class="slides">
-        <section
-          class="title-slide"
-          data-transition="none"
-          data-background-transition="none"
-        >
-          <img class="title-img" src="img/babyyoda6.png" />
-          <h2>testing with cypress</h2>
-          <h4>Karine Samyn, Stefaan De Cock, Pieter Van Der Helst</h4>
-          <footer class="footer">
-            "No one in the brief history of computing has ever written a piece
-            of perfect software. It's unlikely that you'll be the first." - Andy
-            Hunt
-          </footer>
-        </section>
-        <section>
-          <h3>recipe app startpoint</h3>
-          <div>
-            <img
-              src="img/facebooklogo.png"
-              alt=""
-              style="border:none; box-shadow: none; transform:matrix(0.58,-0.13,0.13,0.58,-140,0);"
-            />
-            <img
-              src="img/beer.png"
-              alt=""
-              style="position: absolute; border:none; box-shadow: none; top: 60px; left: 100px; transform:matrix(0.37,0.17,-0.17,0.37,200,-140);"
-            />
-          </div>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section
+					class="title-slide"
+					data-transition="none"
+					data-background-transition="none"
+				>
+					<img class="title-img" src="img/babyyoda6.png" />
+					<h2>testing with cypress</h2>
+					<h4>
+						Karine Samyn, Benjamin Vertonghen, Thomas Aelbrecht, Pieter Van Der
+						Helst
+					</h4>
+					<footer class="footer">
+						"No one in the brief history of computing has ever written a piece
+						of perfect software. It's unlikely that you'll be the first." - Andy
+						Hunt
+					</footer>
+				</section>
+				<section>
+					<h3>recipe app startpoint</h3>
+					<div>
+						<img
+							src="img/facebooklogo.png"
+							alt=""
+							style="
+								border: none;
+								box-shadow: none;
+								transform: matrix(0.58, -0.13, 0.13, 0.58, -140, 0);
+							"
+						/>
+						<img
+							src="img/beer.png"
+							alt=""
+							style="
+								position: absolute;
+								border: none;
+								box-shadow: none;
+								top: 60px;
+								left: 100px;
+								transform: matrix(0.37, 0.17, -0.17, 0.37, 200, -140);
+							"
+						/>
+					</div>
 
-          if you spent last class on facebook (or at the pub), branch the repo
-          at the correct commit and follow along!
-          <p></p>
-          <pre data-trim class="console">
+					if you spent last class on facebook (or at the pub), branch the repo
+					at the correct commit and follow along!
+					<p></p>
+					<pre data-trim class="console">
 <span class='prompt'>~$</span> git clone https://github.com/Pieter-hogent/recipeapp.git  (or git pull)
 <span class='prompt'>~$</span> cd recipeapp
 <span class='prompt'>~/recipeapp$</span> git checkout -b week6 <span class="githubcommit">3bfdae5</span>
 <span class='prompt'>~/recipeapp$</span> npm install
         </pre>
-        </section>
-        <section class="contents-slide">
-          <h3>overview.</h3>
-          <ol>
-            <li>
-              <a href="#/intro">intro to testing in angular</a> <br />
-              <span> what comes include, why we won't use it</span>
-            </li>
-            <li>
-              <a href="#/cypress">cypress</a> <br />
-              <span> the testing framework we will use</span>
-            </li>
-            <li>
-              <a href="#/firsttest">first test</a> <br />
-              <span> how is a test structured</span>
-            </li>
-            <li>
-              <a href="#/mocking">mocking</a> <br />
-              <span> mocking responses from the server</span>
-            </li>
-            <li>
-              <a href="#/fixtures">fixtures</a> <br />
-              <span> use fixtures to more easily reuse mocked data</span>
-            </li>
-          </ol>
-        </section>
-        <section id="intro">
-          <h3>why write tests?</h3>
-          <ul>
-            <li>
-              seriously? if you don't know by now, explaining it for the
-              umpteenth time won't help either, so we won't bother
-            </li>
-            <li>let's dive in immediately</li>
-          </ul>
-        </section>
-        <section>
-          <h3>angular tests</h3>
-          <ul>
-            <li>
-              when creating projects with <span class="ilcode">ng new</span>,
-              and generating components, a lot of test stuff is added
-              automatically
-            </li>
-            <li>unit tests using karma and jasmine</li>
-            <ul>
-              <li>
-                you can start them with <span class="ilcode">npm test</span>
-              </li>
-              <li>
-                they work fine, but the need for unit tests in the frontend is
-                usually rather limited (depends on the project though, don't
-                dismiss this)
-              </li>
-            </ul>
-            <li>e2e test using protractor</li>
-            <ul>
-              <li>
-                this worked great with AngularJS (1.x), but a lot is still
-                lacking to have a good experience on 2+
-              </li>
-              <li>
-                even the official documentation (protractor.angular.io) hasn't
-                been updated since 2016, and still talks about Angular 1.x
-              </li>
-              <li>so we won't bother and use something else</li>
-            </ul>
-          </ul>
-        </section>
-        <section id="cypress">
-          <h3>cypress</h3>
-          <ul>
-            <li>released oct 17</li>
-            <li>commercial product (but open source)</li>
-            <li>does not depend on webdriver, but runs in the browser</li>
-            <ul>
-              <li>advantage: easier to inspect what's running the browser</li>
-              <li>disadvantage: harder to talk to the outside world</li>
-            </ul>
-            <li>fast, easy to use, batteries included</li>
-            <li>
-              in my experience the hardest thing about testing is getting all
-              those lazy, entitled, developers to write tests; cypress helps
-              tremendously here
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>installing cypress</h3>
-          <pre data-trim class="console">
+				</section>
+				<section class="contents-slide">
+					<h3>overview.</h3>
+					<ol>
+						<li>
+							<a href="#/intro">intro to testing in angular</a> <br />
+							<span> what comes include, why we won't use it</span>
+						</li>
+						<li>
+							<a href="#/cypress">cypress</a> <br />
+							<span> the testing framework we will use</span>
+						</li>
+						<li>
+							<a href="#/firsttest">first test</a> <br />
+							<span> how is a test structured</span>
+						</li>
+						<li>
+							<a href="#/mocking">mocking</a> <br />
+							<span> mocking responses from the server</span>
+						</li>
+						<li>
+							<a href="#/fixtures">fixtures</a> <br />
+							<span> use fixtures to more easily reuse mocked data</span>
+						</li>
+					</ol>
+				</section>
+				<section id="intro">
+					<h3>why write tests?</h3>
+					<ul>
+						<li>
+							seriously? if you don't know by now, explaining it for the
+							umpteenth time won't help either, so we won't bother
+						</li>
+						<li>let's dive in immediately</li>
+					</ul>
+				</section>
+				<section>
+					<h3>angular tests</h3>
+					<ul>
+						<li>
+							when creating projects with <span class="ilcode">ng new</span>,
+							and generating components, a lot of test stuff is added
+							automatically
+						</li>
+						<li>unit tests using karma and jasmine</li>
+						<ul>
+							<li>
+								you can start them with <span class="ilcode">npm test</span>
+							</li>
+							<li>
+								they work fine, but the need for unit tests in the frontend is
+								usually rather limited (depends on the project though, don't
+								dismiss this)
+							</li>
+						</ul>
+						<li>e2e test using protractor</li>
+						<ul>
+							<li>
+								this worked great with AngularJS (1.x), but a lot is still
+								lacking to have a good experience on 2+
+							</li>
+							<li>
+								even the official documentation (protractor.angular.io) hasn't
+								been updated since 2016, and still talks about Angular 1.x
+							</li>
+							<li>so we won't bother and use something else</li>
+						</ul>
+					</ul>
+				</section>
+				<section id="cypress">
+					<h3>cypress</h3>
+					<ul>
+						<li>released oct 17</li>
+						<li>commercial product (but open source)</li>
+						<li>does not depend on webdriver, but runs in the browser</li>
+						<ul>
+							<li>advantage: easier to inspect what's running the browser</li>
+							<li>disadvantage: harder to talk to the outside world</li>
+						</ul>
+						<li>fast, easy to use, batteries included</li>
+						<li>
+							in my experience the hardest thing about testing is getting all
+							those lazy, entitled, developers to write tests; cypress helps
+							tremendously here
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>installing cypress</h3>
+					<pre data-trim class="console">
 <span class='prompt'>~$</span> npm install --save-dev cypress
           </pre>
-          <ul>
-            <li>installing this is installing just another npm package</li>
-            <li>
-              don't forget the <span class="ilcode">--save-dev</span>, you only
-              want this included in development environments, not in production
-            </li>
-          </ul>
-          <pre data-trim class="console">
+					<ul>
+						<li>installing this is installing just another npm package</li>
+						<li>
+							don't forget the <span class="ilcode">--save-dev</span>, you only
+							want this included in development environments, not in production
+						</li>
+					</ul>
+					<pre data-trim class="console">
 <span class='prompt'>~$</span> npx cypress open
           </pre>
-          <ul>
-            <li>
-              now you can run the cypress command from within your node_modules
-              and start the environment
-            </li>
-            <li>
-              (this is equivalent to
-              <span class="ilcode">./node_modules/.bin/cypress open</span>)
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>first run</h3>
-          <div
-            style=" display: grid;
-          grid-template-columns: 50% 50%;
-          grid-gap: 10px;"
-          >
-            <div style="text-align: center; grid-row: 2">
-              <ul>
-                <li>
-                  this opens a view of all the tests, a lot of example tests
-                  where added by cypress
-                </li>
-                <li>
-                  you can run one test by clicking it, all these tests were
-                  added inside a <span class="ilcode">cypress/</span> folder at
-                  the root of your application
-                </li>
-                <li>
-                  these examples are great to show how everything's done, but
-                  we'll remove them from our recipe app for now (you can easily
-                  get them back by doing a cypress install on an empty project)
-                </li>
-              </ul>
-            </div>
-            <div style="height: 600px; grid-row: 2/4">
-              <img src="img/cypress_exampletests.png" alt="fake news story" />
-            </div>
-          </div>
-        </section>
+					<ul>
+						<li>
+							now you can run the cypress command from within your node_modules
+							and start the environment
+						</li>
+						<li>
+							(this is equivalent to
+							<span class="ilcode">./node_modules/.bin/cypress open</span>)
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>first run</h3>
+					<div
+						style="
+							display: grid;
+							grid-template-columns: 50% 50%;
+							grid-gap: 10px;
+						"
+					>
+						<div style="text-align: center; grid-row: 2">
+							<ul>
+								<li>
+									this opens a view of all the tests, a lot of example tests
+									where added by cypress
+								</li>
+								<li>
+									you can run one test by clicking it, all these tests were
+									added inside a <span class="ilcode">cypress/</span> folder at
+									the root of your application
+								</li>
+								<li>
+									these examples are great to show how everything's done, but
+									we'll remove them from our recipe app for now (you can easily
+									get them back by doing a cypress install on an empty project)
+								</li>
+							</ul>
+						</div>
+						<div style="height: 600px; grid-row: 2/4">
+							<img src="img/cypress_exampletests.png" alt="fake news story" />
+						</div>
+					</div>
+				</section>
 
-        <section id="firsttest">
-          <h3>first test</h3>
-          <div codesteps>
-            <pre
-              class="javascript"
-            >cypress/integration/myfirsttest.spec.js  <code class='codesteps' data-noescape data-trim>
+				<section id="firsttest">
+					<h3>first test</h3>
+					<div codesteps>
+						<pre
+							class="javascript"
+						>cypress/integration/myfirsttest.spec.js  <code class='codesteps' data-noescape data-trim>
                 <span hstep='2'>describe</span>('My First Test', function() {
                   <span hstep='2'>it</span>('Does not do much!', function() {
                     <span hstep='3'>expect</span>(true).to.equal(true);
@@ -234,44 +250,44 @@
                 });
                  
             </code></pre>
-            <div explanation>
-              <span step="1"
-                >create the file
-                <span class="ilcode">myfirsttest.spec.js</span> in
-                <span class="ilcode">cypress/integration/</span>
-              </span>
-              <span step="2"
-                >individual tests are identified by
-                <span class="ilcode">it</span>,
-                <span class="ilcode">describe</span> structures multiple
-                tests</span
-              >
-              <span step="3"
-                ><span class="ilcode">expect</span> is used to really test
-                things</span
-              >
-              <span step="4"
-                >if you've ever written javascript tests, you might recognize
-                these</span
-              >
-              <span step="4"
-                >they come from <span class="ilcode">mocha</span> en
-                <span class="ilcode">chai</span> (included in cypress)</span
-              >
-              <span step="5">let's add a failing test too</span>
-              <span step="6"
-                >in the cypress app you'll see that these tests are
-                automatically found and added to the list</span
-              ><span step="6">let's try this out</span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>first real test</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            > cypress/integration/myfirsttest.spec.js<code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1"
+								>create the file
+								<span class="ilcode">myfirsttest.spec.js</span> in
+								<span class="ilcode">cypress/integration/</span>
+							</span>
+							<span step="2"
+								>individual tests are identified by
+								<span class="ilcode">it</span>,
+								<span class="ilcode">describe</span> structures multiple
+								tests</span
+							>
+							<span step="3"
+								><span class="ilcode">expect</span> is used to really test
+								things</span
+							>
+							<span step="4"
+								>if you've ever written javascript tests, you might recognize
+								these</span
+							>
+							<span step="4"
+								>they come from <span class="ilcode">mocha</span> en
+								<span class="ilcode">chai</span> (included in cypress)</span
+							>
+							<span step="5">let's add a failing test too</span>
+							<span step="6"
+								>in the cypress app you'll see that these tests are
+								automatically found and added to the list</span
+							><span step="6">let's try this out</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>first real test</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						> cypress/integration/myfirsttest.spec.js<code class='codesteps' data-noescape data-trim>
                 describe('My First Test', function() {<span sstep='2+'>
                   it('our app runs', function() {
                     cy.visit('http://localhost:4200');<span sstep='4+'>
@@ -280,76 +296,76 @@
                 });
                     
             </code><span class="githubcommit">afd0439</span></pre>
-            <div explanation>
-              <span step="1"
-                >this works, but testing tautologies is hardly useful, let's do
-                a real test
-              </span>
-              <span step="2"
-                >start with visiting our page, using the
-                <span class="ilcode">cy</span> command</span
-              >
-              <span step="2"
-                >even though there are no asserts, this will already succeed /
-                fail based on the availability of your app
-              </span>
-              <span step="3"
-                >if you run this test, you'll see the page is really being shown
-              </span>
-              <span step="3">as are all XHR requests </span>
-              <span step="4">
-                let's check something, we've got one button ('add') and when our
-                page is loaded it's disabled
-              </span>
-              <span step="5"
-                >this works, but it's not the best way to access DOM elements on
-                the page
-              </span>
-              <span step="5"> (what if you have two buttons?) </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>selecting elements</h3>
-          <table class="reveal" style="font-size:80%">
-            <tr>
-              <th>selector</th>
-              <th>recommended</th>
-              <th>notes</th>
-            </tr>
-            <tr>
-              <td>cy.get('button')</td>
-              <td>Never</td>
-              <td>too generic</td>
-            </tr>
-            <tr>
-              <td>cy.get('.btn.btn-large')</td>
-              <td>Never</td>
-              <td>What if the designer changes styling? Bad</td>
-            </tr>
-            <tr>
-              <td>cy.get('#main')</td>
-              <td>Sparingly</td>
-              <td>still coupled to styling or js</td>
-            </tr>
-            <tr>
-              <td>cy.contains('Submit')</td>
-              <td>Depends</td>
-              <td>Better, but coupled to text content (which might change)</td>
-            </tr>
-            <tr>
-              <td>cy.get('[data-cy=submit]')</td>
-              <td>Good</td>
-              <td>Best, use a dedicated attribute in your html</td>
-            </tr>
-          </table>
-        </section>
-        <section>
-          <h3>selection attributes</h3>
-          <div codesteps>
-            <pre
-              class="html"
-            > src/app/recipe/recipe-list/recipe-list.component.html <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1"
+								>this works, but testing tautologies is hardly useful, let's do
+								a real test
+							</span>
+							<span step="2"
+								>start with visiting our page, using the
+								<span class="ilcode">cy</span> command</span
+							>
+							<span step="2"
+								>even though there are no asserts, this will already succeed /
+								fail based on the availability of your app
+							</span>
+							<span step="3"
+								>if you run this test, you'll see the page is really being shown
+							</span>
+							<span step="3">as are all XHR requests </span>
+							<span step="4">
+								let's check something, we've got one button ('add') and when our
+								page is loaded it's disabled
+							</span>
+							<span step="5"
+								>this works, but it's not the best way to access DOM elements on
+								the page
+							</span>
+							<span step="5"> (what if you have two buttons?) </span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>selecting elements</h3>
+					<table class="reveal" style="font-size: 80%">
+						<tr>
+							<th>selector</th>
+							<th>recommended</th>
+							<th>notes</th>
+						</tr>
+						<tr>
+							<td>cy.get('button')</td>
+							<td>Never</td>
+							<td>too generic</td>
+						</tr>
+						<tr>
+							<td>cy.get('.btn.btn-large')</td>
+							<td>Never</td>
+							<td>What if the designer changes styling? Bad</td>
+						</tr>
+						<tr>
+							<td>cy.get('#main')</td>
+							<td>Sparingly</td>
+							<td>still coupled to styling or js</td>
+						</tr>
+						<tr>
+							<td>cy.contains('Submit')</td>
+							<td>Depends</td>
+							<td>Better, but coupled to text content (which might change)</td>
+						</tr>
+						<tr>
+							<td>cy.get('[data-cy=submit]')</td>
+							<td>Good</td>
+							<td>Best, use a dedicated attribute in your html</td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<h3>selection attributes</h3>
+					<div codesteps>
+						<pre
+							class="html"
+						> src/app/recipe/recipe-list/recipe-list.component.html <code class='codesteps' data-noescape data-trim>
               &lt;div fxLayout=&quot;column&quot; fxLayoutGap=&quot;2%&quot;&gt;
                 &lt;app-add-recipe (newRecipe)=&quot;addNewRecipe($event)&quot;&gt;&lt;/app-add-recipe&gt;
                 &lt;mat-card&gt;
@@ -372,25 +388,25 @@
                 &lt;/div&gt;
             
             </code><span class="githubcommit">f3574f3]</span></pre>
-            <div explanation>
-              <span step="1"
-                >let's add some attributes to help us test the application
-              </span>
-              <span step="2"
-                >we'll add an attribute to the filter input element</span
-              >
-              <span step="3"
-                >and tot he app-recipe component, inside our ngFor</span
-              >
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>test filter</h3>
-          <div codesteps>
-            <pre
-              class="javascript"
-            > cypress/interaction/myfirsttest.spec.js <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1"
+								>let's add some attributes to help us test the application
+							</span>
+							<span step="2"
+								>we'll add an attribute to the filter input element</span
+							>
+							<span step="3"
+								>and tot he app-recipe component, inside our ngFor</span
+							>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>test filter</h3>
+					<div codesteps>
+						<pre
+							class="javascript"
+						> cypress/interaction/myfirsttest.spec.js <code class='codesteps' data-noescape data-trim>
                 describe('My First Test', function() {
                   it('our app runs', function() {
                     cy.visit('http://localhost:4200');<span hstep='1'>
@@ -399,60 +415,62 @@
                   });
                 });
             </code></pre>
-            <div explanation>
-              <span step="1">we'll type 'sp' in our filter </span>
-              <span step="2"
-                >that should leave us with one card (the one showing
-                'spaghetti')</span
-              >
-              <span step="3"
-                >this obviously relies on the state of our database</span
-              >
-              <span step="3"
-                >this test assumes we started with the default seeded database
-                of our backend</span
-              >
-            </div>
-          </div>
-        </section>
-        <section id="mocking">
-          <h3>mock</h3>
-          <div
-            style=" display: grid;
-        grid-template-columns: 50% 50%;
-        grid-gap: 10px;"
-          >
-            <div style="height: 600px; grid-row: 1/4">
-              <img
-                src="img/goat_costume_hunter_shot.jpg"
-                alt="fake news story"
-              />
-            </div>
-            <div style="text-align: center; grid-row: 2">
-              <ul>
-                <li>
-                  this depends on the application, but in general you should do
-                  at least one 'full' test for most 'paths' with nothing stubbed
-                  or mocked, to make sure everything works, and works together
-                </li>
-                <li>
-                  and then stub server responses to test all additional cases
-                  (there's rarely much gained by doing all cases live, but it
-                  requires a lot more database setup, and is a lot slower)
-                </li>
-                <li>
-                  still, depends on the application, use your own judgement
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>mock</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            > cypress/interaction/myfirsttest.spec.js <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1">we'll type 'sp' in our filter </span>
+							<span step="2"
+								>that should leave us with one card (the one showing
+								'spaghetti')</span
+							>
+							<span step="3"
+								>this obviously relies on the state of our database</span
+							>
+							<span step="3"
+								>this test assumes we started with the default seeded database
+								of our backend</span
+							>
+						</div>
+					</div>
+				</section>
+				<section id="mocking">
+					<h3>mock</h3>
+					<div
+						style="
+							display: grid;
+							grid-template-columns: 50% 50%;
+							grid-gap: 10px;
+						"
+					>
+						<div style="height: 600px; grid-row: 1/4">
+							<img
+								src="img/goat_costume_hunter_shot.jpg"
+								alt="fake news story"
+							/>
+						</div>
+						<div style="text-align: center; grid-row: 2">
+							<ul>
+								<li>
+									this depends on the application, but in general you should do
+									at least one 'full' test for most 'paths' with nothing stubbed
+									or mocked, to make sure everything works, and works together
+								</li>
+								<li>
+									and then stub server responses to test all additional cases
+									(there's rarely much gained by doing all cases live, but it
+									requires a lot more database setup, and is a lot slower)
+								</li>
+								<li>
+									still, depends on the application, use your own judgement
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>mock</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						> cypress/interaction/myfirsttest.spec.js <code class='codesteps' data-noescape data-trim>
                 it('mock recipe get', function() {
                   <span hstep='1'>cy.server(<span sstep='3'>{ delay: 1000 }</span>);</span><span sstep='2+'>
                   cy.route({
@@ -468,59 +486,59 @@
                 });
               
             </code></pre>
-            <div explanation>
-              <span step="1"
-                >to mock requests you start by calling a
-                <span class="ilcode">cy.server()</span>
-              </span>
-              <span step="1">
-                every request done with <span class="ilcode">cy.route</span> or
-                <span class="ilcode">cy.request</span> will now pass through
-                this server</span
-              >
-              <span step="2"
-                >that doesn't mean the request will not be handled by the
-                server</span
-              >
-              <span step="2"
-                >if you simply define a GET request, it will simply be passed
-                through the cy.server to the backend</span
-              >
-              <span step="3">what's the point you might wonder?</span>
-              <span step="3"
-                >well, you can define options on your server, and e.g. delay all
-                requests and test if your application works correctly with slow
-                connections</span
-              >
-              <span step="3"
-                >(there are many other options, and you can define callbacks on
-                the cy.server as well)</span
-              >
-              <span step="4"
-                >but we want to mock our requests, so we add a response
-              </span>
-              <span step="5">
-                then we visit the site (which will trigger a GET on
-                /api/recipes)</span
-              >
-              <span step="5">
-                and we can check that three recipe components were constructed
-                as a result of three recipe objects in the servers
-                response</span
-              >
-              <span step="6"
-                >inlining data can become cumbersome (and distract from the
-                tests), a better way is to use fixtures</span
-              >
-            </div>
-          </div>
-        </section>
-        <section id="fixtures">
-          <h3>fixtures</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            > cypress/fixtures/recipes.json <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1"
+								>to mock requests you start by calling a
+								<span class="ilcode">cy.server()</span>
+							</span>
+							<span step="1">
+								every request done with <span class="ilcode">cy.route</span> or
+								<span class="ilcode">cy.request</span> will now pass through
+								this server</span
+							>
+							<span step="2"
+								>that doesn't mean the request will not be handled by the
+								server</span
+							>
+							<span step="2"
+								>if you simply define a GET request, it will simply be passed
+								through the cy.server to the backend</span
+							>
+							<span step="3">what's the point you might wonder?</span>
+							<span step="3"
+								>well, you can define options on your server, and e.g. delay all
+								requests and test if your application works correctly with slow
+								connections</span
+							>
+							<span step="3"
+								>(there are many other options, and you can define callbacks on
+								the cy.server as well)</span
+							>
+							<span step="4"
+								>but we want to mock our requests, so we add a response
+							</span>
+							<span step="5">
+								then we visit the site (which will trigger a GET on
+								/api/recipes)</span
+							>
+							<span step="5">
+								and we can check that three recipe components were constructed
+								as a result of three recipe objects in the servers
+								response</span
+							>
+							<span step="6"
+								>inlining data can become cumbersome (and distract from the
+								tests), a better way is to use fixtures</span
+							>
+						</div>
+					</div>
+				</section>
+				<section id="fixtures">
+					<h3>fixtures</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						> cypress/fixtures/recipes.json <code class='codesteps' data-noescape data-trim>
                 [
                 {
                   "id": 1,
@@ -596,21 +614,21 @@
                 }
               ]
             </code></pre>
-            <div explanation>
-              <span step="1">
-                create a <span class="ilcode">recipes.json</span> file with all
-                the recipes we want to load in the
-                <span class="ilcode">cypress/fixtures/</span> folder</span
-              >
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>fixtures</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            > cypress/interaction/myfirsttest.spec.js <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								create a <span class="ilcode">recipes.json</span> file with all
+								the recipes we want to load in the
+								<span class="ilcode">cypress/fixtures/</span> folder</span
+							>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>fixtures</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						> cypress/interaction/myfirsttest.spec.js <code class='codesteps' data-noescape data-trim>
                   it('mock recipe get', function() {
                     cy.server({ delay: 1000 });
                     cy.route({
@@ -626,59 +644,59 @@
                   });
                 
               </code></pre>
-            <div explanation>
-              <span step="1">
-                now we simply need to change the data object to a reference to
-                the json file
-              </span>
-              <span step="2"
-                >use a string with the
-                <span class="ilcode">fixture:</span> prefix, and the filename,
-                without the path to the fixtures folder</span
-              >
-              <span step="3"
-                >having the url to our server hardcoded in the tests is annoying
-                as well (what if it moves and you have dozens of tests?)</span
-              >
-              <span step="3"
-                >luckily, there is a
-                <span class="ilcode">cypress.json</span> file at the root where
-                we can specify these things
-              </span>
-              <span step="4">so remove the url everywhere...</span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>cypress.json</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            > cypress.json <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								now we simply need to change the data object to a reference to
+								the json file
+							</span>
+							<span step="2"
+								>use a string with the
+								<span class="ilcode">fixture:</span> prefix, and the filename,
+								without the path to the fixtures folder</span
+							>
+							<span step="3"
+								>having the url to our server hardcoded in the tests is annoying
+								as well (what if it moves and you have dozens of tests?)</span
+							>
+							<span step="3"
+								>luckily, there is a
+								<span class="ilcode">cypress.json</span> file at the root where
+								we can specify these things
+							</span>
+							<span step="4">so remove the url everywhere...</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>cypress.json</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						> cypress.json <code class='codesteps' data-noescape data-trim>
                 {
                   "baseUrl": "http://localhost:4200"
                 }
             
             </code></pre>
-            <div explanation>
-              <span step="1">
-                and add a <span class="ilcode">baseUrl</span> property inside
-                the <span class="ilcode">cypress.json</span> file at the root of
-                your app
-              </span>
-              <span step="1">
-                this baseUrl will be prepended to every url in the cypress
-                tests</span
-              >
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>error case</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            > cypress/interaction/myfirsttest.spec.js <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								and add a <span class="ilcode">baseUrl</span> property inside
+								the <span class="ilcode">cypress.json</span> file at the root of
+								your app
+							</span>
+							<span step="1">
+								this baseUrl will be prepended to every url in the cypress
+								tests</span
+							>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>error case</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						> cypress/interaction/myfirsttest.spec.js <code class='codesteps' data-noescape data-trim>
                 it('on error should show error message', function() {<span sstep='2+'>
                   cy.server();
                   cy.route({
@@ -691,56 +709,56 @@
                   cy.get('[data-cy=appError]').should('be.visible');</span>
                 });
             </code><span class="githubcommit">be18b22</span></pre>
-            <div explanation>
-              <span step="1"
-                >as a last example lets add a test to make sure our error
-                message is properly shown
-              </span>
-              <span step="1"
-                >start by adding a
-                <span class="ilcode">data-cy='appError'</span> attribute to the
-                <span class="ilcode">&lt;mat-error&gt;</span> in our
-                recipe-list.component
-              </span>
-              <span step="2"
-                >then define a route and make sure a server error occurs when
-                it's accessed</span
-              >
-              <span step="3"
-                >then we can make sure the error dialog is shown when the page
-                is visited</span
-              >
-              <span step="4"
-                >it's always a good idea to make sure error paths are properly
-                tested</span
-              >
-              <span step="4"
-                >they are easily overlooked, you see the 'normal' flow
-                constantly while developing, but rarely the weird error
-                cases</span
-              >
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>summary</h3>
-          <ul>
-            <li>that covers the basics and should get you started</li>
-            <li>
-              there's lot more to cypress, but the official documentation is
-              excellent, and the examples are plentiful and show most use cases
-            </li>
-            <li>as an exercise you can try to test the 'add recipe' form</li>
-          </ul>
-        </section>
-      </div>
-    </div>
+						<div explanation>
+							<span step="1"
+								>as a last example lets add a test to make sure our error
+								message is properly shown
+							</span>
+							<span step="1"
+								>start by adding a
+								<span class="ilcode">data-cy='appError'</span> attribute to the
+								<span class="ilcode">&lt;mat-error&gt;</span> in our
+								recipe-list.component
+							</span>
+							<span step="2"
+								>then define a route and make sure a server error occurs when
+								it's accessed</span
+							>
+							<span step="3"
+								>then we can make sure the error dialog is shown when the page
+								is visited</span
+							>
+							<span step="4"
+								>it's always a good idea to make sure error paths are properly
+								tested</span
+							>
+							<span step="4"
+								>they are easily overlooked, you see the 'normal' flow
+								constantly while developing, but rarely the weird error
+								cases</span
+							>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>summary</h3>
+					<ul>
+						<li>that covers the basics and should get you started</li>
+						<li>
+							there's lot more to cypress, but the official documentation is
+							excellent, and the examples are plentiful and show most use cases
+						</li>
+						<li>as an exercise you can try to test the 'add recipe' form</li>
+					</ul>
+				</section>
+			</div>
+		</div>
 
-    <script src="lib/js/chart.xkcd.min.js"></script>
-    <script src="lib/js/head.min.js"></script>
-    <script src="js/reveal.js"></script>
-    <script src="plugin/codestepper/codestepper.js"></script>
-    <script src="js/hogent-reveal.js" data-start-at-last="false"></script>
-    <script src="js/snap.svg.js"></script>
-  </body>
+		<script src="lib/js/chart.xkcd.min.js"></script>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script src="plugin/codestepper/codestepper.js"></script>
+		<script src="js/hogent-reveal.js" data-start-at-last="false"></script>
+		<script src="js/snap.svg.js"></script>
+	</body>
 </html>
