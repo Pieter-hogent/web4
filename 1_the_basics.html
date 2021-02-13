@@ -1,213 +1,213 @@
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
 
-    <title>1. angular basics</title>
+		<title>1. angular basics</title>
 
-    <!-- Theme used for syntax highlighting of code -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="lib/css/atom-one-light.css" />
+		<!-- Theme used for syntax highlighting of code -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Montserrat"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="lib/css/atom-one-light.css" />
 
-    <link rel="stylesheet" href="css/reveal.css" />
-    <link rel="stylesheet" href="css/theme/hogent.css" />
+		<link rel="stylesheet" href="css/reveal.css" />
+		<link rel="stylesheet" href="css/theme/hogent.css" />
 
-    <!-- pieter overrides -->
-    <link rel="stylesheet" href="plugin/codestepper/codestepper.css" />
+		<!-- pieter overrides -->
+		<link rel="stylesheet" href="plugin/codestepper/codestepper.css" />
 
-    <!-- Printing and PDF exports -->
-    <script>
-      var link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = window.location.search.match(/print-pdf/gi)
-        ? 'css/print/pdf.css'
-        : 'css/print/paper.css';
-      document.getElementsByTagName('head')[0].appendChild(link);
-    </script>
-  </head>
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement('link');
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match(/print-pdf/gi)
+				? 'css/print/pdf.css'
+				: 'css/print/paper.css';
+			document.getElementsByTagName('head')[0].appendChild(link);
+		</script>
+	</head>
 
-  <body>
-    <div class="reveal">
-      <div class="slides">
-        <section
-          class="title-slide"
-          data-transition="none"
-          data-background-transition="none"
-        >
-          <img class="title-img" src="img/babyyoda2.png" />
-          <h2>angular basics</h2>
-          <h4>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section
+					class="title-slide"
+					data-transition="none"
+					data-background-transition="none"
+				>
+					<img class="title-img" src="img/babyyoda2.png" />
+					<h2>angular basics</h2>
+					<h4>
 						Karine Samyn, Benjamin Vertonghen, Thomas Aelbrecht, Pieter Van Der
 						Helst
 					</h4>
-          <footer class="footer">
-            "The strength of JavaScript is that you can do anything.<br />
-            The weakness is that you will." - Reg Braithwaite
-          </footer>
-        </section>
-        <section class="contents-slide">
-          <h3>overview.</h3>
-          <ol>
-            <li>
-              <a href="#/intro">intro</a> <br />
-              <span> what is an SPA? </span>
-            </li>
-            <li>
-              <a href="#/typescript">typescript</a><br />
-              <span>typescript, not javascript</span>
-            </li>
-            <li>
-              <a href="#/app">app</a><br />
-              <span>creating a new angular application</span>
-            </li>
-            <li>
-              <a href="#/components">components</a><br />
-              <span>it's all about components</span>
-            </li>
-            <li>
-              <a href="#/pipe">pipes</a><br />
-              <span>how to format data</span>
-            </li>
-            <li>
-              <a href="#/input">@Input()</a><br />
-              <span>pass data between two components</span>
-            </li>
-            <li>
-              <a href="#/debugging">debugging</a><br />
-              <span>how to debug angular application in VSCode</span>
-            </li>
-          </ol>
-        </section>
-        <section id="intro">
-          <h3>what is an SPA?</h3>
-          <ul>
-            <li>
-              exactly one html file (SINGLE page application), which is only
-              used as an entry point for your application
-            </li>
-            <li>
-              and a lot of javascript, which builds the page through DOM
-              manipulation
-            </li>
-            <li>
-              requesting JSON data from the server as it's needed to build the
-              page
-            </li>
-            <li>
-              think what you did in Web2 with insertHTML and such, but every
-              single letter on your page is created this way, nothing is inside
-              html pages <br />
-              <small>
-                and don't worry, this is nothing like web2, the framework takes
-                care of the nasty parts
-              </small>
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>'classic' vs SPA site</h3>
-          <div class="fragment" code-step svg-step>
-            <svg
-              id="svg3"
-              class="svg-section"
-              width="100%"
-              height="100%"
-              preserveAspectRatio="xMidYMid"
-              snapfile="img/classic_vs_spa.svg"
-            >
-              <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
-            </svg>
-          </div>
-        </section>
+					<footer class="footer">
+						"The strength of JavaScript is that you can do anything.<br />
+						The weakness is that you will." - Reg Braithwaite
+					</footer>
+				</section>
+				<section class="contents-slide">
+					<h3>overview.</h3>
+					<ol>
+						<li>
+							<a href="#/intro">intro</a> <br />
+							<span> what is an SPA? </span>
+						</li>
+						<li>
+							<a href="#/typescript">typescript</a><br />
+							<span>typescript, not javascript</span>
+						</li>
+						<li>
+							<a href="#/app">app</a><br />
+							<span>creating a new angular application</span>
+						</li>
+						<li>
+							<a href="#/components">components</a><br />
+							<span>it's all about components</span>
+						</li>
+						<li>
+							<a href="#/pipe">pipes</a><br />
+							<span>how to format data</span>
+						</li>
+						<li>
+							<a href="#/input">@Input()</a><br />
+							<span>pass data between two components</span>
+						</li>
+						<li>
+							<a href="#/debugging">debugging</a><br />
+							<span>how to debug angular application in VSCode</span>
+						</li>
+					</ol>
+				</section>
+				<section id="intro">
+					<h3>what is an SPA?</h3>
+					<ul>
+						<li>
+							exactly one html file (SINGLE page application), which is only
+							used as an entry point for your application
+						</li>
+						<li>
+							and a lot of javascript, which builds the page through DOM
+							manipulation
+						</li>
+						<li>
+							requesting JSON data from the server as it's needed to build the
+							page
+						</li>
+						<li>
+							think what you did in Web2 with insertHTML and such, but every
+							single letter on your page is created this way, nothing is inside
+							html pages <br />
+							<small>
+								and don't worry, this is nothing like web2, the framework takes
+								care of the nasty parts
+							</small>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>'classic' vs SPA site</h3>
+					<div class="fragment" code-step svg-step>
+						<svg
+							id="svg3"
+							class="svg-section"
+							width="100%"
+							height="100%"
+							preserveAspectRatio="xMidYMid"
+							snapfile="img/classic_vs_spa.svg"
+						>
+							<use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
+						</svg>
+					</div>
+				</section>
 
-        <section id="typescript">
-          <h3>typescript.</h3>
-          <ul>
-            <li>angular programs are written using typescript</li>
-            <li>
-              typescript is an extension of javascript (every valid javascript
-              program is a valid typescript program)
-            </li>
-            <li>
-              created in 2012 at Microsoft by Anders Hejlsberg (who also created
-              Turbo Pascal and C#)
-            </li>
-            <li>
-              as tools mature to take advantage of typescript (and since
-              everyone's transpiling their javascript anyway because of
-              angular/react/...) it's becoming more and more popular
-            </li>
-            <li>
-              it was #2 on stackoverflow's
-              <a
-                href="https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted"
-                >"most loved languages" in 2019</a
-              >
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>typescript? what's wrong with javascript?</h3>
-          <ul>
-            <li>
-              browsers were (are?) always slow to adopt new javascript versions
-              and features, and old javascript was weird and bad
-            </li>
-            <li>
-              so people desperately wanted to use the new javascript features,
-              and started relying on transpiling: writing ES6+ and using e.g.
-              babel to 'transpile' this to ES5 the browser understands
-            </li>
-            <li>
-              but as a compile step was added, why not go all the way and extend
-              javascript?
-            </li>
-            <li>
-              hence typescript was born: modern javascript with all class/type
-              related stuff added
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>why do we need types?</h3>
-          <img
-            src="img/38percentbugs_airbnb_typescript.jpg"
-            alt="airbnb bugs"
-          />
-        </section>
-        <section>
-          <h3>why do we need types?</h3>
-          <ul>
-            <li>
-              I'd love to argue static vs dynamic types in programming
-              languages, because I love arguing when I know I'm right
-            </li>
-            <li>
-              but we don't really have the time; very simply put: if you're not
-              perfect, you're better of with static typing
-            </li>
-            <li>
-              (for the same reasons unit testing is good: you catch bugs early)
-            </li>
-            <li style="font-size: small">
-              while we're at it: tabs! spaces are for suckers, and vim forever,
-              losers use emacs!
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>typescript.</h3>
-          <div codesteps no-highlight-first>
-            <pre
-              class="typescript"
-            ><code class='codesteps' data-noescape data-trim>
+				<section id="typescript">
+					<h3>typescript.</h3>
+					<ul>
+						<li>angular programs are written using typescript</li>
+						<li>
+							typescript is an extension of javascript (every valid javascript
+							program is a valid typescript program)
+						</li>
+						<li>
+							created in 2012 at Microsoft by Anders Hejlsberg (who also created
+							Turbo Pascal and C#)
+						</li>
+						<li>
+							as tools mature to take advantage of typescript (and since
+							everyone's transpiling their javascript anyway because of
+							angular/react/...) it's becoming more and more popular
+						</li>
+						<li>
+							it was #2 on stackoverflow's
+							<a
+								href="https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted"
+								>"most loved languages" in 2019</a
+							>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>typescript? what's wrong with javascript?</h3>
+					<ul>
+						<li>
+							browsers were (are?) always slow to adopt new javascript versions
+							and features, and old javascript was weird and bad
+						</li>
+						<li>
+							so people desperately wanted to use the new javascript features,
+							and started relying on transpiling: writing ES6+ and using e.g.
+							babel to 'transpile' this to ES5 the browser understands
+						</li>
+						<li>
+							but as a compile step was added, why not go all the way and extend
+							javascript?
+						</li>
+						<li>
+							hence typescript was born: modern javascript with all class/type
+							related stuff added
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>why do we need types?</h3>
+					<img
+						src="img/38percentbugs_airbnb_typescript.jpg"
+						alt="airbnb bugs"
+					/>
+				</section>
+				<section>
+					<h3>why do we need types?</h3>
+					<ul>
+						<li>
+							I'd love to argue static vs dynamic types in programming
+							languages, because I love arguing when I know I'm right
+						</li>
+						<li>
+							but we don't really have the time; very simply put: if you're not
+							perfect, you're better of with static typing
+						</li>
+						<li>
+							(for the same reasons unit testing is good: you catch bugs early)
+						</li>
+						<li style="font-size: small">
+							while we're at it: tabs! spaces are for suckers, and vim forever,
+							losers use emacs!
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>typescript.</h3>
+					<div codesteps no-highlight-first>
+						<pre
+							class="typescript"
+						><code class='codesteps' data-noescape data-trim>
 let name<span hstep='1'>: string</span>;
 const age<span sstep='2'><span hstep='2'>: number</span></span> = 15;
 <span sstep='3+'>
@@ -216,42 +216,42 @@ let postalcodes: <span hstep='3'>Array</span>&lt;number&gt;;</span><span sstep='
 let recipe<span hstep='4'>: Recipe</span>;</span><span sstep='5+'>
 let notThatUseful<span hstep='5'>: any</span>;</span>
           </code></pre>
-            <div explanation>
-              <span step="1">
-                the most important difference is that everything has a type
-              </span>
-              <span step="2"> types can be implicit</span>
-              <span step="2"
-                >if you assign a value (which always has a type) to a variable,
-                the variable gets that type as well</span
-              >
-              <span step="3">
-                you can define array's both with
-                <span class="ilcode">[]</span> as with the
-                <span class="ilcode">Array</span> keyword</span
-              >
-              <span step="4">
-                you can have both basic types as types you define yourself with
-                class
-              </span>
-              <span step="5">
-                when the type is not specified, it's considered of type
-                <span class="ilcode">any</span>, you should avoid using any
-                whenever you can</span
-              >
-              <span step="5">
-                sometimes you have to though, for javascript compatibility, or
-                when processing generic json data</span
-              >
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>typescript.</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            >  <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								the most important difference is that everything has a type
+							</span>
+							<span step="2"> types can be implicit</span>
+							<span step="2"
+								>if you assign a value (which always has a type) to a variable,
+								the variable gets that type as well</span
+							>
+							<span step="3">
+								you can define array's both with
+								<span class="ilcode">[]</span> as with the
+								<span class="ilcode">Array</span> keyword</span
+							>
+							<span step="4">
+								you can have both basic types as types you define yourself with
+								class
+							</span>
+							<span step="5">
+								when the type is not specified, it's considered of type
+								<span class="ilcode">any</span>, you should avoid using any
+								whenever you can</span
+							>
+							<span step="5">
+								sometimes you have to though, for javascript compatibility, or
+								when processing generic json data</span
+							>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>typescript.</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						>  <code class='codesteps' data-noescape data-trim>
        <span sstep='7+'>  interface LabelledValue {
            label: string;
          }
@@ -276,66 +276,66 @@ let notThatUseful<span hstep='5'>: any</span>;</span>
        let rec = new Recipe();
        rec.name = 'risotto';</span>
           </code></pre>
-            <div explanation>
-              <span step="1">
-                another set of differences (or extras) are available when
-                dealing with classes
-              </span>
-              <span step="2">
-                Javascript 6 introduced the class keyword, making it easier to
-                work with javascript class definitions for people who come from
-                other OO backgrounds (prototype mechanism could be confusing)
-              </span>
-              <span step="3">
-                typescript takes this further, you can now define properties
-                inside your class definition
-              </span>
-              <span step="3">
-                and not just using
-                <span class="ilcode">this.propertyname</span> in the constructor
-              </span>
-              <span step="4"> you can also specify access modifiers </span>
-              <span step="4">
-                if nothing is specified, everything in a class is public, and
-                everything in a module is private except what's exported
-              </span>
-              <span step="4">
-                by convention, the names of private properties usually start
-                with an underscore
-              </span>
-              <span step="5">
-                there's also the <span class="ilcode">readonly</span> modifier
-                for properties
-              </span>
-              <span step="5"
-                >readonly properties must be initialized when declared or in the
-                constructor, and can't change afterwards
-              </span>
-              <span step="6">
-                you can declare computed properties using
-                <span class="ilcode">get</span> and
-                <span class="ilcode">set</span>
-              </span>
-              <span step="6">
-                which can be used just like public properties outside your class
-              </span>
-              <span step="7">
-                the interface keyword is also available, behaves (and is used)
-                just as you know it from java
-              </span>
-              <span step="8"
-                >you can explictly specify that arguments are optional by using
-                a ?</span
-              >
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>typescript.</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            >  <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								another set of differences (or extras) are available when
+								dealing with classes
+							</span>
+							<span step="2">
+								Javascript 6 introduced the class keyword, making it easier to
+								work with javascript class definitions for people who come from
+								other OO backgrounds (prototype mechanism could be confusing)
+							</span>
+							<span step="3">
+								typescript takes this further, you can now define properties
+								inside your class definition
+							</span>
+							<span step="3">
+								and not just using
+								<span class="ilcode">this.propertyname</span> in the constructor
+							</span>
+							<span step="4"> you can also specify access modifiers </span>
+							<span step="4">
+								if nothing is specified, everything in a class is public, and
+								everything in a module is private except what's exported
+							</span>
+							<span step="4">
+								by convention, the names of private properties usually start
+								with an underscore
+							</span>
+							<span step="5">
+								there's also the <span class="ilcode">readonly</span> modifier
+								for properties
+							</span>
+							<span step="5"
+								>readonly properties must be initialized when declared or in the
+								constructor, and can't change afterwards
+							</span>
+							<span step="6">
+								you can declare computed properties using
+								<span class="ilcode">get</span> and
+								<span class="ilcode">set</span>
+							</span>
+							<span step="6">
+								which can be used just like public properties outside your class
+							</span>
+							<span step="7">
+								the interface keyword is also available, behaves (and is used)
+								just as you know it from java
+							</span>
+							<span step="8"
+								>you can explictly specify that arguments are optional by using
+								a ?</span
+							>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>typescript.</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						>  <code class='codesteps' data-noescape data-trim>
           class Recipe {<span sstep='1-2'>
             private _name: string;
             </span>
@@ -344,160 +344,160 @@ let notThatUseful<span hstep='5'>: any</span>;</span>
             }
           }
           </code></pre>
-            <div explanation>
-              <span step="1">
-                one last thing I want to explicitly point out is the
-                initialize-and-declare-simultaneously typescript idiom
-              </span>
-              <span step="2">
-                when creating classes you often want to specify a private member
-                variable, pass an initial value in the constructor parameter
-                list, and initialize it in the constructor
-              </span>
-              <span step="3">
-                since this is a very common pattern, typescript has a shorthand
-                for it</span
-              >
-              <span step="3">
-                simply add an access modifier before the parameter of the
-                constructor, no separate property, nothing in the body of the
-                constructor
-              </span>
-              <span step="3">
-                this is the exact same thing as before, with a more convenient
-                syntax
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>typescript</h3>
-          <ul>
-            <li>
-              let's do an exercise to get the hang of typescript, we'll convert
-              an exercise you did last year in web2 to typescript
-            </li>
-            <li>
-              the exercise can be found at
-              <a href="https://github.com/stefaandc/exWeb4Typescript"
-                >https://github.com/stefaandc/exWeb4Typescript</a
-              >
-            </li>
-          </ul>
-        </section>
-        <section id="app">
-          <h3>our example app</h3>
-          <ul>
-            <li>a recipe webapp</li>
-            <li>user / recipes</li>
-            <li>list of recipes / live search</li>
-            <li>form to add recipes</li>
-          </ul>
-        </section>
-        <section>
-          <pre class="console">
+						<div explanation>
+							<span step="1">
+								one last thing I want to explicitly point out is the
+								initialize-and-declare-simultaneously typescript idiom
+							</span>
+							<span step="2">
+								when creating classes you often want to specify a private member
+								variable, pass an initial value in the constructor parameter
+								list, and initialize it in the constructor
+							</span>
+							<span step="3">
+								since this is a very common pattern, typescript has a shorthand
+								for it</span
+							>
+							<span step="3">
+								simply add an access modifier before the parameter of the
+								constructor, no separate property, nothing in the body of the
+								constructor
+							</span>
+							<span step="3">
+								this is the exact same thing as before, with a more convenient
+								syntax
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>typescript</h3>
+					<ul>
+						<li>
+							let's do an exercise to get the hang of typescript, we'll convert
+							an exercise you did last year in web2 to typescript
+						</li>
+						<li>
+							the exercise can be found at
+							<a href="https://github.com/stefaandc/exWeb4Typescript"
+								>https://github.com/stefaandc/exWeb4Typescript</a
+							>
+						</li>
+					</ul>
+				</section>
+				<section id="app">
+					<h3>our example app</h3>
+					<ul>
+						<li>a recipe webapp</li>
+						<li>user / recipes</li>
+						<li>list of recipes / live search</li>
+						<li>form to add recipes</li>
+					</ul>
+				</section>
+				<section>
+					<pre class="console">
 <span class="prompt">~$</span><span class="fragment highlight-current-red" data-fragment-index="1"> ng</span> <span class="fragment highlight-current-red" data-fragment-index="2">new</span> <span class="fragment highlight-current-red" data-fragment-index="3">recipeapp</span>
 			</pre>
-          <ul>
-            <li class="fragment" data-fragment-index="1">angular cli</li>
-            <li class="fragment" data-fragment-index="2">
-              the command angular cli should execute
-            </li>
-            <li class="fragment" data-fragment-index="3">
-              the name of the app we're creating
-            </li>
-          </ul>
-        </section>
-        <section>
-          <img
-            src="img/1_filelist.png"
-            alt="filelist"
-            width="415px"
-            height="500px"
-          />
-          <p>
-            I chose 'No' routing and plain CSS <br /><span
-              style="font-size: 70%"
-            >
-              (routing comes in a few weeks, and nobody likes css so we don't do
-              that here)
-            </span>
-          </p>
-        </section>
-        <section>
-          <h3>Now we can run this</h3>
-          <pre data-trim class="console">
+					<ul>
+						<li class="fragment" data-fragment-index="1">angular cli</li>
+						<li class="fragment" data-fragment-index="2">
+							the command angular cli should execute
+						</li>
+						<li class="fragment" data-fragment-index="3">
+							the name of the app we're creating
+						</li>
+					</ul>
+				</section>
+				<section>
+					<img
+						src="img/1_filelist.png"
+						alt="filelist"
+						width="415px"
+						height="500px"
+					/>
+					<p>
+						I chose 'No' routing and plain CSS <br /><span
+							style="font-size: 70%"
+						>
+							(routing comes in a few weeks, and nobody likes css so we don't do
+							that here)
+						</span>
+					</p>
+				</section>
+				<section>
+					<h3>Now we can run this</h3>
+					<pre data-trim class="console">
 					<!-- <code data-noescape data-trim> -->
 <span class="prompt">~$</span> cd recipeapp
 <span class="prompt">~/recipeapp$</span> <span class="fragment highlight-current-red" data-fragment-index="1">ng serve</span>
 					<!-- </code> -->
 				</pre>
-          <ul class="fragment">
-            <li>
-              first run will take a while (everything needs to be compiled)
-            </li>
-            <li>
-              app is available @
-              <a href="http://localhost:4200/">http://localhost:4200/</a>
-            </li>
-            <li>
-              you get a default 'hello world' angular app, with some links to
-              get you started
-            </li>
-            <li>changes are tracked and app updates automatically (Webpack)</li>
-            <li>
-              everything is done in memory (by default no files are written)
-            </li>
-          </ul>
-        </section>
-        <section><h2>problems?</h2></section>
-        <section
-          class="gifsection"
-          data-background-image="img/1_turn_off_on_again.gif"
-        ></section>
-        <section>
-          <h3>webpack problems?</h3>
-          <ul>
-            <li>open the Chrome console, click on errors</li>
-            <li>if obvious (typo...) fix it</li>
-            <li>if the error is very weird and doesn't make sense...</li>
-            <li>
-              quit 'ng serve', quit your browser, hide your kids, hide your wife
-            </li>
-            <li>restart everything, still errors: start googling</li>
-          </ul>
-        </section>
-        <section id="components">
-          <h3>it's all about components</h3>
-          <ul>
-            <li>
-              we create our webapp by defining new tags, and build our pages
-              using those
-            </li>
-            <li>such a new tag is created through a Component</li>
-            <li>components consists of some html, css and (typescript) code</li>
-            <li>... and tests, in an ideal world</li>
-          </ul>
-        </section>
-        <section>
-          <div class="fragment" code-step svg-step>
-            <svg
-              id="svg"
-              class="svg-section"
-              width="100%"
-              height="100%"
-              preserveAspectRatio="xMidYMid"
-              snapfile="img/component_structure.svg"
-            >
-              <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
-            </svg>
-          </div>
-        </section>
-        <section>
-          <h3>creating our first component</h3>
-          <pre class="console">
+					<ul class="fragment">
+						<li>
+							first run will take a while (everything needs to be compiled)
+						</li>
+						<li>
+							app is available @
+							<a href="http://localhost:4200/">http://localhost:4200/</a>
+						</li>
+						<li>
+							you get a default 'hello world' angular app, with some links to
+							get you started
+						</li>
+						<li>changes are tracked and app updates automatically (Webpack)</li>
+						<li>
+							everything is done in memory (by default no files are written)
+						</li>
+					</ul>
+				</section>
+				<section><h2>problems?</h2></section>
+				<section
+					class="gifsection"
+					data-background-image="img/1_turn_off_on_again.gif"
+				></section>
+				<section>
+					<h3>webpack problems?</h3>
+					<ul>
+						<li>open the Chrome console, click on errors</li>
+						<li>if obvious (typo...) fix it</li>
+						<li>if the error is very weird and doesn't make sense...</li>
+						<li>
+							quit 'ng serve', quit your browser, hide your kids, hide your wife
+						</li>
+						<li>restart everything, still errors: start googling</li>
+					</ul>
+				</section>
+				<section id="components">
+					<h3>it's all about components</h3>
+					<ul>
+						<li>
+							we create our webapp by defining new tags, and build our pages
+							using those
+						</li>
+						<li>such a new tag is created through a Component</li>
+						<li>components consists of some html, css and (typescript) code</li>
+						<li>... and tests, in an ideal world</li>
+					</ul>
+				</section>
+				<section>
+					<div class="fragment" code-step svg-step>
+						<svg
+							id="svg"
+							class="svg-section"
+							width="100%"
+							height="100%"
+							preserveAspectRatio="xMidYMid"
+							snapfile="img/component_structure.svg"
+						>
+							<use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
+						</svg>
+					</div>
+				</section>
+				<section>
+					<h3>creating our first component</h3>
+					<pre class="console">
 <span class="prompt">~/recipeapp</span>$ ng generate component recipe</pre>
-          <pre class="fragment console">
+					<pre class="fragment console">
 installing component
   <span style="color:#60c648;">CREATE</span> src/app/recipe/recipe.component.css (0 bytes)
   <span style="color:#60c648;">CREATE</span> src/app/recipe/recipe.component.html (25 bytes)
@@ -505,22 +505,22 @@ installing component
   <span style="color:#60c648;">CREATE</span> src/app/recipe/recipe.component.ts (269 bytes)
   <span style="color:#cccccc;">UPDATE</span> src/app/app.module.ts (396 bytes)
 				</pre>
-          <ul class="fragment">
-            <li>generates html/css/ts/unit test</li>
-            <li>
-              makes sure the component gets included at the right place so you
-              can use it (more on that later)
-            </li>
-          </ul>
-        </section>
+					<ul class="fragment">
+						<li>generates html/css/ts/unit test</li>
+						<li>
+							makes sure the component gets included at the right place so you
+							can use it (more on that later)
+						</li>
+					</ul>
+				</section>
 
-        <section>
-          <h3>creating our first component</h3>
+				<section>
+					<h3>creating our first component</h3>
 
-          <div codesteps>
-            <pre
-              class="typescript"
-            >src/app/recipe/recipe.component.ts<code class='codesteps' data-noescape data-trim>
+					<div codesteps>
+						<pre
+							class="typescript"
+						>src/app/recipe/recipe.component.ts<code class='codesteps' data-noescape data-trim>
                           <span hstep='2'>import { Component, OnInit } from '@angular/core';</span>
           
                           <span hstep='3'>@Component(</span>{
@@ -535,44 +535,44 @@ installing component
                             }
                           }
                       </code></pre>
-            <div explanation>
-              <span step="1"
-                >let's take a quick look at the code generated for a new
-                component</span
-              >
-              <span step="2">
-                we need to import dependencies (more about this when we talk
-                about modules)
-              </span>
-              <span step="3">
-                components are defined in a decorator of a class
-              </span>
-              <span step="4">
-                selector is the name of the tag you'll use in the html, so
-                <br /><span class="ilcode"
-                  >&ltapp-recipe&gt&lt/app-recipe&gt</span
-                ><br />
-                will show this component
-              </span>
-              <span step="5">
-                <span class="ilcode">templateUrl</span> and
-                <span class="ilcode">styleUrls</span> contain the html (one) and
-                css (multiple) of this component
-              </span>
-              <span step="6"> styles defined in this css are scoped! </span>
-              <span step="6">
-                they will only apply on the html of this template (styles never
-                'leak')
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>loading our first component.</h3>
-          <div codesteps>
-            <pre
-              class="html"
-            > src/app/app.component.html <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1"
+								>let's take a quick look at the code generated for a new
+								component</span
+							>
+							<span step="2">
+								we need to import dependencies (more about this when we talk
+								about modules)
+							</span>
+							<span step="3">
+								components are defined in a decorator of a class
+							</span>
+							<span step="4">
+								selector is the name of the tag you'll use in the html, so
+								<br /><span class="ilcode"
+									>&ltapp-recipe&gt&lt/app-recipe&gt</span
+								><br />
+								will show this component
+							</span>
+							<span step="5">
+								<span class="ilcode">templateUrl</span> and
+								<span class="ilcode">styleUrls</span> contain the html (one) and
+								css (multiple) of this component
+							</span>
+							<span step="6"> styles defined in this css are scoped! </span>
+							<span step="6">
+								they will only apply on the html of this template (styles never
+								'leak')
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>loading our first component.</h3>
+					<div codesteps>
+						<pre
+							class="html"
+						> src/app/app.component.html <code class='codesteps' data-noescape data-trim>
               &lt;div style=&quot;text-align:center&quot;&gt;
                 &lt;h1&gt;
                   Welcome to {{title}}
@@ -582,73 +582,73 @@ installing component
                 <span hstep='1'>&lt;app-recipe&gt;&lt;/app-recipe&gt;</span>
               &lt;/div&gt;            
             </code> <span class="githubcommit">bb3d916</span> </pre>
-            <div explanation>
-              <span step="1"
-                >now we can use this tag in our other html files</span
-              >
-              <span step="1"
-                >to see this at work, we add it to the html of our 'Main'
-                component</span
-              >
-              <span step="1">
-                <a href="http://localhost:4200/"> http://localhost:4200/ </a>
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>github.</h3>
-          <div style="display: grid">
-            <span style="grid-area: 1 / 1 / 2 / 3">
-              all the code from the example app can be found on
-              <a href="https://github.com/pieter-hogent/recipeapp">
-                my github repo
-              </a>
-              , using small incremental commits
-            </span>
+						<div explanation>
+							<span step="1"
+								>now we can use this tag in our other html files</span
+							>
+							<span step="1"
+								>to see this at work, we add it to the html of our 'Main'
+								component</span
+							>
+							<span step="1">
+								<a href="http://localhost:4200/"> http://localhost:4200/ </a>
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>github.</h3>
+					<div style="display: grid">
+						<span style="grid-area: 1 / 1 / 2 / 3">
+							all the code from the example app can be found on
+							<a href="https://github.com/pieter-hogent/recipeapp">
+								my github repo
+							</a>
+							, using small incremental commits
+						</span>
 
-            <img
-              style="grid-area: 2 / 1 / 3 / 2"
-              src="img/githubcommit.png"
-              alt=""
-            />
-            <span style="grid-area: 2 / 2 / 3 / 3; align-self: end">
-              when a slide corresponds with a commit, the commit hash is at the
-              bottom of the code window
-            </span>
-            <span style="grid-area: 3 / 1 / 4 / 3">
-              <pre data-trim class="console">
+						<img
+							style="grid-area: 2 / 1 / 3 / 2"
+							src="img/githubcommit.png"
+							alt=""
+						/>
+						<span style="grid-area: 2 / 2 / 3 / 3; align-self: end">
+							when a slide corresponds with a commit, the commit hash is at the
+							bottom of the code window
+						</span>
+						<span style="grid-area: 3 / 1 / 4 / 3">
+							<pre data-trim class="console">
 <span class='prompt'>~$</span> git clone https://github.com/Pieter-hogent/recipeapp.git
 <span class='prompt'>~$</span> cd recipeapp
 <span class='prompt'>~$recipeapp/</span> npm install
 <span class='prompt'>~$recipeapp/</span> git checkout -b mybranch bb3d916
               </pre>
-            </span>
-          </div>
-        </section>
-        <section>
-          <h3>ng doc</h3>
-          <ul>
-            <li>
-              we've done <span class="ilcode">ng new</span>,
-              <span class="ilcode">ng serve</span>,
-              <span class="ilcode">ng generate</span>, but there are more
-              <span class="ilcode">ng</span> commands available
-            </li>
-            <li>one of the more useful one's is probably ng doc</li>
-            <li>
-              typing <span class="ilcode">ng doc &lt;something&gt;</span> will
-              open the official documentation about &lt;something&gt; in your
-              browser (must be used inside an angular project)
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>adding data to the component</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            > src/app/recipe/recipe.component.ts <code class='codesteps' data-noescape data-trim>
+						</span>
+					</div>
+				</section>
+				<section>
+					<h3>ng doc</h3>
+					<ul>
+						<li>
+							we've done <span class="ilcode">ng new</span>,
+							<span class="ilcode">ng serve</span>,
+							<span class="ilcode">ng generate</span>, but there are more
+							<span class="ilcode">ng</span> commands available
+						</li>
+						<li>one of the more useful one's is probably ng doc</li>
+						<li>
+							typing <span class="ilcode">ng doc &lt;something&gt;</span> will
+							open the official documentation about &lt;something&gt; in your
+							browser (must be used inside an angular project)
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>adding data to the component</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						> src/app/recipe/recipe.component.ts <code class='codesteps' data-noescape data-trim>
                 export class RecipeComponent implements OnInit {
                   <span hstep='1'>name: <span hstep="2">string</span>;</span>
                 
@@ -660,50 +660,50 @@ installing component
                   }
                 }	            
             </code></pre>
-            <div explanation>
-              <span step="1">
-                declare a variable inside the class to hold the name
-              </span>
-              <span step="2"> it has a type! (this makes it typescript) </span>
-              <span step="3">
-                accessible inside all member function using
-                <span class="ilcode">this.</span>
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>adding data to the component</h3>
-          <div codesteps>
-            <pre
-              class="html"
-            > src/app/recipe/recipe.component.html <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								declare a variable inside the class to hold the name
+							</span>
+							<span step="2"> it has a type! (this makes it typescript) </span>
+							<span step="3">
+								accessible inside all member function using
+								<span class="ilcode">this.</span>
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>adding data to the component</h3>
+					<div codesteps>
+						<pre
+							class="html"
+						> src/app/recipe/recipe.component.html <code class='codesteps' data-noescape data-trim>
 &lt;p&gt;
   recipe for <span hstep="1">{{</span>name<span hstep="1">}}</span>
 &lt;p&gt;           
             </code><span class="githubcommit">7ff11fa</span></pre>
-            <div explanation>
-              <span step="1">
-                the property can be bound by enclosing it in
-                <span class="ilcode">{{}}</span> inside the html
-              </span>
-              <span step="1">
-                (no <span class="ilcode">this.</span> here, simply the name of
-                the property)
-              </span>
-              <span step="1">
-                <a href="http://localhost:4200/">let's try it</a>
-              </span>
-            </div>
-          </div>
-        </section>
+						<div explanation>
+							<span step="1">
+								the property can be bound by enclosing it in
+								<span class="ilcode">{{}}</span> inside the html
+							</span>
+							<span step="1">
+								(no <span class="ilcode">this.</span> here, simply the name of
+								the property)
+							</span>
+							<span step="1">
+								<a href="http://localhost:4200/">let's try it</a>
+							</span>
+						</div>
+					</div>
+				</section>
 
-        <section>
-          <h3>using a collection of data</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            > src/app/recipe/recipe.component.ts <code class='codesteps' data-noescape data-trim>
+				<section>
+					<h3>using a collection of data</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						> src/app/recipe/recipe.component.ts <code class='codesteps' data-noescape data-trim>
                 export class RecipeComponent implements OnInit {
                   name: string;
                   ingredients: <span hstep="1">string[]</span>;
@@ -717,25 +717,25 @@ installing component
                   ngOnInit() {}
                 }		            
             </code></pre>
-            <div explanation>
-              <span step="1">
-                what if we want to use a collection of data
-              </span>
-              <span step="1">
-                we declare the variable as an array of strings
-              </span>
-              <span step="2">
-                and obviously initialize it with an array too
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>using a collection of data</h3>
-          <div codesteps>
-            <pre
-              class="html"
-            > src/app/recipe/recipe.component.html <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								what if we want to use a collection of data
+							</span>
+							<span step="1">
+								we declare the variable as an array of strings
+							</span>
+							<span step="2">
+								and obviously initialize it with an array too
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>using a collection of data</h3>
+					<div codesteps>
+						<pre
+							class="html"
+						> src/app/recipe/recipe.component.html <code class='codesteps' data-noescape data-trim>
 &lt;p&gt;
   recipe for {{name}}
 &lt;/p&gt;
@@ -746,53 +746,53 @@ Ingredients:
   &lt;/li&gt;
 &lt;/ul&gt;           
             </code><span class="githubcommit">f9fdd84</span></pre>
-            <div explanation>
-              <span step="1">
-                the <span class="ilcode">*ngFor</span> keyword loops over an
-                array (notice the '*')
-              </span>
-              <span step="2">
-                declare a new loopvariable (the loop 'code' is passed as a
-                string parameter to *ngFor)
-              </span>
-              <span step="3">
-                then simply use this new loop variable as you would any other
-                component property
-              </span>
-              <span step="4">
-                <a href="http://localhost:4200/">let's try it</a>
-              </span>
-            </div>
-          </div>
-        </section>
-        <section id="pipe">
-          <h3>formatting data</h3>
-          <ul>
-            <li>
-              sometimes you don't want to show a property as it's stored, but
-              formatted (dates, currency, floating point numbers, ...)
-            </li>
-            <li>
-              you could add a separate (display) property for each property you
-              want to format (date, dateStr), but this is cumbersome and error
-              prone
-            </li>
-            <li>
-              and what if you want to format differently, based on the locale?
-              (US dates vs EU dates)
-            </li>
-            <li>
-              the Angular solution is to use Pipes, when a property is shown it
-              is 'piped' through a function first
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>pipe</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            > src/app/recipe/recipe.component.ts <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								the <span class="ilcode">*ngFor</span> keyword loops over an
+								array (notice the '*')
+							</span>
+							<span step="2">
+								declare a new loopvariable (the loop 'code' is passed as a
+								string parameter to *ngFor)
+							</span>
+							<span step="3">
+								then simply use this new loop variable as you would any other
+								component property
+							</span>
+							<span step="4">
+								<a href="http://localhost:4200/">let's try it</a>
+							</span>
+						</div>
+					</div>
+				</section>
+				<section id="pipe">
+					<h3>formatting data</h3>
+					<ul>
+						<li>
+							sometimes you don't want to show a property as it's stored, but
+							formatted (dates, currency, floating point numbers, ...)
+						</li>
+						<li>
+							you could add a separate (display) property for each property you
+							want to format (date, dateStr), but this is cumbersome and error
+							prone
+						</li>
+						<li>
+							and what if you want to format differently, based on the locale?
+							(US dates vs EU dates)
+						</li>
+						<li>
+							the Angular solution is to use Pipes, when a property is shown it
+							is 'piped' through a function first
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>pipe</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						> src/app/recipe/recipe.component.ts <code class='codesteps' data-noescape data-trim>
                 export class RecipeComponent implements OnInit {
                   name: string;
                   ingredients: string[];<span sstep='2+'>
@@ -805,23 +805,23 @@ Ingredients:
                   }
                 }            
             </code></pre>
-            <div explanation>
-              <span step="1">
-                to illustrate this, let's look at the built in date pipe,
-                imagine we want to show the date a recipe is added </span
-              ><span step="2">
-                first we need to add a date property to our typescript class,
-                and initialize it in our constructor
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>pipe</h3>
-          <div codesteps>
-            <pre
-              class="html"
-            > src/app/recipe/recipe.component.html <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								to illustrate this, let's look at the built in date pipe,
+								imagine we want to show the date a recipe is added </span
+							><span step="2">
+								first we need to add a date property to our typescript class,
+								and initialize it in our constructor
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>pipe</h3>
+					<div codesteps>
+						<pre
+							class="html"
+						> src/app/recipe/recipe.component.html <code class='codesteps' data-noescape data-trim>
               &lt;p&gt;
                 recipe for {{name}}, 
                 added on {{dateAdded<span sstep='3+'> | date<span sstep='4'>: 'dd/MM/yyyy'</span><span sstep='5+'>: 'longDate'</span></span>}} <span sstep='2'>
@@ -831,110 +831,110 @@ Ingredients:
                 // January 3, 2018</span>
               &lt;/p&gt;            
             </code><span class="githubcommit">540f065</span></pre>
-            <div explanation>
-              <span step="1,2">
-                simply outputting this date object in our html would result in a
-                not very friendly user output
-              </span>
-              <span step="3">
-                by adding the default built in date pipe, the date gets
-                formatted in a more user friendly way
-              </span>
-              <span step="4">
-                but you can specify how the formatting needs to happen, using
-                typical date format strings
-              </span>
-              <span step="5">
-                or you can use one of the predefined formatters, which take the
-                current locale into account
-              </span>
-              <span step="6">
-                next to date pipes, there are many other built in pipes
-                (currency, numbers, lowercase, json, ...)
-              </span>
-              <span step="6">
-                or you can (rather easily) write your own custom pipes (we'll do
-                that later)
-              </span>
-              <span step="7">
-                <a href="http://localhost:4200">let's try this</a>
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>built in pipes examples</h3>
-          <table class="reveal">
-            <tr>
-              <td>TitleCasePipe</td>
-              <td>Transforms Text To Title Case</td>
-            </tr>
-            <tr>
-              <td>CurrencyPipe</td>
-              <td>€ 45.10 / USD 1000 / $15</td>
-            </tr>
-            <tr>
-              <td>PercentPipe</td>
-              <td>26%</td>
-            </tr>
-            <tr>
-              <td>DecimalPipe</td>
-              <td>3.14 / 03.14000</td>
-            </tr>
-            <tr>
-              <td>JsonPipe</td>
-              <td>{ properly formatted json object }</td>
-            </tr>
-            <tr>
-              <td colspan="2">
-                <a href="https://angular.io/api?type=pipe">... and many more</a>
-              </td>
-            </tr>
-          </table>
-        </section>
-        <section id="input">
-          <h3>pass data between components</h3>
-          <ul>
-            <li>
-              when creating more complex components, you typically use a bunch
-              of other smaller components
-            </li>
-            <li>
-              often called <i>dumb</i> (or presentational) components, only used
-              to show info to the user; as opposed to <i>smart</i> components,
-              which contain functionality as well
-            </li>
-            <li>
-              for this to be useful, you need to be able to pass data to these
-              embedded components, which they'll render
-            </li>
-            <li>
-              this is done using the
-              <span class="ilcode">@Input()</span> decorator on properties
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>ingredient component</h3>
-          <div>
-            as an example, take our recipe's ingredients.<br />
-            ingredients need more than a name, so lets create a separate
-            component
-          </div>
-          <pre data-trim class="console">
+						<div explanation>
+							<span step="1,2">
+								simply outputting this date object in our html would result in a
+								not very friendly user output
+							</span>
+							<span step="3">
+								by adding the default built in date pipe, the date gets
+								formatted in a more user friendly way
+							</span>
+							<span step="4">
+								but you can specify how the formatting needs to happen, using
+								typical date format strings
+							</span>
+							<span step="5">
+								or you can use one of the predefined formatters, which take the
+								current locale into account
+							</span>
+							<span step="6">
+								next to date pipes, there are many other built in pipes
+								(currency, numbers, lowercase, json, ...)
+							</span>
+							<span step="6">
+								or you can (rather easily) write your own custom pipes (we'll do
+								that later)
+							</span>
+							<span step="7">
+								<a href="http://localhost:4200">let's try this</a>
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>built in pipes examples</h3>
+					<table class="reveal">
+						<tr>
+							<td>TitleCasePipe</td>
+							<td>Transforms Text To Title Case</td>
+						</tr>
+						<tr>
+							<td>CurrencyPipe</td>
+							<td>€ 45.10 / USD 1000 / $15</td>
+						</tr>
+						<tr>
+							<td>PercentPipe</td>
+							<td>26%</td>
+						</tr>
+						<tr>
+							<td>DecimalPipe</td>
+							<td>3.14 / 03.14000</td>
+						</tr>
+						<tr>
+							<td>JsonPipe</td>
+							<td>{ properly formatted json object }</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<a href="https://angular.io/api?type=pipe">... and many more</a>
+							</td>
+						</tr>
+					</table>
+				</section>
+				<section id="input">
+					<h3>pass data between components</h3>
+					<ul>
+						<li>
+							when creating more complex components, you typically use a bunch
+							of other smaller components
+						</li>
+						<li>
+							often called <i>dumb</i> (or presentational) components, only used
+							to show info to the user; as opposed to <i>smart</i> components,
+							which contain functionality as well
+						</li>
+						<li>
+							for this to be useful, you need to be able to pass data to these
+							embedded components, which they'll render
+						</li>
+						<li>
+							this is done using the
+							<span class="ilcode">@Input()</span> decorator on properties
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>ingredient component</h3>
+					<div>
+						as an example, take our recipe's ingredients.<br />
+						ingredients need more than a name, so lets create a separate
+						component
+					</div>
+					<pre data-trim class="console">
 <span class='prompt'>~/recipeapp$</span> ng generate component ingredient
 
 // which can be written shorter as well
 
 <span class='prompt'>~/recipeapp$</span> ng g c ingredient</pre>
-        </section>
-        <section>
-          when rendering the name of the ingredient, we want to pass it from the
-          recipe
-          <div codesteps>
-            <pre
-              class="typescript"
-            > src/app/ingredient/ingredient.component.ts <code class='codesteps' data-noescape data-trim>
+				</section>
+				<section>
+					when rendering the name of the ingredient, we want to pass it from the
+					recipe
+					<div codesteps>
+						<pre
+							class="typescript"
+						> src/app/ingredient/ingredient.component.ts <code class='codesteps' data-noescape data-trim>
                 import { Component, OnInit, <span hstep="1">Input</span>} from '@angular/core';
 
                 @Component({
@@ -943,44 +943,54 @@ Ingredients:
                   styleUrls: ['./ingredient.component.css']
                 })
                 export class IngredientComponent implements OnInit {
-                  <span hstep="2">@Input()</span> name : string;
+                  <span hstep="2">@Input()</span> name : string<span hstep='3'> = '' </span>;
                 
-                  constructor() {<span hstep='3'> </span>}
+                  constructor() {}
                 
                   ngOnInit() {
                   }
                 }	           
             </code></pre>
-            <div explanation>
-              <span step="1">we added the Input import </span>
-              <span step="2">
-                and added an @Input annotation to our variable
-              </span>
-              <span step="3">
-                note that we no longer initialize our variable in the
-                constructor
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          first lets change the default html to show this name property
-          <pre>src/app/ingredient/ingredient.html<code data-noescape data-trim>
+						<div explanation>
+							<span step="1">we added the Input import </span>
+							<span step="2">
+								and added an @Input annotation to our variable
+							</span>
+							<span step="3">
+								note that we still initialize our variable, since typescript
+								2.7's
+								<span class="ilcode">--strictPropertyInitialization</span>
+								all variables must always be initialized when declared (or the
+								latest in the constructor)
+							</span>
+							<span step="4"
+								>I'm sure there are still spots in the course I need to update
+								for this, if you bump into a "Property has no initializer and is
+								not definitely assigned in the constructor.ts" error, notify me
+								pls</span
+							>
+							<span step="4">(or make a pull request of course ;))</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					first lets change the default html to show this name property
+					<pre>src/app/ingredient/ingredient.html<code data-noescape data-trim>
 &lt;p&gt;
   ingredient works!
 &lt;/p&gt;
 	</code></pre>
-          <span>should become</span>
-          <pre>src/app/ingredient/ingredient.html<code data-noescape data-trim>
+					<span>should become</span>
+					<pre>src/app/ingredient/ingredient.html<code data-noescape data-trim>
 {{name}}
 	</code></pre>
-        </section>
-        <section>
-          <h3>now use this component in the recipe html.</h3>
-          <div codesteps>
-            <pre
-              class="html"
-            > src/app/recipe/recipe.component.html <code class='codesteps' data-noescape data-trim>
+				</section>
+				<section>
+					<h3>now use this component in the recipe html.</h3>
+					<div codesteps>
+						<pre
+							class="html"
+						> src/app/recipe/recipe.component.html <code class='codesteps' data-noescape data-trim>
               &lt;p&gt;
                 recipe for {{name}}
               &lt;/p&gt;
@@ -991,52 +1001,52 @@ Ingredients:
                 &lt;/li&gt;
               &lt;/ul&gt;	
             </code><span class="githubcommit">2bbff86</span></pre>
-            <div explanation>
-              <span step="1"> we add the component with its tag </span>
-              <span step="2">
-                and we set a property using square brackets [ ]
-              </span>
-              <span step="3">
-                note that the <i>content</i> of the loop variable ingredient is
-                passed, not the string 'ingredient'
-              </span>
-              <span step="4">
-                <a href="http://localhost:4200/">let's try it out</a>
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <div class="fragment" code-step svg-step>
-            <svg
-              id="svg2"
-              class="svg-section"
-              width="100%"
-              height="100%"
-              preserveAspectRatio="xMidYMid"
-              snapfile="img/ingredient_input.svg"
-            >
-              <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
-            </svg>
-          </div>
-        </section>
-        <section id="debugging">
-          <h3>debugging</h3>
-          <p>
-            visual studio code has a lot of (third party) extensions, we'll use
-            the Debugger for Chrome to help us debug our Angular application
-          </p>
-          <img
-            src="img/debugger_chrome_extension.png"
-            alt="debugger extension"
-          />
-        </section>
-        <section>
-          <h3>debugging</h3>
-          <div codesteps>
-            <pre
-              class="javascript"
-            > .vscode/launch.json <code class='codesteps'  data-noescape data-trim>
+						<div explanation>
+							<span step="1"> we add the component with its tag </span>
+							<span step="2">
+								and we set a property using square brackets [ ]
+							</span>
+							<span step="3">
+								note that the <i>content</i> of the loop variable ingredient is
+								passed, not the string 'ingredient'
+							</span>
+							<span step="4">
+								<a href="http://localhost:4200/">let's try it out</a>
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<div class="fragment" code-step svg-step>
+						<svg
+							id="svg2"
+							class="svg-section"
+							width="100%"
+							height="100%"
+							preserveAspectRatio="xMidYMid"
+							snapfile="img/ingredient_input.svg"
+						>
+							<use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
+						</svg>
+					</div>
+				</section>
+				<section id="debugging">
+					<h3>debugging</h3>
+					<p>
+						visual studio code has a lot of (third party) extensions, we'll use
+						the Debugger for Chrome to help us debug our Angular application
+					</p>
+					<img
+						src="img/debugger_chrome_extension.png"
+						alt="debugger extension"
+					/>
+				</section>
+				<section>
+					<h3>debugging</h3>
+					<div codesteps>
+						<pre
+							class="javascript"
+						> .vscode/launch.json <code class='codesteps'  data-noescape data-trim>
                 {
                   "version": "0.2.0",
                   "configurations": [
@@ -1051,76 +1061,76 @@ Ingredients:
                   ]
                 }
             </code><span class="githubcommit">aa93285</span></pre>
-            <div explanation>
-              <span step="1">
-                you need a launch.json file to specify how to run the debugger,
-                choose Debug > Start Debugging (F5) from the menu, and select
-                the Chrome option to create a default one
-              </span>
-              <span step="2">
-                change the url to localhost:4200, where angular serves the app
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>debugging</h3>
-          <p>
-            make sure the app is running, add a breakpoint and start your debug
-            proces
-          </p>
-          <img src="img/debugger_running.png" alt="running debugger" />
-        </section>
-        <section>
-          <h3>other plugins</h3>
-          <ul>
-            <li>
-              there are many other plugins, some of which are really convenient
-            </li>
-            <li>
-              I have a <a href="vscode_plugins.html">page</a> where I keep a
-              list of the plugins I use (these change, as I find new ones, or as
-              vscode adds functionality
-            </li>
-            <li>
-              don't mindlessly install all these (if you're not a Vim user and
-              you install the Vim plugin you're going to have a Bad Time)
-            </li>
-          </ul>
-        </section>
+						<div explanation>
+							<span step="1">
+								you need a launch.json file to specify how to run the debugger,
+								choose Debug > Start Debugging (F5) from the menu, and select
+								the Chrome option to create a default one
+							</span>
+							<span step="2">
+								change the url to localhost:4200, where angular serves the app
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>debugging</h3>
+					<p>
+						make sure the app is running, add a breakpoint and start your debug
+						proces
+					</p>
+					<img src="img/debugger_running.png" alt="running debugger" />
+				</section>
+				<section>
+					<h3>other plugins</h3>
+					<ul>
+						<li>
+							there are many other plugins, some of which are really convenient
+						</li>
+						<li>
+							I have a <a href="vscode_plugins.html">page</a> where I keep a
+							list of the plugins I use (these change, as I find new ones, or as
+							vscode adds functionality
+						</li>
+						<li>
+							don't mindlessly install all these (if you're not a Vim user and
+							you install the Vim plugin you're going to have a Bad Time)
+						</li>
+					</ul>
+				</section>
 
-        <section>
-          <h3>summary</h3>
-          <ul>
-            <li>
-              use angular-cli to create everything (<span class="ilcode"
-                >ng XXX</span
-              >)
-            </li>
-            <li>pages are built using components</li>
-            <li>
-              everything is typescript, which is sort of an enhanced javascript
-            </li>
-            <li>
-              pass properties from the code to the html using
-              <span class="ilcode">{{}}</span>
-            </li>
-            <li>format data in your html using pipes</li>
-            <li>
-              pass data from the html to code using
-              <span class="ilcode">[ ]</span>
-            </li>
-            <li>*ngFor to loop over a list inside your html</li>
-          </ul>
-        </section>
-      </div>
-    </div>
+				<section>
+					<h3>summary</h3>
+					<ul>
+						<li>
+							use angular-cli to create everything (<span class="ilcode"
+								>ng XXX</span
+							>)
+						</li>
+						<li>pages are built using components</li>
+						<li>
+							everything is typescript, which is sort of an enhanced javascript
+						</li>
+						<li>
+							pass properties from the code to the html using
+							<span class="ilcode">{{}}</span>
+						</li>
+						<li>format data in your html using pipes</li>
+						<li>
+							pass data from the html to code using
+							<span class="ilcode">[ ]</span>
+						</li>
+						<li>*ngFor to loop over a list inside your html</li>
+					</ul>
+				</section>
+			</div>
+		</div>
 
-    <script src="lib/js/chart.xkcd.min.js"></script>
-    <script src="lib/js/head.min.js"></script>
-    <script src="js/reveal.js"></script>
-    <script src="plugin/codestepper/codestepper.js"></script>
-    <script src="js/hogent-reveal.js" data-start-at-last="false"></script>
-    <script src="js/snap.svg.js"></script>
-  </body>
+		<script src="lib/js/chart.xkcd.min.js"></script>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script src="plugin/codestepper/codestepper.js"></script>
+		<script src="js/hogent-reveal.js" data-start-at-last="false"></script>
+		<script src="js/snap.svg.js"></script>
+	</body>
 </html>
