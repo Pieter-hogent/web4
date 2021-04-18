@@ -93,24 +93,29 @@
 					<h3>overview.</h3>
 					<ol>
 						<li>
-							<a href="#/intro">intro to testing in angular</a> <br />
-							<span> what comes include, why we won't use it</span>
+							<a href="#/intro">intro to testing in angular</a>
+							<br />
+							<span>what comes include, why we won't use it</span>
 						</li>
 						<li>
-							<a href="#/cypress">cypress</a> <br />
-							<span> the testing framework we will use</span>
+							<a href="#/cypress">cypress</a>
+							<br />
+							<span>the testing framework we will use</span>
 						</li>
 						<li>
-							<a href="#/firsttest">first test</a> <br />
-							<span> how is a test structured</span>
+							<a href="#/firsttest">first test</a>
+							<br />
+							<span>how is a test structured</span>
 						</li>
 						<li>
-							<a href="#/mocking">mocking</a> <br />
-							<span> mocking responses from the server</span>
+							<a href="#/mocking">mocking</a>
+							<br />
+							<span>mocking responses from the server</span>
 						</li>
 						<li>
-							<a href="#/fixtures">fixtures</a> <br />
-							<span> use fixtures to more easily reuse mocked data</span>
+							<a href="#/fixtures">fixtures</a>
+							<br />
+							<span>use fixtures to more easily reuse mocked data</span>
 						</li>
 					</ol>
 				</section>
@@ -128,14 +133,16 @@
 					<h3>angular tests</h3>
 					<ul>
 						<li>
-							when creating projects with <span class="ilcode">ng new</span>,
-							and generating components, a lot of test stuff is added
+							when creating projects with
+							<span class="ilcode">ng new</span>
+							, and generating components, a lot of test stuff is added
 							automatically
 						</li>
 						<li>unit tests using karma and jasmine</li>
 						<ul>
 							<li>
-								you can start them with <span class="ilcode">npm test</span>
+								you can start them with
+								<span class="ilcode">npm test</span>
 							</li>
 							<li>
 								they work fine, but the need for unit tests in the frontend is
@@ -178,13 +185,19 @@
 				<section>
 					<h3>installing cypress</h3>
 					<pre data-trim class="console">
-<span class='prompt'>~$</span> npm install --save-dev cypress
+<span class='prompt'>~$</span> npm install --save-dev cypress@4.1.0
           </pre>
 					<ul>
-						<li>installing this is installing just another npm package</li>
 						<li>
-							don't forget the <span class="ilcode">--save-dev</span>, you only
-							want this included in development environments, not in production
+							installing this is installing just another npm package (we use the
+							4.1 version, they're already up to version 7 but there's a
+							babel/webpack conflict right now)
+						</li>
+						<li>
+							don't forget the
+							<span class="ilcode">--save-dev</span>
+							, you only want this included in development environments, not in
+							production
 						</li>
 					</ul>
 					<pre data-trim class="console">
@@ -197,7 +210,8 @@
 						</li>
 						<li>
 							(this is equivalent to
-							<span class="ilcode">./node_modules/.bin/cypress open</span>)
+							<span class="ilcode">./node_modules/.bin/cypress open</span>
+							)
 						</li>
 					</ul>
 				</section>
@@ -218,8 +232,9 @@
 								</li>
 								<li>
 									you can run one test by clicking it, all these tests were
-									added inside a <span class="ilcode">cypress/</span> folder at
-									the root of your application
+									added inside a
+									<span class="ilcode">cypress/</span>
+									folder at the root of your application
 								</li>
 								<li>
 									these examples are great to show how everything's done, but
@@ -251,34 +266,40 @@
                  
             </code></pre>
 						<div explanation>
-							<span step="1"
-								>create the file
-								<span class="ilcode">myfirsttest.spec.js</span> in
+							<span step="1">
+								create the file
+								<span class="ilcode">myfirsttest.spec.js</span>
+								in
 								<span class="ilcode">cypress/integration/</span>
 							</span>
-							<span step="2"
-								>individual tests are identified by
-								<span class="ilcode">it</span>,
-								<span class="ilcode">describe</span> structures multiple
-								tests</span
-							>
-							<span step="3"
-								><span class="ilcode">expect</span> is used to really test
-								things</span
-							>
-							<span step="4"
-								>if you've ever written javascript tests, you might recognize
-								these</span
-							>
-							<span step="4"
-								>they come from <span class="ilcode">mocha</span> en
-								<span class="ilcode">chai</span> (included in cypress)</span
-							>
+							<span step="2">
+								individual tests are identified by
+								<span class="ilcode">it</span>
+								,
+								<span class="ilcode">describe</span>
+								structures multiple tests
+							</span>
+							<span step="3">
+								<span class="ilcode">expect</span>
+								is used to really test things
+							</span>
+							<span step="4">
+								if you've ever written javascript tests, you might recognize
+								these
+							</span>
+							<span step="4">
+								they come from
+								<span class="ilcode">mocha</span>
+								en
+								<span class="ilcode">chai</span>
+								(included in cypress)
+							</span>
 							<span step="5">let's add a failing test too</span>
-							<span step="6"
-								>in the cypress app you'll see that these tests are
-								automatically found and added to the list</span
-							><span step="6">let's try this out</span>
+							<span step="6">
+								in the cypress app you'll see that these tests are automatically
+								found and added to the list
+							</span>
+							<span step="6">let's try this out</span>
 						</div>
 					</div>
 				</section>
@@ -297,31 +318,32 @@
                     
             </code><span class="githubcommit">afd0439</span></pre>
 						<div explanation>
-							<span step="1"
-								>this works, but testing tautologies is hardly useful, let's do
-								a real test
+							<span step="1">
+								this works, but testing tautologies is hardly useful, let's do a
+								real test
 							</span>
-							<span step="2"
-								>start with visiting our page, using the
-								<span class="ilcode">cy</span> command</span
-							>
-							<span step="2"
-								>even though there are no asserts, this will already succeed /
+							<span step="2">
+								start with visiting our page, using the
+								<span class="ilcode">cy</span>
+								command
+							</span>
+							<span step="2">
+								even though there are no asserts, this will already succeed /
 								fail based on the availability of your app
 							</span>
-							<span step="3"
-								>if you run this test, you'll see the page is really being shown
+							<span step="3">
+								if you run this test, you'll see the page is really being shown
 							</span>
-							<span step="3">as are all XHR requests </span>
+							<span step="3">as are all XHR requests</span>
 							<span step="4">
 								let's check something, we've got one button ('add') and when our
 								page is loaded it's disabled
 							</span>
-							<span step="5"
-								>this works, but it's not the best way to access DOM elements on
+							<span step="5">
+								this works, but it's not the best way to access DOM elements on
 								the page
 							</span>
-							<span step="5"> (what if you have two buttons?) </span>
+							<span step="5">(what if you have two buttons?)</span>
 						</div>
 					</div>
 				</section>
@@ -389,15 +411,15 @@
             
             </code><span class="githubcommit">f3574f3]</span></pre>
 						<div explanation>
-							<span step="1"
-								>let's add some attributes to help us test the application
+							<span step="1">
+								let's add some attributes to help us test the application
 							</span>
-							<span step="2"
-								>we'll add an attribute to the filter input element</span
-							>
-							<span step="3"
-								>and tot he app-recipe component, inside our ngFor</span
-							>
+							<span step="2">
+								we'll add an attribute to the filter input element
+							</span>
+							<span step="3">
+								and tot he app-recipe component, inside our ngFor
+							</span>
 						</div>
 					</div>
 				</section>
@@ -416,18 +438,17 @@
                 });
             </code></pre>
 						<div explanation>
-							<span step="1">we'll type 'sp' in our filter </span>
-							<span step="2"
-								>that should leave us with one card (the one showing
-								'spaghetti')</span
-							>
-							<span step="3"
-								>this obviously relies on the state of our database</span
-							>
-							<span step="3"
-								>this test assumes we started with the default seeded database
-								of our backend</span
-							>
+							<span step="1">we'll type 'sp' in our filter</span>
+							<span step="2">
+								that should leave us with one card (the one showing 'spaghetti')
+							</span>
+							<span step="3">
+								this obviously relies on the state of our database
+							</span>
+							<span step="3">
+								this test assumes we started with the default seeded database of
+								our backend
+							</span>
 						</div>
 					</div>
 				</section>
@@ -487,49 +508,49 @@
               
             </code></pre>
 						<div explanation>
-							<span step="1"
-								>to mock requests you start by calling a
+							<span step="1">
+								to mock requests you start by calling a
 								<span class="ilcode">cy.server()</span>
 							</span>
 							<span step="1">
-								every request done with <span class="ilcode">cy.route</span> or
-								<span class="ilcode">cy.request</span> will now pass through
-								this server</span
-							>
-							<span step="2"
-								>that doesn't mean the request will not be handled by the
-								server</span
-							>
-							<span step="2"
-								>if you simply define a GET request, it will simply be passed
-								through the cy.server to the backend</span
-							>
+								every request done with
+								<span class="ilcode">cy.route</span>
+								or
+								<span class="ilcode">cy.request</span>
+								will now pass through this server
+							</span>
+							<span step="2">
+								that doesn't mean the request will not be handled by the server
+							</span>
+							<span step="2">
+								if you simply define a GET request, it will simply be passed
+								through the cy.server to the backend
+							</span>
 							<span step="3">what's the point you might wonder?</span>
-							<span step="3"
-								>well, you can define options on your server, and e.g. delay all
+							<span step="3">
+								well, you can define options on your server, and e.g. delay all
 								requests and test if your application works correctly with slow
-								connections</span
-							>
-							<span step="3"
-								>(there are many other options, and you can define callbacks on
-								the cy.server as well)</span
-							>
-							<span step="4"
-								>but we want to mock our requests, so we add a response
+								connections
+							</span>
+							<span step="3">
+								(there are many other options, and you can define callbacks on
+								the cy.server as well)
+							</span>
+							<span step="4">
+								but we want to mock our requests, so we add a response
 							</span>
 							<span step="5">
 								then we visit the site (which will trigger a GET on
-								/api/recipes)</span
-							>
+								/api/recipes)
+							</span>
 							<span step="5">
 								and we can check that three recipe components were constructed
-								as a result of three recipe objects in the servers
-								response</span
-							>
-							<span step="6"
-								>inlining data can become cumbersome (and distract from the
-								tests), a better way is to use fixtures</span
-							>
+								as a result of three recipe objects in the servers response
+							</span>
+							<span step="6">
+								inlining data can become cumbersome (and distract from the
+								tests), a better way is to use fixtures
+							</span>
 						</div>
 					</div>
 				</section>
@@ -616,10 +637,12 @@
             </code></pre>
 						<div explanation>
 							<span step="1">
-								create a <span class="ilcode">recipes.json</span> file with all
-								the recipes we want to load in the
-								<span class="ilcode">cypress/fixtures/</span> folder</span
-							>
+								create a
+								<span class="ilcode">recipes.json</span>
+								file with all the recipes we want to load in the
+								<span class="ilcode">cypress/fixtures/</span>
+								folder
+							</span>
 						</div>
 					</div>
 				</section>
@@ -649,19 +672,20 @@
 								now we simply need to change the data object to a reference to
 								the json file
 							</span>
-							<span step="2"
-								>use a string with the
-								<span class="ilcode">fixture:</span> prefix, and the filename,
-								without the path to the fixtures folder</span
-							>
-							<span step="3"
-								>having the url to our server hardcoded in the tests is annoying
-								as well (what if it moves and you have dozens of tests?)</span
-							>
-							<span step="3"
-								>luckily, there is a
-								<span class="ilcode">cypress.json</span> file at the root where
-								we can specify these things
+							<span step="2">
+								use a string with the
+								<span class="ilcode">fixture:</span>
+								prefix, and the filename, without the path to the fixtures
+								folder
+							</span>
+							<span step="3">
+								having the url to our server hardcoded in the tests is annoying
+								as well (what if it moves and you have dozens of tests?)
+							</span>
+							<span step="3">
+								luckily, there is a
+								<span class="ilcode">cypress.json</span>
+								file at the root where we can specify these things
 							</span>
 							<span step="4">so remove the url everywhere...</span>
 						</div>
@@ -680,14 +704,15 @@
             </code></pre>
 						<div explanation>
 							<span step="1">
-								and add a <span class="ilcode">baseUrl</span> property inside
-								the <span class="ilcode">cypress.json</span> file at the root of
-								your app
+								and add a
+								<span class="ilcode">baseUrl</span>
+								property inside the
+								<span class="ilcode">cypress.json</span>
+								file at the root of your app
 							</span>
 							<span step="1">
-								this baseUrl will be prepended to every url in the cypress
-								tests</span
-							>
+								this baseUrl will be prepended to every url in the cypress tests
+							</span>
 						</div>
 					</div>
 				</section>
@@ -710,33 +735,33 @@
                 });
             </code><span class="githubcommit">be18b22</span></pre>
 						<div explanation>
-							<span step="1"
-								>as a last example lets add a test to make sure our error
-								message is properly shown
+							<span step="1">
+								as a last example lets add a test to make sure our error message
+								is properly shown
 							</span>
-							<span step="1"
-								>start by adding a
-								<span class="ilcode">data-cy='appError'</span> attribute to the
-								<span class="ilcode">&lt;mat-error&gt;</span> in our
-								recipe-list.component
+							<span step="1">
+								start by adding a
+								<span class="ilcode">data-cy='appError'</span>
+								attribute to the
+								<span class="ilcode">&lt;mat-error&gt;</span>
+								in our recipe-list.component
 							</span>
-							<span step="2"
-								>then define a route and make sure a server error occurs when
-								it's accessed</span
-							>
-							<span step="3"
-								>then we can make sure the error dialog is shown when the page
-								is visited</span
-							>
-							<span step="4"
-								>it's always a good idea to make sure error paths are properly
-								tested</span
-							>
-							<span step="4"
-								>they are easily overlooked, you see the 'normal' flow
-								constantly while developing, but rarely the weird error
-								cases</span
-							>
+							<span step="2">
+								then define a route and make sure a server error occurs when
+								it's accessed
+							</span>
+							<span step="3">
+								then we can make sure the error dialog is shown when the page is
+								visited
+							</span>
+							<span step="4">
+								it's always a good idea to make sure error paths are properly
+								tested
+							</span>
+							<span step="4">
+								they are easily overlooked, you see the 'normal' flow constantly
+								while developing, but rarely the weird error cases
+							</span>
 						</div>
 					</div>
 				</section>
