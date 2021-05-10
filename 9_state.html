@@ -1,308 +1,303 @@
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
 
-    <title>9. state</title>
+		<title>9. state</title>
 
-    <!-- Theme used for syntax highlighting of code -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="lib/css/atom-one-light.css" />
+		<!-- Theme used for syntax highlighting of code -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Montserrat"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="lib/css/atom-one-light.css" />
 
-    <link rel="stylesheet" href="css/reveal.css" />
-    <link rel="stylesheet" href="css/theme/hogent.css" />
+		<link rel="stylesheet" href="css/reveal.css" />
+		<link rel="stylesheet" href="css/theme/hogent.css" />
 
-    <!-- pieter overrides -->
-    <link rel="stylesheet" href="plugin/codestepper/codestepper.css" />
+		<!-- pieter overrides -->
+		<link rel="stylesheet" href="plugin/codestepper/codestepper.css" />
 
-    <!-- Printing and PDF exports -->
-    <script>
-      var link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = window.location.search.match(/print-pdf/gi)
-        ? 'css/print/pdf.css'
-        : 'css/print/paper.css';
-      document.getElementsByTagName('head')[0].appendChild(link);
-    </script>
-  </head>
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement('link');
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match(/print-pdf/gi)
+				? 'css/print/pdf.css'
+				: 'css/print/paper.css';
+			document.getElementsByTagName('head')[0].appendChild(link);
+		</script>
+	</head>
 
-  <body>
-    <div class="reveal">
-      <div class="slides">
-        <section
-          class="title-slide"
-          data-transition="none"
-          data-background-transition="none"
-        >
-          <img class="title-img" src="img/babyyoda9.png" />
-          <h2>State</h2>
-          <h4>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section
+					class="title-slide"
+					data-transition="none"
+					data-background-transition="none"
+				>
+					<img class="title-img" src="img/babyyoda9.png" />
+					<h2>State</h2>
+					<h4>
 						Karine Samyn, Benjamin Vertonghen, Thomas Aelbrecht, Pieter Van Der
 						Helst
 					</h4>
-          <footer class="footer">
-            "Deleted code is debugged code." - Jeff Sickel
-          </footer>
-        </section>
-        <section class="contents-slide">
-          <h3>overview</h3>
-          <ol>
-            <li>
-              <a href="#/intro"> different kinds of state </a> <br />
-              <span style="font-size: 0.7em;">
-                describe 5 different kinds of state
-              </span>
-            </li>
-            <li>
-              <a href="#/state_problems"> problems with state </a> <br />
-              <span style="font-size: 0.7em;">
-                syncing state potentially leads to problems
-              </span>
-            </li>
-            <li>
-              <a href="#/urlvslocalclient"> url vs local client state</a> <br />
-              <span style="font-size: 0.7em;">
-                example of a url to local client out of order sync problem
-              </span>
-            </li>
+					<footer class="footer">
+						"Deleted code is debugged code." - Jeff Sickel
+					</footer>
+				</section>
+				<section class="contents-slide">
+					<h3>overview</h3>
+					<ol>
+						<li>
+							<a href="#/intro">different kinds of state</a>
+							<br />
+							<span style="font-size: 0.7em">
+								describe 5 different kinds of state
+							</span>
+						</li>
+						<li>
+							<a href="#/state_problems">problems with state</a>
+							<br />
+							<span style="font-size: 0.7em">
+								syncing state potentially leads to problems
+							</span>
+						</li>
+						<li>
+							<a href="#/urlvslocalclient">url vs local client state</a>
+							<br />
+							<span style="font-size: 0.7em">
+								example of a url to local client out of order sync problem
+							</span>
+						</li>
 
-            <li>
-              <a href="#/rxjsflattening"> RxJS flattening operators</a>
-              <br />
-              <span style="font-size: 0.7em;">
-                rxjs flattening operators explained through examples
-              </span>
-            </li>
-            <li>
-              <a href="#/urllocalfix"> url vs local client state fixed</a>
-              <br />
-              <span style="font-size: 0.7em;">
-                a fix using these operators for our first problem
-              </span>
-            </li>
-          </ol>
-        </section>
-        <section id="intro">
-          <h3>intro</h3>
-          <ul>
-            <li>
-              Today we'll talk about keeping and syncing state and all related
-              problems and issues
-            </li>
-            <li>
-              We'll look into some more advanced RxJS operators and how to
-              flatten higher order Observables
-            </li>
-            <li>
-              And finally we'll see how to apply those operators to fix the
-              state issues we laid out at the start.
-            </li>
-          </ul>
-        </section>
-        <section>
-          <div class="fragment" svg-step>
-            <svg
-              id="svg"
-              class="svg-section"
-              width="100%"
-              height="100%"
-              preserveAspectRatio="xMidYMid"
-              snapfile="img/classic_vs_spa.svg"
-            >
-              <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
-            </svg>
-          </div>
-        </section>
-        <section>
-          <h3>what changed?</h3>
-          <ul>
-            <li>
-              there used to be no 'real' client side state, everything had to be
-              encoded in the url / cookie since the client side was overwritten
-              with every request
-            </li>
-            <li>
-              whatever you kept in arrays or classes in javascript was gone when
-              the next request was made, the javascript got completely reloaded
-            </li>
-            <li>
-              with an SPA the client becomes persistent too; we adapt an
-              existing page with json coming from the server, but the javascript
-              is not reloaded
-            </li>
-            <li>
-              we can now hold a cache of the server state, and some client
-              specific state on top of that
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>5 kinds of state</h3>
-          <p>state is stored, and duplicated, at various places in our app</p>
-          <ul>
-            <li>server state</li>
-            <li>persistent client state</li>
-            <li>local client state</li>
-            <li>url (or router) state</li>
-            <li>transient client state</li>
-          </ul>
-        </section>
-        <section>
-          <h3>server state</h3>
-          <ul>
-            <li>
-              typically some sort of database which stores info about every user
-              and every aspect of our webapp
-            </li>
-            <li>
-              providing efficient and correct access to this state is a (really)
-              hard problem in itself (sharding, CDN, ...) but not the topic of
-              today
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>persistent client state</h3>
-          <ul>
-            <li>
-              this is a subset of the server state on our client, often limited
-              to the current user and what she has done and seen till now
-            </li>
-            <li>
-              while 'in the end' you want the server and persistent client state
-              to be the same, at certain points in time they can (and will)
-              differ
-              <ul>
-                <li>
-                  server can be ahead: the client still needs a 'refresh'
-                </li>
-                <li>
-                  the client can also be ahead, optimisticly showing updates
-                  which still need to happen on the server
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>local client state</h3>
-          <ul>
-            <li>
-              client state that is NOT stored on the server
-            </li>
-            <li>
-              things like a local filter, sort settings on a table, ...
-            </li>
-            <li>
-              usually (but not limited to) stuff that changes the way you view
-              the data from the server
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>url (router) state</h3>
-          <ul>
-            <li>
-              reflects both the persistent and the local client state
-            </li>
-            <li>
-              very important that it always reflects what the user sees, people
-              expect bookmarking, back/forward and copying links to work
-            </li>
-            <li>
-              always keep in mind users can (and will) alter the url to navigate
-              your app, this should always work correctly
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>transient client state</h3>
-          <ul>
-            <li>
-              less important, but some things that are part of your state will
-              not be reflected in the url or on the server
-            </li>
-            <li>
-              the canonical example: if you pause a youtube video, switch to
-              another window and switch back, you can continue playing where you
-              left of, but this is nowhere reflected neither on the server nor
-              in the url
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>syncing state</h3>
-          <img
-            width="900px"
-            height="630px"
-            src="img/state_sync.png"
-            style="background: none; border: none; box-shadow: none;"
-            alt="state synchronization"
-          />
-        </section>
-        <section id="state_problems">
-          <h3>problems with state</h3>
-          <ul>
-            <li>
-              in a single user, synchronous world, where everything a computer
-              does happens instantenously, there wouldn't be problems with
-              keeping state
-            </li>
-            <li>
-              but keeping state means syncing state, and syncing state
-              flawlessly in an asynchronous world is
-              <i>hard</i>
-            </li>
-            <ul>
-              <li>
-                multiple sync requests can happen simultaneously, overwriting
-                (and hence negating) eachother
-              </li>
-              <li>
-                delayed requests can result in out of order syncing, resulting
-                in inconsistent state
-              </li>
-            </ul>
-          </ul>
-        </section>
-        <section id="urlvslocalclient">
-          <h3>URL vs local client state</h3>
-          <ul>
-            <li>
-              as an example, let's adapt our recipe list component so that the
-              url reflects what's typed in the filter input field, and vice
-              versa,
-            </li>
-            <img
-              width="400px"
-              height="250px"
-              src="img/filter_url_sync.png"
-              alt=""
-            />
-            <li>
-              requesting everything and applying client side filtering was never
-              a good idea, so we'll pass the filtering parameters to the backend
-              and get filtered results
-            </li>
-            <li>
-              and we'll cache these server results in our recipe list component;
-              obviously we need state in order to have problems with state!
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>recipe data service</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            > src/app/recipe/recipe-data.service.ts <code class='codesteps' data-noescape data-trim>
+						<li>
+							<a href="#/rxjsflattening">RxJS flattening operators</a>
+							<br />
+							<span style="font-size: 0.7em">
+								rxjs flattening operators explained through examples
+							</span>
+						</li>
+						<li>
+							<a href="#/urllocalfix">url vs local client state fixed</a>
+							<br />
+							<span style="font-size: 0.7em">
+								a fix using these operators for our first problem
+							</span>
+						</li>
+					</ol>
+				</section>
+				<section id="intro">
+					<h3>intro</h3>
+					<ul>
+						<li>
+							Today we'll talk about keeping and syncing state and all related
+							problems and issues
+						</li>
+						<li>
+							We'll look into some more advanced RxJS operators and how to
+							flatten higher order Observables
+						</li>
+						<li>
+							And finally we'll see how to apply those operators to fix the
+							state issues we laid out at the start.
+						</li>
+					</ul>
+				</section>
+				<section>
+					<div class="fragment" svg-step>
+						<svg
+							id="svg"
+							class="svg-section"
+							width="100%"
+							height="100%"
+							preserveAspectRatio="xMidYMid"
+							snapfile="img/classic_vs_spa.svg"
+						>
+							<use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
+						</svg>
+					</div>
+				</section>
+				<section>
+					<h3>what changed?</h3>
+					<ul>
+						<li>
+							there used to be no 'real' client side state, everything had to be
+							encoded in the url / cookie since the client side was overwritten
+							with every request
+						</li>
+						<li>
+							whatever you kept in arrays or classes in javascript was gone when
+							the next request was made, the javascript got completely reloaded
+						</li>
+						<li>
+							with an SPA the client becomes persistent too; we adapt an
+							existing page with json coming from the server, but the javascript
+							is not reloaded
+						</li>
+						<li>
+							we can now hold a cache of the server state, and some client
+							specific state on top of that
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>5 kinds of state</h3>
+					<p>state is stored, and duplicated, at various places in our app</p>
+					<ul>
+						<li>server state</li>
+						<li>persistent client state</li>
+						<li>local client state</li>
+						<li>url (or router) state</li>
+						<li>transient client state</li>
+					</ul>
+				</section>
+				<section>
+					<h3>server state</h3>
+					<ul>
+						<li>
+							typically some sort of database which stores info about every user
+							and every aspect of our webapp
+						</li>
+						<li>
+							providing efficient and correct access to this state is a (really)
+							hard problem in itself (sharding, CDN, ...) but not the topic of
+							today
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>persistent client state</h3>
+					<ul>
+						<li>
+							this is a subset of the server state on our client, often limited
+							to the current user and what she has done and seen till now
+						</li>
+						<li>
+							while 'in the end' you want the server and persistent client state
+							to be the same, at certain points in time they can (and will)
+							differ
+							<ul>
+								<li>server can be ahead: the client still needs a 'refresh'</li>
+								<li>
+									the client can also be ahead, optimisticly showing updates
+									which still need to happen on the server
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>local client state</h3>
+					<ul>
+						<li>client state that is NOT stored on the server</li>
+						<li>things like a local filter, sort settings on a table, ...</li>
+						<li>
+							usually (but not limited to) stuff that changes the way you view
+							the data from the server
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>url (router) state</h3>
+					<ul>
+						<li>reflects both the persistent and the local client state</li>
+						<li>
+							very important that it always reflects what the user sees, people
+							expect bookmarking, back/forward and copying links to work
+						</li>
+						<li>
+							always keep in mind users can (and will) alter the url to navigate
+							your app, this should always work correctly
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>transient client state</h3>
+					<ul>
+						<li>
+							less important, but some things that are part of your state will
+							not be reflected in the url or on the server
+						</li>
+						<li>
+							the canonical example: if you pause a youtube video, switch to
+							another window and switch back, you can continue playing where you
+							left of, but this is nowhere reflected neither on the server nor
+							in the url
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>syncing state</h3>
+					<img
+						width="900px"
+						height="630px"
+						src="img/state_sync.png"
+						class="plain"
+						alt="state synchronization"
+					/>
+				</section>
+				<section id="state_problems">
+					<h3>problems with state</h3>
+					<ul>
+						<li>
+							in a single user, synchronous world, where everything a computer
+							does happens instantenously, there wouldn't be problems with
+							keeping state
+						</li>
+						<li>
+							but keeping state means syncing state, and syncing state
+							flawlessly in an asynchronous world is
+							<i>hard</i>
+						</li>
+						<ul>
+							<li>
+								multiple sync requests can happen simultaneously, overwriting
+								(and hence negating) eachother
+							</li>
+							<li>
+								delayed requests can result in out of order syncing, resulting
+								in inconsistent state
+							</li>
+						</ul>
+					</ul>
+				</section>
+				<section id="urlvslocalclient">
+					<h3>URL vs local client state</h3>
+					<ul>
+						<li>
+							as an example, let's adapt our recipe list component so that the
+							url reflects what's typed in the filter input field, and vice
+							versa,
+						</li>
+						<img
+							width="400px"
+							height="250px"
+							src="img/filter_url_sync.png"
+							alt=""
+						/>
+						<li>
+							requesting everything and applying client side filtering was never
+							a good idea, so we'll pass the filtering parameters to the backend
+							and get filtered results
+						</li>
+						<li>
+							and we'll cache these server results in our recipe list component;
+							obviously we need state in order to have problems with state!
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>recipe data service</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						> src/app/recipe/recipe-data.service.ts <code class='codesteps' data-noescape data-trim>
                     
             getRecipes$(<span hstep='2'>name?</span>: string, <span hstep='2'>chef?</span>: string, <span hstep='2'>ingredient?</span>: string) {
               let params = new <span hstep='3'>HttpParams</span>();
@@ -315,37 +310,41 @@
               );
             } 
             </code><span class='githubcommit'></span> </pre>
-            <div explanation>
-              <span step="1">we'll start with adding a call to the API</span>
-              <span step="1">
-                the <span class="ilcode">API/recipes</span> call has three
-                optional parameters, to filter on recipe name, chef or
-                ingredients</span
-              >
-              <span step="1"> (see swagger for details)</span>
-              <span step="2">
-                so we'll add a <span class="ilcode">getRecipes$</span> method
-                with the three optional parameters
-              </span>
-              <span step="3"
-                >we'll pass URL parameters using the
-                <span class="ilcode">HttpParams</span> helper class from
-                Angular</span
-              >
-              <span step="3"
-                >each <span class="ilcode">{ key: value }</span> pair is
-                transformed in a <span class="ilcode">?key=value</span> url
-                param</span
-              >
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>recipe list component</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            > src/app/recipe/recipe-list/recipe-list.component.ts <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1">we'll start with adding a call to the API</span>
+							<span step="1">
+								the
+								<span class="ilcode">API/recipes</span>
+								call has three optional parameters, to filter on recipe name,
+								chef or ingredients
+							</span>
+							<span step="1">(see swagger for details)</span>
+							<span step="2">
+								so we'll add a
+								<span class="ilcode">getRecipes$</span>
+								method with the three optional parameters
+							</span>
+							<span step="3">
+								we'll pass URL parameters using the
+								<span class="ilcode">HttpParams</span>
+								helper class from Angular
+							</span>
+							<span step="3">
+								each
+								<span class="ilcode">{ key: value }</span>
+								pair is transformed in a
+								<span class="ilcode">?key=value</span>
+								url param
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>recipe list component</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						> src/app/recipe/recipe-list/recipe-list.component.ts <code class='codesteps' data-noescape data-trim>
                 export class RecipeListComponent implements OnInit {
                   public filterRecipeName: string<span hstep='1'> = ''</span>;
                   <span hstep='2'>public recipes: Recipe[];</span>
@@ -385,71 +384,75 @@
                 }
                  
             </code></pre>
-            <div explanation>
-              <span step="1">next we'll adapt our recipe list component</span>
-              <span step="1">
-                we'll update the input field based on the url, so we start with
-                an empty string (and not
-                <span class="ilcode">undefined</span>)</span
-              >
-              <span step="2"
-                >we'll also keep a local copy of the result of a query</span
-              >
-              <span step="2"
-                >so we no longer async pipe subscribe to a result, but actively
-                subscribe and copy the results</span
-              >
-              <span step="3"
-                >in order to cope with the query parameters in the url, and to
-                be able to change the url if the filter changes, we need access
-                to both the <span class="ilcode">ActivatedRoute</span> and the
-                <span class="ilcode">Router</span></span
-              >
-              <span step="4"
-                >we still subscribe to the
-                <span class="ilcode">filterRecipe$</span>, which emits a value
-                every time a <span class="ilcode">keyup</span> happens in our
-                filter input filed</span
-              >
-              <span step="5">
-                but instead of filtering the recipes based on this value, or
-                requesting a filtered list from the data service, we update the
-                url to reflect this filter
-              </span>
-              <span step="6"
-                >the url becomes the 'source of truth', based on what the url
-                contains we show a filtered list, when the filter changes we
-                update the url and have the router show this new url
-              </span>
-              <span step="7">
-                updating based on the url is done by subscribing to the
-                <span class="ilcode">queryParams</span> of the route
-              </span>
-              <span step="8"
-                >we call the new
-                <span class="ilcode">getRecipe$(name, chef, ingredient)</span>
-                function on our data service, which gets us the filtered
-                results</span
-              >
-              <span step="9"
-                >and we set the contents of the input field based on the query
-                parameters (to be consistent when someone copy pastes or changes
-                the url)
-              </span>
-              <span step="10"
-                >note that this doesn't result in an endless loop, we listen to
-                keyup events to trigger routing to a new url, not to changes of
-                the value of the input field</span
-              >
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>recipe list component</h3>
-          <div codesteps>
-            <pre
-              class="html"
-            > src/app/recipe/recipe-list/recipe-list.component.html <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1">next we'll adapt our recipe list component</span>
+							<span step="1">
+								we'll update the input field based on the url, so we start with
+								an empty string (and not
+								<span class="ilcode">undefined</span>
+								)
+							</span>
+							<span step="2">
+								we'll also keep a local copy of the result of a query
+							</span>
+							<span step="2">
+								so we no longer async pipe subscribe to a result, but actively
+								subscribe and copy the results
+							</span>
+							<span step="3">
+								in order to cope with the query parameters in the url, and to be
+								able to change the url if the filter changes, we need access to
+								both the
+								<span class="ilcode">ActivatedRoute</span>
+								and the
+								<span class="ilcode">Router</span>
+							</span>
+							<span step="4">
+								we still subscribe to the
+								<span class="ilcode">filterRecipe$</span>
+								, which emits a value every time a
+								<span class="ilcode">keyup</span>
+								happens in our filter input filed
+							</span>
+							<span step="5">
+								but instead of filtering the recipes based on this value, or
+								requesting a filtered list from the data service, we update the
+								url to reflect this filter
+							</span>
+							<span step="6">
+								the url becomes the 'source of truth', based on what the url
+								contains we show a filtered list, when the filter changes we
+								update the url and have the router show this new url
+							</span>
+							<span step="7">
+								updating based on the url is done by subscribing to the
+								<span class="ilcode">queryParams</span>
+								of the route
+							</span>
+							<span step="8">
+								we call the new
+								<span class="ilcode">getRecipe$(name, chef, ingredient)</span>
+								function on our data service, which gets us the filtered results
+							</span>
+							<span step="9">
+								and we set the contents of the input field based on the query
+								parameters (to be consistent when someone copy pastes or changes
+								the url)
+							</span>
+							<span step="10">
+								note that this doesn't result in an endless loop, we listen to
+								keyup events to trigger routing to a new url, not to changes of
+								the value of the input field
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>recipe list component</h3>
+					<div codesteps>
+						<pre
+							class="html"
+						> src/app/recipe/recipe-list/recipe-list.component.html <code class='codesteps' data-noescape data-trim>
               &lt;mat-card&gt;
                 &lt;mat-form-field&gt;
                   &lt;input
@@ -473,78 +476,79 @@
                 &lt;/div&gt;
               &lt;/div&gt;
           </code><span class='githubcommit'>e13393e</span> </pre>
-            <div explanation>
-              <span step="1"> lastly we'll adapt the html</span>
-              <span step="1">(flex layout stuff omitted for clarity)</span>
-              <span step="2"
-                >we'll set the value of the input field based on the url
-                parameter (our source of truth)</span
-              >
-              <span step="2"
-                >so the <span class="ilcode">filterRecipeName</span> variable is
-                set when the url changes, and the input field's value changes
-                based on that variable</span
-              >
-              <span step="3"
-                >we no longer async subscribe to a stream, we hold a cache of
-                the filtered list ourselves, so simply loop over that one</span
-              >
-              <span step="4"
-                >we no longer use our (client side) filter pipe, filtering
-                happens on the backend, so remove that as well
-              </span>
-              <span step="4"
-                >(you could completely remove the recipeFilter class as it's no
-                longer used)</span
-              >
-              <span step="5"
-                >if we
-                <a href="http://localhost:4200">try this out</a> everything
-                appears to work correctly</span
-              >
-              <span step="5">but...</span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>URL vs local client state</h3>
-          <div class="fragment" svg-step>
-            <svg
-              id="svg1"
-              class="svg-section"
-              width="100%"
-              height="100%"
-              preserveAspectRatio="xMidYMid"
-              snapfile="img/url-local-statesync.svg"
-            >
-              <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
-            </svg>
-          </div>
-        </section>
-        <section>
-          <h3>URL vs local client state - test</h3>
-          <ul>
-            <li>
-              it used to be very cumbersome to see these errors in action, but
-              not anymore, cypress makes testing this (and seeing it fail)
-              rather easy
-            </li>
-            <li>
-              before we can create the test however, we need to make sure tests
-              happen as a logged in user
-            </li>
-            <li>
-              since we redirect to the login page when people or not logged in,
-              i.e. we need to have a valid token in the localStorage
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>URL vs local client state - test</h3>
-          <div codesteps>
-            <pre
-              class="javascript"
-            >cypress/support/commands.js  <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1">lastly we'll adapt the html</span>
+							<span step="1">(flex layout stuff omitted for clarity)</span>
+							<span step="2">
+								we'll set the value of the input field based on the url
+								parameter (our source of truth)
+							</span>
+							<span step="2">
+								so the
+								<span class="ilcode">filterRecipeName</span>
+								variable is set when the url changes, and the input field's
+								value changes based on that variable
+							</span>
+							<span step="3">
+								we no longer async subscribe to a stream, we hold a cache of the
+								filtered list ourselves, so simply loop over that one
+							</span>
+							<span step="4">
+								we no longer use our (client side) filter pipe, filtering
+								happens on the backend, so remove that as well
+							</span>
+							<span step="4">
+								(you could completely remove the recipeFilter class as it's no
+								longer used)
+							</span>
+							<span step="5">
+								if we
+								<a href="http://localhost:4200">try this out</a>
+								everything appears to work correctly
+							</span>
+							<span step="5">but...</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>URL vs local client state</h3>
+					<div class="fragment" svg-step>
+						<svg
+							id="svg1"
+							class="svg-section"
+							width="100%"
+							height="100%"
+							preserveAspectRatio="xMidYMid"
+							snapfile="img/url-local-statesync.svg"
+						>
+							<use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
+						</svg>
+					</div>
+				</section>
+				<section>
+					<h3>URL vs local client state - test</h3>
+					<ul>
+						<li>
+							it used to be very cumbersome to see these errors in action, but
+							not anymore, cypress makes testing this (and seeing it fail)
+							rather easy
+						</li>
+						<li>
+							before we can create the test however, we need to make sure tests
+							happen as a logged in user
+						</li>
+						<li>
+							since we redirect to the login page when people or not logged in,
+							i.e. we need to have a valid token in the localStorage
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>URL vs local client state - test</h3>
+					<div codesteps>
+						<pre
+							class="javascript"
+						>cypress/support/commands.js  <code class='codesteps' data-noescape data-trim>
               Cypress.Commands.add('<span hstep='2'>login</span>', () => {
                 const email = 'recipemaster@hogent.be';
               
@@ -555,32 +559,31 @@
                 }).then((res) => <span hstep='2'>localStorage.setItem</span>('currentUser', res.body));
               });
             </code><span class='githubcommit'></span> </pre>
-            <div explanation>
-              <span step="1">
-                we handle this by adding a command to
-                <span class="ilcode">Cypress.Commands</span>
-              </span>
-              <span step="1">
-                this will allow us to call this command from every test
-                file</span
-              >
-              <span step="2"
-                >so we create a login command, which will simply do a POST
-                request to the login API</span
-              >
-              <span step="2"
-                >and store the result in localStorage, with the same key our
-                application uses</span
-              >
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>URL vs local client state - test</h3>
-          <div codesteps no-highlight-first>
-            <pre
-              class="javascript"
-            >cypress/integration/recipelist.spec.js <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								we handle this by adding a command to
+								<span class="ilcode">Cypress.Commands</span>
+							</span>
+							<span step="1">
+								this will allow us to call this command from every test file
+							</span>
+							<span step="2">
+								so we create a login command, which will simply do a POST
+								request to the login API
+							</span>
+							<span step="2">
+								and store the result in localStorage, with the same key our
+								application uses
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>URL vs local client state - test</h3>
+					<div codesteps no-highlight-first>
+						<pre
+							class="javascript"
+						>cypress/integration/recipelist.spec.js <code class='codesteps' data-noescape data-trim>
                 describe('Recipe List tests', function () {
                   <span hstep='1'>beforeEach(function () {
                     cy.login();
@@ -619,97 +622,97 @@
                   });
                 });
           </code><span class="githubcommit">eba887f</span></pre>
-            <div explanation>
-              <span step="1"
-                >our tests start with a beforeEach where we call this login
-                command</span
-              ><span step="1"
-                >ensuring we're always loggin in when we perform a request
-              </span>
-              <span step="2"
-                >the test itself starts with stubbing some requests
-              </span>
-              <span step="3">
-                GET of all recipes returns the fixture we defined earlier,
-                containing a recipe for spaghetti, lasagne and risotto
-              </span>
-              <span step="4">
-                the GET of the same url, but with a queryparameter containing
-                'sp', returns a new fixture containing only the spaghetti
-                recipe</span
-              >
-              <span step="5">
-                finally, the GET with the 'la' query parameter returns the
-                lasagna recipe (also a newly created fixture, with one recipe in
-                it)</span
-              >
-              <span step="6">
-                notice how we added a delay to the 'sp' request, but not the
-                others
-              </span>
-              <span step="6">
-                this is what makes it possible to test this scenario
-              </span>
+						<div explanation>
+							<span step="1">
+								our tests start with a beforeEach where we call this login
+								command
+							</span>
+							<span step="1">
+								ensuring we're always loggin in when we perform a request
+							</span>
+							<span step="2">
+								the test itself starts with stubbing some requests
+							</span>
+							<span step="3">
+								GET of all recipes returns the fixture we defined earlier,
+								containing a recipe for spaghetti, lasagne and risotto
+							</span>
+							<span step="4">
+								the GET of the same url, but with a queryparameter containing
+								'sp', returns a new fixture containing only the spaghetti recipe
+							</span>
+							<span step="5">
+								finally, the GET with the 'la' query parameter returns the
+								lasagna recipe (also a newly created fixture, with one recipe in
+								it)
+							</span>
+							<span step="6">
+								notice how we added a delay to the 'sp' request, but not the
+								others
+							</span>
+							<span step="6">
+								this is what makes it possible to test this scenario
+							</span>
 
-              <span step="7"
-                >also note how we gave the requests a name, this makes it easier
-                to wait for them to complete (rather than wait an arbitrary long
-                enough time)
-              </span>
-              <span step="7">
-                now all that's left is performing two searches</span
-              >
-              <span step="8"
-                >nothing new here, select the input field and type 'sp',
-                followed with typing 'la'</span
-              >
-              <span step="9">
-                we wait 300ms between typing, because our filter has a
-                <span class="ilcode">debounceTime(250)</span>, otherwise this
-                would be seen as one search
-              </span>
-              <span step="10">wait till all requests are done </span>
-              <span step="11">
-                and now check that the 'lasagna' recipe is shown</span
-              >
-              <span step="11">
-                this last test should fail with our current code</span
-              >
-              <span step="11">
-                <a href="http://localhost:4200">let's try this out</a></span
-              >
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>core of the problem</h3>
-          <ul>
-            <li>our real problem is twofold</li>
-            <ul>
-              <li>there is no clear sync strategy</li>
-              <li>side effects are not separated</li>
-            </ul>
-            <li>
-              one of the more popular ways of dealing with this state problem is
-              facebook's flux architecture, implemented for React as Redux, or
-              for Angular as NgRx
-            </li>
-            <li>
-              (others are popping up lately, one of the more interesting ones
-              being MobX)
-            </li>
-            <li>
-              we'll choose another route though, we'll go pure RxJS, we'll solve
-              state syncing problems by not holding state ourselves
-            </li>
-          </ul>
-        </section>
-        <section id="rxjsflattening">
-          <h3>RxJS Flattening</h3>
-          <div codesteps no-highlight-first>
-            <pre
-              class="javascript"
-            >  <code class='codesteps' data-noescape data-trim>
+							<span step="7">
+								also note how we gave the requests a name, this makes it easier
+								to wait for them to complete (rather than wait an arbitrary long
+								enough time)
+							</span>
+							<span step="7">
+								now all that's left is performing two searches
+							</span>
+							<span step="8">
+								nothing new here, select the input field and type 'sp', followed
+								with typing 'la'
+							</span>
+							<span step="9">
+								we wait 300ms between typing, because our filter has a
+								<span class="ilcode">debounceTime(250)</span>
+								, otherwise this would be seen as one search
+							</span>
+							<span step="10">wait till all requests are done</span>
+							<span step="11">
+								and now check that the 'lasagna' recipe is shown
+							</span>
+							<span step="11">
+								this last test should fail with our current code
+							</span>
+							<span step="11">
+								<a href="http://localhost:4200">let's try this out</a>
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>core of the problem</h3>
+					<ul>
+						<li>our real problem is twofold</li>
+						<ul>
+							<li>there is no clear sync strategy</li>
+							<li>side effects are not separated</li>
+						</ul>
+						<li>
+							one of the more popular ways of dealing with this state problem is
+							facebook's flux architecture, implemented for React as Redux, or
+							for Angular as NgRx
+						</li>
+						<li>
+							(others are popping up lately, one of the more interesting ones
+							being MobX)
+						</li>
+						<li>
+							we'll choose another route though, we'll go pure RxJS, we'll solve
+							state syncing problems by not holding state ourselves
+						</li>
+					</ul>
+				</section>
+				<section id="rxjsflattening">
+					<h3>RxJS Flattening</h3>
+					<div codesteps no-highlight-first>
+						<pre
+							class="javascript"
+						>  <code class='codesteps' data-noescape data-trim>
                 <span sstep='2-4, 7+'>const <span hstep='2'>greetPeople$</span> = of('Destiny', 'Melody', 'Candy');
                 
                 <span sstep='2-4'>greetPeople$
@@ -749,217 +752,228 @@
                 // hi Melody, nice to meet you!
                 // hi Candy, nice to meet you!</span>
             </code></pre>
-            <div explanation>
-              <span step="1">
-                before we can fix our state problems, we'll first introduce a
-                couple RxJS operators that will allow us to handle these
-                situations</span
-              >
-              <span step="2"> let's start with a simple example</span>
-              <span step="2">
-                we have an observable which emits strings (<span class="ilcode"
-                  >greetPeople$</span
-                >), but we want to convert these string using a
-                <span class="ilcode">map</span> function</span
-              >
-              <span step="3">
-                nothing special, the converted string is logged
-              </span>
-              <span step="4">
-                but what if the conversion function we want to use returns an
-                observable itself?
-              </span>
-              <span step="4"
-                >if you pass a function that converts
-                <span class="ilcode">A</span> into
-                <span class="ilcode">B</span> in the map, the
-                <span class="ilcode">Observable&lt;A&gt;</span> will be
-                converted into an
-                <span class="ilcode">Observable&ltB&gt;</span></span
-              >
-              <span step="5">
-                say we have a talkToMe$ stream, applying two greetings to a name
-                returning the result as an observable (e.g. because it comes
-                from some http service)
-              </span>
-              <span step="6">
-                applying this to a string does as you'd expect, logging both
-                greetings
-              </span>
-              <span step="7"> but what if you combine them? </span>
-              <span step="8">
-                every time our greetPeople$ stream emits a new name, we pipe it
-                through our observable-greeting generating function</span
-              >
-              <span step="8"> the result? </span>
-              <span step="9"> ... </span>
-              <span step="10">
-                the problem is that after the subscribe, our result is still an
-                <span class="ilcode">Observable&lt;string&gt;</span> because the
-                result of our pipe function was an
-                <span class="ilcode">
-                  Observable&lt; Observable&lt;string&gt; &gt;
-                </span>
-              </span>
-              <span step="11">
-                an obvious way of dealing with this is subscribing on the result
-                inside the first subscribe
-              </span>
-              <span step="12"> which gives you the result you'd want </span>
-              <span step="12">
-                since this is a common operation, and more involved then we show
-                here (subscription lifetimes matter) there is an
-                <span class="ilcode">rxjs/operator</span>
-                which achieves exactly this
-              </span>
-              <span step="13"
-                >as the last step of your pipe, where you have the
-                <span class="ilcode"
-                  >Observable &lt; Observable&lt;&gt; &gt;</span
-                >, you pipe through <span class="ilcode">mergeAll</span></span
-              >
-              <span step="14">
-                and inside your subscribe you get a string again
-              </span>
-              <span step="15">
-                map'ing and merge'ing afterwards is so common there is shorthand
-                for this, to do this at once:
-                <span class="ilcode">mergeMap</span></span
-              >
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>rxjs flattening</h3>
-          <ul>
-            <li>
-              flattening means mapping to an observable and immediately
-              subscribing to the result and returning the result of the
-              subscribe
-              <br />(while also managing unsubscribes, not leaking memory)
-            </li>
-            <li>
-              in the example of the previous slide the observables have all
-              values available at the start and complete immediately, 'real'
-              observables often have delays between emitting values, and then a
-              new problem pops up
-            </li>
-            <li>
-              when a second inner observable wants to start a subscription while
-              the first is still not completed, what should happen?
-            </li>
-            <li>
-              there is no right or wrong answer, it depends on what you want to
-              achieve; this is called the 'merge strategy'
-            </li>
-          </ul>
-        </section>
-        <section>
-          <div class="fragment" svg-step>
-            <svg
-              id="svg3"
-              class="svg-section"
-              width="100%"
-              height="100%"
-              preserveAspectRatio="xMidYMid"
-              snapfile="img/flattening_operators.svg"
-            >
-              <use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
-            </svg>
-          </div>
-        </section>
-        <section>
-          <h3>rxjs flattening</h3>
-          <ul>
-            <li>
-              you would usually use the combined operators
-              <span class="ilcode">mergeMap</span> /
-              <span class="ilcode">switchMap</span> / ... i.s.o.
-              <span class="ilcode">map</span> first, followed by
-              <span class="ilcode">mergeAll</span> /
-              <span class="ilcode">switchAll</span> / ... I didn't because it's
-              easier to explain in two separate steps
-            </li>
-            <li>
-              There is no 'best' flattening operator, they all have their uses
-              and it depends on your use case, let's quickly give some examples
-              where you'd use each one
-            </li>
-            <li>
-              (the example from the previous slides is implemented in
-              rxjs_flattening.js in the
-              <a href="https://github.com/ksa607/observablesExamples"
-                >observablesExamples</a
-              >
-              repo)
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>merge</h3>
-          <ul>
-            <li>
-              merge means subscribing to all streams and passing everything
-              along as it comes in
-            </li>
-            <li>
-              a usage example would be showing data where your info comes from
-              multiple (third party) sources, e.g. you show movie info and
-              request some extra info from imdb and rotten tomatoes. As soon as
-              any of those http requests finishes, you update the existing info
-              on the screen.
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>switch</h3>
-          <ul>
-            <li>
-              switch means only subscribing to the very latest stream, and
-              aborting all the others
-            </li>
-            <li>
-              a typical use case is searching, if the user starts typing a new
-              search string, we no longer care about any previous search results
-              (this solves our recipe filter problem!)
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>concat</h3>
-          <ul>
-            <li>
-              concat means queueing any new streams and only subscribing if the
-              previous one finished
-            </li>
-            <li>
-              a use case is not hammering some third party service with hundreds
-              requests at once because you try to display hundred items
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>exhaust</h3>
-          <ul>
-            <li>
-              exhaust means ignoring any new streams as long as the ongoing one
-              isn't finished
-            </li>
-            <li>
-              a typical use case is e.g. a login screen, if the user types his
-              username and password but has the patience of a three year old and
-              keeps clicking login-login-login while the first login request is
-              still ongoing, you don't want to send dozens of login requests to
-              your server
-            </li>
-          </ul>
-        </section>
-        <section id="urllocalfix">
-          <h3>url vs local state - fixed</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            > src/app/recipe/recipe-list/recipe-list.component.ts <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								before we can fix our state problems, we'll first introduce a
+								couple RxJS operators that will allow us to handle these
+								situations
+							</span>
+							<span step="2">let's start with a simple example</span>
+							<span step="2">
+								we have an observable which emits strings (
+								<span class="ilcode">greetPeople$</span>
+								), but we want to convert these string using a
+								<span class="ilcode">map</span>
+								function
+							</span>
+							<span step="3">
+								nothing special, the converted string is logged
+							</span>
+							<span step="4">
+								but what if the conversion function we want to use returns an
+								observable itself?
+							</span>
+							<span step="4">
+								if you pass a function that converts
+								<span class="ilcode">A</span>
+								into
+								<span class="ilcode">B</span>
+								in the map, the
+								<span class="ilcode">Observable&lt;A&gt;</span>
+								will be converted into an
+								<span class="ilcode">Observable&ltB&gt;</span>
+							</span>
+							<span step="5">
+								say we have a talkToMe$ stream, applying two greetings to a name
+								returning the result as an observable (e.g. because it comes
+								from some http service)
+							</span>
+							<span step="6">
+								applying this to a string does as you'd expect, logging both
+								greetings
+							</span>
+							<span step="7">but what if you combine them?</span>
+							<span step="8">
+								every time our greetPeople$ stream emits a new name, we pipe it
+								through our observable-greeting generating function
+							</span>
+							<span step="8">the result?</span>
+							<span step="9">...</span>
+							<span step="10">
+								the problem is that after the subscribe, our result is still an
+								<span class="ilcode">Observable&lt;string&gt;</span>
+								because the result of our pipe function was an
+								<span class="ilcode">
+									Observable&lt; Observable&lt;string&gt; &gt;
+								</span>
+							</span>
+							<span step="11">
+								an obvious way of dealing with this is subscribing on the result
+								inside the first subscribe
+							</span>
+							<span step="12">which gives you the result you'd want</span>
+							<span step="12">
+								since this is a common operation, and more involved then we show
+								here (subscription lifetimes matter) there is an
+								<span class="ilcode">rxjs/operator</span>
+								which achieves exactly this
+							</span>
+							<span step="13">
+								as the last step of your pipe, where you have the
+								<span class="ilcode">
+									Observable &lt; Observable&lt;&gt; &gt;
+								</span>
+								, you pipe through
+								<span class="ilcode">mergeAll</span>
+							</span>
+							<span step="14">
+								and inside your subscribe you get a string again
+							</span>
+							<span step="15">
+								map'ing and merge'ing afterwards is so common there is shorthand
+								for this, to do this at once:
+								<span class="ilcode">mergeMap</span>
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>rxjs flattening</h3>
+					<ul>
+						<li>
+							flattening means mapping to an observable and immediately
+							subscribing to the result and returning the result of the
+							subscribe
+							<br />
+							(while also managing unsubscribes, not leaking memory)
+						</li>
+						<li>
+							in the example of the previous slide the observables have all
+							values available at the start and complete immediately, 'real'
+							observables often have delays between emitting values, and then a
+							new problem pops up
+						</li>
+						<li>
+							when a second inner observable wants to start a subscription while
+							the first is still not completed, what should happen?
+						</li>
+						<li>
+							there is no right or wrong answer, it depends on what you want to
+							achieve; this is called the 'merge strategy'
+						</li>
+					</ul>
+				</section>
+				<section>
+					<div class="fragment" svg-step>
+						<svg
+							id="svg3"
+							class="svg-section"
+							width="100%"
+							height="100%"
+							preserveAspectRatio="xMidYMid"
+							snapfile="img/flattening_operators.svg"
+						>
+							<use xlink:href="plugin/codestepper/loaders.svg#myloader"></use>
+						</svg>
+					</div>
+				</section>
+				<section>
+					<h3>rxjs flattening</h3>
+					<ul>
+						<li>
+							you would usually use the combined operators
+							<span class="ilcode">mergeMap</span>
+							/
+							<span class="ilcode">switchMap</span>
+							/ ... i.s.o.
+							<span class="ilcode">map</span>
+							first, followed by
+							<span class="ilcode">mergeAll</span>
+							/
+							<span class="ilcode">switchAll</span>
+							/ ... I didn't because it's easier to explain in two separate
+							steps
+						</li>
+						<li>
+							There is no 'best' flattening operator, they all have their uses
+							and it depends on your use case, let's quickly give some examples
+							where you'd use each one
+						</li>
+						<li>
+							(the example from the previous slides is implemented in
+							rxjs_flattening.js in the
+							<a href="https://github.com/ksa607/observablesExamples">
+								observablesExamples
+							</a>
+							repo)
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>merge</h3>
+					<ul>
+						<li>
+							merge means subscribing to all streams and passing everything
+							along as it comes in
+						</li>
+						<li>
+							a usage example would be showing data where your info comes from
+							multiple (third party) sources, e.g. you show movie info and
+							request some extra info from imdb and rotten tomatoes. As soon as
+							any of those http requests finishes, you update the existing info
+							on the screen.
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>switch</h3>
+					<ul>
+						<li>
+							switch means only subscribing to the very latest stream, and
+							aborting all the others
+						</li>
+						<li>
+							a typical use case is searching, if the user starts typing a new
+							search string, we no longer care about any previous search results
+							(this solves our recipe filter problem!)
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>concat</h3>
+					<ul>
+						<li>
+							concat means queueing any new streams and only subscribing if the
+							previous one finished
+						</li>
+						<li>
+							a use case is not hammering some third party service with hundreds
+							requests at once because you try to display hundred items
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>exhaust</h3>
+					<ul>
+						<li>
+							exhaust means ignoring any new streams as long as the ongoing one
+							isn't finished
+						</li>
+						<li>
+							a typical use case is e.g. a login screen, if the user types his
+							username and password but has the patience of a three year old and
+							keeps clicking login-login-login while the first login request is
+							still ongoing, you don't want to send dozens of login requests to
+							your server
+						</li>
+					</ul>
+				</section>
+				<section id="urllocalfix">
+					<h3>url vs local state - fixed</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						> src/app/recipe/recipe-list/recipe-list.component.ts <code class='codesteps' data-noescape data-trim>
               this._route.<span hstep='1,3'>queryParams</span><span sstep='1-5' sl>.subscribe</span><span sstep='5+'>.pipe(
                 <span sstep='6+'>switchMap</span><span sstep='5'>  map</span></span>(params => {<span sstep='7+'>
                     if (params['filter']) {
@@ -982,59 +996,63 @@
                 }</span><span sstep='1-4'> 
               });</span>
             </code><span class="githubcommit">4ab3cf9</span></pre>
-            <div explanation>
-              <span step="1">
-                our problem is that based on new url parameters (i.e. a filter)
-                we request recipes, and show the results as they come in
-              </span>
-              <span step="2">
-                if we make two consecutive calls to the
-                <span class="ilcode">getRecipes$</span> and their results arrive
-                out of order, we end up in an inconsistent state
-              </span>
-              <span step="3">
-                when a new filter comes in, we basically want to completely
-                ignore the previous one
-              </span>
-              <span step="3">
-                we saw how to do this, using a
-                <span class="ilcode">switchMap</span>
-              </span>
-              <span step="4">
-                i.s.o. immediately subscribing to new parameters, we will map
-                each parameter to a list of recipes
-              </span>
-              <span step="5"> so remove the subscribe</span>
-              <span step="5">
-                and replace it with piping the result through a map function
-              </span>
-              <span step="6">
-                we're in <span class="ilcode">Observable</span> of
-                <span class="ilcode">Observable</span> territory here, so we
-                need to flatten this
-              </span>
-              <span step="6">
-                we'll use <span class="ilcode">switchMap</span> to only process
-                the last filter
-              </span>
-              <span step="7">
-                because of our restructuring, we need to move the
-                setting-the-filter code, params is only available here
-              </span>
-              <span step="8">
-                that's it, lets
-                <a href="http://localhost:4200">try this out</a> and see that
-                our cypress tests no longer fail
-              </span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>url vs local state - fixed</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            > src/app/recipe/recipe-list.component.ts <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								our problem is that based on new url parameters (i.e. a filter)
+								we request recipes, and show the results as they come in
+							</span>
+							<span step="2">
+								if we make two consecutive calls to the
+								<span class="ilcode">getRecipes$</span>
+								and their results arrive out of order, we end up in an
+								inconsistent state
+							</span>
+							<span step="3">
+								when a new filter comes in, we basically want to completely
+								ignore the previous one
+							</span>
+							<span step="3">
+								we saw how to do this, using a
+								<span class="ilcode">switchMap</span>
+							</span>
+							<span step="4">
+								i.s.o. immediately subscribing to new parameters, we will map
+								each parameter to a list of recipes
+							</span>
+							<span step="5">so remove the subscribe</span>
+							<span step="5">
+								and replace it with piping the result through a map function
+							</span>
+							<span step="6">
+								we're in
+								<span class="ilcode">Observable</span>
+								of
+								<span class="ilcode">Observable</span>
+								territory here, so we need to flatten this
+							</span>
+							<span step="6">
+								we'll use
+								<span class="ilcode">switchMap</span>
+								to only process the last filter
+							</span>
+							<span step="7">
+								because of our restructuring, we need to move the
+								setting-the-filter code, params is only available here
+							</span>
+							<span step="8">
+								that's it, lets
+								<a href="http://localhost:4200">try this out</a>
+								and see that our cypress tests no longer fail
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>url vs local state - fixed</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						> src/app/recipe/recipe-list.component.ts <code class='codesteps' data-noescape data-trim>
               constructor( ... ) {
               <span sstep='3+'>this._fetchRecipes$ = </span>this._route.queryParams
                 .pipe(
@@ -1060,57 +1078,59 @@
               return this._fetchRecipes$;
             }</span>
           </code><span class='githubcommit'></span> </pre>
-            <div explanation>
-              <span step="1">
-                we can go further, why bother caching the recipes here, there's
-                really no need
-              </span>
-              <span step="2">
-                so we'll re-introduce our
-                <span class="ilcode">fetchRecipes$</span> stream
-              </span>
-              <span step="2"
-                >this means we'll have to reintroduce the
-                <span class="ilcode">recipes$ | async as getRecipes</span> in
-                our html as well</span
-              >
-              <span step="3"
-                >and we'll simply assign the observable right before we
-                subscribe, subscribing is done by the async pipe
-              </span>
-              <span step="3">that's it</span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>fixed?</h3>
-          <ul>
-            <li>
-              while this fixes our url vs local state problem, there's still
-              another problem: try deleting a recipe, it won't disappear until
-              you refresh!
-            </li>
-            <li>
-              that's because our
-              <span class="ilcode">getRecipe(name...)</span> immediately returns
-              the result of the backend query, we no longer cache the result and
-              update said cache when something is added / deleted
-            </li>
-            <li>
-              (that was a contrived solution anyway, updating a shadow cached
-              version is often a bad idea regardless (if multiple people can
-              update), but we couldn't fix it for real before you knew about
-              switchMap)
-            </li>
-            <li>but now you do!</li>
-          </ul>
-        </section>
-        <section>
-          <h3>recipedataservice -revised</h3>
-          <div codesteps>
-            <pre
-              class="typescript"
-            > src/app/recipe/recipe-data.service.ts <code class='codesteps' data-noescape data-trim>
+						<div explanation>
+							<span step="1">
+								we can go further, why bother caching the recipes here, there's
+								really no need
+							</span>
+							<span step="2">
+								so we'll re-introduce our
+								<span class="ilcode">fetchRecipes$</span>
+								stream
+							</span>
+							<span step="2">
+								this means we'll have to reintroduce the
+								<span class="ilcode">recipes$ | async as getRecipes</span>
+								in our html as well
+							</span>
+							<span step="3">
+								and we'll simply assign the observable right before we
+								subscribe, subscribing is done by the async pipe
+							</span>
+							<span step="3">that's it</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>fixed?</h3>
+					<ul>
+						<li>
+							while this fixes our url vs local state problem, there's still
+							another problem: try deleting a recipe, it won't disappear until
+							you refresh!
+						</li>
+						<li>
+							that's because our
+							<span class="ilcode">getRecipe(name...)</span>
+							immediately returns the result of the backend query, we no longer
+							cache the result and update said cache when something is added /
+							deleted
+						</li>
+						<li>
+							(that was a contrived solution anyway, updating a shadow cached
+							version is often a bad idea regardless (if multiple people can
+							update), but we couldn't fix it for real before you knew about
+							switchMap)
+						</li>
+						<li>but now you do!</li>
+					</ul>
+				</section>
+				<section>
+					<h3>recipedataservice -revised</h3>
+					<div codesteps>
+						<pre
+							class="typescript"
+						> src/app/recipe/recipe-data.service.ts <code class='codesteps' data-noescape data-trim>
              <span sstep='4+'> private _reloadRecipes$ = new BehaviorSubject&lt;boolean&gt;(true);<span sstep='7+'>
               
               deleteRecipe(recipe: Recipe) {
@@ -1139,154 +1159,161 @@
                 );
               } 
           </code><span class='githubcommit'>4095479</span> </pre>
-            <div explanation>
-              <span step="1"
-                >we can use our flattening knowledge to make sure the query is
-                executed again when certain actions happen (delete in our case)
-              </span>
-              <span step="1"
-                >this way we're always sure we show the current version from our
-                backend</span
-              >
-              <span step="2"
-                >reason with me, the
-                <span class="ilcode">getRecipes$</span> does a
-                <span class="ilcode">http.get</span> call</span
-              >
-              <span step="2"
-                >http calls complete, return, and that's it; somehow we want the
-                getRecipes$ stream to contain the result of a new http call on
-                command</span
-              >
-              <span step="3"
-                >we start by splitting the function into two, our
-                <span class="ilcode">getRecipes</span> will call
-                <span class="ilcode">fetchRecipes</span> on command</span
-              >
-              <span step="4"
-                >we achieve this by adding a new stream, on which we can put
-                values ourselves</span
-              >
-              <span step="4"
-                >and whenever a value appears, we map this value to an execution
-                of the fetchRecipes$ call</span
-              >
-              <span step="5"
-                >since our boolean is mapped on an Observable of Recipes the map
-                on the reloadRecipes stream would create an Observable of
-                Observable of Recipes, so we need to flatten
-              </span>
-              <span step="6"
-                >we use a switchMap here, whenever we request new results, any
-                previous requests that are finished can safely be thrown away,
-                we don't need the results anymore</span
-              >
-              <span step="7"
-                >the only thing we still need to do is put a new value on the
-                reloadRecipes stream when we want the query to be executed
-                again</span
-              >
-              <span step="8"
-                >so e.g. when a delete happens, we put a new value on this
-                stream, triggering the switchMap to call fetchRecipes
-                again</span
-              >
-              <span step="8"
-                >which will trigger a new value on whomever is subscribed to the
-                getRecipes stream, containing all recipes as they are present in
-                our backend at this moment</span
-              >
-              <span step="9"
-                >that's it! there is a cypress test showcasing this added to the
-                repo as well</span
-              >
-              <span step="9"
-                ><a href="http://localhost:4200">let's try this out</a></span
-              >
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>reactive programming</h3>
-          <ul>
-            <li>
-              we only scratched the tip of the iceberg <br />(no really, there
-              are 134 rxjs operators right now)
-            </li>
-            <li>
-              you can do cool stuff with very little code, but you sometimes
-              really have to apply a different way of thinking and organising
-              your code
-            </li>
-            <li>
-              reactive programming is 'in' right now, the next few years it'll
-              get bigger for sure
-            </li>
-            <li>
-              it's probably here to stay in some capacity, who knows, time will
-              tell
-            </li>
-            <li>
-              at the very least you now had some introduction to the subject
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>that's it! We're done</h3>
-          <img
-            src="img/windows95_launch.gif"
-            alt="win95 launch party gif"
-            width="600"
-            height="450"
-          />
-          <h3>let's party like <br />it's the windows 95 launch!</h3>
-        </section>
-        <section>
-          <h3>final words</h3>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 33% 66%;
-              grid-gap: 10px;
-            "
-          >
-            <div>
-              <img
-                src="img/wiske_einde.jpeg"
-                height="500"
-                width="250"
-                alt="wiske einde"
-              />
-            </div>
-            <div style="text-align: center;">
-              <ul>
-                <li>
-                  I hope you enjoyed the course, or at the very least learned
-                  something
-                </li>
-                <li>
-                  special thanks to Ms Samyn for creating the backend code and
-                  slides, and both Ms Samyn and Mr De Cock for finding a lot of
-                  small and big mistakes in my slides and code
-                </li>
-                <li>
-                  and thanks to all the students who made pull requests to fix
-                  mistakes in the slides over the years, if you spot(ted) any
-                  mistake, don't hesitate
-                </li>
-                <li>finally, good luck with the exam!</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-      </div>
-    </div>
+						<div explanation>
+							<span step="1">
+								we can use our flattening knowledge to make sure the query is
+								executed again when certain actions happen (delete in our case)
+							</span>
+							<span step="1">
+								this way we're always sure we show the current version from our
+								backend
+							</span>
+							<span step="2">
+								reason with me, the
+								<span class="ilcode">getRecipes$</span>
+								does a
+								<span class="ilcode">http.get</span>
+								call
+							</span>
+							<span step="2">
+								http calls complete, return, and that's it; somehow we want the
+								getRecipes$ stream to contain the result of a new http call on
+								command
+							</span>
+							<span step="3">
+								we start by splitting the function into two, our
+								<span class="ilcode">getRecipes</span>
+								will call
+								<span class="ilcode">fetchRecipes</span>
+								on command
+							</span>
+							<span step="4">
+								we achieve this by adding a new stream, on which we can put
+								values ourselves
+							</span>
+							<span step="4">
+								and whenever a value appears, we map this value to an execution
+								of the fetchRecipes$ call
+							</span>
+							<span step="5">
+								since our boolean is mapped on an Observable of Recipes the map
+								on the reloadRecipes stream would create an Observable of
+								Observable of Recipes, so we need to flatten
+							</span>
+							<span step="6">
+								we use a switchMap here, whenever we request new results, any
+								previous requests that are finished can safely be thrown away,
+								we don't need the results anymore
+							</span>
+							<span step="7">
+								the only thing we still need to do is put a new value on the
+								reloadRecipes stream when we want the query to be executed again
+							</span>
+							<span step="8">
+								so e.g. when a delete happens, we put a new value on this
+								stream, triggering the switchMap to call fetchRecipes again
+							</span>
+							<span step="8">
+								which will trigger a new value on whomever is subscribed to the
+								getRecipes stream, containing all recipes as they are present in
+								our backend at this moment
+							</span>
+							<span step="9">
+								that's it! there is a cypress test showcasing this added to the
+								repo as well
+							</span>
+							<span step="9">
+								<a href="http://localhost:4200">let's try this out</a>
+							</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>reactive programming</h3>
+					<ul>
+						<li>
+							we only scratched the tip of the iceberg
+							<br />
+							(no really, there are 134 rxjs operators right now)
+						</li>
+						<li>
+							you can do cool stuff with very little code, but you sometimes
+							really have to apply a different way of thinking and organising
+							your code
+						</li>
+						<li>
+							reactive programming is 'in' right now, the next few years it'll
+							get bigger for sure
+						</li>
+						<li>
+							it's probably here to stay in some capacity, who knows, time will
+							tell
+						</li>
+						<li>
+							at the very least you now had some introduction to the subject
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>that's it! We're done</h3>
+					<img
+						src="img/windows95_launch.gif"
+						alt="win95 launch party gif"
+						width="600"
+						height="450"
+					/>
+					<h3>
+						let's party like
+						<br />
+						it's the windows 95 launch!
+					</h3>
+				</section>
+				<section>
+					<h3>final words</h3>
+					<div
+						style="
+							display: grid;
+							grid-template-columns: 33% 66%;
+							grid-gap: 10px;
+						"
+					>
+						<div>
+							<img
+								src="img/wiske_einde.jpeg"
+								height="500"
+								width="250"
+								alt="wiske einde"
+							/>
+						</div>
+						<div style="text-align: center">
+							<ul>
+								<li>
+									I hope you enjoyed the course, or at the very least learned
+									something
+								</li>
+								<li>
+									special thanks to Ms Samyn for creating the backend code and
+									slides, and both Ms Samyn and Mr De Cock for finding a lot of
+									small and big mistakes in my slides and code
+								</li>
+								<li>
+									and thanks to all the students who made pull requests to fix
+									mistakes in the slides over the years, if you spot(ted) any
+									mistake, don't hesitate
+								</li>
+								<li>finally, good luck with the exam!</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
 
-    <script src="lib/js/chart.xkcd.min.js"></script>
-    <script src="lib/js/head.min.js"></script>
-    <script src="js/reveal.js"></script>
-    <script src="plugin/codestepper/codestepper.js"></script>
-    <script src="js/hogent-reveal.js" data-start-at-last="false"></script>
-    <script src="js/snap.svg.js"></script>
-  </body>
+		<script src="lib/js/chart.xkcd.min.js"></script>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script src="plugin/codestepper/codestepper.js"></script>
+		<script src="js/hogent-reveal.js" data-start-at-last="false"></script>
+		<script src="js/snap.svg.js"></script>
+	</body>
 </html>
